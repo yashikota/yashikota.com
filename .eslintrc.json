@@ -1,5 +1,10 @@
 {
-  "extends": ["next/core-web-vitals", "plugin:react/recommended", "plugin:import/warnings"],
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:react/recommended",
+    "plugin:import/warnings",
+    "prettier"
+  ],
   "rules": {
     "import/order": [
       "error",
