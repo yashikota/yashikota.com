@@ -1,14 +1,10 @@
----
-name: kota
-avatar: /static/images/icon.png
-github: https://github.com/yashikota
-twitter: https://twitter.com/yashikota
-atcoder: https://atcoder.jp/users/yashikota
-zenn: https://zenn.dev/yashikota
-rss: https://yashikota.com/feed.xml
----
-
 # About
+
+University students studying computer science.
+
+- [Github](https://github.com/yashikota)
+- [Twitter](https://twitter.com/yashikota)
+- [Zenn](https://zenn.dev/yashikota)
 
 ## Interests
 
@@ -84,9 +80,9 @@ and more...
 |----------|-----|
 |Linux|★★★☆☆|
 |VSCode|★★★☆☆|
-|NeoVim|★☆☆☆☆|
+|Neovim|★☆☆☆☆|
 |Git|★★☆☆☆|
-|Github|★★★☆☆|
+|GitHub|★★★☆☆|
 |Docker|★☆☆☆☆|
 |Network|★★★☆☆|
 |Siv3D|★☆☆☆☆|
@@ -94,8 +90,8 @@ and more...
 
 ## Qualifications
 
-- ITパスポート
-- 情報セキュリティマネジメント
-- 応用情報技術者
-- 情報処理安全確保支援士
+- ITパスポート (Information Technology Passport Examination)
+- 情報セキュリティマネジメント (Information Security Management Examination)
+- 応用情報技術者 (Applied Information Technology Engineer Examination)
+- 情報処理安全確保支援士 (Registered Information Security Specialist Examination)
 - TOEIC 510
