@@ -5,6 +5,7 @@ University students studying computer science.
 - [Github](https://github.com/yashikota)
 - [Twitter](https://twitter.com/yashikota)
 - [Zenn](https://zenn.dev/yashikota)
+- [AtCoder](https://atcoder.jp/users/yashikota)
 
 ## Interests
 
@@ -36,8 +37,8 @@ and more...
 |Technology|Skill|
 |----------|-----|
 |C|★★★☆☆|
-|C++|★☆☆☆☆|
-|Rust|★☆☆☆☆|
+|C++|★★☆☆☆|
+|Rust|★★☆☆☆|
 
 ### AI
 
@@ -59,7 +60,6 @@ and more...
 |Next.js|★★☆☆☆|
 |Vite|★★☆☆☆|
 |Deno|★★☆☆☆|
-|Astro|★☆☆☆☆|
 
 ### Security
 
@@ -81,11 +81,10 @@ and more...
 |Linux|★★★☆☆|
 |VSCode|★★★☆☆|
 |Neovim|★☆☆☆☆|
-|Git|★★☆☆☆|
-|GitHub|★★★☆☆|
+|Git|★★★☆☆|
+|GitHub|★★★★☆|
 |Docker|★☆☆☆☆|
 |Network|★★★☆☆|
-|Siv3D|★☆☆☆☆|
 |OpenCV|★★☆☆☆|
 
 ## Qualifications
