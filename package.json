@@ -9,12 +9,17 @@
     "lint": "next lint --fix",
     "format": "prettier --write --ignore-path .gitignore './**/*.{js,jsx,ts,tsx,json}'",
     "lint-format": "npm run lint && npm run format",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "textlint": "textlint ./contents/blog/*.md"
   },
   "dependencies": {
     "next": "13.1.6",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "textlint": "^12.6.1",
+    "textlint-rule-no-dropping-the-ra": "^3.0.0",
+    "textlint-rule-preset-ja-spacing": "^2.3.0",
+    "textlint-rule-preset-ja-technical-writing": "^7.0.0",
     "zenn-content-css": "^0.1.137",
     "zenn-embed-elements": "^0.1.137",
     "zenn-markdown-html": "^0.1.137"

@@ -189,7 +189,7 @@ pub fn is_one_hour_before_the_contest() -> bool {
 }
 ```
 
-これで開催1時間前かどうかを判定することができたのでいよいよDiscordBotの作成に取り掛かっていくのですが！！！  
+これで開催1時間前かどうかを判定できたのでいよいよDiscordBotの作成に取り掛かっていくのですが!!!  
 ここで大きな問題が…   
 RustでDiscordBotを作ろうとすると
 [Serenity](https://github.com/serenity-rs/serenity)
@@ -262,4 +262,4 @@ workflows:
 ## 最後に
 
 これでコンテストの通知が来るようになったので、うっかり参加し忘れることもなくなるでしょう。  
-競プロにも精進していきたいと思います！！！  
+競プロにも精進していきたいと思います!!!  

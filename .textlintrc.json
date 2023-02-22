@@ -1,0 +1,7 @@
+{
+  "rules": {
+    "textlint-rule-no-dropping-the-ra": true,
+    "preset-ja-spacing": true,
+    "preset-ja-technical-writing": true
+  }
+}
