@@ -3,7 +3,7 @@
     "title": "OITシラバスアプリ",
     "description": "大阪工業大学の全学部・大学院に対応したシラバス閲覧アプリ。インクリメンタルサーチやフィルタリング、複数の年度に対応",
     "technology": "React, TypeScript, MUI, material-table, Python, Github Actions",
-    "image": "/static/images/syllabus.webp",
+    "image": "/images/projects/syllabus.webp",
     "url": "https://syllabus.oit.yashikota.com",
     "github": "https://github.com/oit-tools/syllabus"
   },
@@ -11,7 +11,7 @@
     "title": "OIT Tools",
     "description": "シラバスアプリ等へのリンクや大阪工業大学のニュース、リンク集を掲載",
     "technology": "React, TypeScript, MUI",
-    "image": "/static/images/tools.webp",
+    "image": "/images/projects/tools.webp",
     "url": "https://oit.yashikota.com",
     "github": "https://github.com/oit-tools/homepage"
   },
@@ -19,7 +19,7 @@
     "title": "JANCodeジェネレーター",
     "description": "JANCode(Japanese Article Number Code)を生成するジェネレーター",
     "technology": "Python",
-    "image": "/static/images/jancode.png",
+    "image": "/images/projects/jancode.png",
     "url": "https://github.com/yashikota/jancode",
     "github": "https://github.com/yashikota/jancode"
   },
@@ -27,7 +27,7 @@
     "title": "Pomodoro Timer",
     "description": "Siv3Dで作成したポモドーロタイマー",
     "technology": "Siv3D, C++",
-    "image": "/static/images/no-image.jpg",
+    "image": "/images/projects/no-image.jpg",
     "url": "https://github.com/yashikota/pomodoro-timer",
     "github": "https://github.com/yashikota/pomodoro-timer"
   },
@@ -35,7 +35,7 @@
     "title": "AtCoder Beginner Contest API",
     "description": "開催時期が一番近いAtCoder Beginner Contestの情報を取得するAPI",
     "technology": "Deno, TypeScript, Deno Deploy",
-    "image": "/static/images/abc-api.png",
+    "image": "/images/projects/abc-api.png",
     "url": "https://github.com/yashikota/abc-latest-api",
     "github": "https://github.com/yashikota/abc-latest-api"
   },
@@ -43,7 +43,7 @@
     "title": "AtCoder Beginner Contest Bot",
     "description": "開催時期が一番近いAtCoder Beginner Contestの情報を通知するDiscord Bot",
     "technology": "Rust, Serenity, CircleCI",
-    "image": "/static/images/abc-bot.png",
+    "image": "/images/projects/abc-bot.png",
     "url": "https://github.com/yashikota/abc-latest-bot",
     "github": "https://github.com/yashikota/abc-latest-bot"
   },
@@ -51,7 +51,7 @@
     "title": "Auto Annotation Tool",
     "description": "YOLOv5形式のアノテーションファイルを半自動で作成するツール",
     "technology": "Python, YOLOv5, OpenCV",
-    "image": "/static/images/no-image.jpg",
+    "image": "/images/projects/no-image.jpg",
     "url": "https://github.com/yashikota/auto-annotation",
     "github": "https://github.com/yashikota/auto-annotation"
   },
@@ -59,7 +59,7 @@
     "title": "Aozora Markov Bot",
     "description": "青空文庫 (www.aozora.gr.jp) のアクセスランキング上位500位の作品からマルコフ連鎖により生成された文章を1時間に1回ツイート",
     "technology": "Python, markovify, CircleCI",
-    "image": "/static/images/aozora-markov.webp",
+    "image": "/images/projects/aozora-markov.webp",
     "url": "https://twitter.com/AozoraMarkov",
     "github": "https://github.com/yashikota/aozora-markov"
   }
