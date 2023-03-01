@@ -13,7 +13,7 @@
     "textlint": "textlint ./contents/blog/*.md"
   },
   "dependencies": {
-    "next": "13.2.1",
+    "next": "13.2.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "textlint": "^12.6.1",
@@ -25,7 +25,7 @@
     "zenn-markdown-html": "^0.1.137"
   },
   "devDependencies": {
-    "@next/font": "13.2.1",
+    "@next/font": "13.2.2",
     "@types/node": "18.14.2",
     "@types/react": "18.0.28",
     "@types/react-dom": "18.0.11",
