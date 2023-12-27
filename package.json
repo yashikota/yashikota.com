@@ -8,7 +8,9 @@
     "start": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "lint": "npx biome lint ./src",
+    "format": "npx biome format --write ./src"
   },
   "dependencies": {
     "@astrojs/check": "^0.3.4",
