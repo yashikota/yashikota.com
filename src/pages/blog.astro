@@ -1,0 +1,19 @@
+---
+import Base from "../layouts/Base.astro"
+
+const allPosts = await Astro.glob("../../posts/*.md");
+---
+
+<Base pageTitle="Blog" />
+<h1>Blog</h1>
+<p>{allPosts.length} posts</p>
+<ul>
+    {
+        allPosts.map((post) => (
+            <li>
+                <a href={post.url}>
+                </a>
+            </li>
+        ))
+    }
+</ul>

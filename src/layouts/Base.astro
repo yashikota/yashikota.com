@@ -1,0 +1,18 @@
+---
+import Header from "../components/Header.astro";
+
+const { pageTitle } = Astro.props;
+---
+
+<html lang="ja">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/png" href="/dango.png" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <title>{pageTitle ? `${pageTitle} | こたのお考え` : "こたのお考え"}</title>
+    </head>
+    <body>
+        <Header />
+    </body>
+</html>

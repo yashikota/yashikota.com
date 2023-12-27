@@ -1,0 +1,27 @@
+---
+import { css } from "../../styled-system/css";
+---
+
+<div
+    class={css({
+        "& a": {
+            margin: "0.5rem",
+            _hover: {
+                color: "blue",
+            },
+        },
+    })}
+>
+    <a href="/blog">
+        Blog
+    </a>
+    <a href="/slides">
+        Slides
+    </a>
+    <a href="/works">
+        Works
+    </a>
+    <a href="/about">
+        About
+    </a>
+</div>
