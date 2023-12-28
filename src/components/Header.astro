@@ -1,7 +1,7 @@
 ---
 import { css } from "../../styled-system/css";
 
-import Navigation from "./Navigation.astro"
+import Navigation from "./Navigation.astro";
 ---
 
 <header
@@ -16,6 +16,7 @@ import Navigation from "./Navigation.astro"
         boxShadow: "0 0 0.5rem rgba(0, 0, 0, 0.5)",
         zIndex: 1,
         position: "sticky",
+        background: "linear-gradient(90deg, #cdffd9, #95baff)",
     })}
 >
     <a
@@ -28,9 +29,7 @@ import Navigation from "./Navigation.astro"
         })}
     >
         <img src="/dango.png" alt="icon" width="40px" />
-        <span>
-            こたのお考え
-        </span>
+        <span> こたのお考え</span>
     </a>
 
     <Navigation />

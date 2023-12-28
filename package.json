@@ -1,25 +1,25 @@
 {
-  "name": "yashikota.com",
-  "type": "module",
-  "version": "0.0.1",
-  "scripts": {
-    "prepare": "panda codegen",
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro check && astro build",
-    "preview": "astro preview",
-    "astro": "astro",
-    "lint": "npx biome lint ./src",
-    "format": "npx biome format --write ./src"
-  },
-  "dependencies": {
-    "@astrojs/check": "^0.3.4",
-    "astro": "^4.0.7",
-    "typescript": "^5.3.3"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "1.4.1",
-    "@pandacss/astro": "^0.23.0",
-    "@pandacss/dev": "^0.23.0"
-  }
+    "name": "yashikota.com",
+    "type": "module",
+    "version": "0.0.1",
+    "scripts": {
+        "prepare": "panda codegen",
+        "dev": "astro dev",
+        "start": "astro dev",
+        "build": "astro check && astro build",
+        "preview": "astro preview",
+        "astro": "astro",
+        "lint": "bunx biome lint ./src",
+        "format": "bunx biome format --write ./src"
+    },
+    "dependencies": {
+        "@astrojs/check": "^0.3.4",
+        "astro": "^4.0.7",
+        "typescript": "^5.3.3"
+    },
+    "devDependencies": {
+        "@biomejs/biome": "1.4.1",
+        "@pandacss/astro": "^0.23.0",
+        "@pandacss/dev": "^0.23.0"
+    }
 }

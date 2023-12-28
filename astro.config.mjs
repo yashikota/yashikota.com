@@ -3,4 +3,5 @@ import pandacss from "@pandacss/astro"
 
 export default defineConfig({
     integrations: [pandacss()],
+    trailingSlash: "always",
 })
