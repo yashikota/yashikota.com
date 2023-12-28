@@ -1,0 +1,57 @@
+---
+import Base from "../../layouts/Base.astro";
+
+import { getBlogPosts } from "../../lib/BlogPosts";
+
+import lib from "zenn-markdown-html";
+import "zenn-content-css";
+
+type MarkdownOptions = {
+    embedOrigin: string;
+};
+type MarkdownHtml = (text: string, options?: MarkdownOptions) => string;
+type MarkdownHtmlAtBuild = { default: MarkdownHtml };
+
+let markdownHtml: MarkdownHtml = lib;
+if (typeof lib !== "function") {
+    markdownHtml = (lib as MarkdownHtmlAtBuild).default;
+}
+
+export interface Props {
+    title: string;
+    tags: string[];
+    date: string;
+    body: string;
+}
+
+export async function getStaticPaths() {
+    const blogs = await getBlogPosts();
+    return blogs.map((blog) => {
+        return {
+            params: {
+                slug: blog.slug,
+            },
+            props: {
+                title: blog.title,
+                tags: blog.tags,
+                pubDate: blog.pubDate,
+                body: blog.body,
+            },
+        };
+    });
+}
+
+const { title, tags, date, body } = Astro.props;
+const content = markdownHtml(body, {
+    embedOrigin: "https://embed.zenn.studio",
+});
+---
+
+<Base pageTitle={title} />
+
+<h1>{title}</h1>
+<p>{date}</p>
+<p>{tags}</p>
+<div class="znc">
+    <Fragment set:html={content} />
+</div>
