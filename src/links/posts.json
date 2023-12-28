@@ -1,0 +1,9 @@
+[
+    {
+        "title": "hoge",
+        "pubDate": "2024-01-01",
+        "tags": ["hoge", "fuga"],
+        "link": "https://example.com/hoge",
+        "platform": "hoge"
+    }
+]

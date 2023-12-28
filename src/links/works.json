@@ -1,0 +1,12 @@
+[
+    {
+        "title": "OIT-MAGIC",
+        "image": "/works/oit-magic.gif",
+        "startDate": "2023-10-01",
+        "endDate": "2023-11-03",
+        "tags": ["Game", "Unity", "CSharp", "Python", "MediaPipe"],
+        "development": "共同開発",
+        "description": "文化祭展示用ゲーム",
+        "github": "https://github.com/yashikota/oit-magic"
+    }
+]
