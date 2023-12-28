@@ -13,7 +13,9 @@ const posts = await getAllPosts();
     {
         posts.map((post) => (
             <li>
-                <a href={post.slug || post.url}>{post.title}</a>
+                <a href={post.slug ? `/blog/${post.slug}` : post.url}>
+                    {post.title}
+                </a>
             </li>
         ))
     }
