@@ -1,19 +1,19 @@
 ---
-import Base from "../layouts/Base.astro"
+import { getCollection } from "astro:content";
+import Base from "../layouts/Base.astro";
 
-const allPosts = await Astro.glob("../../posts/*.md");
+const blogs = await getCollection("blog");
 ---
 
 <Base pageTitle="Blog" />
+
 <h1>Blog</h1>
-<p>{allPosts.length} posts</p>
-<ul>
+<div>
     {
-        allPosts.map((post) => (
+        blogs.map((blog) => (
             <li>
-                <a href={post.url}>
-                </a>
+                <a href={blog.slug}>{blog.data.title}</a>
             </li>
         ))
     }
-</ul>
+</div>

@@ -1,4 +1,6 @@
 ---
+import { ViewTransitions } from "astro:transitions";
+
 import Header from "../components/Header.astro";
 
 const { pageTitle } = Astro.props;
@@ -10,7 +12,10 @@ const { pageTitle } = Astro.props;
         <link rel="icon" type="image/png" href="/dango.png" />
         <meta name="viewport" content="width=device-width" />
         <meta name="generator" content={Astro.generator} />
-        <title>{pageTitle ? `${pageTitle} | こたのお考え` : "こたのお考え"}</title>
+        <title>
+            {pageTitle ? `${pageTitle} | こたのお考え` : "こたのお考え"}
+        </title>
+        <ViewTransitions />
     </head>
     <body>
         <Header />
