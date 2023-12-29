@@ -13,8 +13,12 @@ const posts = await getAllPosts();
     {
         posts.map((post) => (
             <li>
-                <a href={post.slug ? `/blog/${post.slug}` : post.url}>
-                    {post.title}
+                <a
+                    href={post.slug ? `/blog/${post.slug}` : post.url}
+                    target={post.slug ? "" : "_blank"}
+                    rel={post.slug ? "" : "noopener"}
+                >
+                    {post.title}, {post.pubDate}, ({post.updDate}), {post.tags}, {post.icon}
                 </a>
             </li>
         ))

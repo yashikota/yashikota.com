@@ -2,7 +2,9 @@
     {
         "title": "hoge",
         "pubDate": "2023-12-24",
+        "updDate": "",
         "tags": ["hoge", "fuga"],
-        "url": "https://example.com/hoge"
+        "url": "https://example.com/hoge",
+        "icon": "/icons/hoge.svg"
     }
 ]

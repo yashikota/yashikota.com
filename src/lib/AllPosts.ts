@@ -2,12 +2,14 @@ import { getBlogPosts } from "./BlogPosts"
 import { getZennPosts } from "./Zenn"
 import ExternalPosts from "../links/posts.json"
 
-export interface Post {
+interface Post {
     slug: string
     title: string
     pubDate: string
+    updDate: string | null
     tags: string[]
     url: string
+    icon: string
 }
 
 export async function getAllPosts() {
