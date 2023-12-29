@@ -1,6 +1,7 @@
 ---
 title: 2年前期の授業感想
 pubDate: 2022-09-13
+updDate: 
 tags: ["授業感想"]
 ---
 

@@ -1,6 +1,7 @@
 ---
 title: 1年前期の授業感想
 pubDate: 2021-08-01
+updDate: 
 tags: ["授業感想"]
 ---
 

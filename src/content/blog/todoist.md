@@ -1,6 +1,7 @@
 ---
 title: Todoistでタスク管理のすゝめ
 pubDate: 2023-07-18
+updDate: 
 tags: ["ツール紹介"]
 ---
 

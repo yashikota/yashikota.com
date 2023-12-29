@@ -1,6 +1,7 @@
 ---
 title: ChipWhispererの使い方
 pubDate: 2022-11-13
+updDate: 
 tags: ["セキュリティ"]
 ---
 

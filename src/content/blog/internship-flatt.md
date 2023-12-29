@@ -1,6 +1,7 @@
 ---
 title: Flatt Securityのインターンシップに参加してきました
 pubDate: 2023-08-29
+updDate: 
 tags: ["インターン", "セキュリティ"]
 ---
 

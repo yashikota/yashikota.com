@@ -1,6 +1,7 @@
 ---
 title: 実践Rustプログラミング入門を読んだ
 pubDate: 2023-02-28
+updDate: 
 tags: ["Rust", "本"]
 ---
 

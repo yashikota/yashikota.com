@@ -1,8 +1,65 @@
 ---
 title: "ZennのMarkdown記法一覧"
 pubDate: 2023-12-29
+updDate: 
 tags: ["雑記"]
 ---
+
+# url preview
+
+https://www.oreilly.co.jp/books/9784873119694
+
+https://www.c-r.com/book/detail/1462
+
+https://asciidwango.jp/post/176293765750/clean-architecture
+
+https://www.shuwasystem.co.jp/book/9784798046143.html
+
+https://www.seshop.com/product/detail/25970
+
+https://www.lambdanote.com/products/cpu
+
+https://gihyo.jp/book/2014/978-4-7741-6753-4
+
+https://www.borndigital.co.jp/book/19115/
+
+https://www.sbcr.jp/product/4815609795/
+
+https://book.mynavi.jp/ec/products/detail/id=22065
+
+https://store-jp.nintendo.com/list/goods/book-music-poster/NSJ_8_B9AAA.html
+
+https://www.kadokawa.co.jp/product/301508001220/
+
+https://book.impress.co.jp/books/1115101145
+
+https://bookplus.nikkei.com/atcl/catalog/03/579100/
+
+https://www.kohgakusha.co.jp/books/detail/978-4-7775-2239-2
+
+https://www.kadokawa.co.jp/product/200600003156/
+
+https://www.amazon.co.jp/dp/4756136591
+
+https://books.rakuten.co.jp/rb/16094948/?l-id=item-r-rank-05
+
+https://store.shopping.yahoo.co.jp/jiasp5/20221218003459-00424us.html
+
+https://www.kinokuniya.co.jp/f/dsg-01-9784756136596
+
+https://booklog.jp/item/1/4274067939
+
+https://honto.jp/netstore/pd-book_01955162.html
+
+https://jp.mercari.com/shops/product/cp6TKKsPueMeXCLDfN675F
+
+https://bookmeter.com/books/148192
+
+https://www.hanmoto.com/bd/isbn/9784910508016
+
+https://item.rakuten.co.jp/gorilla55/tx-701
+
+https://ja.wikipedia.org/wiki/UNIX%E5%93%B2%E5%AD%A6
 
 このページでは Zenn のmarkdown記法を一覧で紹介します。
 

@@ -1,6 +1,7 @@
 ---
 title: 1年後期の授業感想
 pubDate: 2022-03-02
+updDate: 
 tags: ["授業感想"]
 ---
 

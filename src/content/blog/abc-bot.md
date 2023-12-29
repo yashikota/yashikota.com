@@ -1,6 +1,7 @@
 ---
 title: AtCoder Beginner Contestの開催情報を通知するBotを作った
 pubDate: 2023-01-12
+updDate: 
 tags: ["技術解説"]
 ---
 

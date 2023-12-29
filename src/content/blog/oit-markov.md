@@ -1,6 +1,7 @@
 ---
 title: OIT Markov Botを支える技術
 pubDate: 2022-08-10
+updDate: 
 tags: ["技術解説"]
 ---
 

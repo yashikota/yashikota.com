@@ -1,6 +1,7 @@
 ---
 title: Hello World
 pubDate: 2021-03-01
+updDate: 
 tags: ["雑記"]
 ---
 

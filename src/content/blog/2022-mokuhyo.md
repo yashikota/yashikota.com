@@ -1,6 +1,7 @@
 ---
 title: 2022年度の目標
 pubDate: 2022-04-05
+updDate: 
 tags: ["目標"]
 ---
 

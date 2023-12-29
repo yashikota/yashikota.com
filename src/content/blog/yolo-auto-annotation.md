@@ -1,6 +1,7 @@
 ---
 title: YOLOv5の自動アノテーションするツールを作った
 pubDate: 2023-01-13
+updDate: 
 tags: ["技術解説"]
 ---
 
