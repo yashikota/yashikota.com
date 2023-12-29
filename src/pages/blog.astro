@@ -11,7 +11,9 @@ const posts = await getAllPosts();
 
 <div>
     {
-        posts.map((post) => (
+        posts
+        .filter(post => !post.isUnlisted)
+        .map((post) => (
             <li>
                 <a
                     href={post.slug ? `/blog/${post.slug}` : post.url}

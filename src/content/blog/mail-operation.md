@@ -2,6 +2,7 @@
 title: 独自ドメインのメールをサーバーレスで運用する方法
 pubDate: 2023-01-21
 updDate: 
+isUnlisted: false
 tags: ["雑記"]
 ---
 

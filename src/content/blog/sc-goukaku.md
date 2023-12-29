@@ -2,6 +2,7 @@
 title: 情報処理安全確保支援士（セキスペ）合格体験記
 pubDate: 2021-12-21
 updDate: 
+isUnlisted: false
 tags: ["情報処理技術者試験", "セキュリティ", "アドベントカレンダー"]
 ---
 この記事は、 [大阪工業大学 Advent Calendar 2021](https://adventar.org/calendars/6716)の21日目の記事です。

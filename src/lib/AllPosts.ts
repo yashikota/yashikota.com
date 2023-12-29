@@ -7,6 +7,7 @@ interface Post {
     title: string
     pubDate: string
     updDate: string | null
+    isUnlisted: boolean
     tags: string[]
     url: string
     icon: string

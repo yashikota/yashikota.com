@@ -2,6 +2,7 @@
 title: Minecraftサーバーに入退出した人を検知して通知するDiscordのbotを作成した
 pubDate: 2023-02-07
 updDate: 
+isUnlisted: false
 tags: ["ゲーム"]
 ---
 

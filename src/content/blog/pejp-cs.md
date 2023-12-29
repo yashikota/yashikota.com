@@ -2,6 +2,7 @@
 title: 技術士とCSコースについて
 pubDate: 2022-12-09
 updDate: 
+isUnlisted: false
 tags: ["雑記", "アドベントカレンダー"]
 ---
 

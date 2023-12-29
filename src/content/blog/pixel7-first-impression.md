@@ -2,6 +2,7 @@
 title: Pixel7 ファーストインプレッション
 pubDate: 2022-12-04
 updDate: 
+isUnlisted: false
 tags: ["ガジェット", "雑記"]
 ---
 
