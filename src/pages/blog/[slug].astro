@@ -49,9 +49,15 @@ const content = markdownHtml(body, {
 
 <Base pageTitle={title} />
 
+<script
+    src="https://embed.zenn.studio/js/listen-embed-event.js"
+    is:inline>
+</script>
+
 <h1>{title}</h1>
 <p>{date}</p>
 <p>{tags}</p>
+
 <div class="znc">
     <Fragment set:html={content} />
 </div>

@@ -13,7 +13,7 @@ const slides = await getAllSlides();
     {slides.map((slide) => (
     <div>
         <a href={slide.path}>
-            <img src={slide.path + "/001.png"} alt={slide.title} width="25%" />
+            <img src={"/slides/" + slide.path + "/001.png"} alt={slide.title} width="25%" />
             {slide.pubDate}
             <br />
             {slide.title}
