@@ -1,7 +1,25 @@
 ---
 import Base from "../layouts/Base.astro";
+
+import { getAllSlides } from "../lib/Slide";
+const slides = await getAllSlides();
 ---
 
 <Base pageTitle="Slides" />
 
 <h1>Slides</h1>
+
+<div>
+    {slides.map((slide) => (
+    <div>
+        <a href={slide.path}>
+            <img src={slide.path + "/001.png"} alt={slide.title} width="25%" />
+            {slide.pubDate}
+            <br />
+            {slide.title}
+            <br />
+            {slide.tags}
+        </a>
+    </div>
+    ))}
+</div>

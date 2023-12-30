@@ -1,0 +1,33 @@
+---
+import Base from "../../layouts/Base.astro";
+
+import { getAllSlides } from "../../lib/Slide";
+import SwiperComponent from "../../lib/Swiper";
+
+export async function getStaticPaths() {
+    const slides = await getAllSlides();
+
+    return slides.map((slide) => ({
+        params: {
+            slug: slide.path,
+        },
+        props: {
+            title: slide.title,
+            pubDate: slide.pubDate,
+            tags: slide.tags,
+            path: slide.path,
+            pages: slide.pages,
+        },
+    }));
+}
+
+const { title, pubDate, tags, path, pages } = Astro.props;
+---
+
+<Base pageTitle={title} />
+
+<h1>{title}</h1>
+<p>{pubDate}</p>
+<p>{tags}</p>
+
+<SwiperComponent path={path} pages={pages} client:load />
