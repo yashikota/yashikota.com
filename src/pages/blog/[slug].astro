@@ -2,6 +2,7 @@
 import Base from "../../layouts/Base.astro";
 
 import { getBlogPosts } from "../../lib/BlogPosts";
+import { Blog } from "../../components/Blog";
 
 import lib from "zenn-markdown-html";
 import "zenn-content-css";
@@ -20,7 +21,8 @@ if (typeof lib !== "function") {
 interface Props {
     title: string;
     tags: string[];
-    date: string;
+    pubDate: string;
+    updDate: string;
     body: string;
 }
 
@@ -41,7 +43,7 @@ export async function getStaticPaths() {
     });
 }
 
-const { title, tags, date, body } = Astro.props;
+const { title, tags, pubDate, updDate, body } = Astro.props;
 const content = markdownHtml(body, {
     embedOrigin: "https://embed.zenn.studio",
 });
@@ -55,9 +57,7 @@ const content = markdownHtml(body, {
 </script>
 
 <h1>{title}</h1>
-<p>{date}</p>
+<p>{pubDate}, ({updDate})</p>
 <p>{tags}</p>
 
-<div class="znc">
-    <Fragment set:html={content} />
-</div>
+<Blog html={content} client:load />

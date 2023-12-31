@@ -2,7 +2,7 @@
 import Base from "../../layouts/Base.astro";
 
 import { getAllSlides } from "../../lib/Slide";
-import SwiperComponent from "../../lib/Swiper";
+import SwiperComponent from "../../components/Swiper";
 
 export async function getStaticPaths() {
     const slides = await getAllSlides();
