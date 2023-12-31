@@ -1,5 +1,7 @@
 ---
-import { css, cx } from "../../styled-system/css";
+import { css } from "../../styled-system/css";
+
+import downwardsButton from "../../public/downwards_button_color.svg?raw";
 
 const navItems = ["Top", "Blog", "Slides", "Works", "Games", "About"];
 const active = Astro.url.pathname;
@@ -60,10 +62,13 @@ if (name === "") {
                 display: "flex",
                 alignItems: "center",
                 cursor: "pointer",
+                gap: "0.5rem",
             })}
         >
             <span>{name}</span>
-            <span class="toggle-button">🔽</span>
+            <div class="toggle-button">
+                <Fragment set:html={downwardsButton} />
+            </div>
         </label>
         <span class="nav-items">
             {navItems.map((item) => (
