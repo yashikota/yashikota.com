@@ -1,14 +1,26 @@
 ---
-import { css } from "../../styled-system/css";
+import { css, cx } from "../../styled-system/css";
 
-import Navigation from "./Navigation.astro";
+const navItems = ["Top", "Blog", "Slides", "Works", "Games", "About"];
+const active = Astro.url.pathname;
+
+let name = "";
+for (const item of navItems) {
+    if (active.includes(item.toLowerCase())) {
+        name = item;
+        break;
+    }
+}
+if (name === "") {
+    name = "Top";
+}
 ---
 
 <header
     class={css({
         display: "flex",
         alignItems: "center",
-        justifyContent: "space-between",
+        justifyContent: "center",
         padding: "0 1rem",
         height: "4rem",
         fontSize: "2rem",
@@ -29,8 +41,118 @@ import Navigation from "./Navigation.astro";
         })}
     >
         <img src="/dango.png" alt="icon" width="40px" />
-        <span> こたのお考え</span>
+        <span class="title">
+        こたのお考え
+        </span>
     </a>
 
-    <Navigation />
+    <div
+        class={css({
+            padding: "5px",
+        })}
+    > :: </div>
+
+    <nav>
+        <input type="checkbox" id="nav-checkbox" />
+        <label
+            for="nav-checkbox"
+            class={css({
+                display: "flex",
+                alignItems: "center",
+                cursor: "pointer",
+            })}
+        >
+            <span>{name}</span>
+            <span class="toggle-button">🔽</span>
+        </label>
+        <span class="nav-items">
+            {navItems.map((item) => (
+                <a
+                    href={`/${item.toLowerCase() === "top" ? "" : item.toLowerCase()}`}
+                    class={css({
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        padding: "0.5rem 0",
+                        color: "inherit",
+                        width: "100%",
+                        textDecoration: "none",
+                        "&:hover": {
+                            background: "rgba(0, 0, 0, 0.1)",
+                        },
+                        "&:active": {
+                            background: "rgba(0, 0, 0, 0.2)",
+                        },
+                        "&.active": {
+                            background: "rgba(0, 0, 0, 0.2)",
+                        },
+                    })}
+                >
+                    {item}
+                </a>
+            ))
+            }
+        </span>
+    </nav>
 </header>
+
+<style>
+    #nav-checkbox {
+        display: none;
+    }
+
+    #nav-checkbox:checked + label + .nav-items {
+        display: block;
+    }
+
+    #nav-checkbox:checked + label .toggle-button {
+        transform: rotate(180deg);
+        animation: open 0.5s ease-in-out;
+    }
+    @keyframes open {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(180deg);
+        }
+    }
+
+    /*
+    #nav-checkbox + label .toggle-button {
+        transition: transform 0.5s ease-in-out;
+        animation: close 0.5s ease-in-out;
+    }
+    @keyframes close {
+        0% {
+            transform: rotate(180deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+    */
+
+    .nav-items {
+        display: none;
+        width: 30%;
+        flex-direction: column;
+        position: absolute;
+        top: 4rem;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        padding: 0.5rem 0;
+        box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
+        z-index: 1;
+    }
+
+    @media (max-width: 370px) {
+        .title {
+            display: none;
+        }
+        div {
+            display: none;
+        }
+    }
+</style>
