@@ -1,5 +1,5 @@
 ---
-import { css } from "../../styled-system/css";
+import { center } from "../../styled-system/patterns";
 
 import Base from "../layouts/Base.astro";
 ---
@@ -7,10 +7,8 @@ import Base from "../layouts/Base.astro";
 <Base />
 
 <div
-    class={css({
-        display: "flex",
-        fontSize: "10rem",
-        justifyContent: "center",
+    class={center({
+        fontSize: "3rem",
     })}
 >
     Under Construction...

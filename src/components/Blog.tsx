@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect } from "react"
 
 type Props = {
     html: string
@@ -6,8 +6,8 @@ type Props = {
 
 export const Blog: React.FC<Props> = ({ html }) => {
     useEffect(() => {
-        import("zenn-embed-elements");
-    }, []);
+        import("zenn-embed-elements")
+    }, [])
 
     return (
         <div
