@@ -5,10 +5,15 @@ import "swiper/css/navigation"
 
 export default function SwiperComponent({ path, pages }: { path: string; pages: number }) {
     return (
-        <Swiper navigation={true} keyboard={true} mousewheel={true} modules={[Navigation, Keyboard, Mousewheel]}>
+        <Swiper
+            navigation={true}
+            keyboard={true}
+            mousewheel={true}
+            modules={[Navigation, Keyboard, Mousewheel]}
+        >
             {[...Array(pages)].map((_, i) => {
                 const pageNumber = (i + 1).toString().padStart(3, "0")
-                const imagePath = `${path}/${pageNumber}.png`
+                const imagePath = `/slides/${path}/${pageNumber}.png`
 
                 return (
                     <SwiperSlide key={i}>
