@@ -24,10 +24,12 @@ export async function getStaticPaths() {
 const { title, pubDate, tags, path, pages } = Astro.props;
 ---
 
-<Base pageTitle={title} />
+<Base pageTitle={title}>
 
 <h1>{title}</h1>
 <p>{pubDate}</p>
 <p>{tags}</p>
 
 <SwiperComponent path={path} pages={pages} client:load />
+
+</Base>

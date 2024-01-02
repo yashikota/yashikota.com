@@ -49,7 +49,7 @@ const content = markdownHtml(body, {
 });
 ---
 
-<Base pageTitle={title} />
+<Base pageTitle={title}>
 
 <script
     src="https://embed.zenn.studio/js/listen-embed-event.js"
@@ -61,3 +61,5 @@ const content = markdownHtml(body, {
 <p>{tags}</p>
 
 <Blog html={content} client:load />
+
+</Base>
