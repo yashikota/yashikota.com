@@ -1,5 +1,6 @@
 ---
 import { ViewTransitions } from "astro:transitions";
+import { css } from "../../styled-system/css";
 
 import Header from "../components/Header.astro";
 import { container } from "../../styled-system/patterns";
@@ -18,10 +19,12 @@ const { pageTitle } = Astro.props;
         </title>
         <ViewTransitions />
     </head>
-    <body>
-        <Header />
-        <main class={container()}>
-            <slot />
-        </main>
+    <body class={css({paddingBottom: 5})}>
+        <div>
+            <Header />
+            <main class={container()}>
+                <slot />
+            </main>
+        </div>
     </body>
 </html>
