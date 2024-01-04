@@ -31,7 +31,7 @@ if (name === "") {
         zIndex: 3,
         position: "sticky",
         top: 0,
-        background: "linear-gradient(90deg, #cdffd9, #95baff)",
+        background: "linear-gradient(90deg,hsl(121deg 66% 66%) 0%,hsl(125deg 67% 66%) 5%,hsl(129deg 67% 66%) 10%,hsl(133deg 67% 67%) 14%,hsl(137deg 67% 67%) 19%,hsl(141deg 67% 67%) 24%,hsl(145deg 67% 67%) 29%,hsl(149deg 68% 67%) 33%,hsl(153deg 68% 68%) 38%,hsl(157deg 68% 68%) 43%,hsl(161deg 68% 68%) 48%,hsl(165deg 68% 68%) 52%,hsl(169deg 68% 68%) 57%,hsl(173deg 69% 68%) 62%,hsl(177deg 69% 69%) 67%,hsl(181deg 69% 69%) 71%,hsl(185deg 69% 69%) 76%,hsl(189deg 69% 69%) 81%,hsl(193deg 69% 69%) 86%,hsl(197deg 70% 70%) 90%,hsl(201deg 70% 70%) 95%,hsl(205deg 70% 70%) 100%);",
     })}
 >
     <a
@@ -71,7 +71,14 @@ if (name === "") {
                 <Fragment set:html={downwardsButton} />
             </div>
         </label>
-        <span class="nav-items">
+        <span class={css({
+            display: "none",
+            width: { base: "25vw", sm: "20vw", lg: "10vw" },
+            position: "absolute",
+            background: "white",
+            boxShadow: "0 0 0.5rem rgba(0, 0, 0, 0.5)",
+            borderRadius: "0.5rem",
+        })}>
             {navItems.map((item) => (
                 <a
                     href={`/${item.toLowerCase() === "top" ? "" : item.toLowerCase()}`}
@@ -104,13 +111,13 @@ if (name === "") {
         display: none;
     }
 
-    #nav-checkbox:checked + label + .nav-items {
+    #nav-checkbox:checked + label + span {
         display: block;
     }
 
     #nav-checkbox:checked + label .toggle-button {
         transform: rotate(180deg);
-        animation: open 0.5s ease-in-out;
+        animation: open 0.5s ease-out;
     }
     @keyframes open {
         0% {
@@ -135,17 +142,4 @@ if (name === "") {
         }
     }
     */
-
-    .nav-items {
-        display: none;
-        width: 30%;
-        flex-direction: column;
-        position: absolute;
-        top: 4rem;
-        left: 0;
-        width: 100%;
-        background: #fff;
-        padding: 0.5rem 0;
-        box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
-    }
 </style>
