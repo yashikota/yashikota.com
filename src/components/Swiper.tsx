@@ -1,15 +1,21 @@
+import { css } from "../../styled-system/css";
 import { Swiper, SwiperSlide } from "swiper/react"
-import { Navigation, Keyboard, Mousewheel } from "swiper/modules"
+import { Keyboard, Mousewheel, Pagination } from "swiper/modules"
 import "swiper/css"
-import "swiper/css/navigation"
+import "swiper/css/pagination";
 
 export default function SwiperComponent({ path, pages }: { path: string; pages: number }) {
     return (
         <Swiper
-            navigation={true}
             keyboard={true}
             mousewheel={true}
-            modules={[Navigation, Keyboard, Mousewheel]}
+            pagination={{
+                type: "progressbar"
+            }}
+            modules={[Keyboard, Mousewheel, Pagination]}
+            className={css({
+                border: "1px solid black",
+            })}
         >
             {[...Array(pages)].map((_, i) => {
                 const pageNumber = (i + 1).toString().padStart(3, "0")
