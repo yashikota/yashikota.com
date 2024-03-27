@@ -1,6 +1,6 @@
 # yashikota.com
 
-<yashikota.com>
+<https://yashikota.com>
 
 ## Dependencies
 
