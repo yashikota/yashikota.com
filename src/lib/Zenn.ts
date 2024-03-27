@@ -5,7 +5,7 @@ interface zennArticle {
     path: string
 }
 
-async function fetchZennArticles() {
+async function fetchZennPosts() {
     const url = "https://zenn.dev/api/articles?username=yashikota&order=latest"
     const res = await fetch(url)
     const json = await res.json()
@@ -16,7 +16,7 @@ async function fetchZennTopics(url: string) {
     const res = await fetch(url)
     const html = await res.text()
 
-    const regex = /<a class=".*?View_topicName.*?".*?>(.*?)<\/div>/g
+    const regex = /<a class=".*?View_topicName.*?">(.*?)<\/div>/g
     const tags = []
     let match
     while ((match = regex.exec(html)) !== null) {
@@ -26,7 +26,7 @@ async function fetchZennTopics(url: string) {
 }
 
 export async function getZennPosts() {
-    const articles = await fetchZennArticles()
+    const articles = await fetchZennPosts()
     const posts = await Promise.all(
         articles.map(async (article) => {
             const { title, published_at, body_updated_at, path } = article
@@ -35,11 +35,11 @@ export async function getZennPosts() {
 
             return {
                 title,
-                pubDate: published_at.slice(0, 10),
+                pubDate: published_at.slice(0, 10), // YYYY-MM-DD
                 updDate:
                     published_at.slice(0, 10) === body_updated_at.slice(0, 10)
                         ? null
-                        : body_updated_at.slice(0, 10),
+                        : body_updated_at.slice(0, 10), // YYYY-MM-DD
                 tags: topics,
                 url: url,
                 icon: "/icons/zenn.svg",

@@ -1,6 +1,4 @@
 ---
-import { css } from "../../styled-system/css";
-
 import downwardsButton from "../../public/downwards_button_color.svg?raw";
 
 const navItems = ["Top", "Blog", "Slides", "Works", "Games", "About"];
@@ -18,99 +16,38 @@ if (name === "") {
 }
 ---
 
-<header
-    class={css({
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: "0 1rem",
-        height: "4rem",
-        fontSize: { base: "1.5rem", sm: "2rem" },
-        fontWeight: "bold",
-        boxShadow: "0 0 0.5rem rgba(0, 0, 0, 0.5)",
-        zIndex: 3,
-        position: "sticky",
-        top: 0,
-        background: "linear-gradient(90deg,hsl(121deg 66% 66%) 0%,hsl(125deg 67% 66%) 5%,hsl(129deg 67% 66%) 10%,hsl(133deg 67% 67%) 14%,hsl(137deg 67% 67%) 19%,hsl(141deg 67% 67%) 24%,hsl(145deg 67% 67%) 29%,hsl(149deg 68% 67%) 33%,hsl(153deg 68% 68%) 38%,hsl(157deg 68% 68%) 43%,hsl(161deg 68% 68%) 48%,hsl(165deg 68% 68%) 52%,hsl(169deg 68% 68%) 57%,hsl(173deg 69% 68%) 62%,hsl(177deg 69% 69%) 67%,hsl(181deg 69% 69%) 71%,hsl(185deg 69% 69%) 76%,hsl(189deg 69% 69%) 81%,hsl(193deg 69% 69%) 86%,hsl(197deg 70% 70%) 90%,hsl(201deg 70% 70%) 95%,hsl(205deg 70% 70%) 100%);",
-    })}
->
-    <a
-        href="/"
-        class={css({
-            display: "flex",
-            alignItems: "center",
-            gap: "1rem",
-            letterSpacing: "0",
-        })}
-    >
+<header class="flex items-center justify-center p-2 h-16 text-2xl sm:text-4xl font-bold shadow-md
+               z-10 sticky top-0 bg-gradient-to-r from-emerald-300 via-green-300 to-cyan-300">
+    <a href="/" class="flex items-center gap-4 tracking-normal">
         <img src="/dango.png" alt="icon" width="40px" />
         <span class="title">
-        こたのお考え
+            こたのお考え
         </span>
     </a>
 
-    <div
-        class={css({
-            padding: "5px",
-        })}
-    > :: </div>
+    <div class="p-1"> :: </div>
 
     <nav>
-        <input type="checkbox" id="nav-checkbox" />
-        <label
-            for="nav-checkbox"
-            class={css({
-                display: "flex",
-                alignItems: "center",
-                cursor: "pointer",
-                gap: "0.5rem",
-            })}
-        >
+        <input type="checkbox" id="nav-checkbox" class="hidden" />
+        <label for="nav-checkbox" class="flex items-center cursor-pointer gap-2">
             <span>{name}</span>
             <div class="toggle-button">
                 <Fragment set:html={downwardsButton} />
             </div>
         </label>
-        <span class={css({
-            display: "none",
-            width: { base: "25vw", sm: "20vw", lg: "10vw" },
-            position: "absolute",
-            background: "white",
-            boxShadow: "0 0 0.5rem rgba(0, 0, 0, 0.5)",
-            borderRadius: "0.5rem",
-        })}>
+        <span class="hidden absolute bg-white shadow-md rounded-lg">
             {navItems.map((item) => (
-                <a
-                    href={`/${item.toLowerCase() === "top" ? "" : item.toLowerCase()}`}
-                    class={css({
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        padding: "0.5rem 0",
-                        color: "inherit",
-                        width: "100%",
-                        textDecoration: "none",
-                        _hover: {
-                            background: "rgba(0, 0, 0, 0.1)",
-                        },
-                        _active: {
-                            background: "rgba(0, 0, 0, 0.2)",
-                        },
-                    })}
-                >
+                <a href={`/${item.toLowerCase() === "top" ? "" : item.toLowerCase()}`}
+                   class="flex items-center justify-center py-3 px-4 shadow-inner
+                          hover:bg-black/10 active:bg-black/20">
                     {item}
                 </a>
-            ))
-            }
+            ))}
         </span>
     </nav>
 </header>
 
 <style>
-    #nav-checkbox {
-        display: none;
-    }
-
     #nav-checkbox:checked + label + span {
         display: block;
     }
@@ -119,6 +56,7 @@ if (name === "") {
         transform: rotate(180deg);
         animation: open 0.5s ease-out;
     }
+
     @keyframes open {
         0% {
             transform: rotate(0deg);
