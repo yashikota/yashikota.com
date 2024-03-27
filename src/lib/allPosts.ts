@@ -1,6 +1,6 @@
-import { getBlogPosts } from "./BlogPosts"
-import { getZennPosts } from "./Zenn"
-import ExternalPosts from "../links/posts.json"
+import { getBlogPosts } from "./blogPosts"
+import { getZennPosts } from "./zennPosts"
+import { getExternalPosts } from "./externalPosts"
 
 interface Post {
     slug: string
@@ -16,6 +16,7 @@ interface Post {
 export async function getAllPosts() {
     const blog = await getBlogPosts()
     const zenn = await getZennPosts()
+    const ExternalPosts = await getExternalPosts()
 
     const posts = [...blog, ...zenn, ...ExternalPosts] as Post[]
     posts.sort((a, b) => {
