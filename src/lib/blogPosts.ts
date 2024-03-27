@@ -1,4 +1,5 @@
 import { getCollection } from "astro:content"
+import { getFaviconUrl } from "./utils"
 
 export async function getBlogPosts() {
     const blogs = await getCollection("blog")
@@ -10,6 +11,6 @@ export async function getBlogPosts() {
         tags: blog.data.tags,
         slug: blog.slug,
         body: blog.body,
-        icon: "/icons/blog.svg",
+        icon: getFaviconUrl("yashikota.com"),
     }))
 }

@@ -1,3 +1,5 @@
+import { getFaviconUrl } from "./utils"
+
 interface zennArticle {
     title: string
     published_at: string
@@ -26,9 +28,9 @@ async function fetchZennTopics(url: string) {
 }
 
 export async function getZennPosts() {
-    const articles = await fetchZennPosts()
+    const ZennPosts = await fetchZennPosts()
     const posts = await Promise.all(
-        articles.map(async (article) => {
+        ZennPosts.map(async (article) => {
             const { title, published_at, body_updated_at, path } = article
             const url = `https://zenn.dev${path}`
             const topics = await fetchZennTopics(url)
@@ -42,7 +44,7 @@ export async function getZennPosts() {
                         : body_updated_at.slice(0, 10), // YYYY-MM-DD
                 tags: topics,
                 url: url,
-                icon: "/icons/zenn.svg",
+                icon: getFaviconUrl(new URL(url).origin)
             }
         }),
     )
