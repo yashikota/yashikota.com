@@ -1,0 +1,16 @@
+[
+    {
+        "title": "OITシラバスアプリ",
+        "short_description": "OITのシラバスを検索するアプリです。",
+        "long_description": "OITのシラバスを検索するアプリです。",
+        "image": "https://iamge.yashikota.com/works/syllabus.aivf",
+        "github": "https://github.com/oit-tools/syllabus-frontend",
+        "url": "https://syllabus.oit.yashikota.com",
+        "date": "22/02 ~ 22/04",
+        "tags": [
+            "React",
+            "Next.js",
+            "Python"
+        ]
+    }
+]
