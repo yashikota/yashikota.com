@@ -1,6 +1,4 @@
 ---
-import { css } from "../../styled-system/css";
-
 import Base from "../layouts/Base.astro";
 ---
 
@@ -8,21 +6,10 @@ import Base from "../layouts/Base.astro";
 
 <h1>Life Game with WebGPU</h1>
 
-<div class={css({
-    position: "relative",
-    marginTop: "1rem",
-    paddingTop: {base: "100%", lg: "90%", xl: "80%"},
-    backgroundColor: "black",
-    "& canvas": {
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-    }
-})}
->
-    <canvas width="1024" height="1024"></canvas>
+<div class="relative mt-4 pt-[100%] lg:pt-[90%] xl:pt-[80%] bg-black">
+    <canvas width="1024" height="1024"
+            class="absolute top-0 left-0 w-full h-full" width="1024" height="1024">
+        </canvas>
 </div>
 
 <script type="module">
