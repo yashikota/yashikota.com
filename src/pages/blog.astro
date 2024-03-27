@@ -1,6 +1,8 @@
 ---
 import Base from "../layouts/base.astro";
 
+import { CardComponent } from "@/components/shadcn/card";
+
 import { getAllPosts } from "../lib/allPosts";
 const posts = await getAllPosts();
 ---
@@ -14,15 +16,17 @@ const posts = await getAllPosts();
         posts
         .filter(post => !post.isUnlisted)
         .map((post) => (
-            <li>
-                <a
-                    href={post.slug ? `/blog/${post.slug}` : post.url}
-                    target={post.slug ? "" : "_blank"}
-                    rel={post.slug ? "" : "noopener"}
-                >
-                    {post.title}, {post.pubDate}, ({post.updDate}), {post.tags}, {post.icon}
-                </a>
-            </li>
+            <a
+                href={post.slug ? `/blog/${post.slug}` : post.url}
+                target={post.slug ? "" : "_blank"}
+                rel={post.slug ? "" : "noopener"} >
+                <CardComponent
+                    title={post.title}
+                    pubDate={post.pubDate}
+                    updDate={post.updDate}
+                    tags={post.tags}
+                    icon={post.icon} />
+            </a>
         ))
     }
 </div>
