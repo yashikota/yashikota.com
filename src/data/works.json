@@ -7,10 +7,6 @@
         "github": "https://github.com/oit-tools/syllabus-frontend",
         "url": "https://syllabus.oit.yashikota.com",
         "date": "22/02 ~ 22/04",
-        "tags": [
-            "React",
-            "Next.js",
-            "Python"
-        ]
+        "tags": ["React", "Next.js", "Python"]
     }
 ]

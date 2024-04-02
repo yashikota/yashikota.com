@@ -1,13 +1,13 @@
-import { useEffect } from "react"
+import { useEffect } from "react";
 
 type Props = {
-    html: string
-}
+    html: string;
+};
 
 export const Blog: React.FC<Props> = ({ html }) => {
     useEffect(() => {
-        import("zenn-embed-elements")
-    }, [])
+        import("zenn-embed-elements");
+    }, []);
 
     return (
         <div
@@ -16,5 +16,5 @@ export const Blog: React.FC<Props> = ({ html }) => {
                 __html: html,
             }}
         />
-    )
-}
+    );
+};

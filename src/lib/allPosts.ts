@@ -1,29 +1,29 @@
-import { getBlogPosts } from "./blogPosts"
-import { getZennPosts } from "./zennPosts"
-import { getExternalPosts } from "./externalPosts"
+import { getBlogPosts } from "./blogPosts";
+import { getZennPosts } from "./zennPosts";
+import { getExternalPosts } from "./externalPosts";
 
 interface Post {
-    slug: string
-    title: string
-    pubDate: string
-    updDate: string | null
-    isUnlisted: boolean
-    tags: string[]
-    url: string
-    icon: string
+    slug: string;
+    title: string;
+    pubDate: string;
+    updDate: string | null;
+    isUnlisted: boolean;
+    tags: string[];
+    url: string;
+    icon: string;
 }
 
 export async function getAllPosts() {
-    const blog = await getBlogPosts()
-    const zenn = await getZennPosts()
-    const ExternalPosts = await getExternalPosts()
+    const blog = await getBlogPosts();
+    const zenn = await getZennPosts();
+    const ExternalPosts = await getExternalPosts();
 
-    const posts = [...blog, ...zenn, ...ExternalPosts] as Post[]
+    const posts = [...blog, ...zenn, ...ExternalPosts] as Post[];
     posts.sort((a, b) => {
-        const dateA = new Date(a.pubDate)
-        const dateB = new Date(b.pubDate)
-        return dateB.getTime() - dateA.getTime()
-    })
+        const dateA = new Date(a.pubDate);
+        const dateB = new Date(b.pubDate);
+        return dateB.getTime() - dateA.getTime();
+    });
 
-    return posts
+    return posts;
 }

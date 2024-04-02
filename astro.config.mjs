@@ -5,29 +5,32 @@ import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [react(), tailwind({
-    applyBaseStyles: false
-  })],
-  redirects: {
-    "/blogs": {
-      status: 301,
-      destination: "/blog"
+    integrations: [
+        react(),
+        tailwind({
+            applyBaseStyles: false,
+        }),
+    ],
+    redirects: {
+        "/blogs": {
+            status: 301,
+            destination: "/blog",
+        },
+        "/slide": {
+            status: 301,
+            destination: "/slides",
+        },
+        "/work": {
+            status: 301,
+            destination: "/works",
+        },
+        "/game": {
+            status: 301,
+            destination: "/games",
+        },
+        "/galleries": {
+            status: 301,
+            destination: "/gallery",
+        },
     },
-    "/slide": {
-      status: 301,
-      destination: "/slides"
-    },
-    "/work": {
-      status: 301,
-      destination: "/works"
-    },
-    "/game": {
-      status: 301,
-      destination: "/games"
-    },
-    "/galleries": {
-        status: 301,
-        destination: "/gallery"
-    },
-  }
 });
