@@ -2,7 +2,7 @@
 
 # Run format
 echo "Running format..."
-output=$(bunx @biomejs/biome format . --write)
+output=$(bunx @biomejs/biome format . ./src --write)
 exit_code=$?
 
 # Check if the format failed
