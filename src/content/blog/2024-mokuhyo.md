@@ -1,9 +1,9 @@
 ---
 title: 2024年の目標
-date: 2024-01-01
+pubDate: 2024-01-01
+updDate: 
+isUnlisted: false
 tags: ["目標"]
-draft: false
-layout: PostSimple
 ---
 
 いよいよ学部生生活も最後の年になったので悔いを残さないように頑張ります。  
