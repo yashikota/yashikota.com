@@ -55,7 +55,7 @@ export function CarouseComponent({
                 <CarouselNext />
             </Carousel>
             <div className="py-2 text-center text-md text-muted-foreground">
-                Slide {current} of {count}
+                {current} / {count}
             </div>
         </div>
     );

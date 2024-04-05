@@ -45,7 +45,7 @@ export function CardComponent(props: CardComponentProps) {
                     <CardTitle className="ml-1 mt-1">{props.title}</CardTitle>
                 </a>
             </CardHeader>
-            <CardContent className="ml-0.3">
+            <CardContent>
                 {props.tags.map((tag, index) => (
                     <span
                         key={index}
