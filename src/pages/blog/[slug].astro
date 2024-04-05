@@ -1,6 +1,8 @@
 ---
 import Base from "../../layouts/base.astro";
 
+import { UpdateIcon } from "@radix-ui/react-icons";
+
 import { getBlogPosts } from "../../lib/blogPosts";
 import { Blog } from "../../components/Blog";
 
@@ -37,6 +39,7 @@ export async function getStaticPaths() {
                 title: blog.title,
                 tags: blog.tags,
                 pubDate: blog.pubDate,
+                updDate: blog.updDate,
                 body: blog.body,
             },
         };
@@ -50,16 +53,31 @@ const content = markdownHtml(body, {
 ---
 
 <Base pageTitle={title}>
+    <script src="https://embed.zenn.studio/js/listen-embed-event.js" is:inline
+    ></script>
 
-<script
-    src="https://embed.zenn.studio/js/listen-embed-event.js"
-    is:inline>
-</script>
+    <div class="mx-auto text-center">
+        <div class="flex items-center justify-center text-lg text-muted-foreground">
+            {pubDate}
+            {updDate && <UpdateIcon className="ml-2 mr-0.5 h-3" />}
+            {updDate}
+        </div>
+        <h1 class="scroll-m-20 text-2xl font-extrabold lg:text-4xl">
+            {title}
+        </h1>
+        {
+            tags.map((tag, index) => (
+                <span
+                    data-key={index}
+                    class="mr-2 text-sky-400 hover:text-sky-700 text-lg"
+                >
+                    #{tag}
+                </span>
+            ))
+        }
+    </div>
 
-<h1>{title}</h1>
-<p>{pubDate}, ({updDate})</p>
-<p>{tags}</p>
+    <div class="flex-1 border-b border-gray-500 mb-10"></div>
 
-<Blog html={content} client:load />
-
+    <Blog html={content} client:load />
 </Base>
