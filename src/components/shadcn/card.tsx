@@ -19,7 +19,7 @@ interface CardComponentProps {
 
 export function CardComponent(props: CardComponentProps) {
     return (
-        <Card className="w-[90%]">
+        <Card className="my-3">
             <CardHeader>
                 <a
                     href={props.slug ? `/blog/${props.slug}` : props.url}
@@ -36,7 +36,7 @@ export function CardComponent(props: CardComponentProps) {
                             {props.pubDate}{" "}
                             {props.updDate && (
                                 <>
-                                    <UpdateIcon className="ml-2" />
+                                    <UpdateIcon className="ml-2 mr-0.5 h-3" />
                                     {props.updDate}
                                 </>
                             )}
