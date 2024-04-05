@@ -2,7 +2,8 @@
 import Base from "../../layouts/base.astro";
 
 import { getAllSlides } from "../../lib/slide";
-import SwiperComponent from "../../components/Swiper";
+
+import { CarouseComponent } from "@/components/shadcn/carousel";
 
 export async function getStaticPaths() {
     const slides = await getAllSlides();
@@ -25,11 +26,26 @@ const { title, pubDate, tags, path, pages } = Astro.props;
 ---
 
 <Base pageTitle={title}>
+    <div class="mx-auto text-center">
+        <p class="text-lg text-muted-foreground">
+            {pubDate}
+        </p>
+        <h1 class="scroll-m-20 text-2xl font-extrabold lg:text-4xl">
+            {title}
+        </h1>
+        {
+            tags.map((tag, index) => (
+                <span
+                    data-key={index}
+                    class="mr-2 text-sky-400 hover:text-sky-700 text-lg"
+                >
+                    #{tag}
+                </span>
+            ))
+        }
+    </div>
 
-<h1>{title}</h1>
-<p>{pubDate}</p>
-<p>{tags}</p>
+    <div class="flex-1 border-b border-gray-500 mb-10"></div>
 
-<SwiperComponent path={path} pages={pages} client:load />
-
+    <CarouseComponent path={path} pages={pages} client:load />
 </Base>

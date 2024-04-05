@@ -1,26 +1,23 @@
 ---
 import Base from "../layouts/base.astro";
 
+import { ImageCardComponent } from "@/components/shadcn/imageCard";
+
 import { getAllSlides } from "../lib/slide";
 const slides = await getAllSlides();
 ---
 
 <Base pageTitle="Slides">
 
-<h1>Slides</h1>
-
-<div>
+<div class="">
     {slides.map((slide) => (
-    <div>
-        <a href={"/slides/" + slide.path}>
-            <img src={"/slides/" + slide.path + "/001.png"} alt={slide.title} />
-            {slide.pubDate}
-            <br />
-            {slide.title}
-            <br />
-            {slide.tags}
-        </a>
-    </div>
+        <ImageCardComponent
+            thumbnail={"/slides/" + slide.path + "/001.png"}
+            title={slide.title}
+            pubDate={slide.pubDate}
+            tags={slide.tags}
+            url={"/slides/" + slide.path}
+        />
     ))}
 </div>
 
