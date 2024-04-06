@@ -19,7 +19,7 @@ interface CardComponentProps {
 
 export function CardComponent(props: CardComponentProps) {
     return (
-        <Card className="my-3">
+        <Card className="my-3 hover:bg-gray-100">
             <CardHeader>
                 <a
                     href={props.slug ? `/blog/${props.slug}` : props.url}

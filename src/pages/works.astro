@@ -1,11 +1,27 @@
 ---
 import Base from "../layouts/base.astro";
+
+import { WorkComponent } from "@/components/shadcn/work";
+
+import { getAllWorks } from "../lib/works";
+const works = await getAllWorks();
 ---
 
 <Base pageTitle="Works">
-
-<h1>Works</h1>
-
-<p class="text-9xl">工事中...</p>
-
+    <div class="">
+        {
+            works.map((work) => (
+                <WorkComponent
+                    thumbnail={work.image}
+                    title={work.title}
+                    date={work.date}
+                    description={work.description}
+                    tags={work.tags}
+                    url={work.url}
+                    github={work.github}
+                    client:load
+                />
+            ))
+        }
+    </div>
 </Base>
