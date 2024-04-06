@@ -33,7 +33,7 @@
     {
         "title": "OIT Magic",
         "description": "学園祭に展示するゲームの開発のリードプログラマを担当し、Unityでのゲームの作成をすべて担当しました。学園祭ということもあり対象年齢が低めだと予想されたため直感的に遊べ楽しいゲームを作成しました。特徴はコントローラーを使わず体を使って操作を行うことです。そのためにMediaPipeを用いて姿勢推定という技術を使用しました。当日は常に行列ができるほど大盛況で100人以上の方に遊んでいただけました。",
-        "image": "https://raw.githubusercontent.com/yashikota/blog/master/public/static/images/oit-magic.gif",
+        "image": "https://raw.githubusercontent.com/yashikota/blog/master/public/static/images/oit-magic.webp",
         "github": ["https://github.com/yashikota/oit-magic"],
         "url": [],
         "date": "2023/10 ~ 2023/11",
