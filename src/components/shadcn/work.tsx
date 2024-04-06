@@ -21,7 +21,14 @@ interface WorkComponentProps {
 export function WorkComponent(props: WorkComponentProps) {
     return (
         <Card className="lg:w-4/5 mx-auto my-5 hover:bg-gray-100">
-            <a href={props.url[0]} target="_blank" rel="noopener">
+            <a
+                href={
+                    props.url[0] ? `${props.url[0]}/?source=works` : undefined
+                }
+                target="_blank"
+                rel="noopener"
+            >
+                {" "}
                 <CardContent className="p-1 flex justify-center">
                     <img src={props.thumbnail} alt={props.title} />
                 </CardContent>
