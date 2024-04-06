@@ -53,7 +53,7 @@ export function WorkComponent(props: WorkComponentProps) {
                         {props.url.map((url, index) => (
                             <a
                                 key={index}
-                                href={url}
+                                href={`${url}/?source=works`}
                                 target="_blank"
                                 rel="noopener"
                                 className="hover:text-gray-400 mr-2"
