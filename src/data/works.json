@@ -15,7 +15,7 @@
     {
         "title": "yashikota.com",
         "description": "このサイトです。AstroやBun、shadcn/uiなど個人開発ならではの技術スタックスを採用し作成しました。",
-        "image": "https://aomaterial.com/wp-content/uploads/2023/04/%E6%BA%96%E5%82%99%E4%B8%AD2-1536x864.png",
+        "image": "https://raw.githubusercontent.com/yashikota/blog/master/public/static/images/yashikota.com.png",
         "github": ["https://github.com/yashikota/yashikota.com"],
         "url": ["https://yashikota.com"],
         "date": "2024/01 ~ 2024/03",
