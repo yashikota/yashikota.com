@@ -1,5 +1,5 @@
 ---
-import downwardsButton from "../../public/downwards_button_color.svg?raw";
+import downwardsButton from "@/../public/downwards_button_color.svg?raw";
 
 const navItems = [
     "Top",
@@ -24,33 +24,40 @@ if (name === "") {
 }
 ---
 
-<header class="flex items-center justify-center p-2 h-16 text-2xl sm:text-4xl font-bold shadow-md
-               z-10 sticky top-0 bg-gradient-to-r from-emerald-300 via-green-300 to-cyan-300">
+<header
+    class="flex items-center justify-center p-2 h-16 text-2xl sm:text-4xl font-bold shadow-md
+               z-10 sticky top-0 bg-gradient-to-r from-emerald-300 via-green-300 to-cyan-300"
+>
     <a href="/" class="flex items-center gap-4 tracking-normal">
-        <img src="/dango.png" alt="icon" width="40px" />
-        <span class="title">
-            こたのお考え
-        </span>
+        <img src="/icon.webp" alt="icon" width="40px" />
+        <span class="title"> こたのお考え </span>
     </a>
 
-    <div class="p-1"> :: </div>
+    <div class="p-1">::</div>
 
     <nav>
         <input type="checkbox" id="nav-checkbox" class="hidden" />
-        <label for="nav-checkbox" class="flex items-center cursor-pointer gap-2">
+        <label
+            for="nav-checkbox"
+            class="flex items-center cursor-pointer gap-2"
+        >
             <span>{name}</span>
             <div class="toggle-button">
                 <Fragment set:html={downwardsButton} />
             </div>
         </label>
         <span class="hidden absolute bg-white shadow-md rounded-lg">
-            {navItems.map((item) => (
-                <a href={`/${item.toLowerCase() === "top" ? "" : item.toLowerCase()}`}
-                   class="flex items-center justify-center py-3 px-4 shadow-inner
-                          hover:bg-black/10 active:bg-black/20">
-                    {item}
-                </a>
-            ))}
+            {
+                navItems.map((item) => (
+                    <a
+                        href={`/${item.toLowerCase() === "top" ? "" : item.toLowerCase()}`}
+                        class="flex items-center justify-center py-3 px-4 shadow-inner
+                          hover:bg-black/10 active:bg-black/20"
+                    >
+                        {item}
+                    </a>
+                ))
+            }
         </span>
     </nav>
 </header>

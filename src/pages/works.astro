@@ -1,9 +1,9 @@
 ---
-import Base from "../layouts/base.astro";
+import Base from "@/layouts/base.astro";
 
 import { WorkComponent } from "@/components/shadcn/work";
 
-import { getAllWorks } from "../lib/works";
+import { getAllWorks } from "@/lib/works";
 const works = await getAllWorks();
 ---
 

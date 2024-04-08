@@ -1,4 +1,4 @@
-import ExternalPostsData from "../data/posts.json";
+import ExternalPostsData from "@/data/posts.json";
 import { getFaviconUrl } from "./utils";
 
 interface ExternalPost {

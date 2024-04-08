@@ -1,9 +1,9 @@
 ---
-import Base from "../layouts/base.astro";
+import Base from "@/layouts/base.astro";
 
 import { SlideComponent } from "@/components/shadcn/slide";
 
-import { getAllSlides } from "../lib/slide";
+import { getAllSlides } from "@/lib/slide";
 const slides = await getAllSlides();
 ---
 

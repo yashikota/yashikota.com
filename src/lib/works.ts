@@ -1,4 +1,4 @@
-import Works from "../data/works.json";
+import Works from "@/data/works.json";
 
 interface Works {
     title: string;

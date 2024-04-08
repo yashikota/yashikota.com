@@ -1,4 +1,4 @@
-import Slides from "../data/slides.json";
+import Slides from "@/data/slides.json";
 
 interface Slide {
     title: string;
