@@ -1,241 +1,192 @@
 ---
-import Base from "../layouts/base.astro";
+import Base from "@/layouts/base.astro";
 
-import Skill from "../components/Skill";
+import Skill from "@/components/Skill";
+import { ProfileComponent } from "@/components/shadcn/profile";
+import { Content as AboutContent } from "@/data/about.md";
 ---
 
 <Base pageTitle="About">
+    <ProfileComponent />
 
-<style>
-.tab-wrap {
-    transition: 0.3s box-shadow ease;
-    max-width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    background-color: white;
-    margin: 40px 0;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.2);
-}
-.tab {
-    display: none;
-}
-.tab:checked:nth-of-type(1) ~ .tab_content:nth-of-type(1),
-.tab:checked:nth-of-type(2) ~ .tab_content:nth-of-type(2),
-.tab:checked:nth-of-type(3) ~ .tab_content:nth-of-type(3),
-.tab:checked:nth-of-type(4) ~ .tab_content:nth-of-type(4) {
-    opacity: 1;
-    transition: 0.5s opacity ease-in, 0.8s transform ease;
-    position: relative;
-    top: 0;
-    z-index: 1;
-    transform: translateY(0px);
-}
-.tab:checked + label {
-    background-color:  lightgray;
-    cursor: default;
-}
-.tab + label {
-    cursor: pointer;
-    display: block;
-    color: black;
-    flex-grow: 3;
-    text-align: center;
-    background-color: darkgray;
-    user-select: none;
-    text-align: center;
-    transition: 0.3s background-color ease, 0.3s box-shadow ease;
-    height: 50px;
-    box-sizing: border-box;
-    padding: 15px;
-}
-.tab_content {
-    padding: 10px 25px;
-    position: absolute;
-    width: 100%;
-    z-index: -1;
-    opacity: 0;
-    left: 0;
-    transform: translateY(-3px);
-}
-</style>
+    <!-- tabs -->
+    <style>
+        .tab-wrap {
+            transition: 0.3s box-shadow ease;
+            max-width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            background-color: white;
+            margin: 40px 0;
+            box-shadow:
+                0 1px 3px rgba(0, 0, 0, 0.2),
+                0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+        .tab {
+            display: none;
+        }
+        .tab:checked:nth-of-type(1) ~ .tab_content:nth-of-type(1),
+        .tab:checked:nth-of-type(2) ~ .tab_content:nth-of-type(2),
+        .tab:checked:nth-of-type(3) ~ .tab_content:nth-of-type(3),
+        .tab:checked:nth-of-type(4) ~ .tab_content:nth-of-type(4) {
+            opacity: 1;
+            transition:
+                0.5s opacity ease-in,
+                0.8s transform ease;
+            position: relative;
+            top: 0;
+            z-index: 1;
+            transform: translateY(0px);
+        }
+        .tab:checked + label {
+            background-color: lightgray;
+            cursor: default;
+        }
+        .tab + label {
+            cursor: pointer;
+            display: block;
+            color: black;
+            flex-grow: 3;
+            text-align: center;
+            background-color: darkgray;
+            user-select: none;
+            text-align: center;
+            transition:
+                0.3s background-color ease,
+                0.3s box-shadow ease;
+            height: 50px;
+            box-sizing: border-box;
+            padding: 15px;
+        }
+        .tab_content {
+            padding: 10px 25px;
+            position: absolute;
+            width: 100%;
+            z-index: -1;
+            opacity: 0;
+            left: 0;
+            transform: translateY(-3px);
+        }
+    </style>
 
-<img
-    src="/dango.png" alt="icon" />
+    <div class="tab-wrap">
+        <input type="radio" id="tab1" name="tabGroup1" class="tab" checked />
+        <label for="tab1">Languages</label>
 
-<strong>こた</strong>
-<p>
-    CPUやコンパイラなどの低レイヤーからゲーム制作、3DCGまで幅広く興味駆動開発で生きています。
-</p>
-<p>
-    最近は3DCGとバックエンドに夢中。
-</p>
+        <input type="radio" id="tab2" name="tabGroup1" class="tab" />
+        <label for="tab2">3DCG & GameDev</label>
 
-<h2>Skills</h2>
+        <input type="radio" id="tab3" name="tabGroup1" class="tab" />
+        <label for="tab3">Hardware & System</label>
 
-<div class="tab-wrap">
-    <input type="radio" id="tab1" name="tabGroup1" class="tab" checked>
-    <label for="tab1">Languages</label>
+        <input type="radio" id="tab4" name="tabGroup1" class="tab" />
+        <label for="tab4">Other</label>
 
-    <input type="radio" id="tab2" name="tabGroup1" class="tab">
-    <label for="tab2">3DCG & GameDev</label>
+        <div class="tab_content">
+            <table>
+                <tbody>
+                    <Skill name="C" rate={4} />
+                    <Skill name="C++" rate={2} />
+                    <Skill name="C#" rate={3} />
+                    <Skill name="Go" rate={3} />
+                    <Skill name="Java" rate={1} />
+                    <Skill name="JavaScript" rate={4} />
+                    <Skill name="TypeScript" rate={4} />
+                    <Skill name="Python" rate={5} />
+                    <Skill name="Rust" rate={1} />
+                    <Skill name="Verilog" rate={3} />
+                    <Skill name="SystemVerilog" rate={1} />
+                    <Skill name="VHDL" rate={2} />
+                    <Skill name="HTML" rate={5} />
+                    <Skill name="CSS" rate={4} />
+                </tbody>
+            </table>
+        </div>
 
-    <input type="radio" id="tab3" name="tabGroup1" class="tab">
-    <label for="tab3">Hardware & System</label>
+        <div class="tab_content">
+            <table>
+                <tbody>
+                    <p class="text-2xl">GameDev</p>
+                    <Skill name="Unity" rate={3} />
+                    <Skill name="Unreal Engine" rate={1} />
+                    <Skill name="DirectX" rate={1} />
+                </tbody>
+            </table>
 
-    <input type="radio" id="tab4" name="tabGroup1" class="tab">
-    <label for="tab4">Other</label>
+            <p class="text-2xl">Graphics</p>
+            <table>
+                <tbody>
+                    <Skill name="OpenGL" rate={2} />
+                    <Skill name="WebGL" rate={1} />
+                    <Skill name="WebGPU" rate={1} />
+                </tbody>
+            </table>
 
-    <div class="tab_content">
-        <table>
-            <tbody>
-                <Skill name="C" rate={4} />
-                <Skill name="C++" rate={2} />
-                <Skill name="C#" rate={3} />
-                <Skill name="Go" rate={2} />
-                <Skill name="Java" rate={2} />
-                <Skill name="JavaScript" rate={3} />
-                <Skill name="TypeScript" rate={3} />
-                <Skill name="Python" rate={4} />
-                <Skill name="Rust" rate={1} />
-                <Skill name="Verilog" rate={3} />
-                <Skill name="VHDL" rate={2} />
-                <Skill name="HTML" rate={4} />
-                <Skill name="CSS" rate={3} />
-            </tbody>
-        </table>
+            <p class="text-2xl">Shader</p>
+            <table>
+                <tbody>
+                    <Skill name="GLSL" rate={2} />
+                    <Skill name="HLSL" rate={1} />
+                </tbody>
+            </table>
+
+            <p class="text-2xl">3DCG</p>
+            <table>
+                <tbody>
+                    <Skill name="Blender" rate={1} />
+                </tbody>
+            </table>
+        </div>
+
+        <div class="tab_content">
+            <p class="text-2xl">System Programming</p>
+            <table>
+                <tbody>
+                    <Skill name="Compiler" rate={3} />
+                    <Skill name="OS" rate={2} />
+                </tbody>
+            </table>
+
+            <p class="text-2xl">Hardware</p>
+            <table>
+                <tbody>
+                    <Skill name="CPU" rate={4} />
+                    <Skill name="Electronics" rate={2} />
+                    <Skill name="FPGA" rate={2} />
+                    <Skill name="Arduino" rate={2} />
+                    <Skill name="ESP32" rate={3} />
+                </tbody>
+            </table>
+        </div>
+
+        <div class="tab_content">
+            <p class="text-2xl">Cloud</p>
+            <table>
+                <tbody>
+                    <Skill name="AWS" rate={2} />
+                    <Skill name="Google Cloud" rate={3} />
+                    <Skill name="Azure" rate={1} />
+                </tbody>
+            </table>
+
+            <p class="text-2xl">Other</p>
+            <table>
+                <tbody>
+                    <Skill name="Git" rate={4} />
+                    <Skill name="GitHub" rate={5} />
+                    <Skill name="Docker" rate={3} />
+                    <Skill name="Linux" rate={4} />
+                    <Skill name="Windows" rate={5} />
+                    <Skill name="macOS" rate={1} />
+                    <Skill name="VSCode" rate={5} />
+                    <Skill name="NeoVim" rate={2} />
+                    <Skill name="Network" rate={3} />
+                </tbody>
+            </table>
+        </div>
     </div>
 
-    <div class="tab_content">
-        <table>
-            <tbody>
-                <h3>GameDev</h3>
-                <Skill name="Unity" rate={3} />
-                <Skill name="Unreal Engine" rate={1} />
-                <Skill name="DirectX" rate={1} />
-            </tbody>
-        </table>
-
-        <h3>Graphics</h3>
-        <table>
-            <tbody>
-                <Skill name="OpenGL" rate={2} />
-                <Skill name="WebGL" rate={1} />
-                <Skill name="WebGPU" rate={1} />
-            </tbody>
-        </table>
-
-        <h3>Shader</h3>
-        <table>
-            <tbody>
-                <Skill name="GLSL" rate={2} />
-                <Skill name="HLSL" rate={1} />
-            </tbody>
-        </table>
-
-        <h3>3DCG</h3>
-        <table>
-            <tbody>
-                <Skill name="Blender" rate={1} />
-            </tbody>
-        </table>
+    <div class="prose prose-lg leading-4">
+        <AboutContent />
     </div>
-
-    <div class="tab_content">
-        <h3>System Programming</h3>
-        <table>
-            <tbody>
-                <Skill name="Compiler" rate={3} />
-                <Skill name="OS" rate={2} />
-            </tbody>
-        </table>
-
-        <h3>Hardware</h3>
-        <table>
-            <tbody>
-                <Skill name="CPU" rate={3} />
-                <Skill name="electronics" rate={2} />
-                <Skill name="FPGA" rate={2} />
-                <Skill name="Arduino" rate={2} />
-                <Skill name="ESP32" rate={3} />
-            </tbody>
-        </table>
-    </div>
-
-    <div class="tab_content">
-        <h3>Cloud</h3>
-        <table>
-            <tbody>
-                <Skill name="AWS" rate={1} />
-                <Skill name="Google Cloud" rate={2} />
-                <Skill name="Azure" rate={1} />
-            </tbody>
-        </table>
-
-        <h3>Other</h3>
-        <table>
-            <tbody>
-                <Skill name="Git" rate={4} />
-                <Skill name="Github" rate={4} />
-                <Skill name="Docker" rate={3} />
-                <Skill name="Linux" rate={4} />
-                <Skill name="Windows" rate={4} />
-                <Skill name="macOS" rate={2} />
-                <Skill name="VSCode" rate={4} />
-                <Skill name="NeoVim" rate={1} />
-                <Skill name="Network" rate={3} />
-            </tbody>
-        </table>
-    </div>
-</div>
-
-<h2>Activities</h2>
-
-<ul>
-    <li><a href="https://www.security-camp.or.jp/minicamp/online2022.html">Security MiniCamp Online 2022</a></li>
-    <li><a href="https://www.iwsec.org/mws/2022">MWS Cup 2022</a></li>
-    <li><a href="https://mixil.mixi.co.jp/report/3329">Bug Shooting Challenge #9</a></li>
-    <li><a href="https://github.com/mixi-git-challenge/publications">Git Challenge #13</a></li>
-</ul>
-
-<h2>Careers</h2>
-
-<p>
-学校法人角川ドワンゴ学園 プログラミングTA インターン
-2023/03 ~ 現在
-HTML, CSS, JavaScript, Unity, Blender
-</p>
-
-<p>
-株式会社AVILEN AI人材育成 インターン
-2023/05 ~ 現在
-Python, Pytorch, TensorFlow
-</p>
-
-<p>
-Flatt Security Webセキュリティエンジニア サマーインターン
-2023/08
-XSS, CSRF
-</p>
-
-<p>
-ちゅらデータ株式会社 データエンジニア サマーインターン
-2023/08
-Github, AWS, Snowflake, dbt
-</p>
-
-<h2>Qualifications</h2>
-
-<p>ITパスポート</p>
-<p>情報セキュリティマネジメント</p>
-<p>応用情報技術者</p>
-<p>情報処理安全確保支援士</p>
-<p>TOEIC 510</p>
-<p>第二種電気工事士</p>
-<p>乙種第4類危険物取扱者</p>
-
-<h2>PGP Public Key</h2>
-
-<p>[yashikota.asc](https://yashikota.com/yashikota.asc)</p>
-
-</div>
 </Base>

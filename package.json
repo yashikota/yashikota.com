@@ -37,6 +37,7 @@
         "zenn-markdown-html": "^0.1.150"
     },
     "devDependencies": {
-        "@astrojs/partytown": "^2.0.4"
+        "@astrojs/partytown": "^2.0.4",
+        "@tailwindcss/typography": "^0.5.12"
     }
 }

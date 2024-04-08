@@ -70,29 +70,16 @@
         "github": ["https://github.com/yashikota/neuro-eye"],
         "url": [],
         "date": "2023/10",
-        "tags": [
-            "C++",
-            "OpenCV"
-        ]
+        "tags": ["C++", "OpenCV"]
     },
     {
         "title": "Meetup",
         "description": "主催した勉強会用の教材をまとめたWebサイトです。勉強会は初学者向けのHTML/CSSとGit/GitHubの勉強会で、最終的に各自でウェブサイトを制作してもらえるようにしました。",
         "image": "https://raw.githubusercontent.com/yashikota/blog/master/public/static/images/meetup.png",
-        "github": [
-            "https://github.com/yashikota/meetup"
-        ],
-        "url": [
-            "https://meetup.yashikota.com/"
-        ],
+        "github": ["https://github.com/yashikota/meetup"],
+        "url": ["https://meetup.yashikota.com/"],
         "date": "2022/06 ~ 2022/07",
-        "tags": [
-            "勉強会",
-            "HTML",
-            "CSS",
-            "Git",
-            "GitHub"
-        ]
+        "tags": ["勉強会", "HTML", "CSS", "Git", "GitHub"]
     },
     {
         "title": "Gomoku",
