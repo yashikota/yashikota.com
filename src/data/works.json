@@ -15,7 +15,7 @@
     {
         "title": "yashikota.com",
         "description": "このサイトです。AstroやBun、shadcn/uiなど個人開発ならではの技術スタックスを採用し作成しました。",
-        "image": "https://raw.githubusercontent.com/yashikota/blog/master/public/static/images/yashikota.com.webp",
+        "image": "https://aomaterial.com/wp-content/uploads/2023/04/%E6%BA%96%E5%82%99%E4%B8%AD2-1536x864.png",
         "github": ["https://github.com/yashikota/yashikota.com"],
         "url": ["https://yashikota.com"],
         "date": "2024/01 ~ 2024/03",
@@ -23,7 +23,7 @@
     },
     {
         "title": "4bitCPU エミュレーター",
-        "description": "TD4という4bit CPUのエミュレーターをPython3で開発しました。公式エミュレーター同等のエミュレーションに加え、可変クロックの実装やTD4公式エミュレータが扱うファイルからの読み込み、TUIでのエミュレーションなど使いやすさに工夫を凝らしました。またPyPIに登録してパッケージとしてダウンロードできるようにしています。",
+        "description": "TD4という4bitCPUアーキテクチャ用エミュレーターをPythonで開発しました。公式エミュレーターと同等のエミュレーションに加え、可変クロックの実装やTD4公式エミュレータが扱うファイルからの読み込み、TUIでのエミュレーションなど使いやすさに工夫を凝らしました。またPyPIに登録してパッケージとしてダウンロードできるようにしています。",
         "image": "https://raw.githubusercontent.com/yashikota/blog/master/public/static/images/td4-py.gif",
         "github": ["https://github.com/yashikota/td4-py"],
         "url": ["https://pypi.org/project/td4"],
@@ -37,7 +37,7 @@
         "github": ["https://github.com/yashikota/oit-magic"],
         "url": [],
         "date": "2023/10 ~ 2023/11",
-        "tags": ["Unity", "Python", "MediaPipe"]
+        "tags": ["Unity", "C#", "Python", "MediaPipe"]
     },
     {
         "title": "FunBook",
@@ -53,7 +53,7 @@
     },
     {
         "title": "JANCode Generator",
-        "description": "日本の流通には欠かせないバーコードことJANCodeを標準ライブラリだけで作成しているプロダクトです。現在はPython版のみ開発済みで、PyPIに登録し手軽に使用できるようなっています。",
+        "description": "日本の流通には欠かせないバーコードことJANCodeを標準ライブラリだけで作成するライブラリです。現在はPython版のみ開発済みで、PyPIに登録し手軽に使用できるようなっています。",
         "image": "https://raw.githubusercontent.com/yashikota/blog/master/public/static/images/jancode.png",
         "github": ["https://github.com/yashikota/jancode"],
         "url": [
@@ -64,17 +64,48 @@
         "tags": ["Python", "JANCode"]
     },
     {
+        "title": "neuro-eye",
+        "description": "脳の神経回路を模倣したプログラムによる画像認識プログラムです。輪郭の左右の判別や移動輪郭上下左右の判別が行えます。",
+        "image": "https://aomaterial.com/wp-content/uploads/2023/04/%E6%BA%96%E5%82%99%E4%B8%AD2-1536x864.png",
+        "github": ["https://github.com/yashikota/neuro-eye"],
+        "url": [],
+        "date": "2023/10",
+        "tags": [
+            "C++",
+            "OpenCV"
+        ]
+    },
+    {
         "title": "Meetup",
-        "description": "主催した勉強会用の教材をまとめたWebサイトです。勉強会は初学者向けのHTML/CSS/Javascriptの勉強会で、GitやGitHubなども教えながら最終的に各自でウェブサイトを制作してもらえるようにしました。",
+        "description": "主催した勉強会用の教材をまとめたWebサイトです。勉強会は初学者向けのHTML/CSSとGit/GitHubの勉強会で、最終的に各自でウェブサイトを制作してもらえるようにしました。",
         "image": "https://raw.githubusercontent.com/yashikota/blog/master/public/static/images/meetup.png",
-        "github": ["https://github.com/yashikota/meetup"],
-        "url": ["https://meetup.yashikota.com/"],
+        "github": [
+            "https://github.com/yashikota/meetup"
+        ],
+        "url": [
+            "https://meetup.yashikota.com/"
+        ],
         "date": "2022/06 ~ 2022/07",
-        "tags": ["勉強会", "HTML", "CSS", "JavaScript", "Git", "GitHub"]
+        "tags": [
+            "勉強会",
+            "HTML",
+            "CSS",
+            "Git",
+            "GitHub"
+        ]
+    },
+    {
+        "title": "Gomoku",
+        "description": "C言語でαβ法による五目並べプログラムを作成しました。4人チームで制作しており、開発リーダーとしてプログラムの作成を主導しました。学内で開催された10以上のチームとトーナメント戦を行い、優勝することができました。",
+        "image": "https://raw.githubusercontent.com/yashikota/blog/master/public/static/images/gomoku.gif",
+        "github": [],
+        "url": [],
+        "date": "2023/09",
+        "tags": ["C", "Gomoku"]
     },
     {
         "title": "その他",
-        "description": "細々とした制作物",
+        "description": "①学内で開催されたマインクラフトのプレイヤーを操作し、敵を倒せた数を競うコンテストへ参加し、準優勝しました。また翌年そのコンテストに運営として参加し、ライブラリの提供等を行いました。②食堂の入り口にあるカメラを使用して人の検知を行い、食堂の混雑率を算出し、学生に混雑率を提供するためのサービスを作成。プライバシー保護のため、カメラは真下のみ撮影するため人物の特定が難しいですが、画像処理技術を駆使して開発を行っています。",
         "image": "https://cdn.pixabay.com/photo/2015/03/20/17/45/etc-682613_1280.jpg",
         "github": [],
         "url": [],
