@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/card";
 import { UpdateIcon } from "@radix-ui/react-icons";
 
-interface CardComponentProps {
+interface BlogCardComponentProps {
     title: string;
     pubDate: string;
     updDate: string | null;
@@ -17,7 +17,7 @@ interface CardComponentProps {
     url: string;
 }
 
-export function BlogComponent(props: CardComponentProps) {
+export function BlogCardComponent(props: BlogCardComponentProps) {
     return (
         <Card className="my-3 hover:bg-gray-100">
             <CardHeader>

@@ -11,6 +11,7 @@ async function fetchZennPosts() {
     const url = "https://zenn.dev/api/articles?username=yashikota&order=latest";
     const res = await fetch(url);
     const json = await res.json();
+
     return json.articles as zennArticle[];
 }
 
@@ -24,6 +25,7 @@ async function fetchZennTopics(url: string) {
     while ((match = regex.exec(html)) !== null) {
         tags.push(match[1]);
     }
+
     return tags.slice(0, -1);
 }
 
@@ -42,11 +44,13 @@ export async function getZennPosts() {
                     published_at.slice(0, 10) === body_updated_at.slice(0, 10)
                         ? null
                         : body_updated_at.slice(0, 10), // YYYY-MM-DD
+                category: "tech",
                 tags: topics,
                 url: url,
                 icon: getFaviconUrl(new URL(url).origin),
             };
         }),
     );
+
     return posts;
 }

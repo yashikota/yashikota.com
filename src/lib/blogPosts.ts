@@ -10,6 +10,7 @@ export async function getBlogPosts() {
             ? blog.data.updDate.toISOString().slice(0, 10)
             : null,
         isUnlisted: blog.data.isUnlisted,
+        category: blog.data.category,
         tags: blog.data.tags,
         slug: blog.slug,
         body: blog.body,

@@ -1,9 +1,11 @@
 ---
 import Base from "@/layouts/base.astro";
 
-import { BlogComponent } from "@/components/shadcn/card";
+import { BlogCardComponent } from "@/components/shadcn/card";
 
 import { getAllPosts } from "@/lib/allPosts";
+
+import { HomeIcon } from "@radix-ui/react-icons";
 
 export async function getStaticPaths() {
     const allPosts = await getAllPosts();
@@ -39,7 +41,7 @@ const { posts } = Astro.props;
                 .filter((post) => !post.isUnlisted)
                 .map((post) => (
                     <div class="xl:w-4/5 mx-auto">
-                        <BlogComponent
+                        <BlogCardComponent
                             title={post.title}
                             slug={post.slug}
                             url={post.url}
@@ -51,5 +53,17 @@ const { posts } = Astro.props;
                     </div>
                 ))
         }
+    </div>
+
+    <div class="flex justify-center">
+        <h2>
+            <a
+                href="https://yashikota.com/blog"
+                class="text-3xl font-bold text-green-500 flex items-center"
+            >
+                <HomeIcon className="w-6 h-6 mr-2 mt-1" />
+                Back to Blog
+            </a>
+        </h2>
     </div>
 </Base>

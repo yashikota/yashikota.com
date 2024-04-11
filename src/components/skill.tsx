@@ -3,6 +3,7 @@ export default function SkillComponent({
     rate,
 }: { name: string; rate: number }) {
     const star = "⭐".repeat(rate);
+
     return (
         <tr className="[&>td]:p-0.5 [&>td]:w-40">
             <td>{name}</td>

@@ -8,6 +8,7 @@ interface Post {
     pubDate: string;
     updDate: string | null;
     isUnlisted: boolean;
+    category: string;
     tags: string[];
     url: string;
     icon: string;
