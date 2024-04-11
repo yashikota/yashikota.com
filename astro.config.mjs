@@ -3,9 +3,11 @@ import react from "@astrojs/react";
 
 import tailwind from "@astrojs/tailwind";
 import partytown from "@astrojs/partytown";
+import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
+    site: "https://yashikota.com",
     integrations: [
         react(),
         tailwind({
@@ -16,6 +18,7 @@ export default defineConfig({
                 forward: ["dataLayer.push"],
             },
         }),
+        sitemap(),
     ],
     redirects: {
         "/blogs": {
