@@ -67,12 +67,14 @@ const content = markdownHtml(body, {
         </h1>
         {
             tags.map((tag, index) => (
+                <a href={`https://yashikota.com/blog/tags/${tag.toLocaleLowerCase()}/`}>
                 <span
                     data-key={index}
                     class="mr-2 text-sky-400 hover:text-sky-700 text-lg"
                 >
                     #{tag}
                 </span>
+                </a>
             ))
         }
     </div>

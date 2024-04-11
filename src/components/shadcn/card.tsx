@@ -47,12 +47,16 @@ export function BlogComponent(props: CardComponentProps) {
             </CardHeader>
             <CardContent>
                 {props.tags.map((tag, index) => (
-                    <span
-                        key={index}
-                        className="mr-2 text-sky-400 hover:text-sky-700"
+                    <a
+                        href={`https://yashikota.com/blog/tags/${tag.toLocaleLowerCase()}/`}
                     >
-                        #{tag}
-                    </span>
+                        <span
+                            key={index}
+                            className="mr-2 text-sky-400 hover:text-sky-700"
+                        >
+                            #{tag}
+                        </span>
+                    </a>
                 ))}
             </CardContent>
         </Card>
