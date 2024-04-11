@@ -17,7 +17,7 @@ interface CardComponentProps {
     url: string;
 }
 
-export function CardComponent(props: CardComponentProps) {
+export function BlogComponent(props: CardComponentProps) {
     return (
         <Card className="my-3 hover:bg-gray-100">
             <CardHeader>

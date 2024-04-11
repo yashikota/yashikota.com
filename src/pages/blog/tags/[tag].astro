@@ -4,10 +4,35 @@ import Base from "@/layouts/base.astro";
 import { BlogComponent } from "@/components/shadcn/card";
 
 import { getAllPosts } from "@/lib/allPosts";
-const posts = await getAllPosts();
+
+export async function getStaticPaths() {
+    const allPosts = await getAllPosts();
+    const uniqueTags = [
+        ...new Set(
+            allPosts
+                .map((post) => post.tags.map((tag) => tag.toLowerCase()))
+                .flat(),
+        ),
+    ];
+
+    return uniqueTags.map((tag) => {
+        const filteredPosts = allPosts.filter((post) =>
+            post.tags.some((postTag) => postTag.toLowerCase() === tag),
+        );
+        return {
+            params: { tag },
+            props: { posts: filteredPosts },
+        };
+    });
+}
+
+const { tag } = Astro.params;
+const { posts } = Astro.props;
 ---
 
-<Base pageTitle="Blog">
+<Base pageTitle={tag}>
+    <h1 class="text-3xl font-bold text-center text-sky-400">#{tag}</h1>
+
     <div>
         {
             posts
