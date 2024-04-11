@@ -3,7 +3,7 @@ title: Minecraftサーバーに入退出した人を検知して通知するDisc
 pubDate: 2023-02-07
 updDate: 
 isUnlisted: false
-category: Tech
+category: tech
 tags: ["ゲーム"]
 ---
 

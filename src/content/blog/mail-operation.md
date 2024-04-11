@@ -3,7 +3,7 @@ title: 独自ドメインのメールをサーバーレスで運用する方法
 pubDate: 2023-01-21
 updDate: 
 isUnlisted: false
-category: Tech
+category: tech
 tags: ["雑記"]
 ---
 

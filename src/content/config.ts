@@ -7,7 +7,7 @@ const blogCollection = defineCollection({
         pubDate: z.date(),
         updDate: z.date().nullable(),
         isUnlisted: z.boolean(),
-        category: z.enum(["Life", "Tech"]),
+        category: z.enum(["life", "tech"]),
         tags: z.array(z.string()),
     }),
 });

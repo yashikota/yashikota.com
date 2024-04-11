@@ -3,7 +3,7 @@ title: Forge対応Java版Minecraftサーバーの建て方
 pubDate: 2023-02-07
 updDate: 
 isUnlisted: false
-category: Tech
+category: tech
 tags: ["ゲーム"]
 ---
 

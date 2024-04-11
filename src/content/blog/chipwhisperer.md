@@ -3,7 +3,7 @@ title: ChipWhispererの使い方
 pubDate: 2022-11-13
 updDate: 
 isUnlisted: false
-category: Tech
+category: tech
 tags: ["セキュリティ"]
 ---
 

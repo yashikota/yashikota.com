@@ -3,7 +3,7 @@ title: セキュリティ・ミニキャンプ オンライン 2022 参加記
 pubDate: 2022-11-14
 updDate: 
 isUnlisted: false
-category: Life
+category: life
 tags: ["セキュリティ"]
 ---
 

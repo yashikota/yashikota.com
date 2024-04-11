@@ -3,7 +3,7 @@ title: 1年前期の授業感想
 pubDate: 2021-08-01
 updDate: 
 isUnlisted: false
-category: Life
+category: life
 tags: ["授業感想"]
 ---
 

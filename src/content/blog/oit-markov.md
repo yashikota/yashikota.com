@@ -3,7 +3,7 @@ title: OIT Markov Botを支える技術
 pubDate: 2022-08-10
 updDate: 
 isUnlisted: false
-category: Tech
+category: tech
 tags: ["技術解説"]
 ---
 

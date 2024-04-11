@@ -3,7 +3,7 @@ title: 情報処理技術者試験について
 pubDate: 2021-09-01
 updDate: 
 isUnlisted: false
-category: Life
+category: life
 tags: ["情報処理技術者試験"]
 ---
 

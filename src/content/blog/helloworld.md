@@ -3,7 +3,7 @@ title: Hello World
 pubDate: 2021-03-01
 updDate: 
 isUnlisted: false
-category: Life
+category: life
 tags: ["雑記"]
 ---
 

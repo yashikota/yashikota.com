@@ -3,7 +3,7 @@ title: M5Stackに入門する際にハマったこと
 pubDate: 2022-10-30
 updDate: 
 isUnlisted: false
-category: Tech
+category: tech
 tags: ["電子工作", "M5Stack"]
 ---
 
