@@ -3,6 +3,7 @@ title: 2023年の目標
 pubDate: 2023-01-01
 updDate: 
 isUnlisted: false
+category: Life
 tags: ["目標"]
 ---
 

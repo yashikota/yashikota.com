@@ -3,6 +3,7 @@ title: GoとDockerとAirの開発環境で生じる『error obtaining VCS status
 pubDate: 2024-03-29
 updDate:
 isUnlisted: false
+category: Tech
 tags: ["Go"]
 ---
 

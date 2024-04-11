@@ -3,6 +3,7 @@ title: OIT WordCloudを支える技術
 pubDate: 2022-06-25
 updDate: 
 isUnlisted: false
+category: Tech
 tags: ["技術解説"]
 ---
 

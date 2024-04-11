@@ -3,6 +3,7 @@ title: 2022年度の目標
 pubDate: 2022-04-05
 updDate: 
 isUnlisted: false
+category: Life
 tags: ["目標"]
 ---
 

@@ -3,6 +3,7 @@ title: Everyday OSS
 pubDate: 2023-04-01
 updDate: 
 isUnlisted: false
+category: Tech
 tags: ["OSS"]
 ---
 

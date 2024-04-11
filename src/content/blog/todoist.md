@@ -3,6 +3,7 @@ title: Todoistでタスク管理のすゝめ
 pubDate: 2023-07-18
 updDate: 
 isUnlisted: false
+category: Life
 tags: ["ツール紹介"]
 ---
 

@@ -3,6 +3,7 @@ title: 3年前期の授業感想
 pubDate: 2023-09-06
 updDate: 
 isUnlisted: false
+category: Life
 tags: ["授業感想"]
 ---
 

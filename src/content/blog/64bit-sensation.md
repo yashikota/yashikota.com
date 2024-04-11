@@ -3,6 +3,7 @@ title: 64bitセンセーション
 pubDate: 2023-12-09
 updDate: 
 isUnlisted: false
+category: Life
 tags: ["アドベントカレンダー"]
 ---
 
