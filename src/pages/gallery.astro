@@ -1,11 +1,25 @@
 ---
 import Base from "@/layouts/base.astro";
+import { GalleryComponent } from "@/components/shadcn/gallery";
+import { getGalleries } from "@/lib/gallery";
+
+const galleries = await getGalleries();
 ---
 
 <Base pageTitle="Gallery">
-
-<h1>Gallery</h1>
-
-<p class="text-9xl">工事中...</p>
-
+    <div>
+        {
+            galleries.map((gallery) => (
+                <GalleryComponent
+                    thumbnail={gallery.image}
+                    title={gallery.title}
+                    date={gallery.date}
+                    tags={gallery.tags}
+                    instagram={gallery.instagram}
+                    details={gallery.details}
+                    client:load
+                />
+            ))
+        }
+    </div>
 </Base>
