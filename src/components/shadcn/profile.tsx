@@ -47,7 +47,7 @@ export function ProfileComponent() {
                 </a>
             </div>
             <p className="mt-4 text-center">
-                低レイヤーやマルチメディア、3DCG、XRなど幅広く興味駆動開発で生きています。
+                幅広く興味駆動開発で幸福に生きています。
             </p>
         </div>
     );

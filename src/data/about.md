@@ -1,3 +1,63 @@
+## Skills
+
+### System Programming
+
+- Verilog / VHDL
+- C / C++ / Rust
+- CPU / Compiler / OS
+- FPGA / ESP32 / Arduino
+
+### Multi Media
+
+- JPEG / PNG / GIF / WebP / AVIF / HEIF / JPEG XL
+- MPEG-2 / MPEG-4 / H.264 / H.265 / AV1
+- MP4 / MKV
+- MP3 / AAC / Opus / Ogg / FLAC
+
+### Computer Vision
+
+- Stereo Matching
+
+### Graphics
+
+- Game Graphics / Ray Tracking
+- GLSL / HLSL / SPIR-V
+- OpenGL / WebGL / WebGPU
+
+### XR
+
+- MR / DR
+- Unity / C#
+
+### AI
+
+- Python / PyTorch
+- Transformer / Vision Transformer
+
+### Security
+
+- Web
+
+### Web Frontend
+
+- HTML / JavaScript / TypeScript
+- React / Next.js / Astro
+- MUI / shadcn/ui
+
+### Web Backend
+
+- Go
+- Google Cloud
+- Terraform
+
+### Other
+
+- Git / GitHub
+- Docker
+- Windows / Linux
+- VS Code / Neovim
+- Computer network
+
 ## Activities
 
 - [Security MiniCamp Online 2022](https://www.security-camp.or.jp/minicamp/online2022.html)
