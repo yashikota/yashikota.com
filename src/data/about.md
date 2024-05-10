@@ -3,8 +3,8 @@
 ### System Programming
 
 - Verilog / VHDL
-- C / C++ / Rust
-- CPU / Compiler / OS
+- C / C++
+- CPU / Compiler
 - FPGA / ESP32 / Arduino
 
 ### Multi Media
@@ -32,17 +32,21 @@
 ### AI
 
 - Python / PyTorch
+- CNN
 - Transformer / Vision Transformer
 
 ### Security
 
 - Web
+- Forensics
+- Misc
 
 ### Web Frontend
 
 - HTML / JavaScript / TypeScript
 - React / Next.js / Astro
 - MUI / shadcn/ui
+- Deno
 
 ### Web Backend
 
@@ -56,7 +60,7 @@
 - Docker
 - Windows / Linux
 - VS Code / Neovim
-- Computer network
+- Network
 
 ## Activities
 
