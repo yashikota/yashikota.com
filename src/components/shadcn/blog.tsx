@@ -1,11 +1,11 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import { BlogCardComponent } from "./card";
+import { useEffect, useState } from "react";
 
-// TODO: Add type
 interface BlogProps {
-    techPosts: any[];
-    lifePosts: any[];
+    techPosts: BlogCardComponentProps[];
+    lifePosts: BlogCardComponentProps[];
 }
 
 interface BlogCardComponentProps {
@@ -21,8 +21,20 @@ interface BlogCardComponentProps {
 }
 
 export const BlogComponent = ({ techPosts, lifePosts }: BlogProps) => {
+    const [activeTab, setActiveTab] = useState<string>("");
+
+    useEffect(() => {
+        const hash = window.location.hash.replace("#", "");
+        setActiveTab(hash === "life" ? "life" : "tech");
+    }, []);
+
+    const handleTabChange = (value: string) => {
+        setActiveTab(value);
+        window.location.hash = value;
+    };
+
     return (
-        <Tabs defaultValue="tech" className="w-full">
+        <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
             <TabsList className="grid xl:w-4/5 mx-auto grid-cols-2">
                 <TabsTrigger value="tech">Tech</TabsTrigger>
                 <TabsTrigger value="life">Life</TabsTrigger>
