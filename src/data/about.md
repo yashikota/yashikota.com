@@ -1,32 +1,40 @@
 ## Skills
 
-### System Programming
+- Computer Vision ✨️
+- Computer Graphics ✨️
+- Multi Media ✨️
+- XR ✨️
+- AI ✨️
+- System Programming ✨️
+- Security
+- Web Frontend
+- Web Backend
 
-- Verilog / VHDL
-- C / C++
-- CPU / Compiler
-- FPGA / ESP32 / Arduino
-
-### Multi Media
-
-- JPEG / PNG / GIF / WebP / AVIF / HEIF / JPEG XL
-- MPEG-2 / MPEG-4 / H.264 / H.265 / AV1
-- MP4 / MKV
-- MP3 / AAC / Opus / Ogg / FLAC
+<details>
+<summary>Skill details</summary>
 
 ### Computer Vision
 
-- Stereo Matching
+- Stereo Vision
+- vSLAM, SfM, MVS
+- NeRF, 3DGS
 
-### Graphics
+### Computer Graphics
 
 - Game Graphics / Ray Tracking
-- GLSL / HLSL / SPIR-V
+- GLSL / HLSL
 - OpenGL / WebGL / WebGPU
+
+### Multimedia
+
+- JPEG / PNG / GIF / WebP / AVIF / HEIF / JPEG XL
+- MPEG-2 / MPEG-4 / H.264 / H.265 / H.266 / AV1
+- MP4 / MKV
+- MP3 / AAC / Opus / Ogg / FLAC
 
 ### XR
 
-- MR / DR
+- AR / VR / MR / DR
 - Unity / C#
 
 ### AI
@@ -34,6 +42,13 @@
 - Python / PyTorch
 - CNN
 - Transformer / Vision Transformer
+
+### System Programming
+
+- Verilog / VHDL
+- C / C++
+- CPU / Compiler
+- FPGA / ESP32 / Arduino
 
 ### Security
 
@@ -61,6 +76,8 @@
 - Windows / Linux
 - VS Code / Neovim
 - Network
+
+</details>
 
 ## Activities
 

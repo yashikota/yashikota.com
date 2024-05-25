@@ -4,8 +4,10 @@ import { BlogCardComponent } from "./card";
 import { useEffect, useState } from "react";
 
 interface BlogProps {
-    techPosts: BlogCardComponentProps[];
-    lifePosts: BlogCardComponentProps[];
+    // techPosts: BlogCardComponentProps[];
+    // lifePosts: BlogCardComponentProps[];
+    techPosts: any[];
+    lifePosts: any[];
 }
 
 interface BlogCardComponentProps {
