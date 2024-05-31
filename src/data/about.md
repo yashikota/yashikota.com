@@ -1,12 +1,12 @@
 ## Skills
 
 - Computer Vision ✨️
-- Computer Graphics ✨️
-- Multi Media ✨️
-- XR ✨️
+- Computer Graphics
 - AI ✨️
 - System Programming ✨️
-- Security
+- XR
+- Multimedia
+- Security ✨️
 - Web Frontend
 - Web Backend
 
