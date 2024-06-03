@@ -1,5 +1,12 @@
 ## Skills
 
+<!-- 
+\<Skill> ::= \<Media> \<System> \<Other>  
+\<Media> ::= \<CV> \<3DCG> \<XR>  
+\<System> ::= \<CPU> \<GPU>  
+\<Other> ::= \<Security> \<AI> \<Web Frontend> \<Web Backend> 
+-->
+
 - Computer Vision ✨️
 - Computer Graphics
 - AI ✨️
@@ -8,7 +15,7 @@
 - Multimedia
 - Security ✨️
 - Web Frontend
-- Web Backend
+- Web Backend 
 
 <details>
 <summary>Skill details</summary>
