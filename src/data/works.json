@@ -22,6 +22,15 @@
         "tags": ["Astro", "shadcn/ui", "Bun"]
     },
     {
+        "title": "CamCast",
+        "description": "WebCamの映像をRTSPで配信します。これによりWSL環境下でWebCamの利用がしやすくなります。また、スマートフォンのカメラをWebCamとして利用することもできます。",
+        "image": "https://aomaterial.com/wp-content/uploads/2023/04/%E6%BA%96%E5%82%99%E4%B8%AD2-1536x864.png",
+        "github": ["https://github.com/yashikota/camcast"],
+        "url": [],
+        "date": "2024/04",
+        "tags": ["Go", "RTSP"]
+    },
+    {
         "title": "4bitCPU エミュレーター",
         "description": "TD4という4bitCPUアーキテクチャ用エミュレーターをPythonで開発しました。公式エミュレーターと同等のエミュレーションに加え、可変クロックの実装やTD4公式エミュレータが扱うファイルからの読み込み、TUIでのエミュレーションなど使いやすさに工夫を凝らしました。またPyPIに登録してパッケージとしてダウンロードできるようにしています。",
         "image": "https://raw.githubusercontent.com/yashikota/blog/master/public/static/images/td4-py.gif",
@@ -37,7 +46,7 @@
         "github": ["https://github.com/yashikota/oit-magic"],
         "url": [],
         "date": "2023/10 ~ 2023/11",
-        "tags": ["Unity", "C#", "Python", "MediaPipe"]
+        "tags": ["Unity", "C Sharp", "Python", "MediaPipe"]
     },
     {
         "title": "FunBook",
@@ -89,14 +98,5 @@
         "url": [],
         "date": "2023/09",
         "tags": ["C", "Gomoku"]
-    },
-    {
-        "title": "その他",
-        "description": "①学内で開催されたマインクラフトのプレイヤーを操作し、敵を倒せた数を競うコンテストへ参加し、準優勝しました。また翌年そのコンテストに運営として参加し、ライブラリの提供等を行いました。②食堂の入り口にあるカメラを使用して人の検知を行い、食堂の混雑率を算出し、学生に混雑率を提供するためのサービスを作成。プライバシー保護のため、カメラは真下のみ撮影するため人物の特定が難しいですが、画像処理技術を駆使して開発を行っています。",
-        "image": "https://cdn.pixabay.com/photo/2015/03/20/17/45/etc-682613_1280.jpg",
-        "github": [],
-        "url": [],
-        "date": "2022/04 ~ 2024/04",
-        "tags": []
     }
 ]

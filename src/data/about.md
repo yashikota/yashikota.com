@@ -1,14 +1,21 @@
 ## Skills
 
+<!-- 
+\<Skill> ::= \<Media> \<System> \<Other>  
+\<Media> ::= \<CV> \<3DCG> \<XR>  
+\<System> ::= \<CPU> \<GPU>  
+\<Other> ::= \<Security> \<AI> \<Web Frontend> \<Web Backend> 
+-->
+
 - Computer Vision ✨️
-- Computer Graphics ✨️
-- Multi Media ✨️
-- XR ✨️
+- Computer Graphics
 - AI ✨️
 - System Programming ✨️
-- Security
+- XR
+- Multimedia
+- Security ✨️
 - Web Frontend
-- Web Backend
+- Web Backend 
 
 <details>
 <summary>Skill details</summary>
@@ -124,7 +131,7 @@
   - 2023/05 ~ 現在
   - Python, Pytorch, TensorFlow
 
-## Qualifications
+## Certifications
 
 - ITパスポート
 - 情報セキュリティマネジメント
