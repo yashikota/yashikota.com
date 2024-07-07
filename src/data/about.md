@@ -131,7 +131,7 @@
   - 2023/05 ~ 現在
   - Python, Pytorch, TensorFlow
 
-## Certifications
+## Certification
 
 - ITパスポート
 - 情報セキュリティマネジメント
