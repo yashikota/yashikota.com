@@ -1,21 +1,9 @@
 ## Skills
 
-<!-- 
-\<Skill> ::= \<Media> \<System> \<Other>  
-\<Media> ::= \<CV> \<3DCG> \<XR>  
-\<System> ::= \<CPU> \<GPU>  
-\<Other> ::= \<Security> \<AI> \<Web Frontend> \<Web Backend> 
--->
-
-- Computer Vision ✨️
-- Computer Graphics
-- AI ✨️
-- System Programming ✨️
-- XR
-- Multimedia
-- Security ✨️
-- Web Frontend
-- Web Backend 
+\<Skills> ::= \<MultiMedia> \<System> \<Other>  
+\<MultiMedia> ::= \<CV> \<3DCG> \<XR> \<Game>  
+\<System> ::= \<CPU> \<GPU> \<Compiler>  
+\<Other> ::= \<Security> \<AI> \<Web Frontend> \<Backend>  
 
 <details>
 <summary>Skill details</summary>
@@ -106,22 +94,13 @@
 
 - [Flatt Security サマーインターン](https://twitter.com/flatt_security/status/1648209980468912128)
   - ウェブセキュリティ診断の実施とその報告書の作成
-    - XSS
-    - CSRF
-    - OS Command Injection
-    - Path Traversal
-    - ReDoS
+  - XSS, CSRF, OS Command Injection, Path Traversal, ReDoS
 
 - [ちゅらデータ サマーインターンシップ](https://churadata.okinawa/jobs/summer-internship-2023)
   - データ分析基盤構築やデータモデリング
-    - GitHub
-    - AWS
-    - Snowflake
-    - dbt
-    - Airbyte
-    - Tableau
+  - AWS, Snowflake, dbt, Airbyte, Tableau
 
-## Part time Job
+## Part-time Job
 
 - 学校法人角川ドワンゴ学園 プログラミングTA インターン
   - 2023/03 ~ 2024/03
