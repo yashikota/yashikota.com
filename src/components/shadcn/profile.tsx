@@ -1,7 +1,7 @@
 export function ProfileComponent() {
     return (
         <div className="flex flex-col items-center">
-            <img src="/icon.webp" alt="avatar" className="w-24" />
+            <img src="/icon.avif" alt="avatar" className="w-24" />
             <h1 className="mt-4 text-2xl font-bold">
                 <ruby>
                     kota<rt>こた</rt>
