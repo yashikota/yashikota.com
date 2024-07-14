@@ -2,7 +2,7 @@
 import Base from "@/layouts/base.astro";
 
 import { getGalleries } from "@/lib/gallery";
-import InstagramEmbed from "@/lib/instagramEmbed.astro";
+import { InstagramEmbedComponent } from "@/components/instagram";
 
 const galleries = await getGalleries();
 ---
@@ -11,6 +11,10 @@ const galleries = await getGalleries();
     <div
         class="flex flex-col sm:flex-row justify-center items-center gap-3 flex-wrap"
     >
-        {galleries.map((gallery) => <InstagramEmbed postId={gallery.postId} />)}
+        {
+            galleries.map((gallery) => (
+                <InstagramEmbedComponent client:load postId={gallery.postId} />
+            ))
+        }
     </div>
 </Base>
