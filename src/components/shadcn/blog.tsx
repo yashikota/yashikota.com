@@ -36,7 +36,11 @@ export const BlogComponent = ({ techPosts, lifePosts }: BlogProps) => {
     };
 
     return (
-        <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
+        <Tabs
+            value={activeTab}
+            onValueChange={handleTabChange}
+            className="w-full"
+        >
             <TabsList className="grid xl:w-4/5 mx-auto grid-cols-2">
                 <TabsTrigger value="tech">Tech</TabsTrigger>
                 <TabsTrigger value="life">Life</TabsTrigger>
