@@ -1,24 +1,19 @@
 ---
 import Base from "@/layouts/base.astro";
-import { GalleryComponent } from "@/components/shadcn/gallery";
+
 import { getGalleries } from "@/lib/gallery";
+import { InstagramEmbedComponent } from "@/components/instagram";
 
 const galleries = await getGalleries();
 ---
 
 <Base pageTitle="Gallery">
-    <div>
+    <div
+        class="flex flex-col sm:flex-row justify-center items-center gap-3 flex-wrap"
+    >
         {
             galleries.map((gallery) => (
-                <GalleryComponent
-                    thumbnail={gallery.image}
-                    title={gallery.title}
-                    date={gallery.date}
-                    tags={gallery.tags}
-                    instagram={gallery.instagram}
-                    details={gallery.details}
-                    client:load
-                />
+                <InstagramEmbedComponent postId={gallery.postId} client:load />
             ))
         }
     </div>
