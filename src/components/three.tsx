@@ -8,7 +8,16 @@ import {
     Vector2,
     WebGLRenderer,
     Clock,
+    MeshBasicMaterial,
+    Raycaster,
 } from "three";
+import { Font, FontLoader } from "three/addons/loaders/FontLoader.js";
+import { TextGeometry } from "three/addons/geometries/TextGeometry.js";
+
+interface TextConfig {
+    text: string;
+    url: string;
+}
 
 export function ThreeCanvas() {
     useEffect(() => {
@@ -24,9 +33,9 @@ export function ThreeCanvas() {
 }
 
 function Three() {
-    const container = document.getElementById("three-canvas");
-    if (!container) {
-        throw new Error("Canvas Container not found");
+    const canvas = document.getElementById("three-canvas");
+    if (!canvas) {
+        throw new Error("Canvas not found");
     }
 
     const scene = new Scene();
@@ -34,8 +43,9 @@ function Three() {
     camera.position.set(0, 0, 100);
     camera.lookAt(scene.position);
 
-    const geometry = new PlaneGeometry(2, 2);
-    const material = new ShaderMaterial({
+    // 背景
+    const backgroundGeometry = new PlaneGeometry(2, 2);
+    const rainbowMaterial = new ShaderMaterial({
         fragmentShader: `
     uniform vec2 resolution;
     uniform float iTime;
@@ -77,9 +87,77 @@ function Three() {
         },
     });
 
-    const mesh = new Mesh(geometry, material);
-    scene.add(mesh);
+    const background = new Mesh(backgroundGeometry, rainbowMaterial);
+    scene.add(background);
 
+    let textMeshes: Mesh[] = [];
+    const textConfigs: TextConfig[] = [
+        { text: "Blog", url: "https://yashikota.com/blog" },
+        { text: "Slides", url: "https://yashikota.com/slides" },
+        { text: "Works", url: "https://yashikota.com/works" },
+        { text: "Games", url: "https://yashikota.com/games" },
+        { text: "Gallery", url: "https://yashikota.com/gallery" },
+        { text: "About", url: "https://yashikota.com/about" },
+    ];
+
+    function randomPosition(): [number, number, number] {
+        return [Math.random() * 1.6 - 0.8, Math.random() * 1.6 - 0.8, 0];
+    }
+
+    function randomDirection(): [number, number] {
+        const angle = Math.random() * Math.PI * 2;
+        return [Math.cos(angle) * 0.003, Math.sin(angle) * 0.003];
+    }
+
+    const loader = new FontLoader();
+    loader.load(
+        "https://threejs-plactice.vercel.app/fontloader/fonts/helvetiker_regular.typeface.json",
+        (font) => {
+            textMeshes = textConfigs.map((config) => {
+                const mesh = createTextMesh(font, config);
+                mesh.position.set(...randomPosition());
+                mesh.userData.direction = randomDirection();
+                mesh.userData.url = config.url;
+                return mesh;
+            });
+
+            const textMaterial = new MeshBasicMaterial({
+                color: 0xffffff,
+            });
+
+            textMeshes.forEach((mesh) => {
+                mesh.material = textMaterial;
+                scene.add(mesh);
+                mesh.geometry.computeBoundingBox();
+            });
+
+            animate();
+        },
+    );
+
+    // raycaster
+    const raycaster = new Raycaster();
+    const mouse = new Vector2();
+
+    canvas.addEventListener("click", onMouseClick, false);
+
+    function onMouseClick(event: MouseEvent) {
+        event.preventDefault();
+
+        mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+        mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+        raycaster.setFromCamera(mouse, camera);
+
+        const intersects = raycaster.intersectObjects(textMeshes);
+
+        if (intersects.length > 0) {
+            const url = intersects[0].object.userData.url;
+            window.location.href = url;
+        }
+    }
+
+    // レンダラーを作成
     const renderer = new WebGLRenderer({
         antialias: true,
         alpha: false,
@@ -88,16 +166,25 @@ function Three() {
     });
     renderer.setClearColor(0x000000);
     renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setSize(window.innerWidth, window.innerHeight);
 
-    container.appendChild(renderer.domElement);
+    const width = canvas.clientWidth;
+    const height = canvas.clientHeight;
+    renderer.setSize(width, height);
+
+    canvas.appendChild(renderer.domElement);
 
     function handleOnResize() {
+        if (!canvas) {
+            return;
+        }
+        const width = canvas.clientWidth;
+        const height = canvas.clientHeight;
+
         renderer.setPixelRatio(window.devicePixelRatio);
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        material.uniforms.resolution.value = new Vector2(
-            window.innerWidth * window.devicePixelRatio,
-            window.innerHeight * window.devicePixelRatio,
+        renderer.setSize(width, height);
+        rainbowMaterial.uniforms.resolution.value = new Vector2(
+            width * window.devicePixelRatio,
+            height * window.devicePixelRatio,
         );
         camera.updateProjectionMatrix();
     }
@@ -108,8 +195,51 @@ function Three() {
 
     function animate() {
         requestAnimationFrame(animate);
-        material.uniforms.iTime.value = clock.getElapsedTime();
+        rainbowMaterial.uniforms.iTime.value = clock.getElapsedTime();
+
+        textMeshes.forEach((mesh) => {
+            if (mesh.geometry.boundingBox) {
+                const direction = mesh.userData.direction as [number, number];
+                mesh.position.x += direction[0];
+                mesh.position.y += direction[1];
+
+                const boundingBox = mesh.geometry.boundingBox;
+                const width = boundingBox.max.x - boundingBox.min.x;
+                const height = boundingBox.max.y - boundingBox.min.y;
+
+                // X軸の反転
+                if (
+                    mesh.position.x + width / 2 > 1 ||
+                    mesh.position.x - width / 2 < -1
+                ) {
+                    direction[0] *= -1;
+                }
+
+                // Y軸の反転
+                if (
+                    mesh.position.y + height / 2 > 1 ||
+                    mesh.position.y - height / 2 < -1
+                ) {
+                    direction[1] *= -1;
+                }
+            }
+        });
+
         renderer.render(scene, camera);
     }
-    animate();
+}
+
+function createTextMesh(font: Font, config: TextConfig): Mesh {
+    const geometry = new TextGeometry(config.text, {
+        font,
+        size: 0.15,
+        depth: 0.01,
+        curveSegments: 12,
+        bevelEnabled: false,
+        bevelThickness: 0.01,
+        bevelSize: 0.01,
+        bevelSegments: 5,
+    });
+
+    return new Mesh(geometry);
 }
