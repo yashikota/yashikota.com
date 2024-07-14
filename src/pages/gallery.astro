@@ -13,7 +13,7 @@ const galleries = await getGalleries();
     >
         {
             galleries.map((gallery) => (
-                <InstagramEmbedComponent client:load postId={gallery.postId} />
+                <InstagramEmbedComponent postId={gallery.postId} client:load />
             ))
         }
     </div>
