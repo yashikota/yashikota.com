@@ -1,8 +1,9 @@
 ---
 import Base from "@/layouts/base.astro";
+
+import { ThreeCanvas } from "@/components/three";
 ---
 
 <Base>
 
-<script src="../lib/three.ts"></script>
-<div id="three-canvas" class="absolute top-0 left-0 w-full h-full"></div>
+<ThreeCanvas client:load />
