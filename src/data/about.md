@@ -1,78 +1,37 @@
 ## Skills
 
-\<Skills> ::= \<MultiMedia> \<System> \<Other>  
-\<MultiMedia> ::= \<CV> \<3DCG> \<XR> \<Game>  
-\<System> ::= \<CPU> \<GPU> \<Compiler>  
-\<Other> ::= \<Security> \<AI> \<Web Frontend> \<Backend>  
+```xml
+<Skills> ::= <MultiMedia> <Backend> <System> <Other>
+<MultiMedia> ::= <CV> <IP> <3DCG> <XR> <Game>
+<Backend> ::= <DB> <Cloud> <DevOps>
+<System> ::= <CPU> <GPU> <Compiler>
+<Other> ::= <Security> <AI> <WebFrontend>
+```
 
-<details>
-<summary>Skill details</summary>
+### MultiMedia
 
-### Computer Vision
+コンピュータビジョン(CV)では現在3Dでの利活用に注力しており、vSLAMやSfMなどに取り組んでいます。  
+画像処理(IP)では画像や動画フォーマットの仕組みの調査や、実際に自作画像フォーマットの作成なども行っています。  
+コンピュータグラフィックス(3DCG)ではOpenGLを用いたゲーム制作やC++での自作レイトレーシングレンダラー、WebGLを用いたウェブサイトの作成などを行っています。  
+XRは最近興味を持っている分野であり、ARやVRにとどまらずMRやDRにも手を出して取り組んでいる最中です。  
+ゲーム開発にも興味を持っており、最近はUnityでの開発を行っています。  
 
-- Stereo Vision
-- vSLAM, SfM, MVS
-- NeRF, 3DGS
+### Backend
 
-### Computer Graphics
+バックエンドでは主にGoを用いており、DockerとCloud Runでのサーバーレス運用やGitHub Actionsを用いたCI/CD、Terraformでのインフラ管理など一通りのDevOpsを行えます。  
+アーキテクチャは絶賛勉強中です。  
 
-- Game Graphics / Ray Tracking
-- GLSL / HLSL
-- OpenGL / WebGL / WebGPU
+### System
 
-### Multimedia
-
-- JPEG / PNG / GIF / WebP / AVIF / HEIF / JPEG XL
-- MPEG-2 / MPEG-4 / H.264 / H.265 / H.266 / AV1
-- MP4 / MKV
-- MP3 / AAC / Opus / Ogg / FLAC
-
-### XR
-
-- AR / VR / MR / DR
-- Unity / C#
-
-### AI
-
-- Python / PyTorch
-- CNN
-- Transformer / Vision Transformer
-
-### System Programming
-
-- Verilog / VHDL
-- C / C++
-- CPU / Compiler
-- FPGA / ESP32 / Arduino
-
-### Security
-
-- Web
-- Forensics
-- Misc
-
-### Web Frontend
-
-- HTML / JavaScript / TypeScript
-- React / Next.js / Astro
-- MUI / shadcn/ui
-- Deno
-
-### Web Backend
-
-- Go
-- Google Cloud
-- Terraform
+VerilogやVHDLでFPGAを用いたCPUやラジコンの制作などをしてきました。  
+最近は自作コンパイラーの作成にも手を出しています。  
+夢は全てのレイヤーを自作したPCを作り上げることです。  
 
 ### Other
 
-- Git / GitHub
-- Docker
-- Windows / Linux
-- VS Code / Neovim
-- Network
-
-</details>
+セキュリティは情報処理安全確保支援士の試験合格やセキュリティ学会やインターンへの参加もしており、幅広い知識を持っています。  
+AIでは主に画像を使ったモデルを使用しています。また、CNNやViTといったアーキテクチャの勉強も行っています。  
+Webフロントエンドについても全般的な知識を持っており、また簡単なウェブサイトも作成できます。このサイトも自作です。  
 
 ## Activities
 
@@ -92,22 +51,20 @@
 
 ## Internship
 
-- [Flatt Security サマーインターン](https://twitter.com/flatt_security/status/1648209980468912128)
-  - ウェブセキュリティ診断の実施とその報告書の作成
+- Flatt Security サマーインターン
+  - 2023/08
   - XSS, CSRF, OS Command Injection, Path Traversal, ReDoS
 
-- [ちゅらデータ サマーインターンシップ](https://churadata.okinawa/jobs/summer-internship-2023)
-  - データ分析基盤構築やデータモデリング
+- ちゅらデータ サマーインターンシップ
+  - 2023/09
   - AWS, Snowflake, dbt, Airbyte, Tableau
 
-## Part-time Job
-
-- 学校法人角川ドワンゴ学園 プログラミングTA インターン
+- 学校法人角川ドワンゴ学園 プログラミングTA
   - 2023/03 ~ 2024/03
-  - 教育, Webプログラミング
+  - HTML, CSS, JavaScript
 
-- 株式会社AVILEN AI人材育成 インターン
-  - 2023/05 ~ 現在
+- 株式会社AVILEN AI人材育成
+  - 2023/05 ~
   - Python, Pytorch, TensorFlow
 
 ## Certification
