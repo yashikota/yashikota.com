@@ -2,8 +2,8 @@
 
 ```xml
 <Skills> ::= <MultiMedia> <Backend> <System> <Other>
-<MultiMedia> ::= <CV> <IP> <3DCG> <XR> <Game>
-<Backend> ::= <DB> <Cloud> <DevOps>
+<MultiMedia> ::= <CV> <IP> <3DCG> <Codec> <XR> <Game>
+<Backend> ::= <OpenAPI> <DB> <Cloud> <DevOps>
 <System> ::= <CPU> <GPU> <Compiler>
 <Other> ::= <Security> <AI> <WebFrontend>
 ```
@@ -51,7 +51,7 @@ Webフロントエンドについても全般的な知識を持っており、�
 
 ## Internship
 
-- Flatt Security サマーインターン
+- Flatt Security サマーインターンシップ
   - 2023/08
   - XSS, CSRF, OS Command Injection, Path Traversal, ReDoS
 
@@ -59,13 +59,19 @@ Webフロントエンドについても全般的な知識を持っており、�
   - 2023/09
   - AWS, Snowflake, dbt, Airbyte, Tableau
 
-- 学校法人角川ドワンゴ学園 プログラミングTA
+- 角川ドワンゴ学園 プログラミングTA
   - 2023/03 ~ 2024/03
   - HTML, CSS, JavaScript
 
-- 株式会社AVILEN AI人材育成
+- AVILEN AI人材育成
   - 2023/05 ~
   - Python, Pytorch, TensorFlow
+
+- 日本経済新聞社 短期インターンシップ
+  - 2024/08
+
+- ピクシブ エンジニア職インターン
+  - 2024/09
 
 ## Certification
 
