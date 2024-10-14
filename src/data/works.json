@@ -22,15 +22,6 @@
         "tags": ["Astro", "shadcn/ui", "Bun"]
     },
     {
-        "title": "CamCast",
-        "description": "WebCamの映像をRTSPで配信します。これによりWSL環境下でWebCamの利用がしやすくなります。また、スマートフォンのカメラをWebCamとして利用することもできます。",
-        "image": "https://aomaterial.com/wp-content/uploads/2023/04/%E6%BA%96%E5%82%99%E4%B8%AD2-1536x864.png",
-        "github": ["https://github.com/yashikota/camcast"],
-        "url": [],
-        "date": "2024/04",
-        "tags": ["Go", "RTSP"]
-    },
-    {
         "title": "4bitCPU エミュレーター",
         "description": "TD4という4bitCPUアーキテクチャ用エミュレーターをPythonで開発しました。公式エミュレーターと同等のエミュレーションに加え、可変クロックの実装やTD4公式エミュレータが扱うファイルからの読み込み、TUIでのエミュレーションなど使いやすさに工夫を凝らしました。またPyPIに登録してパッケージとしてダウンロードできるようにしています。",
         "image": "https://raw.githubusercontent.com/yashikota/blog/master/public/static/images/td4-py.gif",
@@ -71,24 +62,6 @@
         ],
         "date": "2023/02",
         "tags": ["Python", "JANCode"]
-    },
-    {
-        "title": "neuro-eye",
-        "description": "脳の神経回路を模倣したプログラムによる画像認識プログラムです。輪郭の左右の判別や移動輪郭上下左右の判別が行えます。",
-        "image": "https://aomaterial.com/wp-content/uploads/2023/04/%E6%BA%96%E5%82%99%E4%B8%AD2-1536x864.png",
-        "github": ["https://github.com/yashikota/neuro-eye"],
-        "url": [],
-        "date": "2023/10",
-        "tags": ["C++", "OpenCV"]
-    },
-    {
-        "title": "Meetup",
-        "description": "主催した勉強会用の教材をまとめたWebサイトです。勉強会は初学者向けのHTML/CSSとGit/GitHubの勉強会で、最終的に各自でウェブサイトを制作してもらえるようにしました。",
-        "image": "https://raw.githubusercontent.com/yashikota/blog/master/public/static/images/meetup.png",
-        "github": ["https://github.com/yashikota/meetup"],
-        "url": ["https://meetup.yashikota.com/"],
-        "date": "2022/06 ~ 2022/07",
-        "tags": ["勉強会", "HTML", "CSS", "Git", "GitHub"]
     },
     {
         "title": "Gomoku",

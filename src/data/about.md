@@ -3,7 +3,7 @@
 ```xml
 <Skills> ::= <MultiMedia> <Backend> <System> <Other>
 <MultiMedia> ::= <CV> <3DCG> <Codec> <XR> <Game>
-<Backend> ::= <OpenAPI> <DB> <Cloud> <DevOps>
+<Backend> ::= <WebAPI> <DB> <Cloud> <DevOps> <CICD>
 <System> ::= <CPU> <GPU> <Compiler>
 <Other> ::= <Security> <AI> <WebFrontend>
 ```
@@ -40,14 +40,26 @@ Webフロントエンドについても全般的な知識を持っており、�
   - 最後の修了試験では全受講者数36名のうち、5位にランクインし表彰されました。  
 
 - [MWS Cup 2022](https://www.iwsec.org/mws/2022)
-  - ハッカソンでは有害アフィリエイトサイトを機械学習で検知し検索結果から排除するシステムを作成しました。
-  - また当日のCTFではDFIR部門で優勝することができ、学部長表彰も受賞することができました。
+  - ハッカソンでは有害アフィリエイトサイトを機械学習で検知し検索結果から排除するシステムを作成しました。  
+  - また当日のCTFではDFIR部門で優勝することができ、学部長表彰も受賞することができました。  
 
 - [Bug Shooting Challenge #9](https://mixil.mixi.co.jp/report/3329)
-  - ゲームを題材にしたバックエンドのプログラムを元に不具合を生じさせている箇所を特定、修正するコンテストに参加しました。
+  - ゲームを題材にしたバックエンドのプログラムを元に不具合を生じさせている箇所を特定、修正するコンテストに参加しました。  
 
 - [Git Challenge #13](https://github.com/mixi-git-challenge/publications)
-  - Gitのコンフリクトや履歴の復旧などGitの知識と技能を競うコンテストに参加しました。
+  - Gitのコンフリクトや履歴の復旧などGitの知識と技能を競うコンテストに参加しました。  
+
+- 勉強会
+  - [ゼロからのOS自作入門](https://book.mynavi.jp/ec/products/detail/id=121220)を輪読する勉強会を主催しました。  
+
+- [58ハッカソン](https://58hackathon.connpass.com/event/324993)
+  - ハッカソンにて[Chronotes](https://yashikota.com/works#chronotes)を開発し、優秀賞を獲得しました。  
+
+- [技育展2024](https://talent.supporterz.jp/geekten/2024)
+  - ピッチコンテストにて[Chronotes](https://yashikota.com/works#chronotes)を紹介し、第2ステージまで進出しました。  
+
+- 勉強会
+  - [低レイヤを知りたい人のためのCコンパイラ作成入門](https://www.sigbus.info/compilerbook)と、[Crafting Interpreters](https://craftinginterpreters.com/index.html)を輪読する勉強会を主催しました。  
 
 ## Internship
 
@@ -73,6 +85,11 @@ Webフロントエンドについても全般的な知識を持っており、�
 
 - ピクシブ エンジニア職インターン
   - 2024/09
+  - [ImageFlux](https://imageflux.sakura.ad.jp)のモザイク機能の開発  
+
+- Univearth 長期インターンシップ
+  - 2024/10 ~
+  - Goでのバックエンド & Next.jsでのフロントエンド開発
 
 ## Certification
 
