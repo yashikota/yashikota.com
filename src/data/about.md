@@ -52,6 +52,9 @@ Webフロントエンドについても全般的な知識を持っており、�
 - 勉強会
   - [ゼロからのOS自作入門](https://book.mynavi.jp/ec/products/detail/id=121220)を輪読する勉強会を主催しました。  
 
+- [低レイヤーLT交流会](https://gdscut.connpass.com/event/323841)
+  - 登壇しました。発表資料は[PythonでCPUエミュレータを作ってみよう！](https://www.docswell.com/s/kota/5N11JL-td4-py)です。  
+
 - [58ハッカソン](https://58hackathon.connpass.com/event/324993)
   - ハッカソンにて[Chronotes](https://yashikota.com/works#chronotes)を開発し、優秀賞を獲得しました。  
 
