@@ -21,7 +21,25 @@ tags: ["インタプリタ", "アドベントカレンダー"]
 
 ## 2章
 
+この章はインタプリタの全容を知れる部分。  
+といってもよくある 字句解析 → 構文解析 → 意味解析 → 最適化 → コード生成 という流れ。  
 
+IRにもいくつかの形式があるらしく、これはこれで面白そうと思ったり。  
+
+https://ja.wikipedia.org/wiki/%E5%88%B6%E5%BE%A1%E3%83%95%E3%83%AD%E3%83%BC%E3%82%B0%E3%83%A9%E3%83%95
+
+https://ja.wikipedia.org/wiki/%E9%9D%99%E7%9A%84%E5%8D%98%E4%B8%80%E4%BB%A3%E5%85%A5
+
+https://ja.wikipedia.org/wiki/%E7%B6%99%E7%B6%9A%E6%B8%A1%E3%81%97%E3%82%B9%E3%82%BF%E3%82%A4%E3%83%AB
+
+https://ja.wikipedia.org/wiki/3%E7%95%AA%E5%9C%B0%E3%82%B3%E3%83%BC%E3%83%89
+
+コード最適化についても説明があった。今回は特に最適化はやらないらしい。  
+詳しい最適化については以下のページが詳しかった。  
+
+https://www.hpcs.cs.tsukuba.ac.jp/~msato/lecture-note/comp-lecture/note11.html
+
+また、cloxではC言語でVMを作ってどのプラットフォームでも実行できるようにするとのこと。面白そう。  
 
 ## 3章
 
