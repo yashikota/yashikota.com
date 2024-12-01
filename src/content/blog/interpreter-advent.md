@@ -4,7 +4,7 @@ pubDate: 2024-12-01
 updDate: 
 isUnlisted: false
 category: tech
-tags: ["技術解説"]
+tags: ["インタプリタ", "アドベントカレンダー"]
 ---
 
 [CRAFTING INTERPRETERS](https://craftinginterpreters.com/contents.html)というインタプリタの作り方が無料で知れちゃう教材があります。(ただし英語)  
