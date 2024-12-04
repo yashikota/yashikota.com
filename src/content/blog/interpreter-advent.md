@@ -57,7 +57,165 @@ C言語風だが動的型付けでJSっぽさもある。
 
 ## 4章
 
+今日から実装していく日々の始まり。  
+といってもWebサイトで完全に動くコードが提示されているのでコピペはできる。  
+写経しても結局脳死で丸写しだし、時間がかかるし、タイポするので今回はコピペメインでやろうかなと。  
+というわけで軽く実装する内容の紹介。  
 
+```java
+public class Lox {
+  public static void main(String[] args) throws IOException {
+    if (args.length > 1) {
+      System.out.println("Usage: jlox [script]");
+      System.exit(64); 
+    } else if (args.length == 1) {
+      runFile(args[0]);
+    } else {
+      runPrompt();
+    }
+  }
+}
+```
+
+jloxはファイルからの入力はもちろん、REPLとしても使える。  
+
+```java
+  static void error(int line, String message) {
+    report(line, "", message);
+  }
+
+  private static void report(int line, String where,
+                             String message) {
+    System.err.println(
+        "[line " + line + "] Error" + where + ": " + message);
+    hadError = true;
+  }
+```
+
+エラーハンドリングも行数を教えて指摘してくれる。  
+
+```java
+  private void scanToken() {
+    char c = advance();
+    switch (c) {
+      case '(': addToken(LEFT_PAREN); break;
+      case ')': addToken(RIGHT_PAREN); break;
+      case '{': addToken(LEFT_BRACE); break;
+      case '}': addToken(RIGHT_BRACE); break;
+      case ',': addToken(COMMA); break;
+      case '.': addToken(DOT); break;
+      case '-': addToken(MINUS); break;
+      case '+': addToken(PLUS); break;
+      case ';': addToken(SEMICOLON); break;
+      case '*': addToken(STAR); break; 
+    }
+  }
+```
+
+字句解析部分はemunで定義したトークンを元に愚直に場合分けする。  
+この際使用している `advance()` は1文字消費して文字を取得するメソッド。  
+
+```java
+  private char advance() {
+    return source.charAt(current++);
+  }
+```
+
+後に必要になるが、文字を消費しない `peek()` というメソッドもある。  
+
+```java
+  private char peek() {
+    if (isAtEnd()) return '\0';
+    return source.charAt(current);
+  }
+```
+
+演算子はトークンを取得したあと、更に1文字進めてみて `!` か `!=` どうかのように判定する。  
+
+```java
+      case '!':
+        addToken(match('=') ? BANG_EQUAL : BANG);
+        break;
+      case '=':
+        addToken(match('=') ? EQUAL_EQUAL : EQUAL);
+        break;
+      case '<':
+        addToken(match('=') ? LESS_EQUAL : LESS);
+        break;
+      case '>':
+        addToken(match('=') ? GREATER_EQUAL : GREATER);
+        break;
+```
+
+```java
+  private boolean match(char expected) {
+    if (isAtEnd()) return false;
+    if (source.charAt(current) != expected) return false;
+
+    current++;
+    return true;
+  }
+```
+
+`/` が出てきても除算なのかコメントなのか1文字じゃわからないので1つ進めて見てみる。  
+Pythonとかみたいに `#` をコメントにしても良さそうと思ったり。  
+
+```java
+      case '/':
+        if (match('/')) {
+          // A comment goes until the end of the line.
+          while (peek() != '\n' && !isAtEnd()) advance();
+        } else {
+          addToken(SLASH);
+        }
+        break;
+```
+
+あとは空白を読み飛ばしたり、改行で行数のカウントを増やしたり。  
+
+```java
+      case ' ':
+      case '\r':
+      case '\t':
+        // Ignore whitespace.
+        break;
+
+      case '\n':
+        line++;
+        break;
+```
+
+jloxでは数値型を全部doubleとして扱うらしいので、 `c >= '0' && c <= '9'` で true なやつがここでパースされる。  
+
+```java
+  private void number() {
+    while (isDigit(peek())) advance();
+
+    // Look for a fractional part.
+    if (peek() == '.' && isDigit(peekNext())) {
+      // Consume the "."
+      advance();
+
+      while (isDigit(peek())) advance();
+    }
+
+    addToken(NUMBER,
+        Double.parseDouble(source.substring(start, current)));
+  }
+```
+
+文字も予約後と衝突しないか確認するためにトークンを全部見て確認する。  
+
+```java
+  private void identifier() {
+    while (isAlphaNumeric(peek())) advance();
+
+    addToken(IDENTIFIER);
+  }
+```
+
+という感じで字句解析を一通り？やって4章は終わり。  
+次は構文木とかのお話。  
 
 ## 5章
 
