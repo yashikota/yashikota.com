@@ -3,7 +3,7 @@ title: DiscordのWebhookでSilentMessageを送信する方法
 pubDate: 2024-12-09
 updDate:
 isUnlisted: false
-category: Tech
+category: tech
 tags: ["discord"]
 ---
 
