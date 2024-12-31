@@ -2,6 +2,7 @@
 import { BlogComponent } from "@/components/shadcn/blog";
 import Base from "@/layouts/base.astro";
 import { getAllPosts } from "@/lib/allPosts";
+import type { Post } from "@/types/post";
 
 const posts = await getAllPosts();
 const techPosts = posts.filter(
@@ -16,8 +17,8 @@ const lifePosts = posts.filter(
     <div>
         <BlogComponent
             client:load
-            techPosts={techPosts}
-            lifePosts={lifePosts}
+            techPosts={techPosts as Post[]}
+            lifePosts={lifePosts as Post[]}
         />
     </div>
 </Base>

@@ -1,23 +1,12 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import type { Post } from "@/types/post";
 
 import { useEffect, useState } from "react";
 import { BlogCardComponent } from "./card";
 
 interface BlogProps {
-  techPosts?: BlogCardComponentProps[];
-  lifePosts?: BlogCardComponentProps[];
-}
-
-interface BlogCardComponentProps {
-  title: string;
-  pubDate: string;
-  updDate: string | null;
-  isUnlisted: boolean;
-  category: "tech" | "life";
-  tags: string[];
-  icon: string;
-  slug: string;
-  url: string;
+  techPosts?: Post[];
+  lifePosts?: Post[];
 }
 
 export const BlogComponent = ({
@@ -50,9 +39,9 @@ export const BlogComponent = ({
               slug={post.slug}
               url={post.url}
               pubDate={post.pubDate}
-              updDate={post.updDate}
-              tags={post.tags}
-              icon={post.icon}
+              updDate={post.updDate ?? null}
+              tags={post.tags ?? []}
+              icon={post.icon ?? ""}
             />
           </div>
         ))}
@@ -65,9 +54,9 @@ export const BlogComponent = ({
               slug={post.slug}
               url={post.url}
               pubDate={post.pubDate}
-              updDate={post.updDate}
-              tags={post.tags}
-              icon={post.icon}
+              updDate={post.updDate ?? null}
+              tags={post.tags ?? []}
+              icon={post.icon ?? ""}
             />
           </div>
         ))}
