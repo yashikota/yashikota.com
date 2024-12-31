@@ -1,8 +1,8 @@
 ---
 import Base from "@/layouts/base.astro";
 
-import { getGalleries } from "@/lib/gallery";
 import { InstagramEmbedComponent } from "@/components/instagram";
+import { getGalleries } from "@/lib/gallery";
 
 const galleries = await getGalleries();
 ---

@@ -1,14 +1,14 @@
 ---
+import { BlogComponent } from "@/components/shadcn/blog";
 import Base from "@/layouts/base.astro";
 import { getAllPosts } from "@/lib/allPosts";
-import { BlogComponent } from "@/components/shadcn/blog";
 
 const posts = await getAllPosts();
 const techPosts = posts.filter(
-    (post) => post.category === "tech" && !post.isUnlisted,
+  (post) => post.category === "tech" && !post.isUnlisted,
 );
 const lifePosts = posts.filter(
-    (post) => post.category === "life" && !post.isUnlisted,
+  (post) => post.category === "life" && !post.isUnlisted,
 );
 ---
 

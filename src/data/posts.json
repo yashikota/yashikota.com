@@ -1,10 +1,10 @@
 [
-    {
-        "title": "hoge",
-        "pubDate": "2023-12-24",
-        "updDate": "",
-        "category": "life",
-        "tags": ["hoge", "fuga"],
-        "url": "https://example.com/hoge"
-    }
+  {
+    "title": "hoge",
+    "pubDate": "2023-12-24",
+    "updDate": "",
+    "category": "life",
+    "tags": ["hoge", "fuga"],
+    "url": "https://example.com/hoge"
+  }
 ]

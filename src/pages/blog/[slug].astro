@@ -3,52 +3,52 @@ import Base from "@/layouts/base.astro";
 
 import { UpdateIcon } from "@radix-ui/react-icons";
 
-import { getBlogPosts } from "@/lib/blogPosts";
 import { Blog } from "@/components/blog";
+import { getBlogPosts } from "@/lib/blogPosts";
 
 import lib from "zenn-markdown-html";
 import "zenn-content-css";
 
 type MarkdownOptions = {
-    embedOrigin: string;
+  embedOrigin: string;
 };
 type MarkdownHtml = (text: string, options?: MarkdownOptions) => string;
 type MarkdownHtmlAtBuild = { default: MarkdownHtml };
 
 let markdownHtml: MarkdownHtml = lib;
 if (typeof lib !== "function") {
-    markdownHtml = (lib as MarkdownHtmlAtBuild).default;
+  markdownHtml = (lib as MarkdownHtmlAtBuild).default;
 }
 
 interface Props {
-    title: string;
-    tags: string[];
-    pubDate: string;
-    updDate: string;
-    body: string;
+  title: string;
+  tags: string[];
+  pubDate: string;
+  updDate: string;
+  body: string;
 }
 
 export async function getStaticPaths() {
-    const blogs = await getBlogPosts();
-    return blogs.map((blog) => {
-        return {
-            params: {
-                slug: blog.slug,
-            },
-            props: {
-                title: blog.title,
-                tags: blog.tags,
-                pubDate: blog.pubDate,
-                updDate: blog.updDate,
-                body: blog.body,
-            },
-        };
-    });
+  const blogs = await getBlogPosts();
+  return blogs.map((blog) => {
+    return {
+      params: {
+        slug: blog.slug,
+      },
+      props: {
+        title: blog.title,
+        tags: blog.tags,
+        pubDate: blog.pubDate,
+        updDate: blog.updDate,
+        body: blog.body,
+      },
+    };
+  });
 }
 
 const { title, tags, pubDate, updDate, body } = Astro.props;
 const content = markdownHtml(body, {
-    embedOrigin: "https://embed.zenn.studio",
+  embedOrigin: "https://embed.zenn.studio",
 });
 ---
 

@@ -2,25 +2,25 @@
 import { ChevronDownIcon } from "@radix-ui/react-icons";
 
 const navItems = [
-    "Top",
-    "Blog",
-    "Slides",
-    "Works",
-    "Games",
-    "Gallery",
-    "About",
+  "Top",
+  "Blog",
+  "Slides",
+  "Works",
+  "Games",
+  "Gallery",
+  "About",
 ];
 const active = Astro.url.pathname;
 
 let name = "";
 for (const item of navItems) {
-    if (active.includes(item.toLowerCase())) {
-        name = item;
-        break;
-    }
+  if (active.includes(item.toLowerCase())) {
+    name = item;
+    break;
+  }
 }
 if (name === "") {
-    name = "Top";
+  name = "Top";
 }
 ---
 
