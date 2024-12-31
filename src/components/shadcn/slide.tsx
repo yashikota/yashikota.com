@@ -30,9 +30,9 @@ export function SlideComponent(props: SlideComponentProps) {
       </CardHeader>
       <CardContent>
         <CardDescription className="flex items-center flex-wrap">
-          {props.tags.map((tag, index) => (
+          {props.tags.map((tag) => (
             <span
-              key={index}
+              key={tag}
               className="text-lg mr-2 text-sky-400 hover:text-sky-700"
             >
               #{tag}

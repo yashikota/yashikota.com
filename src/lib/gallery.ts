@@ -1,9 +1,13 @@
-import Gallery from "@/data/gallery.json";
+import GalleryData from "@/data/gallery.json";
 
-interface Gallery {
+interface GalleryItem {
   postId: string;
 }
 
+// Use GalleryData instead of Gallery
+export { GalleryData };
+export type { GalleryItem };
+
 export async function getGalleries() {
-  return Gallery.map((item) => ({ postId: item })) as Gallery[];
+  return GalleryData.map((item) => ({ postId: item })) as GalleryItem[];
 }

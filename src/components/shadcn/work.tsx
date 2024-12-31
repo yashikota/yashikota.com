@@ -37,9 +37,9 @@ export function WorkComponent(props: WorkComponentProps) {
             {props.date}
           </CardDescription>
           <div className="flex">
-            {props.github.map((github, index) => (
+            {props.github.map((github) => (
               <a
-                key={index}
+                key={github}
                 href={github}
                 target="_blank"
                 rel="noreferrer noopener"
@@ -48,9 +48,9 @@ export function WorkComponent(props: WorkComponentProps) {
                 <GitHubLogoIcon width="25" height="25" />
               </a>
             ))}
-            {props.url.map((url, index) => (
+            {props.url.map((url) => (
               <a
-                key={index}
+                key={url}
                 href={`${url}/?source=works`}
                 target="_blank"
                 rel="noreferrer noopener"
@@ -68,9 +68,9 @@ export function WorkComponent(props: WorkComponentProps) {
           {props.description}
         </CardDescription>
         <CardDescription className="flex items-center flex-wrap">
-          {props.tags.map((tag, index) => (
+          {props.tags.map((tag) => (
             <span
-              key={index}
+              key={tag}
               className="text-lg mr-2 text-sky-400 hover:text-sky-700"
             >
               #{tag}

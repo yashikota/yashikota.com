@@ -1,6 +1,6 @@
-import Works from "@/data/works.json";
+import WorksData from "@/data/works.json";
 
-interface Works {
+interface WorkItem {
   title: string;
   date: string;
   tags: string[];
@@ -11,5 +11,8 @@ interface Works {
 }
 
 export async function getAllWorks() {
-  return [...Works] as Works[];
+  return [...WorksData] as WorkItem[];
 }
+
+export { WorksData };
+export type { WorkItem };

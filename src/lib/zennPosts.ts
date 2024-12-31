@@ -21,8 +21,10 @@ async function fetchZennTopics(url: string) {
 
   const regex = /<a class=".*?View_topicName.*?">(.*?)<\/div>/g;
   const tags = [];
-  let match;
-  while ((match = regex.exec(html)) !== null) {
+  let match: RegExpExecArray | null;
+  while (true) {
+    match = regex.exec(html);
+    if (match === null) break;
     tags.push(match[1]);
   }
 

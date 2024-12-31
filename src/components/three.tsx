@@ -122,11 +122,11 @@ function Three() {
         color: 0xffffff,
       });
 
-      textMeshes.forEach((mesh) => {
+      for (const mesh of textMeshes) {
         mesh.material = textMaterial;
         scene.add(mesh);
         mesh.geometry.computeBoundingBox();
-      });
+      }
 
       animate();
     },
@@ -194,7 +194,7 @@ function Three() {
     requestAnimationFrame(animate);
     rainbowMaterial.uniforms.iTime.value = clock.getElapsedTime();
 
-    textMeshes.forEach((mesh) => {
+    for (const mesh of textMeshes) {
       if (mesh.geometry.boundingBox) {
         const direction = mesh.userData.direction as [number, number];
         mesh.position.x += direction[0];
@@ -220,7 +220,7 @@ function Three() {
           direction[1] *= -1;
         }
       }
-    });
+    }
 
     renderer.render(scene, camera);
   }

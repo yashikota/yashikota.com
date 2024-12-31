@@ -37,7 +37,7 @@ export function CarouseComponent({
       <Carousel setApi={setApi} className="w-[90%] mx-auto">
         <CarouselContent>
           {Array.from({ length: pages }).map((_, index) => (
-            <CarouselItem key={index}>
+            <CarouselItem key={`page-${index + 1}`}>
               <Card>
                 <CardContent className="items-center justify-center p-1">
                   <img

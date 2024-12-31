@@ -20,7 +20,7 @@ export function InstagramEmbedComponent({ postId }: InstagramEmbedProps) {
     return () => {
       document.body.removeChild(script);
     };
-  }, [postId]);
+  }, []);
 
   return (
     <blockquote
