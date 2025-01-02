@@ -2,8 +2,8 @@
 title: "Googleカレンダーにics形式のカレンダーをURL経由で追加する方法"
 pubDate: 2025-01-02
 updDate: 
-isUnlisted: true
-category: life
+isUnlisted: false
+category: tech
 tags: ["googleカレンダー"]
 ---
 
