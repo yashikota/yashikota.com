@@ -20,20 +20,23 @@ interface WorkComponentProps {
 
 export function WorkComponent(props: WorkComponentProps) {
   return (
-    <Card className="lg:w-4/5 mx-auto my-5 hover:bg-gray-100">
+    <Card className="flex flex-col hover:bg-gray-100 transition-colors">
       <a
         href={props.url[0] ? `${props.url[0]}/?source=works` : undefined}
         target="_blank"
         rel="noreferrer noopener"
       >
-        {" "}
         <CardContent className="p-1 flex justify-center">
-          <img src={props.thumbnail} alt={props.title} />
+          <img
+            src={props.thumbnail}
+            alt={props.title}
+            className="max-h-[40vh] w-auto object-contain"
+          />
         </CardContent>
       </a>
-      <CardHeader>
+      <CardHeader className="pt-2 pb-1">
         <div className="flex items-center justify-between">
-          <CardDescription className="text-lg text-muted-foreground">
+          <CardDescription className="text-sm text-muted-foreground">
             {props.date}
           </CardDescription>
           <div className="flex">
@@ -45,7 +48,7 @@ export function WorkComponent(props: WorkComponentProps) {
                 rel="noreferrer noopener"
                 className="hover:text-gray-400 mr-2"
               >
-                <GitHubLogoIcon width="25" height="25" />
+                <GitHubLogoIcon width="20" height="20" />
               </a>
             ))}
             {props.url.map((url) => (
@@ -56,22 +59,22 @@ export function WorkComponent(props: WorkComponentProps) {
                 rel="noreferrer noopener"
                 className="hover:text-gray-400 mr-2"
               >
-                <Link2Icon width="25" height="25" />
+                <Link2Icon width="20" height="20" />
               </a>
             ))}
           </div>
         </div>
-        <CardTitle className="text-black">{props.title}</CardTitle>
+        <CardTitle className="text-lg">{props.title}</CardTitle>
       </CardHeader>
-      <CardContent>
-        <CardDescription className="text-lg text-muted-foreground">
+      <CardContent className="pt-0 pb-2">
+        <CardDescription className="text-sm text-muted-foreground">
           {props.description}
         </CardDescription>
-        <CardDescription className="flex items-center flex-wrap">
+        <CardDescription className="flex items-center flex-wrap mt-2">
           {props.tags.map((tag) => (
             <span
               key={tag}
-              className="text-lg mr-2 text-sky-400 hover:text-sky-700"
+              className="text-sm mr-2 text-sky-400 hover:text-sky-700"
             >
               #{tag}
             </span>
