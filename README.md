@@ -11,5 +11,6 @@
 
 ## Setup
 
-1. `bun i`
-2. `bun run dev`
+1. `aqua i`
+2. `bun i`
+3. `bun dev`
