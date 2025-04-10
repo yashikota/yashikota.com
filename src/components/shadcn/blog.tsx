@@ -32,8 +32,8 @@ export const BlogComponent = ({
         <TabsTrigger value="life">Life</TabsTrigger>
       </TabsList>
       <TabsContent value="tech">
-        {techPosts.map((post) => (
-          <div key={post.slug} className="xl:w-4/5 mx-auto">
+        {techPosts.map((post, index) => (
+          <div key={`tech-${post.slug || index}`} className="xl:w-4/5 mx-auto">
             <BlogCardComponent
               title={post.title}
               slug={post.slug}
@@ -47,8 +47,8 @@ export const BlogComponent = ({
         ))}
       </TabsContent>
       <TabsContent value="life">
-        {lifePosts.map((post) => (
-          <div key={post.slug} className="xl:w-4/5 mx-auto">
+        {lifePosts.map((post, index) => (
+          <div key={`life-${post.slug || index}`} className="xl:w-4/5 mx-auto">
             <BlogCardComponent
               title={post.title}
               slug={post.slug}
