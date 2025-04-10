@@ -16,24 +16,28 @@ interface SlideComponentProps {
 
 export function SlideComponent(props: SlideComponentProps) {
   return (
-    <Card className="lg:w-4/5 mx-auto my-5 hover:bg-gray-100">
-      <a href={props.url}>
-        <CardContent className="p-1">
-          <img src={props.thumbnail} alt={props.title} />
+    <Card className="h-full flex flex-col hover:bg-gray-100 transition-colors">
+      <a href={props.url} className="flex-grow">
+        <CardContent className="p-1 flex justify-center">
+          <img
+            src={props.thumbnail}
+            alt={props.title}
+            className="max-h-[40vh] w-auto object-contain"
+          />
         </CardContent>
       </a>
-      <CardHeader>
-        <CardDescription className="text-lg text-muted-foreground">
+      <CardHeader className="pt-2 pb-1">
+        <CardDescription className="text-sm text-muted-foreground">
           {props.pubDate}
         </CardDescription>
-        <CardTitle className="text-black">{props.title}</CardTitle>
+        <CardTitle className="text-lg">{props.title}</CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="pt-0 pb-2">
         <CardDescription className="flex items-center flex-wrap">
           {props.tags.map((tag) => (
             <span
               key={tag}
-              className="text-lg mr-2 text-sky-400 hover:text-sky-700"
+              className="text-sm mr-2 text-sky-400 hover:text-sky-700"
             >
               #{tag}
             </span>
