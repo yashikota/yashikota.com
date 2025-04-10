@@ -22,6 +22,7 @@ export function CarouseComponent({
   const carouselRef = React.useRef<HTMLDivElement>(null);
   const [isFullscreen, setIsFullscreen] = React.useState(false);
   const [isMobile, setIsMobile] = React.useState(false);
+  const [isLandscape, setIsLandscape] = React.useState(false);
 
   // モバイルデバイスかどうかを判定
   React.useEffect(() => {
@@ -34,6 +35,29 @@ export function CarouseComponent({
 
     return () => {
       window.removeEventListener("resize", checkMobile);
+    };
+  }, []);
+
+  // 画面の向きを監視
+  React.useEffect(() => {
+    const checkOrientation = () => {
+      if (window.screen?.orientation) {
+        // @ts-ignore - TypeScriptの型定義の問題を回避
+        const orientation = window.screen.orientation.type;
+        setIsLandscape(orientation.includes("landscape"));
+      } else {
+        // 代替方法: 画面の幅と高さを比較
+        setIsLandscape(window.innerWidth > window.innerHeight);
+      }
+    };
+
+    checkOrientation();
+    window.addEventListener("resize", checkOrientation);
+    window.addEventListener("orientationchange", checkOrientation);
+
+    return () => {
+      window.removeEventListener("resize", checkOrientation);
+      window.removeEventListener("orientationchange", checkOrientation);
     };
   }, []);
 
@@ -91,6 +115,7 @@ export function CarouseComponent({
           try {
             // @ts-ignore - TypeScriptの型定義の問題を回避
             await screen.orientation.lock("landscape");
+            setIsLandscape(true);
           } catch (e) {
             console.warn("画面の向きをロックできませんでした:", e);
           }
@@ -106,6 +131,7 @@ export function CarouseComponent({
       if (screen.orientation) {
         // @ts-ignore - TypeScriptの型定義の問題を回避
         screen.orientation.unlock();
+        setIsLandscape(false);
       }
     }
   };
@@ -120,6 +146,7 @@ export function CarouseComponent({
       if (screen.orientation) {
         // @ts-ignore - TypeScriptの型定義の問題を回避
         screen.orientation.unlock();
+        setIsLandscape(false);
       }
     }
   };
@@ -134,6 +161,7 @@ export function CarouseComponent({
       if (!isFullscreenNow && screen.orientation) {
         // @ts-ignore - TypeScriptの型定義の問題を回避
         screen.orientation.unlock();
+        setIsLandscape(false);
       }
     };
 
