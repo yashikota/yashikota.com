@@ -1,61 +1,35 @@
 ---
 import Base from "@/layouts/base.astro";
-
 import { UpdateIcon } from "@radix-ui/react-icons";
+import { getCollection } from "astro:content";
+import LinkCard from "@/components/LinkCard.astro";
 
-import { Blog } from "@/components/blog";
-import { getBlogPosts } from "@/lib/blogPosts";
-
-import lib from "zenn-markdown-html";
-import "zenn-content-css";
-
-type MarkdownOptions = {
-  embedOrigin: string;
-};
-type MarkdownHtml = (text: string, options?: MarkdownOptions) => string;
-type MarkdownHtmlAtBuild = { default: MarkdownHtml };
-
-let markdownHtml: MarkdownHtml = lib;
-if (typeof lib !== "function") {
-  markdownHtml = (lib as MarkdownHtmlAtBuild).default;
-}
-
-interface Props {
-  title: string;
-  tags: string[];
-  pubDate: string;
-  updDate: string;
-  body: string;
-}
+// カスタムスタイルの読み込み
+import "@/styles/markdown.css";
 
 export async function getStaticPaths() {
-  const blogs = await getBlogPosts();
+  const blogs = await getCollection("blog");
   return blogs.map((blog) => {
     return {
       params: {
         slug: blog.slug,
       },
       props: {
-        title: blog.title,
-        tags: blog.tags,
-        pubDate: blog.pubDate,
-        updDate: blog.updDate,
-        body: blog.body,
+        blog,
       },
     };
   });
 }
 
-const { title, tags, pubDate, updDate, body } = Astro.props;
-const content = markdownHtml(body, {
-  embedOrigin: "https://embed.zenn.studio",
-});
+const { blog } = Astro.props;
+const { Content } = await blog.render();
+const title = blog.data.title;
+const tags = blog.data.tags;
+const pubDate = blog.data.pubDate.toISOString().slice(0, 10);
+const updDate = blog.data.updDate ? blog.data.updDate.toISOString().slice(0, 10) : null;
 ---
 
 <Base pageTitle={title}>
-    <script src="https://embed.zenn.studio/js/listen-embed-event.js" is:inline
-    ></script>
-
     <div class="mx-auto text-center">
         <div class="flex items-center justify-center text-lg text-muted-foreground">
             {pubDate}
@@ -80,6 +54,7 @@ const content = markdownHtml(body, {
     </div>
 
     <div class="flex-1 border-b border-gray-500 mb-5"></div>
-
-    <Blog html={content} client:load />
+    <div class="markdown-content">
+        <Content />
+    </div>
 </Base>

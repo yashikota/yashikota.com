@@ -1,0 +1,143 @@
+---
+interface Props {
+  url: string;
+}
+
+const { url } = Astro.props;
+
+// OGP情報を取得
+let ogpData = { title: "", description: "", ogImage: "", favicon: "" };
+try {
+  const apiUrl = `https://linkpreview-api.yashikota.workers.dev/preview?url=${encodeURIComponent(url)}`;
+  const response = await fetch(apiUrl);
+  ogpData = await response.json();
+} catch (error) {
+  console.error('Failed to fetch OGP data:', error);
+}
+
+// タイトルがない場合はURLを表示
+const title = ogpData.title || url;
+// 説明がない場合は空文字列
+const description = ogpData.description || "";
+// 画像がない場合はnull
+const image = ogpData.ogImage || null;
+// ファビコンがない場合はnull
+const favicon = ogpData.favicon || null;
+---
+
+<a href={url} target="_blank" rel="noopener noreferrer" class="link-card">
+  <div class="link-card-container">
+    <div class="link-card-content">
+      {favicon && (
+        <div class="link-card-favicon">
+          <img src={favicon} alt="favicon" width="16" height="16" />
+        </div>
+      )}
+      <div class="link-card-title">{title}</div>
+      {description && <div class="link-card-description">{description}</div>}
+      <div class="link-card-url">{new URL(url).hostname}</div>
+    </div>
+    {image && (
+      <div class="link-card-image">
+        <img src={image} alt={title} loading="lazy" />
+      </div>
+    )}
+  </div>
+</a>
+
+<style>
+  .link-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    margin: 1.5rem 0;
+    border: 1px solid var(--color-border, #e2e8f0);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    transition: all 0.2s ease;
+    background-color: var(--color-bg, #ffffff);
+  }
+
+  .link-card:hover {
+    border-color: var(--color-border-hover, #cbd5e0);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  .link-card-container {
+    display: flex;
+    padding: 1rem;
+  }
+
+  .link-card-content {
+    flex: 1;
+    min-width: 0;
+    padding-right: 1rem;
+  }
+
+  .link-card-favicon {
+    margin-bottom: 0.5rem;
+  }
+
+  .link-card-title {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--color-text, #1a202c);
+  }
+
+  .link-card-description {
+    font-size: 0.875rem;
+    color: var(--color-text-muted, #4a5568);
+    margin-bottom: 0.5rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .link-card-url {
+    font-size: 0.75rem;
+    color: var(--color-text-muted, #718096);
+  }
+
+  .link-card-image {
+    width: 120px;
+    height: 80px;
+    flex-shrink: 0;
+  }
+
+  .link-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @media (max-width: 640px) {
+    .link-card-container {
+      flex-direction: column;
+    }
+
+    .link-card-content {
+      padding-right: 0;
+      margin-bottom: 0.75rem;
+    }
+
+    .link-card-image {
+      width: 100%;
+      height: 160px;
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .link-card {
+      --color-border: #334155;
+      --color-border-hover: #475569;
+      --color-bg: #1e293b;
+      --color-text: #e2e8f0;
+      --color-text-muted: #94a3b8;
+    }
+  }
+</style>
