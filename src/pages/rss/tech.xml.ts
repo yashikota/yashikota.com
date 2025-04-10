@@ -1,5 +1,5 @@
-import rss from "@astrojs/rss";
 import { getAllPosts } from "@/lib/allPosts";
+import rss from "@astrojs/rss";
 
 export async function GET() {
   const posts = await getAllPosts();
@@ -14,8 +14,7 @@ export async function GET() {
     items: techPosts.map((post) => ({
       title: post.title,
       pubDate: new Date(post.pubDate),
-      description: post.description,
-      link: `/blog/${post.slug}`,
+      link: post.url || `/blog/${post.slug}`,
     })),
   });
 }
