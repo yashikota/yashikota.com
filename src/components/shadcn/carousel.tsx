@@ -7,8 +7,6 @@ import {
   type CarouselApi,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Maximize2, Minimize2 } from "lucide-react";
 
@@ -102,6 +100,52 @@ export function CarouseComponent({
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [api, isFullscreen]);
+
+  // クリック/タッチイベントハンドラを追加
+  React.useEffect(() => {
+    if (!api) return;
+
+    const handleClick = (e: MouseEvent) => {
+      const clickX = e.clientX;
+      const screenWidth = window.innerWidth;
+
+      // 画面の左端20%をクリックした場合
+      if (clickX < screenWidth * 0.2) {
+        api.scrollPrev();
+      }
+      // 画面の右端20%をクリックした場合
+      else if (clickX > screenWidth * 0.8) {
+        api.scrollNext();
+      }
+    };
+
+    const handleTouchStart = (e: TouchEvent) => {
+      const touchX = e.touches[0].clientX;
+      const screenWidth = window.innerWidth;
+
+      // 画面の左端20%をタップした場合
+      if (touchX < screenWidth * 0.2) {
+        api.scrollPrev();
+      }
+      // 画面の右端20%をタップした場合
+      else if (touchX > screenWidth * 0.8) {
+        api.scrollNext();
+      }
+    };
+
+    const element = carouselRef.current;
+    if (element) {
+      element.addEventListener("click", handleClick);
+      element.addEventListener("touchstart", handleTouchStart);
+    }
+
+    return () => {
+      if (element) {
+        element.removeEventListener("click", handleClick);
+        element.removeEventListener("touchstart", handleTouchStart);
+      }
+    };
+  }, [api]);
 
   // 全画面表示の切り替え
   const toggleFullscreen = async () => {
@@ -203,8 +247,6 @@ export function CarouseComponent({
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className={isFullscreen ? "text-white" : ""} />
-        <CarouselNext className={isFullscreen ? "text-white" : ""} />
       </Carousel>
       <div
         className={`flex justify-center items-center gap-2 py-2 ${isFullscreen ? "absolute bottom-4 left-0 right-0 text-white" : ""}`}
