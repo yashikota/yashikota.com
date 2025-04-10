@@ -21,6 +21,21 @@ export function CarouseComponent({
   const [count, setCount] = React.useState(0);
   const carouselRef = React.useRef<HTMLDivElement>(null);
   const [isFullscreen, setIsFullscreen] = React.useState(false);
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  // モバイルデバイスかどうかを判定
+  React.useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    return () => {
+      window.removeEventListener("resize", checkMobile);
+    };
+  }, []);
 
   React.useEffect(() => {
     if (!api) {
@@ -65,13 +80,33 @@ export function CarouseComponent({
   }, [api, isFullscreen]);
 
   // 全画面表示の切り替え
-  const toggleFullscreen = () => {
+  const toggleFullscreen = async () => {
     if (!document.fullscreenElement) {
-      carouselRef.current?.requestFullscreen();
-      setIsFullscreen(true);
+      try {
+        await carouselRef.current?.requestFullscreen();
+        setIsFullscreen(true);
+
+        // モバイルデバイスの場合、横方向に回転
+        if (isMobile && screen.orientation) {
+          try {
+            // @ts-ignore - TypeScriptの型定義の問題を回避
+            await screen.orientation.lock("landscape");
+          } catch (e) {
+            console.warn("画面の向きをロックできませんでした:", e);
+          }
+        }
+      } catch (e) {
+        console.error("全画面表示に失敗しました:", e);
+      }
     } else {
       document.exitFullscreen();
       setIsFullscreen(false);
+
+      // 画面の向きのロックを解除
+      if (screen.orientation) {
+        // @ts-ignore - TypeScriptの型定義の問題を回避
+        screen.orientation.unlock();
+      }
     }
   };
 
@@ -80,13 +115,26 @@ export function CarouseComponent({
     if (document.fullscreenElement) {
       document.exitFullscreen();
       setIsFullscreen(false);
+
+      // 画面の向きのロックを解除
+      if (screen.orientation) {
+        // @ts-ignore - TypeScriptの型定義の問題を回避
+        screen.orientation.unlock();
+      }
     }
   };
 
   // 全画面表示の変更を監視
   React.useEffect(() => {
     const handleFullscreenChange = () => {
-      setIsFullscreen(!!document.fullscreenElement);
+      const isFullscreenNow = !!document.fullscreenElement;
+      setIsFullscreen(isFullscreenNow);
+
+      // 全画面表示が終了した場合、画面の向きのロックを解除
+      if (!isFullscreenNow && screen.orientation) {
+        // @ts-ignore - TypeScriptの型定義の問題を回避
+        screen.orientation.unlock();
+      }
     };
 
     document.addEventListener("fullscreenchange", handleFullscreenChange);
