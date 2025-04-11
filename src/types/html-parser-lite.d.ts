@@ -1,4 +1,4 @@
-declare module 'html-parser-lite' {
+declare module "html-parser-lite" {
   export function parse(html: string): {
     querySelectorAll: (selector: string) => Array<{
       getAttribute: (name: string) => string | null;

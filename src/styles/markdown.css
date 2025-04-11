@@ -178,7 +178,8 @@
 
 .markdown-content .link-card:hover {
   border-color: var(--color-border-hover);
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px
+    rgba(0, 0, 0, 0.06);
 }
 
 /* リンクカードのコンテナ */
@@ -260,7 +261,8 @@
   --color-primary: #0066cc;
   --color-code-bg: #f1f5f9;
   --color-bg-secondary: #f8fafc;
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
 }
 
 @media (prefers-color-scheme: dark) {

@@ -12,7 +12,7 @@ try {
   const response = await fetch(apiUrl);
   ogpData = await response.json();
 } catch (error) {
-  console.error('Failed to fetch OGP data:', error);
+  console.error("Failed to fetch OGP data:", error);
 }
 
 // タイトルがない場合はURLを表示

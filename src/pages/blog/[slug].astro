@@ -1,8 +1,8 @@
 ---
-import Base from "@/layouts/base.astro";
-import { UpdateIcon } from "@radix-ui/react-icons";
 import { getCollection } from "astro:content";
 import LinkCard from "@/components/LinkCard.astro";
+import Base from "@/layouts/base.astro";
+import { UpdateIcon } from "@radix-ui/react-icons";
 
 // カスタムスタイルの読み込み
 import "@/styles/markdown.css";
@@ -26,7 +26,9 @@ const { Content } = await blog.render();
 const title = blog.data.title;
 const tags = blog.data.tags;
 const pubDate = blog.data.pubDate.toISOString().slice(0, 10);
-const updDate = blog.data.updDate ? blog.data.updDate.toISOString().slice(0, 10) : null;
+const updDate = blog.data.updDate
+  ? blog.data.updDate.toISOString().slice(0, 10)
+  : null;
 ---
 
 <Base pageTitle={title}>
