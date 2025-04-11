@@ -1,16 +1,19 @@
 import { visit } from 'unist-util-visit';
+import type { Root } from 'mdast';
+import type { Plugin } from 'unified';
 
 /**
  * リンクカードを生成するremarkプラグイン
  * 単独行のURLをリンクカードに変換します
  */
-export function remarkLinkCardPlugin() {
+export const remarkLinkCardPlugin: Plugin<[], Root> = () => {
   return (tree) => {
     const urlRegex = /^https?:\/\/[^\s<]+$/;
 
     visit(tree, 'paragraph', (node, index, parent) => {
       // 段落が1つのテキストノードのみを含み、それがURLの場合
       if (
+        node.children &&
         node.children.length === 1 &&
         node.children[0].type === 'text' &&
         urlRegex.test(node.children[0].value.trim())
@@ -18,11 +21,13 @@ export function remarkLinkCardPlugin() {
         const url = node.children[0].value.trim();
 
         // リンクカードコンポーネントに置き換え
-        parent.children[index] = {
-          type: 'html',
-          value: `<LinkCard url="${url}" />`,
-        };
+        if (parent && typeof index === 'number') {
+          parent.children[index] = {
+            type: 'html',
+            value: `<LinkCard url="${url}" />`,
+          };
+        }
       }
     });
   };
-}
+};

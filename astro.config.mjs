@@ -9,7 +9,7 @@ import remarkGithub from "remark-github";
 import remarkGfm from "remark-gfm";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import { remarkLinkCardPlugin } from "./src/lib/remarkLinkCardPlugin.js";
+import { remarkLinkCardPlugin } from "./src/lib/remarkLinkCardPlugin";
 
 // https://astro.build/config
 export default defineConfig({
