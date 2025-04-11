@@ -7,6 +7,8 @@ import expressiveCode from "astro-expressive-code";
 import remarkDirective from "remark-directive";
 import remarkGithub from "remark-github";
 import remarkGfm from "remark-gfm";
+import remarkMath from "remark-math";
+import rehypeMathML from "@daiji256/rehype-mathml";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import { remarkLinkCardPlugin } from "./src/lib/remarkLinkCardPlugin";
@@ -45,10 +47,12 @@ export default defineConfig({
       }],
       remarkGfm,
       remarkLinkCardPlugin,
+      remarkMath,
     ],
     rehypePlugins: [
       rehypeSlug,
       [rehypeAutolinkHeadings, { behavior: 'wrap' }],
+      rehypeMathML,
     ],
     syntaxHighlight: false, // ExpressiveCodeを使用するため無効化
   },
