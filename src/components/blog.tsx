@@ -5,10 +5,6 @@ type Props = {
 };
 
 export const Blog: React.FC<Props> = ({ html }) => {
-  useEffect(() => {
-    import("zenn-embed-elements");
-  }, []);
-
   return (
     <div
       className="znc"
