@@ -14,7 +14,6 @@ import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeExternalLinks from "rehype-external-links";
 import rehypeRaw from "rehype-raw";
-import rehypeMermaid from "rehype-mermaid";
 
 // https://astro.build/config
 export default defineConfig({
@@ -81,7 +80,6 @@ export default defineConfig({
         target: "_blank",
         rel: ["noopener", "noreferrer"],
       }],
-      rehypeMermaid,
     ],
     syntaxHighlight: false, // ExpressiveCodeを使用するため無効化
   },
