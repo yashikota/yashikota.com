@@ -79,7 +79,7 @@ export default defineConfig({
       [rehypeExternalLinks, {
         target: "_blank",
         rel: ["noopener", "noreferrer"],
-      }],
+      }]
     ],
     syntaxHighlight: false, // ExpressiveCodeを使用するため無効化
   },

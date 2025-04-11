@@ -25,21 +25,39 @@ const image = ogpData.ogImage || null;
 const favicon = ogpData.favicon || null;
 ---
 
-<a href={url} target="_blank" rel="noopener noreferrer" class="link-card">
-  <div class="link-card-container">
-    <div class="link-card-content">
+<a
+  href={url}
+  target="_blank"
+  rel="noopener noreferrer"
+  class="block no-underline text-inherit my-6 border border-border dark:border-border-dark rounded-lg overflow-hidden transition-all duration-200 hover:border-border-hover dark:hover:border-border-hover-dark hover:shadow-md"
+>
+  <div class="flex p-4">
+    <div class="flex-1 min-w-0 pr-4">
       {favicon && (
-        <div class="link-card-favicon">
-          <img src={favicon} alt="favicon" width="16" height="16" />
+        <div class="mb-2">
+          <img src={favicon} alt="favicon" class="w-4 h-4" />
         </div>
       )}
-      <div class="link-card-title">{title}</div>
-      {description && <div class="link-card-description">{description}</div>}
-      <div class="link-card-url">{new URL(url).hostname}</div>
+      <div class="font-semibold text-base mb-2 truncate text-foreground dark:text-foreground-dark">
+        {title}
+      </div>
+      {description && (
+        <div class="text-sm text-muted-foreground dark:text-muted-foreground-dark mb-2 line-clamp-2">
+          {description}
+        </div>
+      )}
+      <div class="text-xs text-muted-foreground dark:text-muted-foreground-dark">
+        {new URL(url).hostname}
+      </div>
     </div>
     {image && (
-      <div class="link-card-image">
-        <img src={image} alt={title} loading="lazy" />
+      <div class="w-32 h-24 flex-shrink-0">
+        <img
+          src={image}
+          alt={title}
+          class="w-full h-full object-cover"
+          loading="lazy"
+        />
       </div>
     )}
   </div>
