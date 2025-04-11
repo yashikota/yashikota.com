@@ -8,10 +8,12 @@ import remarkDirective from "remark-directive";
 import remarkGithub from "remark-github";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
+import remarkLinkCard from "remark-link-card";
 import rehypeMathML from "@daiji256/rehype-mathml";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import { remarkLinkCardPlugin } from "./src/lib/remarkLinkCardPlugin";
+import rehypeExternalLinks from "rehype-external-links";
+import rehypeRaw from "rehype-raw";
 
 // https://astro.build/config
 export default defineConfig({
@@ -46,13 +48,38 @@ export default defineConfig({
         repository: "yashikota/yashikota.com"
       }],
       remarkGfm,
-      remarkLinkCardPlugin,
       remarkMath,
+      [remarkLinkCard, {
+        downloadLimit: 10 * 1024 * 1024, // 5MB
+        timeout: 10000, // 10 seconds
+        userAgent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+        cardClass: "rlc-container",
+        infoClass: "rlc-info",
+        titleClass: "rlc-title",
+        descriptionClass: "rlc-description",
+        urlClass: "rlc-url",
+        faviconClass: "rlc-favicon",
+        imageClass: "rlc-image",
+        imageContainerClass: "rlc-image-container",
+        urlContainerClass: "rlc-url-container",
+        cache: true,
+        shortenUrl: true,
+        ignoreErrors: true, // エラーを無視して処理を続行
+        linkAttributes: {
+          target: "_blank",
+          rel: "noopener noreferrer",
+        },
+      }],
     ],
     rehypePlugins: [
       rehypeSlug,
       [rehypeAutolinkHeadings, { behavior: 'wrap' }],
       rehypeMathML,
+      rehypeRaw,
+      [rehypeExternalLinks, {
+        target: "_blank",
+        rel: ["noopener", "noreferrer"],
+      }],
     ],
     syntaxHighlight: false, // ExpressiveCodeを使用するため無効化
   },

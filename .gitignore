@@ -3,6 +3,9 @@ dist/
 # generated types
 .astro/
 
+# remark-link-card
+public/remark-link-card/
+
 # dependencies
 node_modules/
 

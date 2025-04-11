@@ -134,6 +134,9 @@ importers:
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
+      unist-util-visit:
+        specifier: ^5.0.0
+        version: 5.0.0
     devDependencies:
       '@astrojs/partytown':
         specifier: ^2.1.4
