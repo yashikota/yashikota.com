@@ -81,9 +81,7 @@ export default defineConfig({
         target: "_blank",
         rel: ["noopener", "noreferrer"],
       }],
-      [rehypeMermaid, {
-        strategy: 'pre-mermaid',
-      }],
+      rehypeMermaid,
     ],
     syntaxHighlight: false, // ExpressiveCodeを使用するため無効化
   },
