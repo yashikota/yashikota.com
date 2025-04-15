@@ -80,7 +80,8 @@ React/Next.js/Astro/Tailwind/shadcn/uiあたりがさわれます。
 
 1年ほど主に個人開発/インターンで使用。これまでに
 
-- シラバス閲覧アプリ <https://github.com/yashikota/syllabus/tree/main/frontend>
+- バックエンド <https://github.com/yashikota/chronotes> <https://github.com/yashikota/scene-hunter-backend>
+- 細々としたCLIツール <https://github.com/yashikota/genenv> <https://github.com/yashikota/solo-cleaner> <https://github.com/yashikota/camcast>
 
 などを開発。  
 
