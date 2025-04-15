@@ -5,7 +5,7 @@
 <MultiMedia> ::= <CV> <3DCG> <Codec> <XR> <Game>
 <Backend> ::= <WebAPI> <DB> <Cloud> <DevOps> <CICD>
 <System> ::= <CPU> <GPU> <Compiler>
-<Other> ::= <Security> <AI> <WebFrontend>
+<Other> ::= <Security> <AI> <WebFrontend> <Languages>
 ```
 
 ### MultiMedia
@@ -32,6 +32,83 @@ VerilogやVHDLでFPGAを用いたCPUやラジコンの制作などをしてき�
 セキュリティは情報処理安全確保支援士の試験合格やセキュリティ学会やインターンへの参加もしており、総合的な知識を持っています。  
 AIでは主に画像を使ったモデルを使用しています。また、CNNやViTといったアーキテクチャの勉強も行っています。  
 Webフロントエンドについても全般的な知識を持っており、また簡単なウェブサイトも作成できます。このサイトも自作です。  
+
+### Languages
+
+#### C
+
+2年ほど主に授業で使用。これまでに
+
+- 画像の可逆圧縮プログラム <https://github.com/yashikota/rle> <https://github.com/yashikota/mtf>
+- αβ法による五目並べAI
+- 円周率を多倍長数で求めるプログラム
+- 字句解析と構文解釈による電卓プログラム
+
+などを開発。  
+2年ほど触っていましたが、最近は全然触ってないですが、低レイヤーをやっているとなんやかんやお世話になります🙇  
+
+#### Python
+
+3年ほど主に個人開発で使用。これまでに
+
+- 論文翻訳アプリ <https://github.com/yashikota/leadable>
+- シラバスのスクレイピング <https://github.com/yashikota/syllabus/tree/main/scraping>
+- バーコード生成ツール <https://github.com/yashikota/jancode>
+- 4bitCPUのアーキテクチャTD4のエミュレーター <https://github.com/yashikota/td4-py>
+
+などを開発。  
+
+最初は何でもかんでもPythonで書いていたんですが、型とか環境構築とかうーんとなって若干離れ気味になったんですが、最近もLLMを使ったアプリケーションとかを開発するとなるとPythonが必須なので逃れられないです😁  
+でもuvとかruffみたいなツールが出てきてだいぶ不満は無くなってきたので開発元には大感謝です🙏. 
+
+#### JavaScript/Typscript
+
+3年ほど主に個人開発/インターンで使用。これまでに
+
+- シラバス閲覧アプリ <https://syllabus.naist.yashikota.com>
+- このサイト <https://github.com/yashikota/yashikota.com>
+- 論文翻訳アプリのフロントエンド <https://github.com/yashikota/leadable>
+
+などなど色々なアプリケーションで使用。  
+React/Next.js/Astro/Tailwind/shadcn/uiあたりがさわれます。  
+最近はちょっとしたWebAPIの開発にはhono + Cloudflare Workersで作るのにハマっています。  
+書きやすく、動かしやすく、維持費もかからないので開発者体験が良いです🔥
+
+#### Go
+
+1年ほど主に個人開発/インターンで使用。これまでに
+
+- シラバス閲覧アプリ <https://github.com/yashikota/syllabus/tree/main/frontend>
+
+などを開発。  
+
+クロスプラットフォームにシングルバイナリで実行ファイルをコンパイルできるところが好きです。  
+それといい塩梅な標準ライブラリで簡単にWebサーバーが作れるのが好きです。  
+
+#### Git/GitHub
+
+4年ほど使用。  
+必ずGit/GitHubでプロジェクトを管理しています。  
+これまでに500以上のリポジトリを作成。(非公開含む)  
+
+#### CI/CD
+
+3年ほど使用。  
+主に個人開発/インターンで使用。GitHub Actionsをメインで使用しており、さまざまなActionsを使用しています。  
+Lint/Format/Test/Deploy/Releaseを回すのはもちろん、スクレイピングとかにも使ってます。ボタンポチでどこからでも実行できるので楽です。  
+
+#### Cloud
+
+1年ほど使用。  
+主にインターンで使用。これまでに
+
+- AWS
+- Google Cloud
+- Terraform
+- SAM
+
+を使用。  
+個人的にはGoogle Cloud推しです。なんとなくAWSより操作がわかりやすいのとCloud Runが有能すぎるので😂  
 
 ## Activities
 
