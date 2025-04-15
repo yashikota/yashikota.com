@@ -1,5 +1,7 @@
 ## Skills
 
+https://lapras.com/public/kota
+
 ```xml
 <Skills> ::= <MultiMedia> <Backend> <System> <Other>
 <MultiMedia> ::= <CV> <3DCG> <Codec> <XR> <Game>
