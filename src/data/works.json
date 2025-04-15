@@ -109,6 +109,7 @@
         "description": "ゲームマスターが撮影した写真のヒントを元に、プレイヤーは同じ場所や構図を探し出し、ゲームマスターの写真に最も似た写真を撮影したプレイヤーが勝利するゲームです。",
         "image": "https://protopedia.net/pic/55488ca8-6d4f-4861-b20c-5751d61707c9.png",
         "github": ["https://github.com/yashikota/scene-hunter-backend"],
+        "url": [],
         "date": "2024/08",
         "tags": [
             "Python",
@@ -122,6 +123,7 @@
         "description": "毎日の日記や日報を、GitHubなどの計７つのサービスから作業ログや会話を自動収集し、AIを用いて要約しノートを生成するアプリです。期間別に要約することも可能で、毎日の日記をつける手間を省けます。",
         "image": "https://protopedia.net/pic/facb3509-c283-4980-a147-671b660c1855.png",
         "github": ["https://github.com/yashikota/chronotes"],
+        "url": [],
         "date": "2024/11",
         "tags": [
             "Go",
