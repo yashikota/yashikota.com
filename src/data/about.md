@@ -54,7 +54,7 @@ Webフロントエンドについても全般的な知識を持っており、�
 3年ほど主に個人開発で使用。これまでに
 
 - 論文翻訳アプリ <https://github.com/yashikota/leadable>
-- シラバスのスクレイピング <https://github.com/yashikota/syllabus/tree/main/scraping>
+- シラバスのスクレイピング <https://github.com/yashikota/syllabus>
 - バーコード生成ツール <https://github.com/yashikota/jancode>
 - 4bitCPUのアーキテクチャTD4のエミュレーター <https://github.com/yashikota/td4-py>
 
