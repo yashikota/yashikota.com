@@ -34,7 +34,7 @@
     "description": "大学のシラバスを快適に検索・閲覧できるWebアプリです。大学公式のシラバス検索サイトが非常に使いづらかったため作成しました。シラバスのデータ取得にはPythonを用いています。フロントエンドはReact Router v7とhono, shadcn/uiを使用してCloudflare Workersにデプロイする意欲的な技術スタックになっています。",
     "image": "https://raw.githubusercontent.com/yashikota/blog/master/public/static/images/syllabus.webp",
     "github": [
-      "https://github.com/oit-tools/syllabus"
+      "https://github.com/yashikota/syllabus"
     ],
     "url": [
         "https://syllabus.naist.yashikota.com"
@@ -54,9 +54,9 @@
       "description": "大学のシラバスを快適に検索・閲覧できるWebアプリです。大学公式のシラバス検索サイトが非常に使いづらかったため作成しました。シラバスのデータ取得にはPythonを用いています。データ取得のプログラムは非同期処理を行い、従来8時間かかっていた処理を10分まで短縮することに成功しました。シラバスを閲覧できるWebサイトはReact/Next.jsを使用しPCでもスマホでも快適に使えるようにレスポンジブデザインに対応しています。",
       "image": "https://raw.githubusercontent.com/yashikota/blog/master/public/static/images/syllabus.webp",
       "github": [
-          "https://github.com/oit-tools/syllabus-frontend",
-          "https://github.com/oit-tools/syllabus-scraping",
-          "https://github.com/oit-tools/syllabus-extract"
+          "https://github.com/yashikota/syllabus-frontend",
+          "https://github.com/yashikota/syllabus-scraping",
+          "https://github.com/yashikota/syllabus-extract"
       ],
       "url": [
           "https://syllabus.oit.yashikota.com"
