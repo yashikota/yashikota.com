@@ -1,7 +1,7 @@
 ---
-title: "ZennのMarkdown記法一覧"
+title: "test"
 pubDate: 2023-12-29
-updDate: 
+updDate: 2025-05-28
 isUnlisted: true
 category: life
 tags: ["雑記"]
@@ -74,10 +74,6 @@ https://ja.wikipedia.org/wiki/UNIX%E5%93%B2%E5%AD%A6
 #### 見出し4
 ```
 
-:::message
-アクセシビリティの観点から`見出し2`から始めることをおすすめします
-:::
-
 # リスト
 
 ```
@@ -91,8 +87,6 @@ https://ja.wikipedia.org/wiki/UNIX%E5%93%B2%E5%AD%A6
 - Hola!
   - Bonjour!
   - Hi!
-
-リストのアイテムには`*`もしくは`-`を使います。
 
 ## 番号付きリスト
 
@@ -111,7 +105,6 @@ https://ja.wikipedia.org/wiki/UNIX%E5%93%B2%E5%AD%A6
 ```
 
 [アンカーテキスト](https://zenn.dev)
-`Ctrl + K`のショートカットでも挿入できます。
 
 # 画像
 
@@ -142,14 +135,6 @@ https://ja.wikipedia.org/wiki/UNIX%E5%93%B2%E5%AD%A6
 
 ![](https://storage.googleapis.com/zenn-user-upload/gxnwu3br83nsbqs873uibiy6fd43 =250x)
 _captions_
-
-## 画像にリンクを貼る
-
-以下のようにすることで画像に対してリンクを貼ることもできます。
-
-```
-[![altテキスト](画像のURL)](リンクのURL)
-```
 
 # テーブル
 
@@ -190,27 +175,7 @@ bash
 
 ## diff のシンタックスハイライト
 
-2021/01/25〜、`diff`と言語のハイライトを同時に適用できるようになりました。以下のように`diff`と`言語名`を半角スペース区切りで指定します。
-
-> \```diff js
->
-> \```
-
 ```diff js
-@@ -4,6 +4,5 @@
-+    const foo = bar.baz([1, 2, 3]) + 1;
--    let foo = bar.baz([1, 2, 3]);
-```
-
-なお、`diff`の使用時には、先頭に`+`、`-`、`>`、`<`、`半角スペース`のいずれが入っていない行はハイライトされません。
-
-同時にファイル名を指定することも可能です。
-
-> \```diff js:ファイル名
->
-> \```
-
-```diff js:fooBar.js
 @@ -4,6 +4,5 @@
 +    const foo = bar.baz([1, 2, 3]) + 1;
 -    let foo = bar.baz([1, 2, 3]);
@@ -239,10 +204,6 @@ $$
 e^{i\theta} = \cos\theta + i\sin\theta
 $$
 
-:::message
-`$$`の前後は空の行でないと正しく埋め込まれないことがあります。
-:::
-
 ## インラインで数式を挿入する
 
 `$a\ne0$`というように`$`ひとつで挟むことで、インラインで数式を含めることができます。たとえば$a\ne0$のようなイメージです。
@@ -262,12 +223,12 @@ $$
 注釈を指定するとページ下部にその内容が表示されます。
 
 ```
-脚注の例[^1]です。インライン^[脚注の内容その2]で書くこともできます。
+脚注の例[^1]です。
 
 [^1]: 脚注の内容その1
 ```
 
-脚注の例[^1]です。インライン^[脚注の内容その 2]で書くこともできます。
+脚注の例[^1]です。
 
 [^1]: 脚注の内容その 1
 
@@ -305,63 +266,35 @@ _イタリック_
 
 この形式で書いたコメントは公開されたページ上では表示されません。ただし、複数行のコメントには対応していないのでご注意ください。
 
-# Zenn 独自の記法
+# タスクリスト
 
-## メッセージ
+- [x] #739
+- [ ] https://github.com/octo-org/octo-repo/issues/740
+- [ ] Add delight to the experience when all tasks are complete :tada:
 
-```
-:::message
-メッセージをここに
-:::
-```
+# アラート
 
-:::message
-メッセージをここに
-:::
+> [!NOTE/ノート]
+> Useful information that users should know, even when skimming content.
 
-```
-:::message alert
-警告メッセージをここに
-:::
-```
+> [!NOTE]
+> Useful information that users should know, even when skimming content.
 
-:::message alert
-警告メッセージをここに
-:::
+> [!TIP]
+> Helpful advice for doing things better or more easily.
 
-## アコーディオン（トグル）
+> [!IMPORTANT]
+> Key information users need to know to achieve their goal.
 
-```
-:::details タイトル
-表示したい内容
-:::
-```
+> [!WARNING]
+> Urgent info that needs immediate user attention to avoid problems.
 
-:::details タイトル
-表示したい内容
-:::
+> [!CAUTION]
+> Advises about risks or negative outcomes of certain actions.
 
-:::message
-「detail」ではなく「details」です。
-:::
+# 動画
 
-### 要素をネストさせるには
-
-外側の要素の開始/終了に `:` を追加します。
-
-```
-::::details タイトル
-:::message
-ネストされた要素
-:::
-::::
-```
-
-::::details タイトル
-:::message
-ネストされた要素
-:::
-::::
+https://pub-382fdd19478344f2bb7643f2f3bc54d3.r2.dev/neko.mp4
 
 # コンテンツの埋め込み
 
@@ -378,22 +311,6 @@ https://zenn.dev/zenn/articles/markdown-guide
 
 また`@[card](URL)`という書き方でカード型のリンクを貼ることもできます。
 
-:::details アンダースコア _ を含むURLが正しく認識されない場合
-[markdownパーサの仕様](https://zenn.dev/catnose99/scraps/e94c8e789f846a)により、アンダースコア（`_`）を含むURLで、正しくURLが認識されないことがあります。
-
-```
-https://zenn.dev/__example__
-```
-
-> https://zenn.dev/__example__
-
-対処法
-
-1. カード型のリンクとして表示したい場合は
-   `@[card](ここにURL)`という書き方をしてください
-2. 単純にリンク化された URL を貼り付けたい場合は`<https://zenn.dev/__example__>`のような形で`<`と`>`で URL を囲むようにしてください
-:::
-
 ## X（Twitter）のポスト（ツイート）
 
 https://twitter.com/jack/status/20
@@ -405,22 +322,6 @@ https://twitter.com/jack/status/20
 # x.comドメインの場合
 https://x.com/jack/status/20
 ```
-
-以前は`@[tweet](ポストのURL)`の記法を採用していましたが、2020/12/27〜URL を貼り付けるだけでポストを埋め込むことが可能になりました。
-
-:::details アンダースコア _ を含む URL が正しく認識されない場合
-[markdown パーサの仕様](https://zenn.dev/catnose99/scraps/e94c8e789f846a)により、URL の`/`の区切りの中に 2 つ以上アンダースコア（`_`）を含むと、自動リンクが途中で途切れてしまいます。
-
-```
-https://twitter.com/__example__/status/12345678910
-```
-
-> https://twitter.com/__example__/status/12345678910
-
-対処法
-
-このような URL では`@[tweet](ポストのURL)`という書き方をしていただくようお願いします。
-:::
 
 ### リプライ元のポストを非表示にする
 
@@ -435,19 +336,12 @@ https://www.youtube.com/watch?v=WRVsOCh907o
 https://www.youtube.com/watch?v=WRVsOCh907o
 ```
 
-以前は`@[youtube](YouTubeの動画ID)`という記法を採用していましたが、2021/03/03〜URL を貼り付けるだけで動画を埋め込むことが可能になりました。
-
 ## GitHub
-
-2022/04〜より、GitHub上のソースコードファイルを埋め込めるようになりました。
-GitHub上のファイルへのURLまたはパーマリンクだけの行を作成すると、その部分にGitHubの埋め込みが表示されます。
 
 ```bash
 # GitHubのファイルURLまたはパーマリンクだけの行（前後に改行が必要です）
 https://github.com/octocat/Hello-World/blob/master/README
 ```
-
-上記のリンクは、以下のように表示されます。
 
 https://github.com/octocat/Hello-World/blob/master/README
 
