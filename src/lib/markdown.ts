@@ -2,6 +2,8 @@ import { toHtml } from "hast-util-to-html";
 import { h } from "hastscript";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeExpressiveCode from "rehype-expressive-code";
+import remarkValidateLinks from "remark-validate-links";
+import remarkBreaks from "remark-breaks";
 import rehypeKatex from "rehype-katex";
 import rehypeSlug from "rehype-slug";
 import rehypeStringify from "rehype-stringify";
@@ -28,6 +30,8 @@ export async function markdownToHtmlWithToc(
   const result = await unified()
     .use(remarkParse)
     .use(remarkAlert, { legacyTitle: true })
+    .use(remarkValidateLinks)
+    .use(remarkBreaks)
     .use(remarkGfm)
     .use(remarkMath)
     .use(remarkRehype)
