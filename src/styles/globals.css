@@ -74,6 +74,38 @@ h6[id] {
   position: relative;
 }
 
+/* 見出しリンクコピーボタン */
+.markdown-copy-link-btn {
+    display: none;
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    margin-left: 0.5em;
+}
+
+h1:hover .markdown-copy-link-btn,
+h2:hover .markdown-copy-link-btn,
+h3:hover .markdown-copy-link-btn,
+h4:hover .markdown-copy-link-btn,
+h5:hover .markdown-copy-link-btn,
+h6:hover .markdown-copy-link-btn,
+h1:focus-within .markdown-copy-link-btn,
+h2:focus-within .markdown-copy-link-btn,
+h3:focus-within .markdown-copy-link-btn,
+h4:focus-within .markdown-copy-link-btn,
+h5:focus-within .markdown-copy-link-btn,
+h6:focus-within .markdown-copy-link-btn {
+    display: inline-flex;
+}
+
+.markdown-copy-link-btn svg {
+    width: 16px;
+    height: 16px;
+    display: block;
+}
+
+/* リンクカード */
 .remark-link-card-plus__container {
   @apply mb-4;
 }

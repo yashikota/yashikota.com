@@ -56,10 +56,10 @@ export async function markdownToHtmlWithToc(
       },
     })
     .use(rehypeAutolinkHeadings, {
-      behavior: "prepend",
+      behavior: "append",
       content() {
         return h(
-          "span.copy-link-btn inline-flex items-center align-middle mr-2 cursor-pointer align-middle",
+          "span.copy-link-btn markdown-copy-link-btn inline-flex items-center align-middle ml-2 cursor-pointer align-middle",
           {
             title: "リンクをコピー",
             tabindex: 0,
@@ -70,8 +70,8 @@ export async function markdownToHtmlWithToc(
             h(
               "svg",
               {
-                width: "1em",
-                height: "1em",
+                width: "16",
+                height: "16",
                 viewBox: "0 0 24 24",
                 fill: "none",
                 stroke: "currentColor",
@@ -79,7 +79,7 @@ export async function markdownToHtmlWithToc(
                 "stroke-linecap": "round",
                 "stroke-linejoin": "round",
                 class: "block align-middle flex-shrink-0 self-center",
-                style: "display: block; vertical-align: middle;",
+                style: "display: block; vertical-align: middle; width: 16px; height: 16px;",
               },
               [
                 h("path", {
