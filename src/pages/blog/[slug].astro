@@ -5,7 +5,7 @@ import { UpdateIcon } from "@radix-ui/react-icons";
 
 import { Blog } from "@/components/blog";
 import { getBlogPosts } from "@/lib/blogPosts";
-import { markdownToHtml } from "@/lib/markdown";
+import { markdownToHtmlWithToc } from "@/lib/markdown";
 
 interface Props {
   title: string;
@@ -34,12 +34,14 @@ export async function getStaticPaths() {
 }
 
 const { title, tags, pubDate, updDate, body } = Astro.props;
-const content = await markdownToHtml(body);
+const { html: content, toc } = await markdownToHtmlWithToc(body);
 ---
 
 <Base pageTitle={title}>
     <div class="mx-auto text-center">
-        <div class="flex items-center justify-center text-lg text-muted-foreground">
+        <div
+            class="flex items-center justify-center text-lg text-muted-foreground"
+        >
             {pubDate}
             {updDate && <UpdateIcon className="ml-2 mr-0.5 h-3" />}
             {updDate}
@@ -49,13 +51,15 @@ const content = await markdownToHtml(body);
         </h1>
         {
             tags.map((tag, index) => (
-                <a href={`https://yashikota.com/blog/tags/${tag.toLocaleLowerCase()}/`}>
-                <span
-                    data-key={index}
-                    class="mr-2 text-sky-400 hover:text-sky-700 text-lg"
+                <a
+                    href={`https://yashikota.com/blog/tags/${tag.toLocaleLowerCase()}/`}
                 >
-                    #{tag}
-                </span>
+                    <span
+                        data-key={index}
+                        class="mr-2 text-sky-400 hover:text-sky-700 text-lg"
+                    >
+                        #{tag}
+                    </span>
                 </a>
             ))
         }
@@ -63,5 +67,16 @@ const content = await markdownToHtml(body);
 
     <div class="flex-1 border-b border-gray-500 mb-5"></div>
 
-    <Blog html={content} client:load />
+    {toc && (
+      <div class="w-full max-w-3xl mx-auto mb-8">
+        <div class="font-bold text-lg mb-2">目次</div>
+        <nav class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg p-4 text-sm">
+          <div class="toc prose prose-sm max-w-none" set:html={toc} />
+        </nav>
+      </div>
+    )}
+
+    <div class="w-full max-w-3xl mx-auto">
+      <Blog html={content} client:load />
+    </div>
 </Base>

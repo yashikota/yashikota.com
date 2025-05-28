@@ -1,9 +1,11 @@
+import { toHtml } from "hast-util-to-html";
 import { h } from "hastscript";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeExpressiveCode from "rehype-expressive-code";
 import rehypeKatex from "rehype-katex";
 import rehypeSlug from "rehype-slug";
 import rehypeStringify from "rehype-stringify";
+import rehypeToc from "rehype-toc";
 import rehypeVideo from "rehype-video";
 import remarkGfm from "remark-gfm";
 import remarkAlert from "remark-github-blockquote-alert";
@@ -15,11 +17,14 @@ import { unified } from "unified";
 import "remark-github-blockquote-alert/alert.css";
 
 /**
- * マークダウンをHTMLに変換する
+ * マークダウンをHTMLに変換し、TOC（h2, h3のみ）も返す
  * @param markdown マークダウン文字列
- * @returns HTML文字列
+ * @returns { html: string, toc: string }
  */
-export async function markdownToHtml(markdown: string): Promise<string> {
+export async function markdownToHtmlWithToc(
+  markdown: string,
+): Promise<{ html: string; toc: string }> {
+  let tocNode: any = null;
   const result = await unified()
     .use(remarkParse)
     .use(remarkAlert, { legacyTitle: true })
@@ -27,6 +32,21 @@ export async function markdownToHtml(markdown: string): Promise<string> {
     .use(remarkMath)
     .use(remarkRehype)
     .use(rehypeSlug)
+    .use(rehypeToc, {
+      headings: ["h2", "h3"],
+      nav: true,
+      position: "beforeend",
+      customizeTOC(toc) {
+        tocNode = toc;
+        return false; // ページには挿入しない
+      },
+      cssClasses: {
+        toc: "toc-nav",
+        list: "toc-list",
+        listItem: "toc-li",
+        link: "toc-link",
+      },
+    })
     .use(rehypeAutolinkHeadings, {
       behavior: "prepend",
       content() {
@@ -51,11 +71,15 @@ export async function markdownToHtml(markdown: string): Promise<string> {
                 "stroke-linecap": "round",
                 "stroke-linejoin": "round",
                 class: "block align-middle flex-shrink-0 self-center",
-                style: "display: block; vertical-align: middle;"
+                style: "display: block; vertical-align: middle;",
               },
               [
-                h("path", { d: "M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" }),
-                h("path", { d: "M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" })
+                h("path", {
+                  d: "M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71",
+                }),
+                h("path", {
+                  d: "M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71",
+                }),
               ],
             ),
           ],
@@ -68,5 +92,9 @@ export async function markdownToHtml(markdown: string): Promise<string> {
     .use(rehypeStringify)
     .process(markdown);
 
-  return result.toString();
+  let tocHtml = "";
+  if (tocNode) {
+    tocHtml = toHtml(tocNode);
+  }
+  return { html: result.toString(), toc: tocHtml };
 }
