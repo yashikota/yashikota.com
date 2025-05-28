@@ -80,3 +80,15 @@
     @apply bg-background text-foreground;
   }
 }
+
+.expressive-code .frame.is-terminal .header::before {
+  background-image: linear-gradient(
+    to right,
+    #c95b5b 30%,
+    30%,
+    #e0b054 70%,
+    70%,
+    #62b162
+  );
+  opacity: 0.8 !important;
+}

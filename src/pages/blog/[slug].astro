@@ -34,7 +34,7 @@ export async function getStaticPaths() {
 }
 
 const { title, tags, pubDate, updDate, body } = Astro.props;
-const content = markdownToHtml(body);
+const content = await markdownToHtml(body);
 ---
 
 <Base pageTitle={title}>
