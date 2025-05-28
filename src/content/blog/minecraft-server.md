@@ -5,6 +5,7 @@ updDate:
 isUnlisted: false
 category: tech
 tags: ["ゲーム"]
+showToc: false
 ---
 
 Forge対応のJava版Minecraftサーバーを建てたので備忘録がてらまとめます。  

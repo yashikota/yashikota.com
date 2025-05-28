@@ -15,5 +15,6 @@ export async function getBlogPosts() {
     slug: blog.slug,
     body: blog.body,
     icon: getFaviconUrl("yashikota.com"),
+    showToc: blog.data.showToc,
   }));
 }

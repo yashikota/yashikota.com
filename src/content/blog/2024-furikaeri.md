@@ -5,6 +5,7 @@ updDate:
 isUnlisted: false
 category: life
 tags: ["振り返り"]
+showToc: false
 ---
 
 2024年も終わるということで適当にやったこととかを振り返ります。  

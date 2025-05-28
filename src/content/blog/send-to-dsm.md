@@ -5,6 +5,7 @@ updDate:
 isUnlisted: false
 category: tech
 tags: ["nas", "misc"]
+showToc: false
 ---
 
 外出先で家のPCを使いたくても電源が落ちていると使えないので、Wake On LAN(WoL)を設定することにしました。  

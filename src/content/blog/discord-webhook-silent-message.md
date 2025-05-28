@@ -5,6 +5,7 @@ updDate:
 isUnlisted: false
 category: tech
 tags: ["discord"]
+showToc: false
 ---
 
 flagsというフィールドがあるのでそこに `FAILED_TO_MENTION_SOME_ROLES_IN_THREAD` のbitである4096を与えます。  

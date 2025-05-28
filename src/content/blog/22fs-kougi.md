@@ -5,6 +5,7 @@ updDate:
 isUnlisted: false
 category: life
 tags: ["授業感想"]
+showToc: false
 ---
 
 2年前期の成績が返ってきたので振り返りまとめ。  

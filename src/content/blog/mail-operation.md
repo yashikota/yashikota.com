@@ -5,6 +5,7 @@ updDate:
 isUnlisted: false
 category: tech
 tags: ["雑記"]
+showToc: false
 ---
 
 世の中には無料で使えるメールサービスなんて沢山有るけどあえて独自ドメインのメールを運用したい人向けの記事です。  

@@ -5,9 +5,10 @@ updDate: 2025-05-28
 isUnlisted: true
 category: life
 tags: ["雑記"]
+showToc: true
 ---
 
-# url preview
+## url preview
 
 https://www.oreilly.co.jp/books/9784873119694
 
@@ -79,7 +80,7 @@ https://ja.wikipedia.org/wiki/UNIX%E5%93%B2%E5%AD%A6
 ### 見出し3
 #### 見出し4
 
-# リスト
+## リスト
 
 ```
 - Hello!
@@ -103,7 +104,7 @@ https://ja.wikipedia.org/wiki/UNIX%E5%93%B2%E5%AD%A6
 1. First
 2. Second
 
-# テキストリンク
+## テキストリンク
 
 ```
 [アンカーテキスト](リンクのURL)
@@ -111,7 +112,7 @@ https://ja.wikipedia.org/wiki/UNIX%E5%93%B2%E5%AD%A6
 
 [アンカーテキスト](https://zenn.dev)
 
-# 画像
+## 画像
 
 ```
 ![altテキスト](https://画像のURL)
@@ -141,7 +142,7 @@ https://ja.wikipedia.org/wiki/UNIX%E5%93%B2%E5%AD%A6
 ![](https://storage.googleapis.com/zenn-user-upload/gxnwu3br83nsbqs873uibiy6fd43 =250x)
 _captions_
 
-# テーブル
+## テーブル
 
 ```
 | Head | Head | Head |
@@ -155,7 +156,7 @@ _captions_
 | Text | Text | Text |
 | Text | Text | Text |
 
-# コードブロック
+## コードブロック
 
 コードは「```」で挟むことでブロックとして挿入できます。以下のように言語を指定するとコードへ装飾（シンタックスハイライト）が適用されます。
 
@@ -186,7 +187,7 @@ bash
 -    let foo = bar.baz([1, 2, 3]);
 ```
 
-# 数式
+## 数式
 
 Zenn では**KaTeX**による数式表示に対応しています。
 KaTeXのバージョンは常に最新バージョンを使用します。
@@ -213,7 +214,7 @@ $$
 
 `$a\ne0$`というように`$`ひとつで挟むことで、インラインで数式を含めることができます。たとえば$a\ne0$のようなイメージです。
 
-# 引用
+## 引用
 
 ```
 > 引用文
@@ -223,7 +224,7 @@ $$
 > 引用文
 > 引用文
 
-# 注釈
+## 注釈
 
 注釈を指定するとページ下部にその内容が表示されます。
 
@@ -237,7 +238,7 @@ $$
 
 [^1]: 脚注の内容その 1
 
-# 区切り線
+## 区切り線
 
 ```
 -----
@@ -245,7 +246,7 @@ $$
 
 ---
 
-# インラインスタイル
+## インラインスタイル
 
 ```
 *イタリック*
@@ -271,13 +272,13 @@ _イタリック_
 
 この形式で書いたコメントは公開されたページ上では表示されません。ただし、複数行のコメントには対応していないのでご注意ください。
 
-# タスクリスト
+## タスクリスト
 
 - [x] #739
 - [ ] https://github.com/octo-org/octo-repo/issues/740
 - [ ] Add delight to the experience when all tasks are complete :tada:
 
-# アラート
+## アラート
 
 > [!NOTE/ノート]
 > Useful information that users should know, even when skimming content.
@@ -297,11 +298,9 @@ _イタリック_
 > [!CAUTION]
 > Advises about risks or negative outcomes of certain actions.
 
-# 動画
+## 動画
 
 https://pub-382fdd19478344f2bb7643f2f3bc54d3.r2.dev/neko.mp4
-
-# コンテンツの埋め込み
 
 ## リンクカード
 
@@ -389,7 +388,7 @@ https://github.com/zenn-dev/zenn-editor/blob/canary/packages/zenn-cli/images/exa
 
 2020/12/28〜対応しました。特定のファイルだけ埋め込みたい場合は`@[gist](https://gist.github.com/foo/bar?file=example.json)`のようにクエリ文字列で`?file=ファイル名`という形で指定します。
 
-# ダイアグラム
+## ダイアグラム
 
 2021/06/08〜、[mermaid.js](https://mermaid-js.github.io/mermaid/#/) によるダイアグラム表示に対応しました。コードブロックの言語名を`mermaid`とすることで自動的にレンダリングされます。
 
