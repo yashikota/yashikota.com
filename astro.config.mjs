@@ -17,9 +17,7 @@ export default defineConfig({
     sitemap(),
   ],
   vite: {
-    plugins: [
-      tailwindcss(),
-    ],
+    plugins: [tailwindcss()],
   },
   redirects: {
     "/blogs": {

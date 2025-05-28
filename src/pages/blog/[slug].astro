@@ -5,20 +5,7 @@ import { UpdateIcon } from "@radix-ui/react-icons";
 
 import { Blog } from "@/components/blog";
 import { getBlogPosts } from "@/lib/blogPosts";
-
-import lib from "zenn-markdown-html";
-import "zenn-content-css";
-
-type MarkdownOptions = {
-  embedOrigin: string;
-};
-type MarkdownHtml = (text: string, options?: MarkdownOptions) => string;
-type MarkdownHtmlAtBuild = { default: MarkdownHtml };
-
-let markdownHtml: MarkdownHtml = lib;
-if (typeof lib !== "function") {
-  markdownHtml = (lib as MarkdownHtmlAtBuild).default;
-}
+import { markdownToHtml } from "@/lib/markdown";
 
 interface Props {
   title: string;
@@ -47,15 +34,10 @@ export async function getStaticPaths() {
 }
 
 const { title, tags, pubDate, updDate, body } = Astro.props;
-const content = markdownHtml(body, {
-  embedOrigin: "https://embed.zenn.studio",
-});
+const content = markdownToHtml(body);
 ---
 
 <Base pageTitle={title}>
-    <script src="https://embed.zenn.studio/js/listen-embed-event.js" is:inline
-    ></script>
-
     <div class="mx-auto text-center">
         <div class="flex items-center justify-center text-lg text-muted-foreground">
             {pubDate}

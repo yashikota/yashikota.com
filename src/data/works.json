@@ -1,157 +1,100 @@
 [
   {
-      "title": "Chronotes",
-      "description": "毎日の日記や日報を、GitHubなどの計7つのサービスから作業ログや会話を自動収集し、AIを用いて要約しノートを生成するアプリです。期間別に要約することも可能で、毎日の日記をつける手間を省けます。",
-      "image": "https://protopedia.net/pic/facb3509-c283-4980-a147-671b660c1855.png",
-      "github": ["https://github.com/yashikota/chronotes"],
-      "url": [],
-      "date": "2024/11",
-      "tags": [
-          "Go",
-          "Next.js",
-          "Docker",
-          "PostgreSQL",
-          "Tailwind",
-          "Gemini"
-      ]
+    "title": "Chronotes",
+    "description": "毎日の日記や日報を、GitHubなどの計7つのサービスから作業ログや会話を自動収集し、AIを用いて要約しノートを生成するアプリです。期間別に要約することも可能で、毎日の日記をつける手間を省けます。",
+    "image": "https://protopedia.net/pic/facb3509-c283-4980-a147-671b660c1855.png",
+    "github": ["https://github.com/yashikota/chronotes"],
+    "url": [],
+    "date": "2024/11",
+    "tags": ["Go", "Next.js", "Docker", "PostgreSQL", "Tailwind", "Gemini"]
   },
   {
-      "title": "Scene Hunter",
-      "description": "ゲームマスターが撮影した写真のヒントを元に、プレイヤーは同じ場所や構図を探し出し、ゲームマスターの写真に最も似た写真を撮影したプレイヤーが勝利するゲームです。",
-      "image": "https://protopedia.net/pic/55488ca8-6d4f-4861-b20c-5751d61707c9.png",
-      "github": ["https://github.com/yashikota/scene-hunter-backend"],
-      "url": [],
-      "date": "2024/08",
-      "tags": [
-          "Python",
-          "React",
-          "Go",
-          "Gemini"
-      ]
-  },  
+    "title": "Scene Hunter",
+    "description": "ゲームマスターが撮影した写真のヒントを元に、プレイヤーは同じ場所や構図を探し出し、ゲームマスターの写真に最も似た写真を撮影したプレイヤーが勝利するゲームです。",
+    "image": "https://protopedia.net/pic/55488ca8-6d4f-4861-b20c-5751d61707c9.png",
+    "github": ["https://github.com/yashikota/scene-hunter-backend"],
+    "url": [],
+    "date": "2024/08",
+    "tags": ["Python", "React", "Go", "Gemini"]
+  },
   {
     "title": "シラバスアプリ",
     "description": "大学のシラバスを快適に検索・閲覧できるWebアプリです。大学公式のシラバス検索サイトが非常に使いづらかったため作成しました。シラバスのデータ取得にはPythonを用いています。フロントエンドはReact Router v7とhono, shadcn/uiを使用してCloudflare Workersにデプロイする意欲的な技術スタックになっています。",
     "image": "https://raw.githubusercontent.com/yashikota/blog/master/public/static/images/syllabus.webp",
-    "github": [
-      "https://github.com/yashikota/syllabus"
-    ],
-    "url": [
-        "https://syllabus.naist.yashikota.com"
-    ],
+    "github": ["https://github.com/yashikota/syllabus"],
+    "url": ["https://syllabus.naist.yashikota.com"],
     "date": "2024/12",
     "tags": [
-        "React",
-        "Python",
-        "TypeScript",
-        "React Router v7",
-        "shadcn/ui",
-        "Cloudflare"
+      "React",
+      "Python",
+      "TypeScript",
+      "React Router v7",
+      "shadcn/ui",
+      "Cloudflare"
     ]
   },
   {
-      "title": "OITシラバスアプリ",
-      "description": "大学のシラバスを快適に検索・閲覧できるWebアプリです。大学公式のシラバス検索サイトが非常に使いづらかったため作成しました。シラバスのデータ取得にはPythonを用いています。データ取得のプログラムは非同期処理を行い、従来8時間かかっていた処理を10分まで短縮することに成功しました。シラバスを閲覧できるWebサイトはReact/Next.jsを使用しPCでもスマホでも快適に使えるようにレスポンジブデザインに対応しています。",
-      "image": "https://raw.githubusercontent.com/yashikota/blog/master/public/static/images/syllabus.webp",
-      "github": [
-          "https://github.com/yashikota/syllabus-frontend",
-          "https://github.com/yashikota/syllabus-scraping",
-          "https://github.com/yashikota/syllabus-extract"
-      ],
-      "url": [
-          "https://syllabus.oit.yashikota.com"
-      ],
-      "date": "2022/02 ~ 2022/04",
-      "tags": [
-          "React",
-          "Next.js",
-          "Python",
-          "TypeScript",
-          "Github Actions"
-      ]
+    "title": "OITシラバスアプリ",
+    "description": "大学のシラバスを快適に検索・閲覧できるWebアプリです。大学公式のシラバス検索サイトが非常に使いづらかったため作成しました。シラバスのデータ取得にはPythonを用いています。データ取得のプログラムは非同期処理を行い、従来8時間かかっていた処理を10分まで短縮することに成功しました。シラバスを閲覧できるWebサイトはReact/Next.jsを使用しPCでもスマホでも快適に使えるようにレスポンジブデザインに対応しています。",
+    "image": "https://raw.githubusercontent.com/yashikota/blog/master/public/static/images/syllabus.webp",
+    "github": [
+      "https://github.com/yashikota/syllabus-frontend",
+      "https://github.com/yashikota/syllabus-scraping",
+      "https://github.com/yashikota/syllabus-extract"
+    ],
+    "url": ["https://syllabus.oit.yashikota.com"],
+    "date": "2022/02 ~ 2022/04",
+    "tags": ["React", "Next.js", "Python", "TypeScript", "Github Actions"]
   },
   {
-      "title": "yashikota.com",
-      "description": "このサイトです。AstroやBun、shadcn/uiなど個人開発ならではの技術スタックスを採用し作成しました。",
-      "image": "https://raw.githubusercontent.com/yashikota/blog/master/public/static/images/yashikota.com.png",
-      "github": [
-          "https://github.com/yashikota/yashikota.com"
-      ],
-      "url": [
-          "https://yashikota.com"
-      ],
-      "date": "2024/01 ~ 2024/03",
-      "tags": [
-          "Astro",
-          "shadcn/ui",
-          "Bun"
-      ]
+    "title": "yashikota.com",
+    "description": "このサイトです。AstroやBun、shadcn/uiなど個人開発ならではの技術スタックスを採用し作成しました。",
+    "image": "https://raw.githubusercontent.com/yashikota/blog/master/public/static/images/yashikota.com.png",
+    "github": ["https://github.com/yashikota/yashikota.com"],
+    "url": ["https://yashikota.com"],
+    "date": "2024/01 ~ 2024/03",
+    "tags": ["Astro", "shadcn/ui", "Bun"]
   },
   {
-      "title": "4bitCPU エミュレーター",
-      "description": "TD4という4bitCPUアーキテクチャ用エミュレーターをPythonで開発しました。公式エミュレーターと同等のエミュレーションに加え、可変クロックの実装やTD4公式エミュレータが扱うファイルからの読み込み、TUIでのエミュレーションなど使いやすさに工夫を凝らしました。またPyPIに登録してパッケージとしてダウンロードできるようにしています。",
-      "image": "https://raw.githubusercontent.com/yashikota/blog/master/public/static/images/td4-py.gif",
-      "github": [
-          "https://github.com/yashikota/td4-py"
-      ],
-      "url": [
-          "https://pypi.org/project/td4"
-      ],
-      "date": "2023/03",
-      "tags": [
-          "CPU",
-          "Python"
-      ]
+    "title": "4bitCPU エミュレーター",
+    "description": "TD4という4bitCPUアーキテクチャ用エミュレーターをPythonで開発しました。公式エミュレーターと同等のエミュレーションに加え、可変クロックの実装やTD4公式エミュレータが扱うファイルからの読み込み、TUIでのエミュレーションなど使いやすさに工夫を凝らしました。またPyPIに登録してパッケージとしてダウンロードできるようにしています。",
+    "image": "https://raw.githubusercontent.com/yashikota/blog/master/public/static/images/td4-py.gif",
+    "github": ["https://github.com/yashikota/td4-py"],
+    "url": ["https://pypi.org/project/td4"],
+    "date": "2023/03",
+    "tags": ["CPU", "Python"]
   },
   {
-      "title": "OIT Magic",
-      "description": "学園祭に展示するゲームの開発のリードプログラマを担当し、Unityでのゲームの作成をすべて担当しました。学園祭ということもあり対象年齢が低めだと予想されたため直感的に遊べ楽しいゲームを作成しました。特徴はコントローラーを使わず体を使って操作を行うことです。そのためにMediaPipeを用いて姿勢推定という技術を使用しました。当日は常に行列ができるほど大盛況で100人以上の方に遊んでいただけました。",
-      "image": "https://raw.githubusercontent.com/yashikota/blog/master/public/static/images/oit-magic.webp",
-      "github": [
-          "https://github.com/yashikota/oit-magic"
-      ],
-      "url": [],
-      "date": "2023/10 ~ 2023/11",
-      "tags": [
-          "Unity",
-          "C Sharp",
-          "Python",
-          "MediaPipe"
-      ]
+    "title": "OIT Magic",
+    "description": "学園祭に展示するゲームの開発のリードプログラマを担当し、Unityでのゲームの作成をすべて担当しました。学園祭ということもあり対象年齢が低めだと予想されたため直感的に遊べ楽しいゲームを作成しました。特徴はコントローラーを使わず体を使って操作を行うことです。そのためにMediaPipeを用いて姿勢推定という技術を使用しました。当日は常に行列ができるほど大盛況で100人以上の方に遊んでいただけました。",
+    "image": "https://raw.githubusercontent.com/yashikota/blog/master/public/static/images/oit-magic.webp",
+    "github": ["https://github.com/yashikota/oit-magic"],
+    "url": [],
+    "date": "2023/10 ~ 2023/11",
+    "tags": ["Unity", "C Sharp", "Python", "MediaPipe"]
   },
   {
-      "title": "FunBook",
-      "description": "ハッカソンで作成したプロダクトです。ChatGPTのAPIを活用した、PythonのSum関数はJavaScriptではどうやって書くんだろうのような異なる言語間での関数の使い方やサンプルコードを教えてくれるWebサイトを作成しました。なお現在バックエンドのサーバーを停止しているため、使用できません。",
-      "image": "https://raw.githubusercontent.com/yashikota/blog/master/public/static/images/funbook.webp",
-      "github": [
-          "https://github.com/yashikota/funbook",
-          "https://github.com/t-nobuyuki0330/mbs-back"
-      ],
-      "url": [
-          "https://funbook.pages.dev"
-      ],
-      "date": "2023/04",
-      "tags": [
-          "React",
-          "Go",
-          "ChatGPT API"
-      ]
+    "title": "FunBook",
+    "description": "ハッカソンで作成したプロダクトです。ChatGPTのAPIを活用した、PythonのSum関数はJavaScriptではどうやって書くんだろうのような異なる言語間での関数の使い方やサンプルコードを教えてくれるWebサイトを作成しました。なお現在バックエンドのサーバーを停止しているため、使用できません。",
+    "image": "https://raw.githubusercontent.com/yashikota/blog/master/public/static/images/funbook.webp",
+    "github": [
+      "https://github.com/yashikota/funbook",
+      "https://github.com/t-nobuyuki0330/mbs-back"
+    ],
+    "url": ["https://funbook.pages.dev"],
+    "date": "2023/04",
+    "tags": ["React", "Go", "ChatGPT API"]
   },
   {
-      "title": "JANCode Generator",
-      "description": "日本の流通には欠かせないバーコードことJANCodeを標準ライブラリだけで作成するライブラリです。現在はPython版のみ開発済みで、PyPIに登録し手軽に使用できるようなっています。",
-      "image": "https://raw.githubusercontent.com/yashikota/blog/master/public/static/images/jancode.png",
-      "github": [
-          "https://github.com/yashikota/jancode"
-      ],
-      "url": [
-          "https://pypi.org/project/jancode",
-          "https://zenn.dev/yashikota/articles/3d1f38a5972a5b"
-      ],
-      "date": "2023/02",
-      "tags": [
-          "Python",
-          "JANCode"
-      ]
+    "title": "JANCode Generator",
+    "description": "日本の流通には欠かせないバーコードことJANCodeを標準ライブラリだけで作成するライブラリです。現在はPython版のみ開発済みで、PyPIに登録し手軽に使用できるようなっています。",
+    "image": "https://raw.githubusercontent.com/yashikota/blog/master/public/static/images/jancode.png",
+    "github": ["https://github.com/yashikota/jancode"],
+    "url": [
+      "https://pypi.org/project/jancode",
+      "https://zenn.dev/yashikota/articles/3d1f38a5972a5b"
+    ],
+    "date": "2023/02",
+    "tags": ["Python", "JANCode"]
   }
 ]
