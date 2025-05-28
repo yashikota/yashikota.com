@@ -2,19 +2,21 @@ import { toHtml } from "hast-util-to-html";
 import { h } from "hastscript";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeExpressiveCode from "rehype-expressive-code";
-import remarkValidateLinks from "remark-validate-links";
-import remarkBreaks from "remark-breaks";
 import rehypeKatex from "rehype-katex";
 import rehypeSlug from "rehype-slug";
 import rehypeStringify from "rehype-stringify";
 import rehypeToc from "rehype-toc";
 import rehypeVideo from "rehype-video";
+import remarkBreaks from "remark-breaks";
 import remarkGfm from "remark-gfm";
 import remarkAlert from "remark-github-blockquote-alert";
 import remarkMath from "remark-math";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
+import remarkValidateLinks from "remark-validate-links";
+import remarkYoutube from "remark-youtube";
 import { unified } from "unified";
+import remarkLinkCard from "./remark-linkcard";
 
 import "remark-github-blockquote-alert/alert.css";
 
@@ -34,7 +36,9 @@ export async function markdownToHtmlWithToc(
     .use(remarkBreaks)
     .use(remarkGfm)
     .use(remarkMath)
-    .use(remarkRehype)
+    .use(remarkYoutube)
+    .use(remarkLinkCard, { cache: true, shortenUrl: true })
+    .use(remarkRehype, { allowDangerousHtml: true })
     .use(rehypeSlug)
     .use(rehypeToc, {
       headings: ["h2", "h3"],
@@ -93,7 +97,7 @@ export async function markdownToHtmlWithToc(
     .use(rehypeKatex)
     .use(rehypeExpressiveCode)
     .use(rehypeVideo, { details: false })
-    .use(rehypeStringify)
+    .use(rehypeStringify, { allowDangerousHtml: true })
     .process(markdown);
 
   let tocHtml = "";

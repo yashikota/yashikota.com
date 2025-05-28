@@ -333,12 +333,9 @@ https://x.com/jack/status/20
 
 ## YouTube
 
-https://www.youtube.com/watch?v=WRVsOCh907o
+https://youtu.be/enTFE2c68FQ
 
-```bash
-# YouTubeのURLだけの行（前後に改行が必要です）
-https://www.youtube.com/watch?v=WRVsOCh907o
-```
+https://www.youtube.com/watch?v=enTFE2c68FQ
 
 ## GitHub
 
