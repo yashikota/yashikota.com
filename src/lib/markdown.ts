@@ -79,7 +79,8 @@ export async function markdownToHtmlWithToc(
                 "stroke-linecap": "round",
                 "stroke-linejoin": "round",
                 class: "block align-middle flex-shrink-0 self-center",
-                style: "display: block; vertical-align: middle; width: 16px; height: 16px;",
+                style:
+                  "display: block; vertical-align: middle; width: 16px; height: 16px;",
               },
               [
                 h("path", {

@@ -1,0 +1,10 @@
+{
+  "name": "website",
+  "compatibility_date": "2025-05-29",
+  "assets": {
+    "directory": "./dist"
+  },
+  "observability": {
+    "enabled": true
+  }
+}
