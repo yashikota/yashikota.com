@@ -180,3 +180,15 @@ figure img {
   margin-left: 0.2em;
   margin-right: 0.2em;
 }
+
+/* リストの行間を詰める */
+.prose ul,
+.prose ol {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.prose li {
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+}
