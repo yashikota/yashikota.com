@@ -10,6 +10,10 @@ showToc: true
 
 ## url preview
 
+https://github.com/octocat/Hello-World
+
+https://github.com/octocat/Hello-World/blob/master/README
+
 https://www.oreilly.co.jp/books/9784873119694
 
 https://www.c-r.com/book/detail/1462
@@ -64,8 +68,6 @@ https://item.rakuten.co.jp/gorilla55/tx-701
 
 https://ja.wikipedia.org/wiki/UNIX%E5%93%B2%E5%AD%A6
 
-このページでは Zenn のmarkdown記法を一覧で紹介します。
-
 # 見出し
 
 ```
@@ -82,13 +84,6 @@ https://ja.wikipedia.org/wiki/UNIX%E5%93%B2%E5%AD%A6
 
 ## リスト
 
-```
-- Hello!
-- Hola!
-  - Bonjour!
-  * Hi!
-```
-
 - Hello!
 - Hola!
   - Bonjour!
@@ -96,21 +91,12 @@ https://ja.wikipedia.org/wiki/UNIX%E5%93%B2%E5%AD%A6
 
 ## 番号付きリスト
 
-```
-1. First
-2. Second
-```
-
 1. First
 2. Second
 
 ## テキストリンク
 
-```
-[アンカーテキスト](リンクのURL)
-```
-
-[アンカーテキスト](https://zenn.dev)
+[アンカーテキスト](https://yashikota.com)
 
 ## 画像
 
@@ -133,21 +119,12 @@ https://ja.wikipedia.org/wiki/UNIX%E5%93%B2%E5%AD%A6
 
 ## テーブル
 
-```
-| Head | Head | Head |
-| ---- | ---- | ---- |
-| Text | Text | Text |
-| Text | Text | Text |
-```
-
 | Head | Head | Head |
 | ---- | ---- | ---- |
 | Text | Text | Text |
 | Text | Text | Text |
 
 ## コードブロック
-
-コードは「```」で挟むことでブロックとして挿入できます。以下のように言語を指定するとコードへ装飾（シンタックスハイライト）が適用されます。
 
 ```javascript title="foo.js"
 const foo = () => {
@@ -178,23 +155,6 @@ bash
 
 ## 数式
 
-Zenn では**KaTeX**による数式表示に対応しています。
-KaTeXのバージョンは常に最新バージョンを使用します。
-
-[📄 KaTeXがサポートする記法の一覧 →](https://katex.org/docs/support_table.html)
-
-## 数式のブロックを挿入する
-
-`$$`で記述を挟むことで、数式のブロックが挿入されます。たとえば
-
-```
-$$
-e^{i\theta} = \cos\theta + i\sin\theta
-$$
-```
-
-は以下のように表示されます。
-
 $$
 e^{i\theta} = \cos\theta + i\sin\theta
 $$
@@ -205,23 +165,10 @@ $$
 
 ## 引用
 
-```
-> 引用文
-> 引用文
-```
-
 > 引用文
 > 引用文
 
 ## 注釈
-
-注釈を指定するとページ下部にその内容が表示されます。
-
-```
-脚注の例[^1]です。
-
-[^1]: 脚注の内容その1
-```
 
 脚注の例[^1]です。
 
@@ -229,20 +176,9 @@ $$
 
 ## 区切り線
 
-```
------
-```
-
 ---
 
 ## インラインスタイル
-
-```
-*イタリック*
-**太字**
-~~打ち消し線~~
-インラインで`code`を挿入する
-```
 
 _イタリック_
 **太字**
@@ -251,15 +187,11 @@ _イタリック_
 
 ## インラインのコメント
 
-自分用のメモをしたいときは HTML のコメント記法を使用できます。
-
 ```html
-<!-- TODO: ◯◯について追記する -->
+<!-- コメントテスト -->
 ```
 
 <!-- コメントテスト -->
-
-この形式で書いたコメントは公開されたページ上では表示されません。ただし、複数行のコメントには対応していないのでご注意ください。
 
 ## タスクリスト
 
@@ -298,23 +230,13 @@ https://pub-382fdd19478344f2bb7643f2f3bc54d3.r2.dev/neko.mp4
 https://zenn.dev/zenn/articles/markdown-guide
 ```
 
-URL だけが貼り付けられた行があると、その部分がカードとして表示されます。
-
 https://zenn.dev/zenn/articles/markdown-guide
-
-また`@[card](URL)`という書き方でカード型のリンクを貼ることもできます。
 
 ## X（Twitter）のポスト（ツイート）
 
 https://twitter.com/jack/status/20
 
-```bash
-# ポストのURLだけの行（前後に改行が必要です）
-https://twitter.com/jack/status/20
-
-# x.comドメインの場合
 https://x.com/jack/status/20
-```
 
 ### リプライ元のポストを非表示にする
 
@@ -326,59 +248,8 @@ https://youtu.be/enTFE2c68FQ
 
 https://www.youtube.com/watch?v=enTFE2c68FQ
 
-## GitHub
-
-```bash
-# GitHubのファイルURLまたはパーマリンクだけの行（前後に改行が必要です）
-https://github.com/octocat/Hello-World/blob/master/README
-```
-
-https://github.com/octocat/Hello-World/blob/master/README
-
-### 行の指定
-
-GitHubと同じように、リンクの末尾に`#L00-L00`のような形で表示するファイルの開始行と終了行を指定することができます。
-
-```bash
-# コードの開始行と終了行を指定
-https://github.com/octocat/Spoon-Knife/blob/main/README.md#L1-L3
-```
-
-上記のリンクは以下のように表示されます。
-
-https://github.com/octocat/Spoon-Knife/blob/main/README.md#L1-L3
-
-また、開始行のみ指定することもできます。
-
-```bash
-# コードの開始行のみ指定
-https://github.com/octocat/Spoon-Knife/blob/main/README.md#L3
-```
-
-上記のリンクは、以下のように開始行のみ埋め込まれて表示されます。
-
-https://github.com/octocat/Spoon-Knife/blob/main/README.md#L3
-
-### テキストファイル以外は埋め込めません
-
-埋め込めるファイルは、ソースコードなどのテキストファイルのみとなっています。
-もし画像などのファイルを指定した場合は、以下のような表示になります。
-
-https://github.com/zenn-dev/zenn-editor/blob/canary/packages/zenn-cli/images/example-images/zenn-editor.png
-
-## GitHub Gist
-
-```bash
-@[gist](GistのページURL)
-```
-
-2020/12/28〜対応しました。特定のファイルだけ埋め込みたい場合は`@[gist](https://gist.github.com/foo/bar?file=example.json)`のようにクエリ文字列で`?file=ファイル名`という形で指定します。
-
 ## ダイアグラム
 
-2021/06/08〜、[mermaid.js](https://mermaid-js.github.io/mermaid/#/) によるダイアグラム表示に対応しました。コードブロックの言語名を`mermaid`とすることで自動的にレンダリングされます。
-
-~~~
 ```mermaid
 graph TB
     A[Hard edge] -->|Link text| B(Round edge)
@@ -386,16 +257,3 @@ graph TB
     C -->|One| D[Result one]
     C -->|Two| E[Result two]
 ```
-~~~
-
-は以下のように表示されます。
-
-```mermaid
-graph TB
-    A[Hard edge] -->|Link text| B(Round edge)
-    B --> C{Decision}
-    C -->|One| D[Result one]
-    C -->|Two| E[Result two]
-```
-
-他にもシーケンス図やクラス図が表示できます。文法は mermaid.js に従っていますので、どのように書けばよいかは[公式サイトの文法](https://mermaid-js.github.io/mermaid/#/flowchart)を参照してください。
