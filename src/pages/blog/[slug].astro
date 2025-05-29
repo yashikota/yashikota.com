@@ -13,6 +13,7 @@ interface Props {
   pubDate: string;
   updDate: string;
   body: string;
+  showToc: boolean;
 }
 
 export async function getStaticPaths() {
@@ -28,12 +29,13 @@ export async function getStaticPaths() {
         pubDate: blog.pubDate,
         updDate: blog.updDate,
         body: blog.body,
+        showToc: blog.showToc,
       },
     };
   });
 }
 
-const { title, tags, pubDate, updDate, body } = Astro.props;
+const { title, tags, pubDate, updDate, body, showToc } = Astro.props;
 const { html: content, toc } = await markdownToHtmlWithToc(body);
 ---
 
@@ -67,7 +69,7 @@ const { html: content, toc } = await markdownToHtmlWithToc(body);
 
     <div class="flex-1 border-b border-gray-500 mb-5"></div>
 
-    {toc && (
+    {toc && showToc && (
       <div class="w-full max-w-3xl mx-auto mb-8">
         <div class="font-bold text-lg mb-2">目次</div>
         <nav class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg p-4 text-sm">

@@ -192,3 +192,10 @@ figure img {
   margin-top: 0.1em;
   margin-bottom: 0.1em;
 }
+
+/* 長いURLの折り返し有効化 */
+.prose a {
+  word-wrap: break-word;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
