@@ -164,3 +164,19 @@ figure img {
   margin-left: auto;
   margin-right: auto;
 }
+
+/* インラインコード */
+.prose code::before,
+.prose code::after {
+  content: none !important;
+}
+
+.prose code {
+  background-color: #eaeaea;
+  color: #363636;
+  border-radius: 0.3em;
+  padding: 0.2em 0.4em;
+  font-size: 0.95em;
+  margin-left: 0.2em;
+  margin-right: 0.2em;
+}
