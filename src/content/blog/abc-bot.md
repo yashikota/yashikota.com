@@ -15,7 +15,7 @@ showToc: false
 
 # 次に開催されるコンテストの情報を取得する
 
-[リポジトリはこちらです](https://github.com/yashikota/abc-latest-api)  
+https://github.com/yashikota/abc-latest-api
 
 まずはコンテストの情報を取得することには始まりません。  
 というわけで公式のAPIを探してみたんですが無さそうなんで野良APIを探してみます。  
@@ -25,7 +25,7 @@ showToc: false
 結局良い感じのAPIが見つからなかったので、自分でスクレイピングすることにしました。  
 
 スクレイピングといえばPythonですが、今回は
-[Deno](https://deno.land/)
+[Deno](https://deno.land)
 を使うことにしました。  
 理由はDenoを使ってみたかった、それだけです😉  
 
@@ -115,12 +115,12 @@ const handler = async (req: Request) => {
 
 ## Discordでコンテストの開催1時間前に情報を通知するBotを作る
 
-[リポジトリはこちらです](https://github.com/yashikota/abc-latest-bot)
+https://github.com/yashikota/abc-latest-bot
 
 こちらも最初はDenoで作ろうと思ってたのですが、どうやらDeno Deployがcronに対応していないらしく、定期的な実行が無理でした。  
 今回作るBotでは1時間ごとに動作させ、開催1時間前かどうかを判定しているため、定期的に動作させる仕組みが不可欠です。  
 次にcronが実装されている
-[Cloudflare Workers](https://workers.cloudflare.com/)
+[Cloudflare Workers](https://workers.cloudflare.com)
 を試してみました。  
 こちらはJS/TSのみならずRustやC、Python、Kotlin、なんとCobol[^1]までサポートしています[^2]。  
 
@@ -192,7 +192,7 @@ pub fn is_one_hour_before_the_contest() -> bool {
 ```
 
 これで開催1時間前かどうかを判定することができたのでいよいよDiscordBotの作成に取り掛かっていくのですが！！！  
-ここで大きな問題が…   
+ここで大きな問題が…  
 RustでDiscordBotを作ろうとすると
 [Serenity](https://github.com/serenity-rs/serenity)
 というライブラリを使うのですが、これがWasmに対応していない😭  
