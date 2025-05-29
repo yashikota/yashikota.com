@@ -99,7 +99,7 @@ export async function markdownToHtmlWithToc(
       },
     })
     .use(rehypeKatex)
-    .use(rehypeExpressiveCode)
+    .use(rehypeExpressiveCode, { themes: ["slack-dark"] })
     .use(rehypeImageCaption)
     .use(rehypeVideo, { details: false })
     .use(rehypeStringify, { allowDangerousHtml: true })
