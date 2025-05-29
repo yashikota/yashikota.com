@@ -199,3 +199,9 @@ figure img {
   word-break: break-word;
   overflow-wrap: break-word;
 }
+
+/* ヘッダーリンク用スタイル */
+header a:hover span {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}

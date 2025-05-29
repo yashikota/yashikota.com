@@ -1,14 +1,22 @@
 ---
+import fs from "node:fs";
+import path from "node:path";
 import Base from "@/layouts/base.astro";
 
+import { Blog } from "@/components/blog";
 import { ProfileComponent } from "@/components/shadcn/profile";
-import { Content as AboutContent } from "@/data/about.md";
+import { markdownToHtmlWithToc } from "@/lib/markdown";
+
+// Read the about.md file
+const aboutMdPath = path.join(process.cwd(), "src", "data", "about.md");
+const aboutMd = fs.readFileSync(aboutMdPath, "utf-8");
+const { html: content, toc } = await markdownToHtmlWithToc(aboutMd);
 ---
 
 <Base pageTitle="About">
     <ProfileComponent />
 
-    <div class="prose prose-lg leading-6 break-words">
-        <AboutContent />
+    <div class="w-full max-w-3xl mx-auto">
+      <Blog html={content} client:load />
     </div>
 </Base>
