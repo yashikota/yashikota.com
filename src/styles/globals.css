@@ -154,3 +154,13 @@ h6:focus-within .markdown-copy-link-btn {
 .remark-link-card-plus__image {
   @apply h-full w-full !my-0 object-cover;
 }
+
+figcaption {
+  @apply text-center;
+}
+
+.prose img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}

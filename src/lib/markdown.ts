@@ -2,6 +2,7 @@ import { toHtml } from "hast-util-to-html";
 import { h } from "hastscript";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeExpressiveCode from "rehype-expressive-code";
+import rehypeImageCaption from "rehype-image-caption";
 import rehypeKatex from "rehype-katex";
 import rehypeSlug from "rehype-slug";
 import rehypeStringify from "rehype-stringify";
@@ -16,6 +17,7 @@ import remarkRehype from "remark-rehype";
 import remarkValidateLinks from "remark-validate-links";
 import remarkYoutube from "remark-youtube";
 import { unified } from "unified";
+import remarkImageSize from "./remark-image-size";
 import remarkLinkCard from "./remark-linkcard";
 
 import "remark-github-blockquote-alert/alert.css";
@@ -31,6 +33,7 @@ export async function markdownToHtmlWithToc(
   let tocNode: any = null;
   const result = await unified()
     .use(remarkParse)
+    .use(remarkImageSize)
     .use(remarkAlert, { legacyTitle: true })
     .use(remarkValidateLinks)
     .use(remarkBreaks)
@@ -97,6 +100,7 @@ export async function markdownToHtmlWithToc(
     })
     .use(rehypeKatex)
     .use(rehypeExpressiveCode)
+    .use(rehypeImageCaption)
     .use(rehypeVideo, { details: false })
     .use(rehypeStringify, { allowDangerousHtml: true })
     .process(markdown);

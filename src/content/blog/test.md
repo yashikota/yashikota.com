@@ -114,33 +114,22 @@ https://ja.wikipedia.org/wiki/UNIX%E5%93%B2%E5%AD%A6
 
 ## 画像
 
-```
-![altテキスト](https://画像のURL)
-```
-
-![altテキスト](https://storage.googleapis.com/zenn-user-upload/gxnwu3br83nsbqs873uibiy6fd43)
+![](https://storage.googleapis.com/zenn-user-upload/gxnwu3br83nsbqs873uibiy6fd43)
 
 ## 画像の横幅を指定する
 
-画像の表示が大きすぎる場合は、URL の後に半角スペースを空けて`=○○x`と記述すると、画像の幅を px 単位で指定できます。
+画像の表示が大きすぎる場合は、URL の後`#○○px`と記述すると、画像の幅を px 単位で指定できます。
 
 ```
-![altテキスト](https://画像のURL =250x)
+![altテキスト](https://画像のURL#250px)
 ```
 
-![altテキスト](https://storage.googleapis.com/zenn-user-upload/gxnwu3br83nsbqs873uibiy6fd43 =250x)
+![alt](https://storage.googleapis.com/zenn-user-upload/gxnwu3br83nsbqs873uibiy6fd43#250px)
 
 ## キャプションをつける
 
-画像のすぐ下の行に`*`で挟んだテキストを配置すると、キャプションのような見た目で表示されます。
-
-```
-![](https://画像のURL)
-*キャプション*
-```
-
-![](https://storage.googleapis.com/zenn-user-upload/gxnwu3br83nsbqs873uibiy6fd43 =250x)
-_captions_
+![alt](https://storage.googleapis.com/zenn-user-upload/gxnwu3br83nsbqs873uibiy6fd43#350px)
+*caption text*
 
 ## テーブル
 
