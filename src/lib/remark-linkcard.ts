@@ -1,27 +1,21 @@
 // Ref: https://github.com/okaryo/remark-link-card-plus
-import { createHash } from "node:crypto";
-import { access, mkdir, readdir, writeFile } from "node:fs/promises";
-import path from "node:path";
-import { fileTypeFromBuffer } from "file-type";
 import type { Html, Link, Root, Text } from "mdast";
-import client from "open-graph-scraper";
-import type { ErrorResult, OgObject } from "open-graph-scraper/types";
 import sanitizeHtml from "sanitize-html";
 import type { Plugin } from "unified";
 import { visit } from "unist-util-visit";
 
-const defaultSaveDirectory = "public";
-const defaultOutputDirectory = "/remark-link-card-plus/";
+// キャッシュの有効期限 (1時間)
+const CACHE_TTL = 3600000;
+const linkPreviewCache = new Map<string, any>();
 
 export type OgData = {
   title: string;
   description: string;
-  faviconUrl?: string;
-  imageUrl?: string;
+  favicon?: string;
+  image?: string;
 };
 
 type Options = {
-  cache?: boolean;
   shortenUrl?: boolean;
   thumbnailPosition?: "right" | "left";
   noThumbnail?: boolean;
@@ -39,7 +33,6 @@ type LinkCardData = {
 };
 
 const defaultOptions: Options = {
-  cache: false,
   shortenUrl: true,
   thumbnailPosition: "right",
   noThumbnail: false,
@@ -51,7 +44,11 @@ const remarkLinkCard: Plugin<[Options], Root> =
     const options = { ...defaultOptions, ...userOptions };
     const transformers: (() => Promise<void>)[] = [];
 
+    const urlsToProcess: { url: string; index: number }[] = [];
+
     const addTransformer = (url: string, index: number) => {
+      urlsToProcess.push({ url, index });
+
       transformers.push(async () => {
         const data = await getLinkCardData(new URL(url), options);
         const linkCardNode = createLinkCardNode(data, options);
@@ -128,6 +125,11 @@ const remarkLinkCard: Plugin<[Options], Root> =
     });
 
     try {
+      // プリフェッチ処理
+      for (const { url } of urlsToProcess) {
+        getOpenGraph(new URL(url)).catch(() => {});
+      }
+
       await Promise.all(transformers.map((t) => t()));
     } catch (error) {
       console.error(`[remark-link-card-plus] Error: ${error}`);
@@ -145,40 +147,42 @@ const isSameUrlValue = (a: string, b: string) => {
 };
 
 const getOpenGraph = async (targetUrl: URL) => {
+  const url = targetUrl.toString();
+  const cacheKey = url;
+  const cachedData = linkPreviewCache.get(cacheKey);
+  if (cachedData && cachedData.timestamp > Date.now() - CACHE_TTL) {
+    return cachedData.data;
+  }
+
   try {
-    const { result } = await client({
-      url: targetUrl.toString(),
-      timeout: 10000,
+    const apiUrl = `https://linkpreview-api.yashikota.workers.dev/preview?url=${encodeURIComponent(url)}`;
+    const response = await fetch(apiUrl);
+    if (!response.ok) {
+      throw new Error(`API request failed with status ${response.status}`);
+    }
+    const data = await response.json();
+
+    linkPreviewCache.set(cacheKey, {
+      data,
+      timestamp: Date.now(),
     });
-    return result;
+
+    return data;
   } catch (error) {
-    const ogError = error as ErrorResult | undefined;
     console.error(
-      `[remark-link-card-plus] Error: Failed to get the Open Graph data of ${ogError?.result?.requestUrl} due to ${ogError?.result?.error}.`,
+      `[remark-link-card-plus] Error: Failed to get the Open Graph data of ${targetUrl} due to ${error}.`,
     );
     return undefined;
   }
 };
 
-const getFaviconImageSrc = async (url: URL) => {
-  const faviconUrl = `https://www.google.com/s2/favicons?domain=${url.hostname}`;
-
-  const res = await fetch(faviconUrl, {
-    method: "HEAD",
-    signal: AbortSignal.timeout(10000),
-  });
-  if (!res.ok) return "";
-
-  return faviconUrl;
-};
-
 const getLinkCardData = async (url: URL, options: Options) => {
   const ogRawResult = await getOpenGraph(url);
   let ogData: OgData = {
-    title: ogRawResult?.ogTitle || "",
-    description: ogRawResult?.ogDescription || "",
-    faviconUrl: ogRawResult?.favicon,
-    imageUrl: extractOgImageUrl(ogRawResult),
+    title: ogRawResult?.title || "",
+    description: ogRawResult?.description || "",
+    favicon: ogRawResult?.favicon,
+    image: ogRawResult?.ogImage,
   };
 
   if (options.ogTransformer) {
@@ -187,8 +191,8 @@ const getLinkCardData = async (url: URL, options: Options) => {
 
   const title = ogData?.title || url.hostname;
   const description = ogData?.description || "";
-  const faviconUrl = await getFaviconUrl(url, ogData?.faviconUrl, options);
-  const ogImageUrl = await getOgImageUrl(ogData.imageUrl, options);
+  const faviconUrl = getFaviconUrl(ogData?.favicon, options);
+  const ogImageUrl = options.noThumbnail ? "" : ogData.image || "";
 
   let displayUrl = options.shortenUrl ? url.hostname : url.toString();
   try {
@@ -209,116 +213,9 @@ const getLinkCardData = async (url: URL, options: Options) => {
   };
 };
 
-const getFaviconUrl = async (
-  url: URL,
-  ogFavicon: string | undefined,
-  options: Options,
-) => {
+const getFaviconUrl = (ogFavicon: string | undefined, options: Options) => {
   if (options.noFavicon) return "";
-
-  let faviconUrl = ogFavicon;
-  if (faviconUrl && !URL.canParse(faviconUrl)) {
-    try {
-      faviconUrl = new URL(faviconUrl, url.origin).toString();
-    } catch (error) {
-      console.error(
-        `[remark-link-card-plus] Error: Failed to resolve favicon URL ${faviconUrl} relative to ${url}\n${error}`,
-      );
-      faviconUrl = undefined;
-    }
-  }
-
-  if (!faviconUrl) {
-    faviconUrl = await getFaviconImageSrc(url);
-  }
-
-  if (faviconUrl && options.cache) {
-    try {
-      const faviconFilename = await downloadImage(
-        new URL(faviconUrl),
-        path.join(process.cwd(), defaultSaveDirectory, defaultOutputDirectory),
-      );
-      faviconUrl = faviconFilename
-        ? path.join(defaultOutputDirectory, faviconFilename)
-        : faviconUrl;
-    } catch (error) {
-      console.error(
-        `[remark-link-card-plus] Error: Failed to download favicon from ${faviconUrl}\n ${error}`,
-      );
-    }
-  }
-
-  return faviconUrl;
-};
-
-const getOgImageUrl = async (
-  imageUrl: string | undefined,
-  options: Options,
-) => {
-  if (options.noThumbnail) return "";
-
-  const isValidUrl = imageUrl && imageUrl.length > 0 && URL.canParse(imageUrl);
-  if (!isValidUrl) return "";
-
-  let ogImageUrl = imageUrl;
-
-  if (ogImageUrl && options.cache) {
-    const imageFilename = await downloadImage(
-      new URL(ogImageUrl),
-      path.join(process.cwd(), defaultSaveDirectory, defaultOutputDirectory),
-    );
-    ogImageUrl = imageFilename
-      ? path.join(defaultOutputDirectory, imageFilename)
-      : ogImageUrl;
-  }
-
-  return ogImageUrl;
-};
-
-const extractOgImageUrl = (ogResult: OgObject | undefined) => {
-  return ogResult?.ogImage && ogResult.ogImage.length > 0
-    ? ogResult.ogImage[0].url
-    : undefined;
-};
-
-const downloadImage = async (url: URL, saveDirectory: string) => {
-  const hash = createHash("sha256").update(decodeURI(url.href)).digest("hex");
-
-  try {
-    const files = await readdir(saveDirectory);
-    const cachedFile = files.find((file) => file.startsWith(`${hash}.`));
-    if (cachedFile) {
-      return cachedFile;
-    }
-  } catch (_) {}
-
-  try {
-    const response = await fetch(url.href, {
-      signal: AbortSignal.timeout(10000),
-    });
-    const arrayBuffer = await response.arrayBuffer();
-    const buffer = Buffer.from(arrayBuffer);
-
-    const fileType = await fileTypeFromBuffer(buffer);
-    const extension = fileType ? `.${fileType.ext}` : ".png";
-
-    const filename = `${hash}${extension}`;
-    const saveFilePath = path.join(saveDirectory, filename);
-
-    try {
-      await access(saveDirectory);
-    } catch (_) {
-      await mkdir(saveDirectory, { recursive: true });
-    }
-
-    await writeFile(saveFilePath, buffer);
-    return filename;
-  } catch (error) {
-    console.error(
-      `[remark-link-card-plus] Error: Failed to download image from ${url.href}\n ${error}`,
-    );
-    return undefined;
-  }
+  return ogFavicon || "";
 };
 
 const className = (value: string) => {
