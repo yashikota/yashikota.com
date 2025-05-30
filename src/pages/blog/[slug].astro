@@ -4,21 +4,8 @@ import Base from "@/layouts/base.astro";
 import { UpdateIcon } from "@radix-ui/react-icons";
 
 import { Blog } from "@/components/blog";
-import { getBlogPosts } from "@/lib/blogPosts";
-
-import lib from "zenn-markdown-html";
-import "zenn-content-css";
-
-type MarkdownOptions = {
-  embedOrigin: string;
-};
-type MarkdownHtml = (text: string, options?: MarkdownOptions) => string;
-type MarkdownHtmlAtBuild = { default: MarkdownHtml };
-
-let markdownHtml: MarkdownHtml = lib;
-if (typeof lib !== "function") {
-  markdownHtml = (lib as MarkdownHtmlAtBuild).default;
-}
+import { markdownToHtmlWithToc } from "@/lib/markdown";
+import { getBlogPosts } from "@/lib/posts";
 
 interface Props {
   title: string;
@@ -26,6 +13,7 @@ interface Props {
   pubDate: string;
   updDate: string;
   body: string;
+  showToc: boolean;
 }
 
 export async function getStaticPaths() {
@@ -41,23 +29,21 @@ export async function getStaticPaths() {
         pubDate: blog.pubDate,
         updDate: blog.updDate,
         body: blog.body,
+        showToc: blog.showToc,
       },
     };
   });
 }
 
-const { title, tags, pubDate, updDate, body } = Astro.props;
-const content = markdownHtml(body, {
-  embedOrigin: "https://embed.zenn.studio",
-});
+const { title, tags, pubDate, updDate, body, showToc } = Astro.props;
+const { html: content, toc } = await markdownToHtmlWithToc(body);
 ---
 
 <Base pageTitle={title}>
-    <script src="https://embed.zenn.studio/js/listen-embed-event.js" is:inline
-    ></script>
-
     <div class="mx-auto text-center">
-        <div class="flex items-center justify-center text-lg text-muted-foreground">
+        <div
+            class="flex items-center justify-center text-lg text-muted-foreground"
+        >
             {pubDate}
             {updDate && <UpdateIcon className="ml-2 mr-0.5 h-3" />}
             {updDate}
@@ -67,13 +53,15 @@ const content = markdownHtml(body, {
         </h1>
         {
             tags.map((tag, index) => (
-                <a href={`https://yashikota.com/blog/tags/${tag.toLocaleLowerCase()}/`}>
-                <span
-                    data-key={index}
-                    class="mr-2 text-sky-400 hover:text-sky-700 text-lg"
+                <a
+                    href={`https://yashikota.com/blog/tags/${tag.toLocaleLowerCase()}/`}
                 >
-                    #{tag}
-                </span>
+                    <span
+                        data-key={index}
+                        class="mr-2 text-sky-400 hover:text-sky-700 text-lg"
+                    >
+                        #{tag}
+                    </span>
                 </a>
             ))
         }
@@ -81,5 +69,16 @@ const content = markdownHtml(body, {
 
     <div class="flex-1 border-b border-gray-500 mb-5"></div>
 
-    <Blog html={content} client:load />
+    {toc && showToc && (
+      <div class="w-full max-w-3xl mx-auto mb-8">
+        <div class="font-bold text-lg mb-2">目次</div>
+        <nav class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg p-4 text-sm">
+          <div class="toc prose prose-sm max-w-none" set:html={toc} />
+        </nav>
+      </div>
+    )}
+
+    <div class="w-full max-w-3xl mx-auto">
+      <Blog html={content} client:load />
+    </div>
 </Base>

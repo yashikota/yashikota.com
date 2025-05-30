@@ -5,13 +5,14 @@ updDate:
 isUnlisted: false
 category: tech
 tags: ["Go"]
+showToc: false
 ---
 
 ## 症状
 
 Gitを有効にした状態でDockerを用いてGoとAirで開発しているとdocker compose up時に以下のエラーが発生しました。  
 
-```txt
+```sh
 web-1  | error obtaining VCS status: exit status 128
 web-1  |        Use -buildvcs=false to disable VCS stamping.
 web-1  | failed to build, error: exit status 1

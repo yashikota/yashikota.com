@@ -5,6 +5,7 @@ updDate:
 isUnlisted: false
 category: life
 tags: ["授業感想"]
+showToc: false
 ---
 
 1年前期の授業が終わり成績が返ってきました。 初めてだらけで色々わからないことも多かったのですが、適当に感想をまとめたいと思います。 時間割順です。

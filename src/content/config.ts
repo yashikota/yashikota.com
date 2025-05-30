@@ -9,6 +9,7 @@ const blogCollection = defineCollection({
     isUnlisted: z.boolean(),
     category: z.enum(["life", "tech"]),
     tags: z.array(z.string()),
+    showToc: z.boolean(),
   }),
 });
 

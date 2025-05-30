@@ -5,6 +5,7 @@ updDate:
 isUnlisted: false
 category: tech
 tags: ["github cli"]
+showToc: false
 ---
 
 GitHubのリポジトリが `yashikota/test` だとすると  

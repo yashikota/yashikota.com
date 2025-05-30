@@ -5,6 +5,7 @@ updDate:
 isUnlisted: false
 category: tech
 tags: ["llm"]
+showToc: false
 ---
 
 Llama3 8Bに対して日本語データで継続事前学習を行った「Llama3 Youko 8B」をOllamaで使ってみました。  

@@ -1,7 +1,7 @@
 ---
 import { BlogComponent } from "@/components/shadcn/blog";
 import Base from "@/layouts/base.astro";
-import { getAllPosts } from "@/lib/allPosts";
+import { getAllPosts } from "@/lib/posts";
 import type { Post } from "@/types/post";
 
 const posts = await getAllPosts();

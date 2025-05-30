@@ -5,14 +5,17 @@ updDate:
 isUnlisted: false
 category: tech
 tags: ["ゲーム"]
+showToc: false
 ---
 
 Minecraftサーバーに入退出した人を検知してDiscordに通知するbotを作成したのでそのプログラムを解説していきます。  
-リポジトリは
-[こちら](https://github.com/yashikota/minecraft-server-bot)
-です。  
+
+https://github.com/yashikota/minecraft-server-bot
+
 なおMinecraftサーバーの建て方は
-[こちらの記事](https://yashikota.com/blog/minecraft-server)
+
+https://yashikota.com/blog/minecraft-server
+
 で解説しています。  
 
 ## ログを解析する
@@ -100,4 +103,4 @@ async def check_active_user():
 
 動作するとこのような感じです。  
 
-![bot](/static/images/minecraft-bot.png)
+![bot](/images/minecraft-bot.png)

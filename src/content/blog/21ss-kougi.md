@@ -5,6 +5,7 @@ updDate:
 isUnlisted: false
 category: life
 tags: ["授業感想"]
+showToc: true
 ---
 
 1年の授業が終わり、成績が返ってきました。適当に授業を受けた感想をだらだら書いていきます。時間割順です。  

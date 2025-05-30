@@ -39,36 +39,6 @@
 
     --radius: 0.5rem;
   }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-  }
 }
 
 @layer base {
@@ -79,4 +49,159 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.expressive-code {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+
+.expressive-code .frame.is-terminal .header::before {
+  background-image: linear-gradient(
+    to right,
+    #c95b5b 30%,
+    30%,
+    #e0b054 70%,
+    70%,
+    #62b162
+  );
+  opacity: 0.8 !important;
+}
+
+/* 見出しジャンプ時にヘッダーで隠れないようにする */
+h1[id],
+h2[id],
+h3[id],
+h4[id],
+h5[id],
+h6[id] {
+  scroll-margin-top: 4rem;
+  position: relative;
+}
+
+/* 見出しリンクコピーボタン */
+.markdown-copy-link-btn {
+  display: none;
+  vertical-align: middle;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  margin-left: 0.5em;
+}
+
+h1:hover .markdown-copy-link-btn,
+h2:hover .markdown-copy-link-btn,
+h3:hover .markdown-copy-link-btn,
+h4:hover .markdown-copy-link-btn,
+h5:hover .markdown-copy-link-btn,
+h6:hover .markdown-copy-link-btn,
+h1:focus-within .markdown-copy-link-btn,
+h2:focus-within .markdown-copy-link-btn,
+h3:focus-within .markdown-copy-link-btn,
+h4:focus-within .markdown-copy-link-btn,
+h5:focus-within .markdown-copy-link-btn,
+h6:focus-within .markdown-copy-link-btn {
+  display: inline-flex;
+}
+
+.markdown-copy-link-btn svg {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+/* リンクカード */
+.remark-link-card-plus__container {
+  @apply mb-4;
+}
+
+.remark-link-card-plus__card {
+  @apply h-32 flex bg-white overflow-hidden rounded-xl border border-slate-300 transition-colors !no-underline;
+}
+
+.remark-link-card-plus__card:hover {
+  @apply shadow-lg;
+}
+
+.remark-link-card-plus__main {
+  @apply flex flex-col flex-1 p-4;
+}
+
+.remark-link-card-plus__title {
+  @apply text-lg font-semibold leading-6 line-clamp-2 text-gray-900;
+}
+
+.remark-link-card-plus__description {
+  @apply mt-1 text-sm text-gray-500 line-clamp-1;
+}
+
+.remark-link-card-plus__meta {
+  @apply flex items-center mt-auto;
+}
+
+.remark-link-card-plus__favicon {
+  @apply !my-0 mr-1 h-4 w-4;
+}
+
+.remark-link-card-plus__url {
+  @apply text-xs text-gray-600;
+}
+
+.remark-link-card-plus__thumbnail {
+  @apply h-32 w-1/3 md:max-w-64;
+}
+
+.remark-link-card-plus__image {
+  @apply h-full w-full !my-0 object-cover;
+}
+
+figcaption {
+  @apply text-center;
+}
+
+figure img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* インラインコード */
+.prose code::before,
+.prose code::after {
+  content: none !important;
+}
+
+.prose code {
+  background-color: #eaeaea;
+  color: #363636;
+  border-radius: 0.3em;
+  padding: 0.2em 0.4em;
+  font-size: 0.95em;
+  margin-left: 0.2em;
+  margin-right: 0.2em;
+}
+
+/* リストの行間を詰める */
+.prose ul,
+.prose ol {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.prose li {
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+}
+
+/* 長いURLの折り返し有効化 */
+.prose a {
+  word-wrap: break-word;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+/* ヘッダーリンク用スタイル */
+header a:hover span {
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }

@@ -5,6 +5,7 @@ updDate:
 isUnlisted: false
 category: life
 tags: ["Immersed"]
+showToc: false
 ---
 
 https://www.youtube.com/watch?v=1TLC2tdImZ0&t=104s

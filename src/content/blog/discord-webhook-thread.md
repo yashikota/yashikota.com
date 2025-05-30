@@ -5,6 +5,7 @@ updDate:
 isUnlisted: false
 category: life
 tags: ["Discord"]
+showToc: false
 ---
 
 DiscordにはWebhookでメッセージを送信できる機能がありますが、現時点でのUIではスレッドが選択できません。  

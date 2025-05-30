@@ -5,6 +5,7 @@ updDate:
 isUnlisted: false
 category: tech
 tags: ["技術解説"]
+showToc: false
 ---
 
 YOLOv5で大量にアノテーションする必要が出てきたので楽をするために半自動アノテーションツールを作成しました。  

@@ -5,6 +5,7 @@ updDate:
 isUnlisted: false
 category: tech
 tags: ["kindle"]
+showToc: false
 ---
 
 ## はじめに

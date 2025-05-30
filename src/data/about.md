@@ -12,11 +12,11 @@ https://lapras.com/public/kota
 
 ### MultiMedia
 
-コンピュータビジョン(CV)では現在3Dでの利活用に注力しており、vSLAMやSfMなどに取り組んでいます。  
-コンピュータグラフィックス(3DCG)ではOpenGLを用いたゲーム制作やC++での自作レイトレーシングレンダラー、WebGLを用いたウェブサイトの作成などを行っています。  
+コンピュータビジョン(CV)は画像の加工や画像を元にした処理など色々活用してきました。最近では2枚の画像間の類似度を推定するためにCVを利活用してたりしました。  
+コンピュータグラフィックス(3DCG)では、特にゲームグラフィックスに興味を持っていて、書籍などで勉強していたりします。いつかはオリジナルレンダラーを作ってみたいです。  
 画像や動画のコーデックにも興味を持っており、仕組みの調査や実際に自作画像フォーマットの作成なども行っています。  
-XRは最近興味を持っている分野であり、ARやVRにとどまらずMRやDRにも手を出して取り組んでいる最中です。  
-ゲーム開発にも興味を持っており、Unityで開発を行っています。  
+XRは最近興味を持っている分野であり、特にARを用いた人間の記憶補助管理システムを作ろうと取り組んでいる最中です。  
+ゲーム開発にも興味を持っており、Unityでゲーム作ったりしてます。  
 
 ### Backend
 
@@ -41,7 +41,12 @@ Webフロントエンドについても全般的な知識を持っており、�
 
 2年ほど主に授業で使用。これまでに
 
-- 画像の可逆圧縮プログラム <https://github.com/yashikota/rle> <https://github.com/yashikota/mtf>
+- 画像の可逆圧縮プログラム
+
+https://github.com/yashikota/rle
+
+https://github.com/yashikota/mtf
+
 - αβ法による五目並べAI
 - 円周率を多倍長数で求めるプログラム
 - 字句解析と構文解釈による電卓プログラム
@@ -53,23 +58,42 @@ Webフロントエンドについても全般的な知識を持っており、�
 
 3年ほど主に個人開発で使用。これまでに
 
-- 論文翻訳アプリ <https://github.com/yashikota/leadable>
-- シラバスのスクレイピング <https://github.com/yashikota/syllabus>
-- バーコード生成ツール <https://github.com/yashikota/jancode>
-- 4bitCPUのアーキテクチャTD4のエミュレーター <https://github.com/yashikota/td4-py>
+- 論文翻訳アプリ
+
+https://github.com/yashikota/leadable
+
+- シラバス検索・閲覧アプリ
+
+https://github.com/yashikota/syllabus
+
+- バーコード生成ツール
+
+https://github.com/yashikota/jancode
+
+- 4bitCPUのアーキテクチャTD4のエミュレーター
+
+https://github.com/yashikota/td4-py
 
 などを開発。  
 
 最初は何でもかんでもPythonで書いていたんですが、型とか環境構築とかうーんとなって若干離れ気味になったんですが、最近もLLMを使ったアプリケーションとかを開発するとなるとPythonが必須なので逃れられないです😁  
-でもuvとかruffみたいなツールが出てきてだいぶ不満は無くなってきたので開発元には大感謝です🙏. 
+でもuvとかruffみたいなツールが出てきてだいぶ不満は無くなってきたので開発元には大感謝です🙏  
 
 #### JavaScript/Typscript
 
 3年ほど主に個人開発/インターンで使用。これまでに
 
-- シラバス閲覧アプリ <https://syllabus.naist.yashikota.com>
-- このサイト <https://github.com/yashikota/yashikota.com>
-- 論文翻訳アプリのフロントエンド <https://github.com/yashikota/leadable>
+- シラバス検索・閲覧アプリ
+
+https://syllabus.naist.yashikota.com
+
+- このサイト
+
+https://github.com/yashikota/yashikota.com
+
+- 論文翻訳アプリのフロントエンド
+
+https://github.com/yashikota/leadable
 
 などなど色々なアプリケーションで使用。  
 React/Next.js/Astro/Tailwind/shadcn/uiあたりがさわれます。  
@@ -80,8 +104,19 @@ React/Next.js/Astro/Tailwind/shadcn/uiあたりがさわれます。
 
 1年ほど主に個人開発/インターンで使用。これまでに
 
-- バックエンド <https://github.com/yashikota/chronotes> <https://github.com/yashikota/scene-hunter-backend>
-- 細々としたCLIツール <https://github.com/yashikota/genenv> <https://github.com/yashikota/solo-cleaner> <https://github.com/yashikota/camcast>
+- バックエンド
+
+https://github.com/yashikota/chronotes
+
+https://github.com/yashikota/scene-hunter-backend
+
+- 細々としたCLIツール
+
+https://github.com/yashikota/genenv
+
+https://github.com/yashikota/solo-cleaner
+
+https://github.com/yashikota/camcast
 
 などを開発。  
 

@@ -5,6 +5,7 @@ updDate:
 isUnlisted: false
 category: life
 tags: ["ガジェット", "雑記"]
+showToc: false
 ---
 
 前まで使ってたスマホが急に壊れてしまったので、大急ぎで新しいスマホ買いました。  

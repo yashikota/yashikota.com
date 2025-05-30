@@ -1,4 +1,4 @@
-import { getAllPosts } from "@/lib/allPosts";
+import { getAllPosts } from "@/lib/posts";
 import rss from "@astrojs/rss";
 
 export async function GET() {
