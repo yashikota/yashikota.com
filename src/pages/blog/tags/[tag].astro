@@ -3,7 +3,7 @@ import Base from "@/layouts/base.astro";
 
 import { BlogCardComponent } from "@/components/shadcn/card";
 
-import { getAllPosts } from "@/lib/allPosts";
+import { getAllPosts } from "@/lib/posts";
 
 import { HomeIcon } from "@radix-ui/react-icons";
 
@@ -52,7 +52,7 @@ const getBackLink = () => {
                     <div class="xl:w-4/5 mx-auto">
                         <BlogCardComponent
                             title={post.title}
-                            slug={post.slug}
+                            slug={post.slug || ""}
                             url={post.url}
                             pubDate={post.pubDate}
                             updDate={post.updDate}

@@ -4,8 +4,8 @@ import Base from "@/layouts/base.astro";
 import { UpdateIcon } from "@radix-ui/react-icons";
 
 import { Blog } from "@/components/blog";
-import { getBlogPosts } from "@/lib/blogPosts";
 import { markdownToHtmlWithToc } from "@/lib/markdown";
+import { getBlogPosts } from "@/lib/posts";
 
 interface Props {
   title: string;
