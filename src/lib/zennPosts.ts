@@ -19,16 +19,13 @@ async function fetchZennTopics(url: string) {
   const res = await fetch(url);
   const html = await res.text();
 
-  const regex = /<a class=".*?View_topicName.*?">(.*?)<\/div>/g;
+  const regex = /<div class="TopicList_name__[^"]*">(.*?)<\/div>/g;
   const tags = [];
   let match: RegExpExecArray | null;
-  while (true) {
-    match = regex.exec(html);
-    if (match === null) break;
+  while ((match = regex.exec(html)) !== null) {
     tags.push(match[1]);
   }
-
-  return tags.slice(0, -1);
+  return tags;
 }
 
 export async function getZennPosts() {
