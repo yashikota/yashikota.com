@@ -3,11 +3,10 @@
 https://lapras.com/public/kota
 
 ```xml
-<Skills> ::= <MultiMedia> <Backend> <System> <Other>
-<MultiMedia> ::= <CV> <3DCG> <Codec> <XR> <Game>
-<Backend> ::= <WebAPI> <DB> <Cloud> <DevOps> <CICD>
-<System> ::= <CPU> <GPU> <Compiler>
-<Other> ::= <Security> <AI> <WebFrontend> <Languages>
+<Skills> ::= <Programming> <Astrophotography> <Cooking>
+<Programming> ::= <Python> <Typescript> <Go> <Backend> <Other>
+<Backend> ::= <Cloud> <DevOps> <CICD> <DataBase>
+<Other> ::= <WebFrontend> <Security> <LLM> <SystemArchitecture>
 ```
 
 ### MultiMedia
