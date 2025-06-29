@@ -43,7 +43,18 @@ export async function markdownToHtmlWithToc(
     .use(remarkYoutube)
     .use(remarkLinkCard, { cache: true, shortenUrl: true })
     .use(remarkRehype, { allowDangerousHtml: true })
-    .use(rehypeExternalLinks, { target: "_blank", rel: ["noreferrer"] })
+    .use(rehypeExternalLinks, { 
+      target: "_blank", 
+      rel: (node) => {
+        const url = node.properties?.href;
+        // Don't add noreferrer for yashikota.com links
+        if (url && typeof url === "string" && url.endsWith("yashikota.com")) {
+          return [];
+        }
+        // Add noreferrer for all other external links
+        return ["noreferrer"];
+      }
+    })
     .use(rehypeSlug)
     .use(rehypeToc, {
       headings: ["h2", "h3"],
