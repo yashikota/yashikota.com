@@ -6,6 +6,7 @@ import rehypeImageCaption from "rehype-image-caption";
 import rehypeKatex from "rehype-katex";
 import rehypeSlug from "rehype-slug";
 import rehypeStringify from "rehype-stringify";
+import rehypeExternalLinks from "rehype-external-links";
 import rehypeToc from "rehype-toc";
 import rehypeVideo from "rehype-video";
 import remarkBreaks from "remark-breaks";
@@ -42,6 +43,7 @@ export async function markdownToHtmlWithToc(
     .use(remarkYoutube)
     .use(remarkLinkCard, { cache: true, shortenUrl: true })
     .use(remarkRehype, { allowDangerousHtml: true })
+    .use(rehypeExternalLinks, { target: "_blank", rel: ["noreferrer"] })
     .use(rehypeSlug)
     .use(rehypeToc, {
       headings: ["h2", "h3"],

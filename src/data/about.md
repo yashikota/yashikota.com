@@ -147,6 +147,29 @@ Lint/Format/Test/Deploy/Releaseを回すのはもちろん、スクレイピン�
 を使用。  
 個人的にはGoogle Cloud推しです。なんとなくAWSより操作がわかりやすいのとCloud Runが有能すぎるので😂  
 
+## OSS Contributions
+
+### [aquaproj/aqua-registry](https://github.com/aquaproj/aqua-registry)
+
+- feat(aws/aws-sam-cli): scaffold aws/aws-sam-cli ([#33349](https://github.com/aquaproj/aqua-registry/pull/33349))
+`aws-sam-cli`の`aqua`でのインストールに対応
+
+- Add theseus-rs/postgresql-binaries ([#33390](https://github.com/aquaproj/aqua-registry/pull/33390))
+`postgresql-binaries`の`aqua`でのインストールに対応
+
+### [okaryo/remark-link-card-plus](https://github.com/okaryo/remark-link-card-plus)
+
+- Add `ignoreExtensions` options to exclude link cards ([#48](https://github.com/okaryo/remark-link-card-plus/pull/48))
+特定の拡張子のリンクをリンクカードに変換しないオプションを追加
+
+### [jdx/mise](https://github.com/jdx/mise)
+
+- feat(registry): update aws-sam backends to include aqua source ([#5461](https://github.com/jdx/mise/pull/5461))
+`aqua:aws-sam-cli` のインストールに対応
+
+- feat(registry): add PostgreSQL aqua backend and aliases ([#5462](https://github.com/jdx/mise/pull/5462))
+`aqua:psql` のインストールに対応
+
 ## Activities
 
 - [Security MiniCamp Online 2022](https://www.security-camp.or.jp/minicamp/online2022.html)
@@ -218,4 +241,15 @@ Lint/Format/Test/Deploy/Releaseを回すのはもちろん、スクレイピン�
 
 ## PGP Public Key
 
-[yashikota.asc](https://yashikota.com/yashikota.asc)  
+```txt
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+
+mDMEZNGsjhYJKwYBBAHaRw8BAQdAJZaBFcvtQYMzMRwUmLwWXJZBvLqwPgF4P5q0
+haD+2qq0MmtvdGEgPDUyNDAzNjg4K3lhc2hpa290YUB1c2Vycy5ub3JlcGx5Lmdp
+dGh1Yi5jb20+iJAEExYIADgWIQTULScBToPRsTfnRC5/HZb2+DPwLwUCZNGsjgIb
+AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgAAKCRB/HZb2+DPwL2TmAQDadsJv4tub
+wPbV8cAQwhokpmBscRUj4dfafzoqudhLsgD/a3B+0CH5ag5CIRT6p6+J9CRtI9D4
+jVRxL3LyVNuzrw0=
+=b/8T
+-----END PGP PUBLIC KEY BLOCK-----
+```
