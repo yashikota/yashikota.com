@@ -167,9 +167,6 @@ Lint/Format/Test/Deploy/Releaseを回すのはもちろん、スクレイピン�
 - feat(registry): update aws-sam backends to include aqua source ([#5461](https://github.com/jdx/mise/pull/5461))
 `aqua:aws-sam-cli` のインストールに対応
 
-- feat(registry): add PostgreSQL aqua backend and aliases ([#5462](https://github.com/jdx/mise/pull/5462))
-`aqua:psql` のインストールに対応
-
 ## Activities
 
 - [Security MiniCamp Online 2022](https://www.security-camp.or.jp/minicamp/online2022.html)
