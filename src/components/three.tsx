@@ -92,8 +92,6 @@ function Three() {
     { text: "Blog", url: "https://yashikota.com/blog" },
     { text: "Slides", url: "https://yashikota.com/slides" },
     { text: "Works", url: "https://yashikota.com/works" },
-    { text: "Games", url: "https://yashikota.com/games" },
-    { text: "Gallery", url: "https://yashikota.com/gallery" },
     { text: "About", url: "https://yashikota.com/about" },
   ];
 

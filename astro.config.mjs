@@ -32,13 +32,5 @@ export default defineConfig({
       status: 301,
       destination: "/works",
     },
-    "/game": {
-      status: 301,
-      destination: "/games",
-    },
-    "/galleries": {
-      status: 301,
-      destination: "/gallery",
-    },
   },
 });

@@ -39,11 +39,11 @@ export function ProfileComponent() {
         <span>/</span>
         <a
           className="text-[#3182ce]"
-          href="https://zenn.dev/yashikota"
+          href="https://www.instagram.com/insta.kota.dev"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Zenn
+          Instagram
         </a>
       </div>
       <p className="mt-4 text-center">
