@@ -6,7 +6,8 @@
     "github": ["https://github.com/yashikota/chronotes"],
     "url": [],
     "date": "2024/11",
-    "tags": ["Go", "Next.js", "Docker", "PostgreSQL", "Tailwind", "Gemini"]
+    "tags": ["Go", "Next.js", "Docker", "PostgreSQL", "Tailwind", "Gemini"],
+    "path": "chronotes"
   },
   {
     "title": "Scene Hunter",
@@ -15,7 +16,8 @@
     "github": ["https://github.com/yashikota/scene-hunter-backend"],
     "url": [],
     "date": "2024/08",
-    "tags": ["Python", "React", "Go", "Gemini"]
+    "tags": ["Python", "React", "Go", "Gemini"],
+    "path": "scene-hunter"
   },
   {
     "title": "シラバスアプリ",
@@ -31,7 +33,8 @@
       "React Router v7",
       "shadcn/ui",
       "Cloudflare"
-    ]
+    ],
+    "path": "syllabus-naist"
   },
   {
     "title": "OITシラバスアプリ",
@@ -44,7 +47,8 @@
     ],
     "url": ["https://syllabus.oit.yashikota.com"],
     "date": "2022/02 ~ 2022/04",
-    "tags": ["React", "Next.js", "Python", "TypeScript", "Github Actions"]
+    "tags": ["React", "Next.js", "Python", "TypeScript", "Github Actions"],
+    "path": "syllabus-oit"
   },
   {
     "title": "yashikota.com",
@@ -53,7 +57,8 @@
     "github": ["https://github.com/yashikota/yashikota.com"],
     "url": ["https://yashikota.com"],
     "date": "2024/01 ~ 2024/03",
-    "tags": ["Astro", "shadcn/ui", "Bun"]
+    "tags": ["Astro", "shadcn/ui", "Bun"],
+    "path": "yashikota-com"
   },
   {
     "title": "4bitCPU エミュレーター",
@@ -62,7 +67,8 @@
     "github": ["https://github.com/yashikota/td4-py"],
     "url": ["https://pypi.org/project/td4"],
     "date": "2023/03",
-    "tags": ["CPU", "Python"]
+    "tags": ["CPU", "Python"],
+    "path": "td4-cpu-emulator"
   },
   {
     "title": "OIT Magic",
@@ -71,7 +77,8 @@
     "github": ["https://github.com/yashikota/oit-magic"],
     "url": [],
     "date": "2023/10 ~ 2023/11",
-    "tags": ["Unity", "C Sharp", "Python", "MediaPipe"]
+    "tags": ["Unity", "C Sharp", "Python", "MediaPipe"],
+    "path": "oit-magic"
   },
   {
     "title": "FunBook",
@@ -83,7 +90,8 @@
     ],
     "url": ["https://funbook.pages.dev"],
     "date": "2023/04",
-    "tags": ["React", "Go", "ChatGPT API"]
+    "tags": ["React", "Go", "ChatGPT API"],
+    "path": "funbook"
   },
   {
     "title": "JANCode Generator",
@@ -95,6 +103,7 @@
       "https://zenn.dev/yashikota/articles/3d1f38a5972a5b"
     ],
     "date": "2023/02",
-    "tags": ["Python", "JANCode"]
+    "tags": ["Python", "JANCode"],
+    "path": "jancode-generator"
   }
 ]

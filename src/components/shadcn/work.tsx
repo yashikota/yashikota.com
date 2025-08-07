@@ -16,15 +16,14 @@ interface WorkComponentProps {
   github: string[];
   tags: string[];
   url: string[];
+  path: string;
 }
 
 export function WorkComponent(props: WorkComponentProps) {
   return (
     <Card className="flex flex-col hover:bg-gray-100 transition-colors">
       <a
-        href={props.url[0] ? `${props.url[0]}/?source=works` : undefined}
-        target="_blank"
-        rel="noreferrer noopener"
+        href={`/works/${props.path}`}
       >
         <CardContent className="p-1 flex justify-center">
           <img
@@ -67,9 +66,11 @@ export function WorkComponent(props: WorkComponentProps) {
         <CardTitle className="text-lg">{props.title}</CardTitle>
       </CardHeader>
       <CardContent className="pt-0 pb-2">
-        <CardDescription className="text-sm text-muted-foreground">
-          {props.description}
-        </CardDescription>
+        <a href={`/works/${props.path}`}>
+          <CardDescription className="text-sm text-muted-foreground">
+            {props.description}
+          </CardDescription>
+        </a>
         <CardDescription className="flex items-center flex-wrap mt-2">
           {props.tags.map((tag) => (
             <span
