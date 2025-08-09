@@ -1,27 +1,16 @@
 ---
 import Base from "@/layouts/base.astro";
-
-import { WorkComponent } from "@/components/shadcn/work";
-
+import { Navigation } from "@/components/shadcn/navigation";
+import { WorksPage } from "@/components/shadcn/works-page";
 import { getAllWorks } from "@/lib/works";
+
+// Get works data
 const works = await getAllWorks();
 ---
 
-<Base pageTitle="Works">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {
-            works.map((work) => (
-                <WorkComponent
-                    thumbnail={work.image}
-                    title={work.title}
-                    date={work.date}
-                    description={work.description}
-                    tags={work.tags}
-                    url={work.url}
-                    github={work.github}
-                    path={work.path}
-                />
-            ))
-        }
+<Base>
+    <div>
+        <Navigation client:load currentTab="works" />
+        <WorksPage client:load works={works} />
     </div>
 </Base>

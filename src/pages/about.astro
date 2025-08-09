@@ -2,21 +2,19 @@
 import fs from "node:fs";
 import path from "node:path";
 import Base from "@/layouts/base.astro";
-
-import { Blog } from "@/components/blog";
-import { ProfileComponent } from "@/components/shadcn/profile";
+import { Navigation } from "@/components/shadcn/navigation";
+import { AboutPage } from "@/components/shadcn/about-page";
 import { markdownToHtmlWithToc } from "@/lib/markdown";
 
 // Read the about.md file
 const aboutMdPath = path.join(process.cwd(), "src", "data", "about.md");
 const aboutMd = fs.readFileSync(aboutMdPath, "utf-8");
-const { html: content, toc } = await markdownToHtmlWithToc(aboutMd);
+const { html: aboutContent } = await markdownToHtmlWithToc(aboutMd);
 ---
 
-<Base pageTitle="About">
-    <ProfileComponent />
-
-    <div class="w-full max-w-3xl mx-auto">
-      <Blog html={content} client:load />
+<Base>
+    <div>
+        <Navigation client:load currentTab="about" />
+        <AboutPage client:load aboutContent={aboutContent} />
     </div>
 </Base>

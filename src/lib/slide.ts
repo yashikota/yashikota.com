@@ -8,6 +8,8 @@ interface Slide {
   pages: number;
 }
 
+export type { Slide };
+
 export async function getAllSlides() {
   const slides = [...Slides] as Slide[];
   slides.sort((a, b) => {

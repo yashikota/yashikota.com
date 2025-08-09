@@ -1,9 +1,10 @@
 ---
-import { BlogComponent } from "@/components/shadcn/blog";
 import Base from "@/layouts/base.astro";
+import { Navigation } from "@/components/shadcn/navigation";
+import { BlogPage } from "@/components/shadcn/blog-page";
 import { getAllPosts } from "@/lib/posts";
-import type { Post } from "@/types/post";
 
+// Get posts data
 const posts = await getAllPosts();
 const techPosts = posts.filter(
   (post) => post.category === "tech" && !post.isUnlisted,
@@ -13,12 +14,9 @@ const lifePosts = posts.filter(
 );
 ---
 
-<Base pageTitle="Blog">
+<Base>
     <div>
-        <BlogComponent
-            client:load
-            techPosts={techPosts as Post[]}
-            lifePosts={lifePosts as Post[]}
-        />
+        <Navigation client:load currentTab="blog" />
+        <BlogPage client:load techPosts={techPosts} lifePosts={lifePosts} />
     </div>
 </Base>

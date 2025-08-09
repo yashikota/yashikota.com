@@ -1,9 +1,22 @@
 ---
 import Base from "@/layouts/base.astro";
+import { Navigation } from "@/components/shadcn/navigation";
+import { BlogPage } from "@/components/shadcn/blog-page";
+import { getAllPosts } from "@/lib/posts";
 
-import { ThreeCanvas } from "@/components/three";
+// Get posts data
+const posts = await getAllPosts();
+const techPosts = posts.filter(
+  (post) => post.category === "tech" && !post.isUnlisted,
+);
+const lifePosts = posts.filter(
+  (post) => post.category === "life" && !post.isUnlisted,
+);
 ---
 
 <Base>
-
-<ThreeCanvas client:load />
+    <div>
+        <Navigation client:load currentTab="blog" />
+        <BlogPage client:load techPosts={techPosts} lifePosts={lifePosts} />
+    </div>
+</Base>

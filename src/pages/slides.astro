@@ -1,24 +1,16 @@
 ---
 import Base from "@/layouts/base.astro";
-
-import { SlideComponent } from "@/components/shadcn/slide";
-
+import { Navigation } from "@/components/shadcn/navigation";
+import { SlidesPage } from "@/components/shadcn/slides-page";
 import { getAllSlides } from "@/lib/slide";
+
+// Get slides data
 const slides = await getAllSlides();
 ---
 
-<Base pageTitle="Slides">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {
-            slides.map((slide) => (
-                <SlideComponent
-                    thumbnail={"/slides/" + slide.path + "/001.png"}
-                    title={slide.title}
-                    pubDate={slide.pubDate}
-                    tags={slide.tags}
-                    url={"/slides/" + slide.path}
-                />
-            ))
-        }
+<Base>
+    <div>
+        <Navigation client:load currentTab="slides" />
+        <SlidesPage client:load slides={slides} />
     </div>
 </Base>

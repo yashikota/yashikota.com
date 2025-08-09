@@ -20,6 +20,10 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
   redirects: {
+    "/": {
+      status: 301,
+      destination: "/blog",
+    },
     "/blogs": {
       status: 301,
       destination: "/blog",
