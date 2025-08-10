@@ -1,5 +1,5 @@
-import { ProfileComponent } from "./profile";
 import { Blog } from "@/components/blog";
+import { ProfileComponent } from "./profile";
 
 interface AboutPageProps {
   aboutContent: string;

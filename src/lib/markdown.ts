@@ -2,11 +2,11 @@ import { toHtml } from "hast-util-to-html";
 import { h } from "hastscript";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeExpressiveCode from "rehype-expressive-code";
+import rehypeExternalLinks from "rehype-external-links";
 import rehypeImageCaption from "rehype-image-caption";
 import rehypeKatex from "rehype-katex";
 import rehypeSlug from "rehype-slug";
 import rehypeStringify from "rehype-stringify";
-import rehypeExternalLinks from "rehype-external-links";
 import rehypeToc from "rehype-toc";
 import rehypeVideo from "rehype-video";
 import remarkBreaks from "remark-breaks";
@@ -43,8 +43,8 @@ export async function markdownToHtmlWithToc(
     .use(remarkYoutube)
     .use(remarkLinkCard, { cache: true, shortenUrl: true })
     .use(remarkRehype, { allowDangerousHtml: true })
-    .use(rehypeExternalLinks, { 
-      target: "_blank", 
+    .use(rehypeExternalLinks, {
+      target: "_blank",
       rel: (node) => {
         const url = node.properties?.href;
         // Don't add noreferrer for yashikota.com links
@@ -53,7 +53,7 @@ export async function markdownToHtmlWithToc(
         }
         // Add noreferrer for all other external links
         return ["noreferrer"];
-      }
+      },
     })
     .use(rehypeSlug)
     .use(rehypeToc, {

@@ -8,7 +8,6 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "deploy": "bun run build && wrangler deploy",
-    "astro": "astro",
     "check": "biome check --write ."
   },
   "dependencies": {

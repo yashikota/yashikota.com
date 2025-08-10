@@ -4,8 +4,8 @@ export interface Post {
   updDate?: string | null;
   isUnlisted?: boolean;
   category?: "tech" | "life";
-  tags?: string[];
-  icon?: string;
+  tags: string[];
   slug: string;
   url: string;
+  icon?: string;
 }

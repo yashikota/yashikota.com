@@ -55,9 +55,9 @@ const getBackLink = () => {
                             slug={post.slug || ""}
                             url={post.url}
                             pubDate={post.pubDate}
-                            updDate={post.updDate}
+                            updDate={post.updDate ?? null}
                             tags={post.tags}
-                            icon={post.icon}
+                            icon={post.icon ?? ""}
                         />
                     </div>
                 ))

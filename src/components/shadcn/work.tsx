@@ -22,9 +22,7 @@ interface WorkComponentProps {
 export function WorkComponent(props: WorkComponentProps) {
   return (
     <Card className="flex flex-col hover:bg-gray-100 transition-colors">
-      <a
-        href={`/works/${props.path}`}
-      >
+      <a href={`/works/${props.path}`}>
         <CardContent className="p-1 flex justify-center">
           <img
             src={props.thumbnail}

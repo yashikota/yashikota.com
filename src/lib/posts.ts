@@ -1,16 +1,9 @@
 import { getCollection } from "astro:content";
 import ExternalPostsData from "@/data/posts.json";
+import type { Post } from "@/types/post";
 import { getFaviconUrl } from "./utils";
 
-export interface Post {
-  title: string;
-  pubDate: string;
-  updDate: string | null;
-  isUnlisted?: boolean;
-  category?: string;
-  tags: string[];
-  slug?: string;
-  url: string;
+interface ExtendedPost extends Post {
   icon: string;
   body?: string;
   showToc?: boolean;
@@ -31,7 +24,7 @@ interface ZennArticle {
   path: string;
 }
 
-export async function getBlogPosts() {
+export async function getBlogPosts(): Promise<ExtendedPost[]> {
   const blogs = await getCollection("blog");
   return blogs.map((blog) => ({
     title: blog.data.title,
@@ -41,7 +34,7 @@ export async function getBlogPosts() {
       : null,
     isUnlisted: blog.data.isUnlisted,
     category: blog.data.category,
-    tags: blog.data.tags,
+    tags: blog.data.tags || [],
     slug: blog.slug,
     body: blog.body,
     url: `/blog/${blog.slug}`,
@@ -50,10 +43,19 @@ export async function getBlogPosts() {
   }));
 }
 
-export async function getExternalPosts() {
+interface ExternalPost {
+  title: string;
+  pubDate: string;
+  updDate: string | null;
+  tags: string[];
+  url: string;
+}
+
+export async function getExternalPosts(): Promise<ExtendedPost[]> {
   const posts = ExternalPostsData as ExternalPost[];
   return posts.map((post) => ({
     ...post,
+    slug: "",
     icon: getFaviconUrl(new URL(post.url).origin),
   }));
 }
@@ -80,7 +82,7 @@ async function fetchZennTopics(url: string) {
   return tags;
 }
 
-export async function getZennPosts() {
+export async function getZennPosts(): Promise<ExtendedPost[]> {
   const ZennPosts = await fetchZennPosts();
   const posts = await Promise.all(
     ZennPosts.map(async (article) => {
@@ -95,8 +97,9 @@ export async function getZennPosts() {
           published_at.slice(0, 10) === body_updated_at.slice(0, 10)
             ? null
             : body_updated_at.slice(0, 10), // YYYY-MM-DD
-        category: "tech",
+        category: "tech" as const,
         tags: topics,
+        slug: "",
         url: url,
         icon: getFaviconUrl(new URL(url).origin),
       };
@@ -106,12 +109,25 @@ export async function getZennPosts() {
   return posts;
 }
 
-export async function getAllPosts() {
+export async function getAllPosts(): Promise<Post[]> {
   const blog = await getBlogPosts();
   const zenn = await getZennPosts();
   const external = await getExternalPosts();
 
-  const posts = [...blog, ...zenn, ...external] as Post[];
+  const posts = [...blog, ...zenn, ...external].map(
+    (post): Post => ({
+      title: post.title,
+      pubDate: post.pubDate,
+      updDate: post.updDate,
+      isUnlisted: post.isUnlisted,
+      category: post.category,
+      tags: post.tags || [],
+      slug: post.slug || "",
+      url: post.url,
+      icon: post.icon,
+    }),
+  );
+
   posts.sort((a, b) => {
     const dateA = new Date(a.pubDate);
     const dateB = new Date(b.pubDate);

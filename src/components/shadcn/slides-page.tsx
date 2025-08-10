@@ -12,11 +12,11 @@ export const SlidesPage = ({ slides }: SlidesPageProps) => {
         {slides.map((slide, index) => (
           <SlideComponent
             key={`slide-${slide.path || index}`}
-            thumbnail={"/slides/" + slide.path + "/001.png"}
+            thumbnail={`/slides/${slide.path}/001.png`}
             title={slide.title}
             pubDate={slide.pubDate}
             tags={slide.tags}
-            url={"/slides/" + slide.path}
+            url={`/slides/${slide.path}`}
           />
         ))}
       </div>

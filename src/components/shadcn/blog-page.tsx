@@ -1,6 +1,6 @@
 import type { Post } from "@/types/post";
-import { BlogCardComponent } from "./card";
 import { Rss } from "lucide-react";
+import { BlogCardComponent } from "./card";
 
 interface BlogPageProps {
   techPosts: Post[];
@@ -15,10 +15,7 @@ export const BlogPage = ({ techPosts, lifePosts }: BlogPageProps) => {
         <div className="mb-6">
           <h2 className="text-2xl font-bold mb-4 text-gray-800">Tech</h2>
           {techPosts.map((post, index) => (
-            <div
-              key={`tech-${post.slug || index}`}
-              className="mb-3"
-            >
+            <div key={`tech-${post.slug || index}`} className="mb-3">
               <BlogCardComponent
                 title={post.title}
                 slug={post.slug}
@@ -38,10 +35,7 @@ export const BlogPage = ({ techPosts, lifePosts }: BlogPageProps) => {
         <div className="mb-6">
           <h2 className="text-2xl font-bold mb-4 text-gray-800">Life</h2>
           {lifePosts.map((post, index) => (
-            <div
-              key={`life-${post.slug || index}`}
-              className="mb-3"
-            >
+            <div key={`life-${post.slug || index}`} className="mb-3">
               <BlogCardComponent
                 title={post.title}
                 slug={post.slug}

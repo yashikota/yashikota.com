@@ -1,7 +1,6 @@
 ---
 import Base from "@/layouts/base.astro";
 
-import { UpdateIcon } from "@radix-ui/react-icons";
 import { GitHubLogoIcon, Link2Icon } from "@radix-ui/react-icons";
 
 import { Blog } from "@/components/blog";
@@ -40,7 +39,8 @@ export async function getStaticPaths() {
   });
 }
 
-const { title, description, tags, date, image, github, url, path } = Astro.props;
+const { title, description, tags, date, image, github, url, path } =
+  Astro.props;
 const workContent = await getWorkContent(path);
 const mdContent = workContent ? workContent.body : description;
 const { html: content } = await markdownToHtmlWithToc(mdContent);
