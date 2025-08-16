@@ -46,7 +46,7 @@ export function ProfileComponent() {
           Instagram
         </a>
       </div>
-      <p className="mt-4 text-center">
+      <p className="mt-1 mb-4 text-center">
         幅広く興味駆動開発で幸福に生きています。
       </p>
     </div>
