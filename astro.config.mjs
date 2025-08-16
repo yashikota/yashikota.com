@@ -28,10 +28,6 @@ export default defineConfig({
       status: 301,
       destination: "/blog",
     },
-    "/slide": {
-      status: 301,
-      destination: "/slides",
-    },
     "/work": {
       status: 301,
       destination: "/works",

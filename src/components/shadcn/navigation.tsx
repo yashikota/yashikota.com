@@ -24,10 +24,9 @@ export const Navigation = ({ currentTab }: NavigationProps) => {
         onValueChange={handleTabChange}
         className="w-full"
       >
-        <TabsList className="grid xl:w-4/5 mx-auto grid-cols-4">
+        <TabsList className="grid xl:w-4/5 mx-auto grid-cols-3">
           <TabsTrigger value="blog">Blog</TabsTrigger>
           <TabsTrigger value="works">Works</TabsTrigger>
-          <TabsTrigger value="slides">Slides</TabsTrigger>
           <TabsTrigger value="about">About</TabsTrigger>
         </TabsList>
       </Tabs>
