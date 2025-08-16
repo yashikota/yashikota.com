@@ -5,53 +5,17 @@ https://lapras.com/public/kota
 ```xml
 <Skills> ::= <Programming> <Astrophotography> <Cooking>
 <Programming> ::= <Python> <Typescript> <Go> <Backend> <Other>
-<Backend> ::= <Cloud> <DevOps> <CICD> <DataBase>
-<Other> ::= <WebFrontend> <Security> <LLM> <SystemArchitecture>
+<Backend> ::= <Cloud> <DevOps> <CICD> <DataBase> <SoftwareArchitecture>
+<Other> ::= <WebFrontend> <Security> <LLM>
 ```
 
-### MultiMedia
-
-コンピュータビジョン(CV)は画像の加工や画像を元にした処理など色々活用してきました。最近では2枚の画像間の類似度を推定するためにCVを利活用してたりしました。  
-コンピュータグラフィックス(3DCG)では、特にゲームグラフィックスに興味を持っていて、書籍などで勉強していたりします。いつかはオリジナルレンダラーを作ってみたいです。  
-画像や動画のコーデックにも興味を持っており、仕組みの調査や実際に自作画像フォーマットの作成なども行っています。  
-XRは最近興味を持っている分野であり、特にARを用いた人間の記憶補助管理システムを作ろうと取り組んでいる最中です。  
-ゲーム開発にも興味を持っており、Unityでゲーム作ったりしてます。  
-
-### Backend
-
-バックエンドでは主にGoを用いており、OpenAPIでのスキーマ開発駆動やDockerとCloud Runでのサーバーレス運用、GitHub Actionsを用いたCI/CD、Terraformでのインフラ管理など一通りのDevOpsを行えます。  
-アーキテクチャは絶賛勉強中です。  
-
-### System
-
-VerilogやVHDLでFPGAを用いたCPUやラジコンの制作などをしてきました。  
-最近はC言語のコンパイラーの作成にも手を出しており、ゆくゆくは自作言語を作成しようと考えています。  
-夢は全てのレイヤーを自作したPCを作り上げることです。  
-
-### Other
-
-セキュリティは情報処理安全確保支援士の試験合格やセキュリティ学会やインターンへの参加もしており、総合的な知識を持っています。  
-AIでは主に画像を使ったモデルを使用しています。また、CNNやViTといったアーキテクチャの勉強も行っています。  
-Webフロントエンドについても全般的な知識を持っており、また簡単なウェブサイトも作成できます。このサイトも自作です。  
+バックエンドでは主にGoを使っていて、OpenAPIでのスキーマ開発駆動やCloud Runでサーバーレスしたり、GitHub Actionsを用いたCI/CD、Terraformでのインフラ管理などをやています。  
+最近はソフトウェアアーキテクチャの重要性やDB設計の必要性を痛感していて、絶賛勉強中です。  
+Webフロントエンドからプログラミングの世界入った人間なので、最近はAIに任せっきりですが、一通りはできます。このサイトもAstroで自作しました。  
+LLMはある程度力を入れて追いかけていて、研究や開発などに活用しています。  
+その他にも低レイヤーではOSやコンパイラの輪読会開催したり、セキュリティでは学会やイベントに参加したり資格取ったり、マルチメディアのコーデックに興味持ったり、ゲームの3Dグラフィックスやレンダリングに興味を持ったり、XRやったり、Cloudflareとか使い倒したり、本当に興味駆動で幅広く手を動かして楽しんでいます。  
 
 ### Languages
-
-#### C
-
-2年ほど主に授業で使用。これまでに
-
-- 画像の可逆圧縮プログラム
-
-https://github.com/yashikota/rle
-
-https://github.com/yashikota/mtf
-
-- αβ法による五目並べAI
-- 円周率を多倍長数で求めるプログラム
-- 字句解析と構文解釈による電卓プログラム
-
-などを開発。  
-2年ほど触っていましたが、最近は全然触ってないですが、低レイヤーをやっているとなんやかんやお世話になります🙇  
 
 #### Python
 
@@ -65,7 +29,7 @@ https://github.com/yashikota/leadable
 
 https://github.com/yashikota/syllabus
 
-- バーコード生成ツール
+- バーコード生成ライブラリ
 
 https://github.com/yashikota/jancode
 
@@ -75,7 +39,7 @@ https://github.com/yashikota/td4-py
 
 などを開発。  
 
-最初は何でもかんでもPythonで書いていたんですが、型とか環境構築とかうーんとなって若干離れ気味になったんですが、最近もLLMを使ったアプリケーションとかを開発するとなるとPythonが必須なので逃れられないです😁  
+最初は何でもかんでもPythonで書いていたんですが、型とか環境構築とかうーんとなって若干離れ気味になったんですけど、最近もLLMを使ったアプリケーションとかを開発するとなるとPythonが必須なので逃れられないです😁  
 でもuvとかruffみたいなツールが出てきてだいぶ不満は無くなってきたので開発元には大感謝です🙏  
 
 #### JavaScript/Typscript
@@ -115,8 +79,6 @@ https://github.com/yashikota/genenv
 
 https://github.com/yashikota/solo-cleaner
 
-https://github.com/yashikota/camcast
-
 などを開発。  
 
 クロスプラットフォームにシングルバイナリで実行ファイルをコンパイルできるところが好きです。  
@@ -124,15 +86,14 @@ https://github.com/yashikota/camcast
 
 #### Git/GitHub
 
-4年ほど使用。  
-必ずGit/GitHubでプロジェクトを管理しています。  
-これまでに500以上のリポジトリを作成。(非公開含む)  
+4年ほど使用しており、最近は人に教えてることも多いです。  
+ですが、まだまだ知らない機能とかがあるので勉強中です。  
 
 #### CI/CD
 
 3年ほど使用。  
 主に個人開発/インターンで使用。GitHub Actionsをメインで使用しており、さまざまなActionsを使用しています。  
-Lint/Format/Test/Deploy/Releaseを回すのはもちろん、スクレイピングとかにも使ってます。ボタンポチでどこからでも実行できるので楽です。  
+Lint/Format/Test/Deploy/Releaseを回すのはもちろん、スクレイピングとかにも使ってます。ボタンポチでどこからでも実行できるので楽で好きです。  
 
 #### Cloud
 
@@ -147,25 +108,11 @@ Lint/Format/Test/Deploy/Releaseを回すのはもちろん、スクレイピン�
 を使用。  
 個人的にはGoogle Cloud推しです。なんとなくAWSより操作がわかりやすいのとCloud Runが有能すぎるので😂  
 
-## OSS Contributions
+## Talks
 
-### [aquaproj/aqua-registry](https://github.com/aquaproj/aqua-registry)
+発表したスライド一覧はここにアップロードしています。  
 
-- feat(aws/aws-sam-cli): scaffold aws/aws-sam-cli ([#33349](https://github.com/aquaproj/aqua-registry/pull/33349))
-`aws-sam-cli`の`aqua`でのインストールに対応
-
-- Add theseus-rs/postgresql-binaries ([#33390](https://github.com/aquaproj/aqua-registry/pull/33390))
-`postgresql-binaries`の`aqua`でのインストールに対応
-
-### [okaryo/remark-link-card-plus](https://github.com/okaryo/remark-link-card-plus)
-
-- Add `ignoreExtensions` options to exclude link cards ([#48](https://github.com/okaryo/remark-link-card-plus/pull/48))
-特定の拡張子のリンクをリンクカードに変換しないオプションを追加
-
-### [jdx/mise](https://github.com/jdx/mise)
-
-- feat(registry): update aws-sam backends to include aqua source ([#5461](https://github.com/jdx/mise/pull/5461))
-`aqua:aws-sam-cli` のインストールに対応
+https://docswell.com/user/kota
 
 ## Activities
 
@@ -224,6 +171,26 @@ Lint/Format/Test/Deploy/Releaseを回すのはもちろん、スクレイピン�
 - Univearth 長期インターンシップ
   - 2024/10 ~
   - 提供しているSaaSのフロントエンド、バックエンドの開発や社内アプリケーション、クラウドインフラの管理など幅広く担当。
+
+## OSS Contributions
+
+### [aquaproj/aqua-registry](https://github.com/aquaproj/aqua-registry)
+
+- feat(aws/aws-sam-cli): scaffold aws/aws-sam-cli ([#33349](https://github.com/aquaproj/aqua-registry/pull/33349))
+`aws-sam-cli`の`aqua`でのインストールに対応
+
+- Add theseus-rs/postgresql-binaries ([#33390](https://github.com/aquaproj/aqua-registry/pull/33390))
+`postgresql-binaries`の`aqua`でのインストールに対応
+
+### [okaryo/remark-link-card-plus](https://github.com/okaryo/remark-link-card-plus)
+
+- Add `ignoreExtensions` options to exclude link cards ([#48](https://github.com/okaryo/remark-link-card-plus/pull/48))
+特定の拡張子のリンクをリンクカードに変換しないオプションを追加
+
+### [jdx/mise](https://github.com/jdx/mise)
+
+- feat(registry): update aws-sam backends to include aqua source ([#5461](https://github.com/jdx/mise/pull/5461))
+`aqua:aws-sam-cli` のインストールに対応
 
 ## Certification
 
