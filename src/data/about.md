@@ -1,7 +1,5 @@
 ## Skills
 
-https://lapras.com/public/kota
-
 ```xml
 <Skills> ::= <Programming> <Astrophotography> <Cooking>
 <Programming> ::= <Python> <Typescript> <Go> <Backend> <Other>
@@ -14,6 +12,10 @@ https://lapras.com/public/kota
 Webフロントエンドからプログラミングの世界入った人間なので、最近はAIに任せっきりですが、一通りはできます。このサイトもAstroで自作しました。  
 LLMはある程度力を入れて追いかけていて、研究や開発などに活用しています。  
 その他にも低レイヤーではOSやコンパイラの輪読会開催したり、セキュリティでは学会やイベントに参加したり資格取ったり、マルチメディアのコーデックに興味持ったり、ゲームの3Dグラフィックスやレンダリングに興味を持ったり、XRやったり、Cloudflareとか使い倒したり、本当に興味駆動で幅広く手を動かして楽しんでいます。  
+
+余談なのですが、laprasというサイトでスコア算出できるのですが、上位7%とかみてびっくりしました🤭  
+
+https://lapras.com/public/kota
 
 ### Languages
 
