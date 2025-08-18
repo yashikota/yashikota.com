@@ -33,7 +33,7 @@ uRPFはルータで行うチェックで
 
 uRPFでDDoS攻撃が緩和できる概念実証のデモシステムをCiscoルーターで作成し、実証を行った。  
 
-![topology](/blog/urpf-demo/topology.png)
+![topology](https://img.yashikota.com/blog/urpf-demo/topology.avif)
 
 まず、PC2台をルーターを噛まして接続する。  
 その後、攻撃側PCを以下に示すコマンドを使用して、IPアドレスを偽造した。なおホストOSはUbuntu20.04である。  
