@@ -13,8 +13,8 @@
     "title": "Scene Hunter",
     "description": "ゲームマスターが撮影した写真のヒントを元に、プレイヤーは同じ場所や構図を探し出し、ゲームマスターの写真に最も似た写真を撮影したプレイヤーが勝利するゲームです。",
     "image": "https://protopedia.net/pic/55488ca8-6d4f-4861-b20c-5751d61707c9.png",
-    "github": ["https://github.com/yashikota/scene-hunter-backend"],
-    "url": [],
+    "github": ["https://github.com/yashikota/scene-hunter"],
+    "url": ["https://topaz.dev/projects/b8646b0b164a6568fa57"],
     "date": "2024/08",
     "tags": ["Python", "React", "Go", "Gemini"],
     "path": "scene-hunter"
