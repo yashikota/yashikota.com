@@ -133,19 +133,22 @@ https://docswell.com/user/kota
   - Gitのコンフリクトや履歴の復旧などGitの知識と技能を競うコンテストに参加しました。  
 
 - 勉強会
-  - [ゼロからのOS自作入門](https://book.mynavi.jp/ec/products/detail/id=121220)を輪読する勉強会を主催しました。  
+  - [ゼロからのOS自作入門](https://book.mynavi.jp/ec/products/detail/id=121220)を輪読する勉強会を主催しました。勉強会で発表した資料を[公開](https://www.docswell.com/user/kota)しています。
 
 - [低レイヤーLT交流会](https://gdscut.connpass.com/event/323841)
   - 登壇しました。発表資料は[PythonでCPUエミュレータを作ってみよう！](https://www.docswell.com/s/kota/5N11JL-td4-py)です。  
 
-- [58ハッカソン](https://58hackathon.connpass.com/event/324993)
-  - ハッカソンにて[Chronotes](https://yashikota.com/works#chronotes)を開発し、優秀賞を獲得しました。  
+- [58ハッカソン 24/09](https://58hackathon.connpass.com/event/324993)
+  - ハッカソンにて[Chronotes](https://yashikota.com/works/chronotes)を開発し、優秀賞を獲得しました。  
 
 - [技育展2024](https://talent.supporterz.jp/geekten/2024)
-  - ピッチコンテストにて[Chronotes](https://yashikota.com/works#chronotes)を紹介し、第2ステージまで進出しました。  
+  - ピッチコンテストにて[Chronotes](https://yashikota.com/works/chronotes)を紹介し、第2ステージまで進出しました。  
 
 - 勉強会
-  - [低レイヤを知りたい人のためのCコンパイラ作成入門](https://www.sigbus.info/compilerbook)と、[Crafting Interpreters](https://craftinginterpreters.com/index.html)を輪読する勉強会を主催しました。  
+  - [低レイヤを知りたい人のためのCコンパイラ作成入門](https://www.sigbus.info/compilerbook)と、[Crafting Interpreters](https://craftinginterpreters.com/index.html)を輪読する勉強会を主催しました。勉強会で発表した資料を[公開](https://www.docswell.com/s/kota/ZREWR9-interpreters)しています。
+
+- [58ハッカソン 25/02](https://58hackathon.connpass.com/event/340146/)
+  - ハッカソンにて[HappyShot](https://yashikota.com/works/happyshot)を開発し、優秀賞を獲得しました。  
 
 ## Internship
 
