@@ -1,5 +1,5 @@
 {
-  "name": "website",
+  "name": "yashikota",
   "compatibility_date": "2025-05-29",
   "compatibility_flags": ["nodejs_compat"],
   "routes": [{ "pattern": "yashikota.com", "custom_domain": true }],
