@@ -2,7 +2,7 @@
     {
         "title": "HappyShot",
         "description": "動画を送るだけで最高のベストショットが手に入るWebアプリです。顔の向き検出と表情解析AIを使用して、全員がカメラを向いて笑顔になっている最適な瞬間を自動で抽出します。LINE Botからも利用でき、集合写真の撮り直しの手間を大幅に削減できます。",
-        "image": "https://ptera-publish.topaz.dev/project/01JM6E652HF49BPAR958TMWMWN.png",
+        "image": "https://topaz.dev/_next/image?url=https%3A%2F%2Fptera-publish.topaz.dev%2Fproject%2F01JM6D21QVRV81CV4N7JFRRATM.png&w=3840&q=75",
         "github": ["https://github.com/yashikota/happy-shot"],
         "url": ["https://topaz.dev/projects/5ba3d6d5f2818f64236f"],
         "date": "2025/02",
