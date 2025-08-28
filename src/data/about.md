@@ -166,7 +166,7 @@ https://docswell.com/user/kota
 
 - ピクシブ エンジニア職インターン
   - 2024/09 (10日間)
-  - [ImageFlux](https://imageflux.sakura.ad.jp)のモザイク機能の開発
+  - 画像処理サービスの機能開発
 
 - Univearth 長期インターンシップ
   - 2024/10 ~
@@ -174,7 +174,7 @@ https://docswell.com/user/kota
 
 - コロプラ 就業型インターンシップ
   - 2025/08 (2週間)
-  - 白猫プロジェクトのサーバーサイド開発
+  - ゲームのサーバーサイド開発
 
 ## OSS Contributions
 
