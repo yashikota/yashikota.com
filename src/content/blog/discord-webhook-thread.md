@@ -3,7 +3,7 @@ title: DiscordのWebhookでスレッドに投稿したい場合の方法と注�
 pubDate: 2024-12-03
 updDate:
 isUnlisted: false
-category: life
+category: tech
 tags: ["Discord"]
 showToc: false
 ---

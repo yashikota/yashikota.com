@@ -3,7 +3,7 @@ title: Immersedでハンドトラッキングを無効にする方法
 pubDate: 2024-03-30
 updDate:
 isUnlisted: false
-category: life
+category: tech
 tags: ["Immersed"]
 showToc: false
 ---
