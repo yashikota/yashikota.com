@@ -25,7 +25,7 @@ https://github.com/yashikota/wake-on-dsm
 HTMLでは起動するPCを選択できるようにしています。  
 また、手動でMACアドレスを入力して起動できるようにもしています。  
 
-![1](https://img.yashikota.com/blog/send-to-dsm/1.png)
+![1](https://img.yashikota.com/blog/send-to-dsm/1.avif)
 
 PHPはこんな感じです。  
 
@@ -88,7 +88,7 @@ echo htmlspecialchars($message, ENT_QUOTES, 'UTF-8');
 あとはNASのほうでサーバーとして立ち上げます。  
 SynologyのNASでは[WebStation](https://kb.synology.com/ja-jp/DSM/help/WebStation/application_webserv_virtualhost?version=7)というアプリケーションがあるので、これを使います。  
 
-![2](https://img.yashikota.com/blog/send-to-dsm/2.png)
+![2](https://img.yashikota.com/blog/send-to-dsm/2.avif)
 
 開くとこんな画面になるので `Apache HTTP Server 2.4` と `PHP 8.0` がインストールされていない場合はインストールしてください。  
 
@@ -97,7 +97,7 @@ SynologyのNASでは[WebStation](https://kb.synology.com/ja-jp/DSM/help/WebStati
 あとはこのプロファイルを使って、Webサービスポータルから仮想ホストを作成します。  
 Networkはポートベースでポートは任意で、バックエンドはドキュメントルートにプログラムの格納ディレクトリを、HTTPバックエンドサーバーにApacheを、スクリプト言語の設定に先ほど作成したプロファイルを選択すればOKです。  
 
-![3](https://img.yashikota.com/blog/send-to-dsm/3.png)
+![3](https://img.yashikota.com/blog/send-to-dsm/3.avif)
 
 これを設定後、 `http://{NASのIPアドレス}:{設定したポート番号}` にアクセスすると画面が表示されると思います。  
 あとはMACアドレスを入力して、ボタンを押すとパケットが送信されます。  

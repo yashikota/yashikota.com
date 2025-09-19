@@ -12,7 +12,7 @@ showToc: false
 アドカレのネタ何がいいかな～って[アンケ](https://twitter.com/awwoit/status/1730504460928274683)とったんですが、ネタ候補がダントツで投票されてて困惑しました[^2]。  
 まあいいけど。というわけで…
 
-<img src="/static/images/poem.png" width="65%" alt="私が、ポエみます！" />
+<img src="https://img.yashikota.com/blog/64bit-sensation/poem.avif" width="65%" alt="私が、ポエみます！" />
 
 [^1]: はつゆきさくらやってたら思いっきり遅刻しました。すいません(._.)。
 [^2]: 技術系は[25日](https://adventar.org/calendars/9108)に投稿予定です。  
@@ -29,7 +29,7 @@ showToc: false
 今クールで[16bitセンセーション](https://16bitsensation-al.com)という90年代の美少女ゲーム業界を題材にしたアニメが放送されている[^4]んですけど、その中で主人公のコノハちゃんが美少女ゲームはもっと広まる的な事を言ってたんですね。  
 この話のときは多分Kanonの時代なので1999年ということで、下のグラフ[^5]を見てもらえるとわかるんですが、業界の最高潮の時期だったと。  
 
-![sales-graph](/static/images/sales-graph.svg)  
+![sales-graph](https://img.yashikota.com/blog/64bit-sensation/sales-graph.svg)  
 
 まあそんな時代ですから美少女ゲーム業界がどんどん拡大していく様に見えたのですが、現実はそうもいかず…  
 そんなわけで、レトロスペクティブってわけじゃないけど現在から見た美少女ゲームの栄枯盛衰を振り返ってみようかなと。  

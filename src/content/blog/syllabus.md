@@ -30,7 +30,7 @@ https://github.com/oit-tools/syllabus-extract
 個々のシラバスをスクレイピングするためにはまず講義コード(`10AB01A0`みたいなやつ)が必要なんですが、その一覧が公開されていない[^1]ので、検索結果に表示されている部分から抽出しています。  
 また同時になぜか詳細ページには記載されていない曜日と時限の情報も取得しています。  
 
-![検索結果](https://img.yashikota.com/blog/syllabus/1.png)
+![検索結果](https://img.yashikota.com/blog/syllabus/1.avif)
 *検索結果*
 
 [^1]: 厳密には時間割のPDFで公開されているけどそれを機械的に抽出するのは結構面倒だし、曜日と時限が取得できないので検索ページから抽出しています。  
@@ -99,10 +99,10 @@ def cs_spiral(self, search_word):
 一番の鬼門が教科書と参考書用の部分でした。  
 というものCSコースとスパイラル型教育と違い、全てのシラバスに行は存在するが中身があるかどうかはわからないので、単にテーブルのパースをかけてしまうとエラーになってしまうという状況でした。  
 
-![中身がある例](https://img.yashikota.com/blog/syllabus/2.png)
+![中身がある例](https://img.yashikota.com/blog/syllabus/2.avif)
 *中身がある例*
 
-![中身がない例](https://img.yashikota.com/blog/syllabus/3.png)
+![中身がない例](https://img.yashikota.com/blog/syllabus/3.avif)
 *中身がない例*
 
 そのため生のHTMLから参考書の中に出版社名という文字列があるかどうかで判定しています。教科書も同様です。  

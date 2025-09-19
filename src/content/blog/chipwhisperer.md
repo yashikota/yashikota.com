@@ -69,7 +69,7 @@ SIMULATEDのセルに書いてあるソースコードを全てコピーした�
 上にある```▶Run```か```Ctrl + Enter```でコードのセルを実行して、```OK to continue!```が出てくれば成功です。  
 出てこない場合はソースコードのコピペをミスっているか、環境壊れているかもです。  
 後はセルを順番に実行していくだけで
-![ChipWhisperer_21A](https://raw.githubusercontent.com/yashikota/blog/master/data/img/ChipWhisperer_21A.webp)
+![ChipWhisperer_21A](https://img.yashikota.com/blog/chipwhisperer/ChipWhisperer_21A.avif)
 このような波形が得られます。  
 
 ## Lab 2_1B

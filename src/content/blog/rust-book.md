@@ -77,7 +77,7 @@ todo-app     latest    71a44657add4   1 hours ago   36.9MB
 
 ちなみに描画結果はこんな感じ。  
 
-![mandelbrot](/static/images/blog/rust-book/01.png)
+![mandelbrot](https://img.yashikota.com/blog/rust-book/01.avif)
 
 あと生成速度の実行結果はこんな感じになった。  
 

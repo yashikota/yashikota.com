@@ -15,7 +15,7 @@ showToc: false
 
 https://todoist.com  
 
-![todoist](/static/images/blog/todoist/todoist.png)  
+![todoist](https://img.yashikota.com/blog/todoist/todoist.avif)  
 
 名前の通り?タスク管理ツールです。Todoリストとも言いますね。  
 タスクの作成、タスクの完了、期限の設定、プロジェクトの設定等基本的なタスク管理の要素を備えていてUIも使いやすいです。  
