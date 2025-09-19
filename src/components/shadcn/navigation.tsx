@@ -12,22 +12,19 @@ export const Navigation = ({ currentTab }: NavigationProps) => {
     setActiveTab(currentTab);
   }, [currentTab]);
 
-  const handleTabChange = (value: string) => {
-    const newPath = `/${value}`;
-    window.location.href = newPath;
-  };
-
   return (
     <div className="w-full mb-6">
-      <Tabs
-        value={activeTab}
-        onValueChange={handleTabChange}
-        className="w-full"
-      >
+      <Tabs value={activeTab} className="w-full">
         <TabsList className="grid xl:w-4/5 mx-auto grid-cols-3">
-          <TabsTrigger value="blog">Blog</TabsTrigger>
-          <TabsTrigger value="works">Works</TabsTrigger>
-          <TabsTrigger value="about">About</TabsTrigger>
+          <TabsTrigger value="blog" asChild>
+            <a href="/blog">Blog</a>
+          </TabsTrigger>
+          <TabsTrigger value="works" asChild>
+            <a href="/works">Works</a>
+          </TabsTrigger>
+          <TabsTrigger value="about" asChild>
+            <a href="/about">About</a>
+          </TabsTrigger>
         </TabsList>
       </Tabs>
     </div>
