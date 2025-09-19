@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Card,
   CardContent,
@@ -17,20 +18,30 @@ interface WorkComponentProps {
   tags: string[];
   url: string[];
   path: string;
+  onClick?: () => void;
 }
 
 export function WorkComponent(props: WorkComponentProps) {
+  const handleCardClick = (e: React.MouseEvent) => {
+    // 外部リンクをクリックした場合はカードクリックを無効化
+    if ((e.target as HTMLElement).closest('a')) {
+      return;
+    }
+    props.onClick?.();
+  };
+
   return (
-    <Card className="flex flex-col hover:bg-gray-100 transition-colors">
-      <a href={`/works/${props.path}`}>
-        <CardContent className="p-1 flex justify-center">
-          <img
-            src={props.thumbnail}
-            alt={props.title}
-            className="max-h-[40vh] w-auto object-contain"
-          />
-        </CardContent>
-      </a>
+    <Card
+      className="flex flex-col hover:bg-gray-100 transition-colors cursor-pointer"
+      onClick={handleCardClick}
+    >
+      <CardContent className="p-1 flex justify-center">
+        <img
+          src={props.thumbnail}
+          alt={props.title}
+          className="max-h-[40vh] w-auto object-contain"
+        />
+      </CardContent>
       <CardHeader className="pt-2 pb-1">
         <div className="flex items-center justify-between">
           <CardDescription className="text-sm text-muted-foreground">
@@ -44,6 +55,7 @@ export function WorkComponent(props: WorkComponentProps) {
                 target="_blank"
                 rel="noreferrer noopener"
                 className="hover:text-gray-400 mr-2"
+                onClick={(e) => e.stopPropagation()}
               >
                 <GitHubLogoIcon width="20" height="20" />
               </a>
@@ -55,6 +67,7 @@ export function WorkComponent(props: WorkComponentProps) {
                 target="_blank"
                 rel="noreferrer noopener"
                 className="hover:text-gray-400 mr-2"
+                onClick={(e) => e.stopPropagation()}
               >
                 <Link2Icon width="20" height="20" />
               </a>
@@ -64,11 +77,9 @@ export function WorkComponent(props: WorkComponentProps) {
         <CardTitle className="text-lg">{props.title}</CardTitle>
       </CardHeader>
       <CardContent className="pt-0 pb-2">
-        <a href={`/works/${props.path}`}>
-          <CardDescription className="text-sm text-muted-foreground">
-            {props.description}
-          </CardDescription>
-        </a>
+        <CardDescription className="text-sm text-muted-foreground">
+          {props.description}
+        </CardDescription>
         <CardDescription className="flex items-center flex-wrap mt-2">
           {props.tags.map((tag) => (
             <span
