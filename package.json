@@ -23,7 +23,7 @@
     "@types/open-graph-scraper": "^4.8.5",
     "@types/react": "^19.1.6",
     "@types/react-dom": "^19.1.5",
-    "@types/three": "^0.176.0",
+    "@types/three": "^0.180.0",
     "astro": "^5.8.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -54,7 +54,7 @@
     "swiper": "^11.2.8",
     "tailwind-merge": "^3.3.0",
     "tailwindcss-animate": "^1.0.7",
-    "three": "^0.176.0",
+    "three": "^0.180.0",
     "tocbot": "^4.36.4",
     "typescript": "^5.8.3",
     "unified": "^11.0.5"
