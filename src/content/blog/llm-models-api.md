@@ -12,6 +12,7 @@ LLMがかかわるようなWebアプリ作ってて、APIキーをユーザー�
 
 https://github.com/yashikota/llm-models-api
 
+<https://llm-models-api.yashikota.workers.dev/models>  
 このエンドポイントにGETリクエスト送ってもらうと全モデルの情報が取得できます。  
 といっても中身はOpenRouterのAPIに乗っかってるだけですが、クエリパラメータでフィルタリングできるようにしてあり
 
