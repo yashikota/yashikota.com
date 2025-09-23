@@ -1,4 +1,4 @@
-<Skills> ::= <Programming> <Astrophotography> <Cooking>
-<Programming> ::= <Python> <Typescript> <Go> <Backend> <Other>
-<Backend> ::= <Cloud> <DevOps> <CICD> <DataBase>
-<Other> ::= <WebFrontend> <Security> <LLM> <SystemArchitecture>
+<Hobby> ::= <Game> <Astrophotography> <Cooking> <Programming>
+<Programming> ::= <Backend> <Python> <TypeScript> <Go> <Other>
+<Backend> ::= <Cloud> <CloudNative> <DataBase> <SoftwareArchitecture>
+<Other> ::= <WebFrontend> <LLM> <Security>

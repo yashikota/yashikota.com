@@ -1,27 +1,43 @@
-## Skills
-
 ```xml
-<Skills> ::= <Programming> <Astrophotography> <Cooking>
-<Programming> ::= <Python> <Typescript> <Go> <Backend> <Other>
-<Backend> ::= <Cloud> <DevOps> <CICD> <DataBase> <SoftwareArchitecture>
-<Other> ::= <WebFrontend> <Security> <LLM>
+<Hobby> ::= <Game> <Astrophotography> <Cooking> <Programming>
+<Programming> ::= <Backend> <Python> <TypeScript> <Go> <Other>
+<Backend> ::= <Cloud> <CloudNative> <DataBase> <SoftwareArchitecture>
+<Other> ::= <WebFrontend> <LLM> <Security>
 ```
 
-バックエンドでは主にGoを使っていて、OpenAPIでのスキーマ開発駆動やCloud Runでサーバーレスしたり、GitHub Actionsを用いたCI/CD、Terraformでのインフラ管理などをやっています。  
-最近はソフトウェアアーキテクチャの重要性やDB設計の必要性を痛感していて、絶賛勉強中です。  
-Webフロントエンドからプログラミングの世界入った人間なので、最近はAIに任せっきりですが、一通りはできます。このサイトもAstroで自作しました。  
-LLMはある程度力を入れて追いかけていて、研究や開発などに活用しています。  
-その他にも低レイヤーではOSやコンパイラの輪読会開催したり、セキュリティでは学会やイベントに参加したり資格取ったり、マルチメディアのコーデックに興味持ったり、ゲームの3Dグラフィックスやレンダリングに興味を持ったり、XRやったり、Cloudflareとか使い倒したり、本当に興味駆動で幅広く手を動かして楽しんでいます。  
-
-余談なのですが、laprasというサイトでスコア算出できるのですが、上位7%とかみてびっくりしました🤭  
+技術力スコア👇  
 
 https://lapras.com/public/kota
 
-### Languages
+### Backend
 
-#### Python
+主にバックエンド寄りのスタックで生きています。
+主にGoやTypeScriptを使っていて、GoだったらCloudRun、TSはCloudflare Workersにデプロイしています。  
+CloudRunもCloudflare Workersも良い製品で好きです😍  
+ソフトウェアアーキテクチャの重要性やDB設計の必要性を痛感していて、絶賛勉強中です。  
+アプリケーションに留まらず幅広くバックエンドを見たいので、インフラやSREの方向にも関わりながら広く経験したいなぁ〜とは思っています。  
+それと特にエンターテイメントが好きなので、ゲーム系のバックエンド開発に携わりたいなとも思っています。
 
-3年ほど主に個人開発で使用。これまでに
+最近はCloudflare Workers推しで、無料でグローバルエッジ環境に即時デプロイ、フロントとバックを一緒くたに扱え(Hono最強🔥)、Durable Objects(強整合性のもつ永続化ストレージ)、D1(グローバルにスケールするSQLiteベースのDB)、R2(S3互換のオブジェクトストレージ)などなどエコシステムも良い感じで、アプリをぱぱっと作れるので好きです😍  
+
+他にも長期インターン先で開発している管理アプリケーションではCloudflare Workersにデプロイしていて開発・運用をしています。  
+このアプリを作るときに使ったもので、Cloudflare HyperdriveというDBのコネクションプーリングサービスがあるのですが、これとGoogle CloudのDBを繋ぐ時にInternal Errorが出て、中の人に連絡したら[Incident Report](https://www.cloudflarestatus.com/incidents/kk3pq7ny81t0)が出て😂直してもらってみたいなマイナーが故の体験をしたりもしました。  
+
+あとは自宅サーバーでk8s盆栽を始めたり、Observabilityに手を出してみたり、protobufやconnectを試してみたりして色々遊んでいます。  
+CI/CDとかも3年ほど、主に個人開発/インターンで使用していて、GitHub Actionsをメインで使用しており、Lint/Format/Test/Deploy/Releaseを回すのはもちろん、スクレイピングとかにも使ってます。ボタンポチでどこからでも実行できるので楽で好きです。  
+
+クラウドは初めて触ったのがGoogle Cloudで、個人で簡単なWebサーバーをGoで書いてCloudRunにデプロイしていました。今は長期インターン先でAWSをメインにクラウドに触れています。  
+IaCもGoogle Cloudの場合はTerraform、AWSはSAMとCDKを使っています。  
+業務でGoogle CloudからAWSに乗り換えるということをやっていたのですが、CloudRunに匹敵する立ち上がりの速さと、スケーリングと、機能と、事例の多さを持ったプロダクトがAWSにないので、個人的にはGoogle Cloud推しです。  
+
+DBも設計もまだまだ初心者ですが、ソフトウェア開発において核となる部分なのでじっくり学んでます。  
+最近はLLMが進歩してきて仕様書からコードに落とし込むところはかなりできていると思うんですが、やっぱり人間社会で営まれる活動とコンピュータの住むデジタルな信号処理の世界を結びつけるのは人じゃないとまだまだ無理だなと感じているので、それも含めてソフトウェアアーキテクト的なPM的な立場になるのが良さげで面白そうかなと思っています。  
+
+#### SoftwareArchitecture
+
+クリーンアーキテクチャやDDDを絶賛勉強中です。  
+
+### Python
 
 - 論文翻訳アプリ
 
@@ -39,14 +55,9 @@ https://github.com/yashikota/jancode
 
 https://github.com/yashikota/td4-py
 
-などを開発。  
+3年ほど主に個人開発で使用。最初は何でもかんでもPythonで書いていたんですが、型とか環境構築とかうーんとなって若干離れ気味になったんですけど、最近もLLMを使ったアプリケーションとかを開発するとなるとPythonが必須なので逃れられないです。でもuvとかruffみたいなツールが出てきてだいぶ不満は無くなってきたので開発元には大感謝🙏  
 
-最初は何でもかんでもPythonで書いていたんですが、型とか環境構築とかうーんとなって若干離れ気味になったんですけど、最近もLLMを使ったアプリケーションとかを開発するとなるとPythonが必須なので逃れられないです😁  
-でもuvとかruffみたいなツールが出てきてだいぶ不満は無くなってきたので開発元には大感謝です🙏  
-
-#### JavaScript/Typscript
-
-3年ほど主に個人開発/インターンで使用。これまでに
+### TypeScript
 
 - シラバス検索・閲覧アプリ
 
@@ -60,14 +71,10 @@ https://github.com/yashikota/yashikota.com
 
 https://github.com/yashikota/leadable
 
-などなど色々なアプリケーションで使用。  
-React/Next.js/Astro/Tailwind/shadcn/uiあたりがさわれます。  
-最近はちょっとしたWebAPIの開発にはhono + Cloudflare Workersで作るのにハマっています。  
-書きやすく、動かしやすく、維持費もかからないので開発者体験が良いです🔥
+3年ほど主に個人開発/インターンで使用。React/Next.js/Astro/Tailwind/shadcn/uiあたりがさわれます。  
+あと最近はちょっとしたWebAPIの開発にはhono + Cloudflare Workersで作るのにハマっています。書きやすく、動かしやすく、維持費もかからないので開発者体験が良いです🔥  
 
-#### Go
-
-1年ほど主に個人開発/インターンで使用。これまでに
+### Go
 
 - バックエンド
 
@@ -75,40 +82,22 @@ https://github.com/yashikota/chronotes
 
 https://github.com/yashikota/scene-hunter-backend
 
-- 細々としたCLIツール
+- CLIアプリ
 
 https://github.com/yashikota/genenv
 
-https://github.com/yashikota/solo-cleaner
+https://github.com/yashikota/owata
 
-などを開発。  
+1年ほど主に個人開発/インターンで使用。  
+クロスプラットフォームにシングルバイナリで実行ファイルをビルドできるところが好きで、ちょっとしたCLIアプリとかは基本Goで書いています。  
+それといい塩梅な標準ライブラリで簡単にWebサーバーが作れるのも好きです。  
 
-クロスプラットフォームにシングルバイナリで実行ファイルをコンパイルできるところが好きです。  
-それといい塩梅な標準ライブラリで簡単にWebサーバーが作れるのが好きです。  
+### Other
 
-#### Git/GitHub
-
-4年ほど使用しており、最近は人に教えてることも多いです。  
-ですが、まだまだ知らない機能とかがあるので勉強中です。  
-
-#### CI/CD
-
-3年ほど使用。  
-主に個人開発/インターンで使用。GitHub Actionsをメインで使用しており、さまざまなActionsを使用しています。  
-Lint/Format/Test/Deploy/Releaseを回すのはもちろん、スクレイピングとかにも使ってます。ボタンポチでどこからでも実行できるので楽で好きです。  
-
-#### Cloud
-
-1年ほど使用。  
-主にインターンで使用。これまでに
-
-- AWS
-- Google Cloud
-- Terraform
-- SAM
-
-を使用。  
-個人的にはGoogle Cloud推しです。なんとなくAWSより操作がわかりやすいのとCloud Runが有能すぎるので😂  
+WebフロントエンドはReactメインにNext触ったり、Astroでブログ作ったりして遊んでいます。長期インターン先でも管理系アプリを作ったりしていますが、個人的な興味度としてはバックエンドより低いです。  
+LLMはある程度力を入れて追いかけていて、最新のモデル、事例をウォッチしていたり、開発、業務にも積極的に取り入れたりしています。また研究でも使っていたりするので最新の手法から実用的な事例まで幅広く捉えています。  
+セキュリティも学会やセキュキャン等のイベントに参加したり、資格取ったりはしていて一定の知識を持っています。  
+その他にも興味駆動な性格なので雑多に、低レイヤーではOSやコンパイラの輪読会開催したり、マルチメディアのコーデックを調べたり、ゲームの3Dグラフィックスやレンダリングに興味を持ったり、XRで遊んでみたり...幅広く手を動かして楽しんでいます。  
 
 ## Talks
 
@@ -152,27 +141,27 @@ https://docswell.com/user/kota
 
 ## Internship
 
-- Flatt Security サマーインターンシップ
+- [Flatt Security](https://flatt.tech) サマーインターンシップ
   - 2023/08 (5日間)
   - Webアプリケーションセキュリティ診断
 
-- ちゅらデータ サマーインターンシップ
+- [ちゅらデータ](https://churadata.okinawa) サマーインターンシップ
   - 2023/09 (2週間)
   - データ分析基盤構築、データモデリング
 
-- 日本経済新聞社 短期インターンシップ
+- [日本経済新聞社](https://www.nikkei.co.jp/nikkeiinfo) 短期インターンシップ
   - 2024/08 (5日間)
   - 記事の読解支援を行うWebアプリケーション開発
 
-- ピクシブ エンジニア職インターン
+- [ピクシブ](https://www.pixiv.co.jp) エンジニア職インターン
   - 2024/09 (10日間)
   - 画像処理サービスの新機能開発
 
-- Univearth 長期インターンシップ
+- [Univearth](https://www.univearth.co.jp) 長期インターンシップ
   - 2024/10 ~
   - フルスタックにSaaSの開発や社内アプリケーション、クラウドインフラの管理など幅広く担当
 
-- コロプラ 就業型インターンシップ
+- [コロプラ](https://colopl.co.jp) 就業型インターンシップ
   - 2025/08 (2週間)
   - ゲームのサーバーサイド開発
 
