@@ -10,7 +10,7 @@ showToc: false
 
 LLMがかかわるようなWebアプリ作ってて、APIキーをユーザーに入れてもらってモデルを選択してもらうときに常に最新のモデル名をメンテナンスフリーで取得できるようにしたいなと思ったけど、探した感じいい感じのAPIとかなかったので簡単に作ってみました。  
 
-https://llm-models-api.yashikota.workers.dev/models
+https://github.com/yashikota/llm-models-api
 
 このエンドポイントにGETリクエスト送ってもらうと全モデルの情報が取得できます。  
 といっても中身はOpenRouterのAPIに乗っかってるだけですが、クエリパラメータでフィルタリングできるようにしてあり
