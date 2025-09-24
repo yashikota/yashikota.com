@@ -1,5 +1,15 @@
 [
   {
+    "title": "Shutdown Timer",
+    "description": "Windows専用のPCシャットダウンしてくれるアプリです。〇〇分後にシャットダウンと〇〇時にシャットダウンの2通りをサポートしています。英語対応やライト/ダークテーマにも対応しています。WinAppSDKとWinUI 3を使って作りました",
+    "image": "https://img.yashikota.com/works/shutdown-timer/shutdown-timer.avif",
+    "github": ["https://github.com/yashikota/shutdown-timer"],
+    "url": [],
+    "date": "2025/09",
+    "tags": ["WinAppSDK", "WinUI 3"],
+    "path": "shutdown-timer"
+  },
+  {
     "title": "HappyShot",
     "description": "動画を送るだけで最高のベストショットが手に入るWebアプリです。顔の向き検出と表情解析AIを使用して、全員がカメラを向いて笑顔になっている最適な瞬間を自動で抽出します。LINE Botからも利用でき、集合写真の撮り直しの手間を大幅に削減できます。",
     "image": "https://img.yashikota.com/works/happy-shot/happy-shot.avif",
