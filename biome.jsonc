@@ -28,28 +28,21 @@
   },
   "linter": {
     "enabled": true,
+    "includes": ["**", "!**/*.astro"],
     "rules": {
       "recommended": true,
       "security": {
         "noDangerouslySetInnerHtml": "off"
       },
       "suspicious": {
-        "noExplicitAny": "off"
+        "noExplicitAny": "off",
+        "noUnknownAtRules": "off"
+      },
+      "complexity": {
+        "noImportantStyles": "off"
       }
     }
   },
-  "overrides": [
-    {
-      "linter": {
-        "rules": {
-          "style": {
-            "useConst": "off",
-            "useImportType": "off"
-          }
-        }
-      }
-    }
-  ],
   "vcs": {
     "clientKind": "git",
     "enabled": true,

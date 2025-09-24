@@ -43,14 +43,6 @@ export async function getBlogPosts(): Promise<ExtendedPost[]> {
   }));
 }
 
-interface ExternalPost {
-  title: string;
-  pubDate: string;
-  updDate: string | null;
-  tags: string[];
-  url: string;
-}
-
 export async function getExternalPosts(): Promise<ExtendedPost[]> {
   const posts = ExternalPostsData as ExternalPost[];
   return posts.map((post) => ({
