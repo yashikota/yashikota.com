@@ -1,4 +1,5 @@
-import React from "react";
+import { GitHubLogoIcon, Link2Icon } from "@radix-ui/react-icons";
+import type React from "react";
 import {
   Card,
   CardContent,
@@ -6,8 +7,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-
-import { GitHubLogoIcon, Link2Icon } from "@radix-ui/react-icons";
 
 interface WorkComponentProps {
   thumbnail: string;
@@ -24,7 +23,7 @@ interface WorkComponentProps {
 export function WorkComponent(props: WorkComponentProps) {
   const handleCardClick = (e: React.MouseEvent) => {
     // 外部リンクをクリックした場合はカードクリックを無効化
-    if ((e.target as HTMLElement).closest('a')) {
+    if ((e.target as HTMLElement).closest("a")) {
       return;
     }
     props.onClick?.();

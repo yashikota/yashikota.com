@@ -1,5 +1,5 @@
-import type { Post } from "@/types/post";
 import { Rss } from "lucide-react";
+import type { Post } from "@/types/post";
 import { BlogCardComponent } from "./card";
 
 interface BlogPageProps {

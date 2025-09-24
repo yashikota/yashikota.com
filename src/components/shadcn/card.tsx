@@ -1,3 +1,4 @@
+import { UpdateIcon } from "@radix-ui/react-icons";
 import {
   Card,
   CardContent,
@@ -5,7 +6,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { UpdateIcon } from "@radix-ui/react-icons";
 
 interface BlogCardComponentProps {
   title: string;

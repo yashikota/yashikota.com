@@ -1,5 +1,5 @@
-import { getAllPosts } from "@/lib/posts";
 import rss from "@astrojs/rss";
+import { getAllPosts } from "@/lib/posts";
 
 export async function GET() {
   const posts = await getAllPosts();

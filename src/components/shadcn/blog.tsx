@@ -1,8 +1,7 @@
+import { Rss } from "lucide-react";
+import { useEffect, useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import type { Post } from "@/types/post";
-import { Rss } from "lucide-react";
-
-import { useEffect, useState } from "react";
 import { BlogCardComponent } from "./card";
 
 interface BlogProps {

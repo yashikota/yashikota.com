@@ -16,10 +16,10 @@ import remarkMath from "remark-math";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
 import remarkValidateLinks from "remark-validate-links";
-import remarkYoutube from "./remark-youtube";
 import { unified } from "unified";
 import remarkImageSize from "./remark-image-size";
 import remarkLinkCard from "./remark-linkcard";
+import remarkYoutube from "./remark-youtube";
 
 import "remark-github-blockquote-alert/alert.css";
 

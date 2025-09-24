@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react";
+import { GitHubLogoIcon, Link2Icon } from "@radix-ui/react-icons";
+import { useEffect, useState } from "react";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { GitHubLogoIcon, Link2Icon } from "@radix-ui/react-icons";
 import type { WorkItem } from "@/lib/works";
 
 interface WorkModalProps {
@@ -61,7 +61,9 @@ export function WorkModal({ work, isOpen, onClose }: WorkModalProps) {
                   className="flex items-center mx-2 my-1 hover:text-gray-400"
                 >
                   <GitHubLogoIcon width="24" height="24" />
-                  <span className="ml-2 text-sky-400 hover:text-sky-600">{githubUrl}</span>
+                  <span className="ml-2 text-sky-400 hover:text-sky-600">
+                    {githubUrl}
+                  </span>
                 </a>
               ))}
               {work.url.map((urlLink) => (
@@ -73,7 +75,9 @@ export function WorkModal({ work, isOpen, onClose }: WorkModalProps) {
                   className="flex items-center hover:text-gray-400 mx-2 my-1"
                 >
                   <Link2Icon width="24" height="24" />
-                  <span className="ml-2 text-sky-400 hover:text-sky-600">{urlLink}</span>
+                  <span className="ml-2 text-sky-400 hover:text-sky-600">
+                    {urlLink}
+                  </span>
                 </a>
               ))}
             </div>
