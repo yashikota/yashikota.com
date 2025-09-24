@@ -16,7 +16,7 @@ import remarkMath from "remark-math";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
 import remarkValidateLinks from "remark-validate-links";
-import remarkYoutube from "remark-youtube";
+import remarkYoutube from "./remark-youtube";
 import { unified } from "unified";
 import remarkImageSize from "./remark-image-size";
 import remarkLinkCard from "./remark-linkcard";
@@ -36,6 +36,10 @@ export async function markdownToHtmlWithToc(
     .use(remarkParse)
     .use(remarkImageSize)
     .use(remarkAlert, { legacyTitle: true })
+    .use(remarkYoutube, {
+      height: 315,
+      width: 560,
+    })
     .use(remarkValidateLinks)
     .use(remarkBreaks)
     .use(remarkGfm)

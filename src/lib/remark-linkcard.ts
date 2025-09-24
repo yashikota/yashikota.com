@@ -64,6 +64,13 @@ const remarkLinkCard: Plugin<[Options], Root> =
       const basicUrlPattern = /^(https?:\/\/[^\s/$.?#].[^\s]*)$/i;
       if (!basicUrlPattern.test(value)) return false;
 
+      // YouTube URLを除外 (remark-youtubeプラグインに処理を任せる)
+      const youtubePattern =
+        /^https:\/\/(?:youtu\.be\/|www\.youtube\.com\/watch\?v=)/;
+      if (youtubePattern.test(value)) {
+        return false;
+      }
+
       // 特定の拡張子で終わるURLを除外
       const skipExtensions = [".mp4", ".mov"];
       try {
