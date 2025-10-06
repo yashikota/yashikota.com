@@ -30,7 +30,7 @@
     "hastscript": "^9.0.1",
     "katex": "^0.16.22",
     "lucide-react": "^0.511.0",
-    "react": "^19.1.0",
+    "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "rehype-autolink-headings": "^7.1.0",
     "rehype-expressive-code": "^0.41.2",
