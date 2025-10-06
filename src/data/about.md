@@ -127,8 +127,11 @@ https://docswell.com/user/kota
 - [58ハッカソン 24/09](https://58hackathon.connpass.com/event/324993)
   - ハッカソンにて[Chronotes](https://yashikota.com/works/chronotes)を開発し、優秀賞を獲得しました。  
 
+- [Tech Award in Hack Osaka 2024](https://x.com/techaward_osaka/status/1858163266327036290)
+  - ピッチコンテストにて[Chronotes](https://yashikota.com/works/chronotes)を紹介し、ファイナリストに選出されました。  
+
 - [技育展2024](https://talent.supporterz.jp/geekten/2024)
-  - ピッチコンテストにて[Chronotes](https://yashikota.com/works/chronotes)を紹介し、第2ステージまで進出しました。  
+  - ピッチコンテストにて[Chronotes](https://yashikota.com/works/chronotes)を紹介し、第2ステージに進出しました。  
 
 - 勉強会
   - [低レイヤを知りたい人のためのCコンパイラ作成入門](https://www.sigbus.info/compilerbook)と、[Crafting Interpreters](https://craftinginterpreters.com/index.html)を輪読する勉強会を主催しました。勉強会で発表した資料を[公開](https://www.docswell.com/s/kota/ZREWR9-interpreters)しています。
