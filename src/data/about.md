@@ -7,7 +7,9 @@
 
 技術力スコア👇  
 
-https://lapras.com/public/kota
+https://lapras.com/public/kota  
+
+https://findy-code.io/skills-share/SZ80HMrAQQPyo  
 
 ### Backend
 
