@@ -14,7 +14,7 @@ const lifePosts = posts.filter(
 );
 ---
 
-<Base>
+<Base pageTitle="Blog">
     <div>
         <Navigation client:load currentTab="blog" />
         <BlogPage client:load techPosts={techPosts} lifePosts={lifePosts} />

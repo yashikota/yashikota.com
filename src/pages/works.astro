@@ -8,7 +8,7 @@ import { getAllWorks } from "@/lib/works";
 const works = await getAllWorks();
 ---
 
-<Base>
+<Base pageTitle="Works">
     <div>
         <Navigation client:load currentTab="works" />
         <WorksPage client:load works={works} />

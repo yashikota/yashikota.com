@@ -12,7 +12,7 @@ const aboutMd = fs.readFileSync(aboutMdPath, "utf-8");
 const { html: aboutContent } = await markdownToHtmlWithToc(aboutMd);
 ---
 
-<Base>
+<Base pageTitle="About">
     <div>
         <Navigation client:load currentTab="about" />
         <AboutPage client:load aboutContent={aboutContent} />
