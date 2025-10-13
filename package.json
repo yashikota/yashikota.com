@@ -28,7 +28,7 @@
     "clsx": "^2.1.1",
     "file-type": "^21.0.0",
     "hastscript": "^9.0.1",
-    "katex": "^0.16.22",
+    "katex": "^0.16.25",
     "lucide-react": "^0.511.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
