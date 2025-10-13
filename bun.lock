@@ -14,7 +14,7 @@
         "@radix-ui/react-slot": "^1.2.3",
         "@radix-ui/react-tabs": "^1.1.12",
         "@types/open-graph-scraper": "^4.8.5",
-        "@types/react": "^19.2.0",
+        "@types/react": "^19.2.2",
         "@types/react-dom": "^19.2.0",
         "astro": "^5.14.1",
         "class-variance-authority": "^0.7.1",
@@ -509,7 +509,7 @@
 
     "@types/open-graph-scraper": ["@types/open-graph-scraper@4.8.5", "", { "dependencies": { "@types/node": "*" } }, "sha512-VaLETp904KkNylNuQLF1jjSYhAIDoEatCpAjzKsPXNSYS1EL0v1GxNMfFLzQ5IMoKmdddgvYpLtGpksHbjeR5Q=="],
 
-    "@types/react": ["@types/react@19.2.0", "", { "dependencies": { "csstype": "^3.0.2" } }, "sha512-1LOH8xovvsKsCBq1wnT4ntDUdCJKmnEakhsuoUSy6ExlHCkGP2hqnatagYTgFk6oeL0VU31u7SNjunPN+GchtA=="],
+    "@types/react": ["@types/react@19.2.2", "", { "dependencies": { "csstype": "^3.0.2" } }, "sha512-6mDvHUFSjyT2B2yeNx2nUgMxh9LtOWvkhIU3uePn2I2oyNymUAX1NIsdgviM4CH+JSrp2D2hsMvJOkxY+0wNRA=="],
 
     "@types/react-dom": ["@types/react-dom@19.2.0", "", { "peerDependencies": { "@types/react": "^19.2.0" } }, "sha512-brtBs0MnE9SMx7px208g39lRmC5uHZs96caOJfTjFcYSLHNamvaSMfJNagChVNkup2SdtOxKX1FDBkRSJe1ZAg=="],
 
