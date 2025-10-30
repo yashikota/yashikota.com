@@ -165,6 +165,14 @@ https://docswell.com/user/kota
   - 2025/08 (2週間)
   - ゲームのサーバーサイド開発
 
+- [サイバーエージェント](https://www.cyberagent.co.jp) 実践就業型インターンシップ
+  - 2025/11 (一ヵ月)
+  - ゲームのサーバーサイド開発
+
+- [GREE](https://gree.jp) 長期実践型インターンシップ
+  - 2025/12 (一ヵ月)
+  - ゲームのサーバーサイド開発
+
 ## OSS Contributions
 
 ### [aquaproj/aqua-registry](https://github.com/aquaproj/aqua-registry)
