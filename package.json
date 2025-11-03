@@ -23,7 +23,7 @@
     "@types/open-graph-scraper": "^5.2.3",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
-    "astro": "^5.15.1",
+    "astro": "^5.15.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "file-type": "^21.0.0",
