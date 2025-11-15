@@ -158,7 +158,7 @@ https://docswell.com/user/kota
   - 画像処理サービスの新機能開発
 
 - [Univearth](https://www.univearth.co.jp) 長期インターンシップ
-  - 2024/10 ~
+  - 2024/10 ~ (継続中)
   - フルスタックにSaaSの開発や社内アプリケーション、クラウドインフラの管理など幅広く担当
 
 - [コロプラ](https://colopl.co.jp) 就業型インターンシップ
