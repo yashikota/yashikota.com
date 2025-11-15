@@ -1,13 +1,21 @@
 [
   {
+    "title": "genenv",
+    "description": ".env.example のようなテンプレートファイルのプレースホルダーにランダムな値を入れた .env ファイルを生成するシンプルなCLIツール",
+    "image": "https://img.yashikota.com/works/genenv/genenv.avif",
+    "github": ["https://github.com/yashikota/genenv"],
+    "url": [],
+    "date": "2025/11",
+    "tags": ["Go", "CLI"]
+  },
+  {
     "title": "Shutdown Timer",
     "description": "Windows専用のPCシャットダウンしてくれるアプリです。〇〇分後にシャットダウンと〇〇時にシャットダウンの2通りをサポートしています。英語対応やライト/ダークテーマにも対応しています。WinAppSDKとWinUI 3を使って作りました",
     "image": "https://img.yashikota.com/works/shutdown-timer/shutdown-timer.avif",
     "github": ["https://github.com/yashikota/shutdown-timer"],
     "url": [],
     "date": "2025/09",
-    "tags": ["WinAppSDK", "WinUI 3"],
-    "path": "shutdown-timer"
+    "tags": ["WinAppSDK", "WinUI 3"]
   },
   {
     "title": "HappyShot",
@@ -16,8 +24,7 @@
     "github": ["https://github.com/yashikota/happy-shot"],
     "url": ["https://topaz.dev/projects/5ba3d6d5f2818f64236f"],
     "date": "2025/02",
-    "tags": ["Next.js", "Python"],
-    "path": "happyshot"
+    "tags": ["Next.js", "Python"]
   },
   {
     "title": "Chronotes",
@@ -26,8 +33,7 @@
     "github": ["https://github.com/yashikota/chronotes"],
     "url": ["https://topaz.dev/projects/9752f502380d2cc00f7c"],
     "date": "2024/11",
-    "tags": ["Go", "Next.js", "Docker", "PostgreSQL", "Tailwind", "Gemini"],
-    "path": "chronotes"
+    "tags": ["Go", "Next.js", "Docker", "PostgreSQL", "Tailwind", "Gemini"]
   },
   {
     "title": "Scene Hunter",
@@ -36,8 +42,7 @@
     "github": ["https://github.com/yashikota/scene-hunter"],
     "url": ["https://topaz.dev/projects/b8646b0b164a6568fa57"],
     "date": "2024/08",
-    "tags": ["Python", "React", "Go", "Gemini"],
-    "path": "scene-hunter"
+    "tags": ["Python", "React", "Go", "Gemini"]
   },
   {
     "title": "NAISTシラバスアプリ",
@@ -53,8 +58,7 @@
       "React Router v7",
       "shadcn/ui",
       "Cloudflare"
-    ],
-    "path": "syllabus-naist"
+    ]
   },
   {
     "title": "OITシラバスアプリ",
@@ -67,8 +71,7 @@
     ],
     "url": ["https://syllabus.oit.yashikota.com"],
     "date": "2022/02 ~ 2022/04",
-    "tags": ["React", "Next.js", "Python", "TypeScript", "Github Actions"],
-    "path": "syllabus-oit"
+    "tags": ["React", "Next.js", "Python", "TypeScript", "Github Actions"]
   },
   {
     "title": "yashikota.com",
@@ -77,8 +80,7 @@
     "github": ["https://github.com/yashikota/yashikota.com"],
     "url": ["https://yashikota.com"],
     "date": "2024/01 ~ 2024/03",
-    "tags": ["Astro", "shadcn/ui", "Bun"],
-    "path": "yashikota-com"
+    "tags": ["Astro", "shadcn/ui", "Bun"]
   },
   {
     "title": "4bitCPU エミュレーター",
@@ -87,8 +89,7 @@
     "github": ["https://github.com/yashikota/td4-py"],
     "url": ["https://pypi.org/project/td4"],
     "date": "2023/03",
-    "tags": ["CPU", "Python"],
-    "path": "td4-cpu-emulator"
+    "tags": ["CPU", "Python"]
   },
   {
     "title": "OIT Magic",
@@ -97,8 +98,7 @@
     "github": ["https://github.com/yashikota/oit-magic"],
     "url": [],
     "date": "2023/10 ~ 2023/11",
-    "tags": ["Unity", "C Sharp", "Python", "MediaPipe"],
-    "path": "oit-magic"
+    "tags": ["Unity", "C Sharp", "Python", "MediaPipe"]
   },
   {
     "title": "FunBook",
@@ -110,8 +110,7 @@
     ],
     "url": ["https://funbook.pages.dev"],
     "date": "2023/04",
-    "tags": ["React", "Go", "ChatGPT API"],
-    "path": "funbook"
+    "tags": ["React", "Go", "ChatGPT API"]
   },
   {
     "title": "JANCode Generator",
@@ -123,7 +122,6 @@
       "https://zenn.dev/yashikota/articles/3d1f38a5972a5b"
     ],
     "date": "2023/02",
-    "tags": ["Python", "JANCode"],
-    "path": "jancode-generator"
+    "tags": ["Python", "JANCode"]
   }
 ]
