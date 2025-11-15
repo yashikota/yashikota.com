@@ -1,0 +1,16 @@
+---
+import { Navigation } from "@/components/shadcn/navigation";
+import { WorksPage } from "@/components/shadcn/works-page";
+import Base from "@/layouts/base.astro";
+import { getAllWorks } from "@/lib/works";
+
+// Get works data
+const works = await getAllWorks();
+---
+
+<Base pageTitle="Works">
+    <div>
+        <Navigation client:load currentTab="works" />
+        <WorksPage client:load works={works} />
+    </div>
+</Base>
