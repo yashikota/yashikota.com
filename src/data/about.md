@@ -170,8 +170,8 @@ https://docswell.com/user/kota
   - ゲームのサーバーサイド開発
 
 - [GREE](https://gree.jp) 長期実践型インターンシップ
-  - 2025/12 (一ヵ月)
-  - ゲームのサーバーサイド開発
+  - 2025/12 (3週間)
+  - インフラ運用
 
 ## OSS Contributions
 
