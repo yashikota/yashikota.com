@@ -167,7 +167,7 @@ https://docswell.com/user/kota
 
 - [サイバーエージェント](https://www.cyberagent.co.jp) 実践就業型インターンシップ
   - 2025/11 (一ヵ月)
-  - ゲームのサーバーサイド開発
+  - [ゲームのサーバーサイド開発](https://developers.cyberagent.co.jp/blog/archives/60181/)
 
 - [GREE](https://gree.jp) 長期実践型インターンシップ
   - 2025/12 (3週間)
