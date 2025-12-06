@@ -42,7 +42,7 @@ https://github.com/yashikota/leadable
 
 - シラバス検索・閲覧アプリ
 
-https://github.com/yashikota/syllabus
+https://github.com/yashikota/syllabus/tree/main/scraping
 
 - バーコード生成ライブラリ
 
@@ -58,15 +58,19 @@ https://github.com/yashikota/td4-py
 
 - シラバス検索・閲覧アプリ
 
-https://syllabus.naist.yashikota.com
+https://github.com/yashikota/syllabus/tree/main/frontend
 
 - このサイト
 
 https://github.com/yashikota/yashikota.com
 
-- 論文翻訳アプリのフロントエンド
+- 細々としたWeb API群
 
-https://github.com/yashikota/leadable
+https://github.com/yashikota/hiragana-word-api
+
+https://github.com/yashikota/llm-models-api
+
+https://github.com/yashikota/roadmapsh-txt
 
 3年ほど主に個人開発/インターンで使用。React/Next.js/Astro/Tailwind/shadcn/uiあたりがさわれます。  
 あと最近はちょっとしたWebAPIの開発にはhono + Cloudflare Workersで作るのにハマっています。書きやすく、動かしやすく、維持費もかからないので開発者体験が良いです🔥  
@@ -75,9 +79,9 @@ https://github.com/yashikota/leadable
 
 - バックエンド
 
-https://github.com/yashikota/chronotes
+https://github.com/yashikota/scene-hunter
 
-https://github.com/yashikota/scene-hunter-backend
+https://github.com/yashikota/chronotes
 
 - CLIアプリ
 
@@ -167,11 +171,11 @@ https://docswell.com/user/kota
 
 - [サイバーエージェント](https://www.cyberagent.co.jp) 実践就業型インターンシップ
   - 2025/11 (一ヵ月)
-  - [ゲームのサーバーサイド開発](https://developers.cyberagent.co.jp/blog/archives/60181/)
+  - [ゲームのサーバーサイド開発](https://developers.cyberagent.co.jp/blog/archives/60181)
 
 - [GREE](https://gree.jp) 長期実践型インターンシップ
   - 2025/12 (3週間)
-  - インフラ運用
+  - MLOps
 
 ## OSS Contributions
 
