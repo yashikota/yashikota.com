@@ -29,7 +29,7 @@
     "file-type": "^21.1.0",
     "hastscript": "^9.0.1",
     "katex": "^0.16.25",
-    "lucide-react": "^0.554.0",
+    "lucide-react": "^0.556.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "rehype-autolink-headings": "^7.1.0",
