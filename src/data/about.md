@@ -177,6 +177,10 @@ https://docswell.com/user/kota
   - 2025/12 (3週間)
   - ゲームの離脱予測を行うMLOpsの実践
 
+- [株式会社MIXI](https://mixi.co.jp) 長期実践型インターンシップ
+  - 2025/1 ~ 2025/2 (二か月)
+  - SRE
+
 ## OSS Contributions
 
 ### [aquaproj/aqua-registry](https://github.com/aquaproj/aqua-registry)
