@@ -175,7 +175,7 @@ https://docswell.com/user/kota
 
 - [GREE](https://gree.jp) 長期実践型インターンシップ
   - 2025/12 (3週間)
-  - MLOps
+  - ゲームの離脱予測を行うMLOpsの実践
 
 ## OSS Contributions
 
@@ -199,26 +199,9 @@ https://docswell.com/user/kota
 
 ## Certification
 
-- ITパスポート
-- 情報セキュリティマネジメント
 - 応用情報技術者
 - 情報処理安全確保支援士試験 合格
 - 技術士第一次試験 情報工学部門 合格
 - TOEIC 510
 - 第二種電気工事士
 - 乙種第4類危険物取扱者
-
-## PGP Public Key
-
-```txt
------BEGIN PGP PUBLIC KEY BLOCK-----
-
-mDMEZNGsjhYJKwYBBAHaRw8BAQdAJZaBFcvtQYMzMRwUmLwWXJZBvLqwPgF4P5q0
-haD+2qq0MmtvdGEgPDUyNDAzNjg4K3lhc2hpa290YUB1c2Vycy5ub3JlcGx5Lmdp
-dGh1Yi5jb20+iJAEExYIADgWIQTULScBToPRsTfnRC5/HZb2+DPwLwUCZNGsjgIb
-AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgAAKCRB/HZb2+DPwL2TmAQDadsJv4tub
-wPbV8cAQwhokpmBscRUj4dfafzoqudhLsgD/a3B+0CH5ag5CIRT6p6+J9CRtI9D4
-jVRxL3LyVNuzrw0=
-=b/8T
------END PGP PUBLIC KEY BLOCK-----
-```
