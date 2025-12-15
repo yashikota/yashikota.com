@@ -145,39 +145,39 @@ https://docswell.com/user/kota
 
 ## Internship
 
-- [Flatt Security](https://flatt.tech) サマーインターンシップ
+- [Flatt Security](https://flatt.tech)
   - 2023/08 (5日間)
   - Webアプリケーションセキュリティ診断
 
-- [ちゅらデータ](https://churadata.okinawa) サマーインターンシップ
+- [ちゅらデータ](https://churadata.okinawa)
   - 2023/09 (2週間)
   - データ分析基盤構築、データモデリング
 
-- [日本経済新聞社](https://www.nikkei.co.jp/nikkeiinfo) 短期インターンシップ
+- [日本経済新聞社](https://www.nikkei.co.jp/nikkeiinfo)
   - 2024/08 (5日間)
   - 記事の読解支援を行うWebアプリケーション開発
 
-- [ピクシブ](https://www.pixiv.co.jp) エンジニア職インターン
+- [ピクシブ](https://www.pixiv.co.jp)
   - 2024/09 (10日間)
   - 画像処理サービスの新機能開発
 
-- [Univearth](https://www.univearth.co.jp) 長期インターンシップ
+- [Univearth](https://www.univearth.co.jp)
   - 2024/10 ~ (継続中)
   - フルスタックにSaaSの開発や社内アプリケーション、クラウドインフラの管理など幅広く担当
 
-- [コロプラ](https://colopl.co.jp) 就業型インターンシップ
+- [コロプラ](https://colopl.co.jp)
   - 2025/08 (2週間)
   - ゲームのサーバーサイド開発
 
-- [サイバーエージェント](https://www.cyberagent.co.jp) 実践就業型インターンシップ
+- [サイバーエージェント](https://www.cyberagent.co.jp)
   - 2025/11 (一ヵ月)
   - [ゲームのサーバーサイド開発](https://developers.cyberagent.co.jp/blog/archives/60181)
 
-- [GREE](https://gree.jp) 長期実践型インターンシップ
+- [GREE](https://gree.jp)
   - 2025/12 (3週間)
   - ゲームの離脱予測を行うMLOpsの実践
 
-- [株式会社MIXI](https://mixi.co.jp) 長期実践型インターンシップ
+- [株式会社MIXI](https://mixi.co.jp)
   - 2025/1 ~ 2025/2 (二か月)
   - SRE
 
