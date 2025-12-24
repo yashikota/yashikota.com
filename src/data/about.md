@@ -175,7 +175,7 @@ https://docswell.com/user/kota
 
 - [GREE](https://gree.jp)
   - 2025/12 (3週間)
-  - ゲームの離脱予測を行うMLOpsの実践
+  - ゲームの離脱予測を行う機械学習モデル開発
 
 - [株式会社MIXI](https://mixi.co.jp)
   - 2025/1 ~ 2025/2 (二か月)
