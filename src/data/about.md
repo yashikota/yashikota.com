@@ -64,11 +64,9 @@ https://github.com/yashikota/syllabus/tree/main/frontend
 
 https://github.com/yashikota/yashikota.com
 
-- 細々としたWeb API群
+- 細々としたWeb API
 
 https://github.com/yashikota/hiragana-word-api
-
-https://github.com/yashikota/llm-models-api
 
 https://github.com/yashikota/roadmapsh-txt
 
