@@ -11,6 +11,8 @@ https://lapras.com/public/kota
 
 https://findy-code.io/skills-share/SZ80HMrAQQPyo  
 
+https://gitty-code.com/user/yashikota  
+
 ### Backend
 
 主にGoやTypeScriptを使っていて、GoだったらCloudRun、TSはCloudflare Workersにデプロイしています。  
