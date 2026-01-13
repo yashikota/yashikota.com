@@ -8,7 +8,7 @@ tags: ["discord"]
 showToc: false
 ---
 
-flagsというフィールドがあるのでそこに `FAILED_TO_MENTION_SOME_ROLES_IN_THREAD` のbitである4096を与えます。  
+flagsというフィールドがあるのでそこに `SUPPRESS_NOTIFICATIONS` のbitである4096を与えます。  
 
 https://discord.com/developers/docs/resources/message#message-object-message-flags
 
