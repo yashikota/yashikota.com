@@ -87,7 +87,7 @@ https://github.com/yashikota/chronotes
 
 https://github.com/yashikota/genenv
 
-https://github.com/yashikota/owata
+https://github.com/yashikota/noast
 
 1年ほど主に個人開発/インターンで使用。  
 クロスプラットフォームにシングルバイナリで実行ファイルをビルドできるところが好きで、ちょっとしたCLIアプリとかは基本Goで書いています。  
