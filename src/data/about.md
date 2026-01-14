@@ -183,23 +183,28 @@ https://docswell.com/user/kota
 
 ## OSS Contributions
 
-### [aquaproj/aqua-registry](https://github.com/aquaproj/aqua-registry)
+### [louislam/uptime-kuma](https://github.com/louislam/uptime-kuma)
 
-- feat(aws/aws-sam-cli): scaffold aws/aws-sam-cli ([#33349](https://github.com/aquaproj/aqua-registry/pull/33349))
-`aws-sam-cli`の`aqua`でのインストールに対応
-
-- Add theseus-rs/postgresql-binaries ([#33390](https://github.com/aquaproj/aqua-registry/pull/33390))
-`postgresql-binaries`の`aqua`でのインストールに対応
-
-### [okaryo/remark-link-card-plus](https://github.com/okaryo/remark-link-card-plus)
-
-- Add `ignoreExtensions` options to exclude link cards ([#48](https://github.com/okaryo/remark-link-card-plus/pull/48))
-特定の拡張子のリンクをリンクカードに変換しないオプションを追加
+- feat(notification): discord suppress notifications ([#6717](https://github.com/louislam/uptime-kuma/pull/6717))  
+Discordへの通知で、Suppress Notificationを選べるように機能追加
 
 ### [jdx/mise](https://github.com/jdx/mise)
 
-- feat(registry): update aws-sam backends to include aqua source ([#5461](https://github.com/jdx/mise/pull/5461))
+- feat(registry): update aws-sam backends to include aqua source ([#5461](https://github.com/jdx/mise/pull/5461))  
 `aqua:aws-sam-cli` のインストールに対応
+
+### [okaryo/remark-link-card-plus](https://github.com/okaryo/remark-link-card-plus)
+
+- Add `ignoreExtensions` options to exclude link cards ([#48](https://github.com/okaryo/remark-link-card-plus/pull/48))  
+特定の拡張子のリンクをリンクカードに変換しないオプションを追加
+
+### [aquaproj/aqua-registry](https://github.com/aquaproj/aqua-registry)
+
+- feat(aws/aws-sam-cli): scaffold aws/aws-sam-cli ([#33349](https://github.com/aquaproj/aqua-registry/pull/33349))  
+`aws-sam-cli`の`aqua`でのインストールに対応
+
+- Add theseus-rs/postgresql-binaries ([#33390](https://github.com/aquaproj/aqua-registry/pull/33390))  
+`postgresql-binaries`の`aqua`でのインストールに対応
 
 ## Certification
 
