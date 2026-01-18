@@ -3,7 +3,7 @@ title: GitHubのSVGアイコン
 pubDate: 2026-01-17
 updDate: 
 isUnlisted: false
-category: life
+category: tech
 tags: ["GitHub"]
 showToc: false
 ---
