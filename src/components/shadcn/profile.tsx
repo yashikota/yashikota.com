@@ -3,9 +3,7 @@ export function ProfileComponent() {
     <div className="flex flex-col items-center">
       <img src="/favicon.avif" alt="avatar" className="w-24" />
       <h1 className="mt-4 text-2xl font-bold">
-        <ruby>
-          kota<rt>こた</rt>
-        </ruby>
+        <span>こた (kota)</span>
       </h1>
       <p className="text-lg">(id: yashikota)</p>
       <div className="mt-2 h-1 w-40 bg-[#006e54]" />
