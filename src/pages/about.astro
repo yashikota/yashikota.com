@@ -6,9 +6,16 @@ import { Navigation } from "@/components/shadcn/navigation";
 import Base from "@/layouts/base.astro";
 import { markdownToHtmlWithToc } from "@/lib/markdown";
 
-// Read the about.md file
+// Read the about.md and skills.xml files
 const aboutMdPath = path.join(process.cwd(), "src", "data", "about.md");
-const aboutMd = fs.readFileSync(aboutMdPath, "utf-8");
+const skillsPath = path.join(process.cwd(), "src", "data", "skills.xml");
+
+let aboutMd = fs.readFileSync(aboutMdPath, "utf-8");
+const skillsXml = fs.readFileSync(skillsPath, "utf-8");
+
+// Inject skills.xml content into about.md
+aboutMd = aboutMd.replace("<!-- inject:skills -->", `\`\`\`xml\n${skillsXml}\`\`\``);
+
 const { html: aboutContent } = await markdownToHtmlWithToc(aboutMd);
 ---
 

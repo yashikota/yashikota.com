@@ -1,9 +1,4 @@
-```xml
-<Hobby> ::= <Game> <Astrophotography> <Cooking> <Programming>
-<Programming> ::= <Backend> <Python> <TypeScript> <Go> <Other>
-<Backend> ::= <Cloud> <CloudNative> <DataBase> <SoftwareArchitecture>
-<Other> ::= <WebFrontend> <LLM> <Security>
-```
+<!-- inject:skills -->
 
 技術力スコア👇  
 
