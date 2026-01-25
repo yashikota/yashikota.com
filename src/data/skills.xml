@@ -2,6 +2,6 @@
 <Programming> ::= <Backend> <Go> <TypeScript> <Python> <Other>
 <Backend> ::= <Cloud> <CloudNative> <DataBase>
 <Cloud> ::= <AWS> <GoogleCloud> <Cloudflare>
-<CloudNative> ::= <Docker> <Terraform> <Kubernetes>
+<CloudNative> ::= <CI> <CD> <Docker> <Terraform> <Kubernetes>
 <DataBase> ::= <PostgreSQL> <Redis> <Valkey>
 <Other> ::= <WebFrontend> <LLM> <Security>
