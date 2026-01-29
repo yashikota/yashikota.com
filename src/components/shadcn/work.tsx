@@ -1,5 +1,4 @@
 import { GitHubLogoIcon, Link2Icon } from "@radix-ui/react-icons";
-import type React from "react";
 import {
   Card,
   CardContent,
@@ -17,23 +16,11 @@ interface WorkComponentProps {
   tags: string[];
   url: string[];
   path: string;
-  onClick?: () => void;
 }
 
 export function WorkComponent(props: WorkComponentProps) {
-  const handleCardClick = (e: React.MouseEvent) => {
-    // 外部リンクをクリックした場合はカードクリックを無効化
-    if ((e.target as HTMLElement).closest("a")) {
-      return;
-    }
-    props.onClick?.();
-  };
-
   return (
-    <Card
-      className="flex flex-col hover:bg-gray-100 transition-colors cursor-pointer"
-      onClick={handleCardClick}
-    >
+    <Card className="flex flex-col">
       <CardContent className="p-1 flex justify-center">
         <img
           src={props.thumbnail}
@@ -54,7 +41,6 @@ export function WorkComponent(props: WorkComponentProps) {
                 target="_blank"
                 rel="noreferrer noopener"
                 className="hover:text-gray-400 mr-2"
-                onClick={(e) => e.stopPropagation()}
               >
                 <GitHubLogoIcon width="20" height="20" />
               </a>
@@ -66,7 +52,6 @@ export function WorkComponent(props: WorkComponentProps) {
                 target="_blank"
                 rel="noreferrer noopener"
                 className="hover:text-gray-400 mr-2"
-                onClick={(e) => e.stopPropagation()}
               >
                 <Link2Icon width="20" height="20" />
               </a>
