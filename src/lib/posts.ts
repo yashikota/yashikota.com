@@ -35,9 +35,9 @@ export async function getBlogPosts(): Promise<ExtendedPost[]> {
     isUnlisted: blog.data.isUnlisted,
     category: blog.data.category,
     tags: blog.data.tags || [],
-    slug: blog.slug,
+    slug: blog.id,
     body: blog.body,
-    url: `/blog/${blog.slug}`,
+    url: `/blog/${blog.id}`,
     icon: getFaviconUrl("yashikota.com"),
     showToc: blog.data.showToc,
   }));

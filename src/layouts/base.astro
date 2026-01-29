@@ -1,7 +1,7 @@
 ---
 import "@/styles/globals.css";
 
-import { ViewTransitions } from "astro:transitions";
+import { ClientRouter } from "astro:transitions";
 
 import Header from "@/components/header.astro";
 
@@ -32,7 +32,7 @@ const { pageTitle } = Astro.props;
         <title>
             {pageTitle ? `${pageTitle} | こたのお考え` : "こたのお考え"}
         </title>
-        <ViewTransitions />
+        <ClientRouter />
     </head>
     <body>
         <div>
