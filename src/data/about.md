@@ -33,10 +33,6 @@ DBも設計もまだまだ初心者ですが、ソフトウェア開発におい
 
 ### Python
 
-- 論文翻訳アプリ
-
-https://github.com/yashikota/leadable
-
 - シラバス検索・閲覧アプリ
 
 https://github.com/yashikota/syllabus/tree/main/scraping
@@ -64,8 +60,6 @@ https://github.com/yashikota/yashikota.com
 - 細々としたWeb API
 
 https://github.com/yashikota/hiragana-word-api
-
-https://github.com/yashikota/roadmapsh-txt
 
 3年ほど主に個人開発/インターンで使用。React/Next.js/Astro/Tailwind/shadcn/uiあたりがさわれます。  
 あと最近はちょっとしたWebAPIの開発にはhono + Cloudflare Workersで作るのにハマっています。書きやすく、動かしやすく、維持費もかからないので開発者体験が良いです🔥  
