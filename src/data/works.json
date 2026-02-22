@@ -1,5 +1,32 @@
 [
   {
+    "title": "Minis3",
+    "description": "ユニットテスト用のインメモリで動作するS3互換サーバー。テストは書きたいが、モックは使いたくないという思いがあり更にDockerとかで建てるのも微妙なので、miniredisというインメモリなGoのユニットテスト用のライブラリがありこのアプローチが好きなのでS3用のも欲しいと思い作成しました",
+    "image": "https://img.yashikota.com/works/minis3/minis3.avif",
+    "github": ["https://github.com/yashikota/minis3"],
+    "url": [],
+    "date": "2026/02",
+    "tags": ["Go", "S3"]
+  },
+  {
+    "title": "GitHub Trending 日本語まとめ",
+    "description": "GitHub Trendingの概要を日本語に翻訳して毎日お届けします！",
+    "image": "https://img.yashikota.com/works/github-trending-ja/github-trending-ja.avif",
+    "github": ["https://github.com/yashikota/github-trending-ja"],
+    "url": ["https://github-trending-ja.yashikota.com"],
+    "date": "2026/02",
+    "tags": ["Go", "LLM"]
+  },
+  {
+    "title": "exiftool-go",
+    "description": "exiftoolというExifを表示/編集するPerlのツールがあるのですが、これをzeroperlでWasm化し、更にWazeroで動かすというWasm on Wasm構成でPure GoでExiftoolを動かしています",
+    "image": "https://img.yashikota.com/works/exiftool-go/exiftool-go.avif",
+    "github": ["https://github.com/yashikota/exiftool-go"],
+    "url": [],
+    "date": "2026/02",
+    "tags": ["Go", "CLI", "Wasm"]
+  },
+  {
     "title": "genenv",
     "description": ".env.example のようなテンプレートファイルのプレースホルダーにランダムな値を入れた .env ファイルを生成するシンプルなCLIツール",
     "image": "https://img.yashikota.com/works/genenv/genenv.avif",
