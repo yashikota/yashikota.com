@@ -190,10 +190,13 @@ Discordへの通知で、Suppress Notificationを選べるように機能追加
 ### [aquaproj/aqua-registry](https://github.com/aquaproj/aqua-registry)
 
 - feat(aws/aws-sam-cli): scaffold aws/aws-sam-cli ([#33349](https://github.com/aquaproj/aqua-registry/pull/33349))  
-`aws-sam-cli`の`aqua`でのインストールに対応
+`aws-sam-cli` の追加
 
 - Add theseus-rs/postgresql-binaries ([#33390](https://github.com/aquaproj/aqua-registry/pull/33390))  
-`postgresql-binaries`の`aqua`でのインストールに対応
+`postgresql-binaries` の追加
+
+- feat: Tyrrrz/FFmpegBin ([#49161](https://github.com/aquaproj/aqua-registry/pull/49161))  
+`ffmpeg`の追加
 
 ## Certification
 
