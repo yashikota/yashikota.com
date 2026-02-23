@@ -1,0 +1,24 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "github>aquaproj/aqua-renovate-config#2.10.0",
+    "config:best-practices",
+    ":label(renovate)",
+    ":timezone(Asia/Tokyo)"
+  ],
+  "configMigration": true,
+  "minimumReleaseAge": "7 days",
+  "dependencyDashboard": false,
+  "automerge": true,
+  "lockFileMaintenance": {
+    "enabled": true,
+    "automerge": true
+  },
+  "packageRules": [
+    {
+      "matchPackageNames": ["aquaproj/aqua-registry"],
+      "extends": ["schedule:earlyMondays"],
+      "labels": ["aqua-registry"]
+    }
+  ]
+}
