@@ -168,7 +168,7 @@ https://docswell.com/user/kota
 
 - [MIXI](https://mixi.co.jp)
   - 2025/1 ~ 2025/2 (二か月)
-  - SRE
+  - [SREとしてサービスの改善](https://zenn.dev/mitene/articles/56c1669bc75890)
 
 ## OSS Contributions
 
