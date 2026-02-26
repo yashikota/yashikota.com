@@ -134,39 +134,39 @@ https://docswell.com/user/kota
 
 ## Internship
 
-- [Flatt Security](https://flatt.tech)
+- Flatt Security
   - 2023/08 (5日間)
   - Webアプリケーションセキュリティ診断
 
-- [ちゅらデータ](https://churadata.okinawa)
+- ちゅらデータ
   - 2023/09 (2週間)
   - データ分析基盤構築、データモデリング
 
-- [日本経済新聞社](https://www.nikkei.co.jp/nikkeiinfo)
+- 日本経済新聞社
   - 2024/08 (5日間)
   - 記事の読解支援を行うWebアプリケーション開発
 
-- [ピクシブ](https://www.pixiv.co.jp)
+- ピクシブ
   - 2024/09 (10日間)
   - 画像処理サービスの新機能開発
 
-- [Univearth](https://www.univearth.co.jp)
+- Univearth
   - 2024/10 ~ (継続中)
   - フルスタックにSaaSの開発や社内アプリケーション、クラウドインフラの管理など幅広く担当
 
-- [コロプラ](https://colopl.co.jp)
+- コロプラ
   - 2025/08 (2週間)
   - ゲームのサーバーサイド開発
 
-- [サイバーエージェント](https://www.cyberagent.co.jp)
+- サイバーエージェント
   - 2025/11 (一ヵ月)
   - [ゲームのサーバーサイド開発](https://developers.cyberagent.co.jp/blog/archives/60181)
 
-- [GREE](https://gree.jp)
+- GREE
   - 2025/12 (3週間)
   - ゲームの離脱予測を行う機械学習モデル開発
 
-- [MIXI](https://mixi.co.jp)
+- MIXI
   - 2025/1 ~ 2025/2 (二か月)
   - [SREとしてサービスの改善](https://zenn.dev/mitene/articles/56c1669bc75890)
 
