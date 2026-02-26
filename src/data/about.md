@@ -167,7 +167,7 @@ https://docswell.com/user/kota
   - ゲームの離脱予測を行う機械学習モデル開発
 
 - MIXI
-  - 2025/1 ~ 2025/2 (二か月)
+  - 2026/1 ~ 2026/2 (二か月)
   - [SREとしてサービスの改善](https://zenn.dev/mitene/articles/56c1669bc75890)
 
 ## OSS Contributions
