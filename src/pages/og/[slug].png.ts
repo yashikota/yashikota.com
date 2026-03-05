@@ -7,8 +7,6 @@ export const prerender = true;
 
 type OgPageProps = {
   title: string;
-  category: string;
-  pubDate: string;
   tags: string[];
 };
 
@@ -21,8 +19,6 @@ export async function getStaticPaths() {
       params: { slug: post.slug },
       props: {
         title: post.title,
-        category: post.category ?? "tech",
-        pubDate: post.pubDate,
         tags: post.tags,
       } satisfies OgPageProps,
     }));
@@ -33,8 +29,6 @@ export const GET: APIRoute<OgPageProps> = async ({ props }) => {
 
   const png = await renderOgPng({
     titleLines,
-    category: props.category,
-    pubDate: props.pubDate,
     tags: props.tags,
   });
 

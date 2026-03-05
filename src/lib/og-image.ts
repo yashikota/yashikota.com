@@ -2,8 +2,6 @@ import { Resvg } from "@resvg/resvg-js";
 
 type OgRenderInput = {
   titleLines: string[];
-  category: string;
-  pubDate: string;
   tags: string[];
 };
 
@@ -27,33 +25,39 @@ export async function renderOgPng(input: OgRenderInput): Promise<Uint8Array> {
   const titleText = input.titleLines
     .map(
       (line, index) =>
-        `<tspan x="92" dy="${index === 0 ? 0 : 84}">${escapeXml(line)}</tspan>`,
+        `<tspan x="92" dy="${index === 0 ? 0 : 78}">${escapeXml(line)}</tspan>`,
     )
     .join("");
+
+  const logoImage =
+    '<image href="https://yashikota.com/logo.avif" x="86" y="54" width="260" height="58" preserveAspectRatio="xMinYMid meet" />';
 
   const svg = `
 <svg width="${OG_WIDTH}" height="${OG_HEIGHT}" viewBox="0 0 ${OG_WIDTH} ${OG_HEIGHT}" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#e0f2fe" />
-      <stop offset="100%" stop-color="#dbeafe" />
+    <linearGradient id="header-gradient" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#6ee7b7" />
+      <stop offset="50%" stop-color="#86efac" />
+      <stop offset="100%" stop-color="#67e8f9" />
     </linearGradient>
-    <filter id="blur-48" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="48" />
+    <linearGradient id="card-gradient" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#f8fffd" />
+    </linearGradient>
+    <filter id="soft-shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="18" />
     </filter>
   </defs>
 
-  <rect width="1200" height="630" fill="url(#bg)" />
-  <image href="https://yashikota.com/dango.png" x="760" y="120" width="520" height="520" opacity="0.22" preserveAspectRatio="xMidYMid slice" />
-  <circle cx="1020" cy="90" r="110" fill="#93c5fd" filter="url(#blur-48)" opacity="0.35" />
-  <circle cx="180" cy="560" r="170" fill="#38bdf8" filter="url(#blur-48)" opacity="0.2" />
+  <rect width="1200" height="630" fill="url(#header-gradient)" />
+  <rect x="44" y="38" width="1112" height="554" rx="34" fill="#0f172a" opacity="0.08" filter="url(#soft-shadow)" />
+  <rect x="48" y="42" width="1104" height="546" rx="34" fill="url(#card-gradient)" stroke="#99f6e4" stroke-width="2" />
 
-  <rect x="60" y="58" width="1080" height="514" rx="30" fill="white" fill-opacity="0.86" stroke="#bfdbfe" stroke-width="2" />
-  <text x="92" y="132" font-size="30" font-weight="700" fill="#0369a1">yashikota.com</text>
-  <text x="92" y="178" font-size="26" font-weight="700" fill="#334155">${escapeXml(input.category.toUpperCase())} ・ ${escapeXml(input.pubDate)}</text>
+  ${logoImage}
 
-  <text x="92" y="276" font-size="66" font-weight="700" fill="#0f172a">${titleText}</text>
-  <text x="92" y="544" font-size="28" font-weight="700" fill="#0369a1">${safeTags}</text>
+  <text x="92" y="200" font-size="64" font-weight="700" fill="#0f172a">${titleText}</text>
+  <text x="92" y="540" font-size="28" font-weight="700" fill="#0f766e">${safeTags}</text>
+  <image href="https://yashikota.com/dango.png" x="820" y="310" width="350" height="300" opacity="0.28" preserveAspectRatio="xMidYMid meet" />
 </svg>
 `;
 

@@ -57,38 +57,59 @@ export function splitJapaneseText(
   maxLines = 3,
   maxCharsPerLine = 26,
 ): string[] {
-  const chunks = parser.parse(text.trim());
+  const source = text.trim();
+  const chunks = parser.parse(source);
   const lines: string[] = [];
   let currentLine = "";
 
   for (const chunk of chunks) {
-    if ((currentLine + chunk).length > maxCharsPerLine) {
-      if (currentLine) {
+    let remaining = chunk;
+
+    while (remaining.length > 0) {
+      const room = maxCharsPerLine - currentLine.length;
+
+      if (room <= 0) {
         lines.push(currentLine);
+        currentLine = "";
+        if (lines.length >= maxLines) {
+          break;
+        }
       }
-      currentLine = chunk;
-    } else {
-      currentLine += chunk;
+
+      const take = Math.min(
+        remaining.length,
+        maxCharsPerLine - currentLine.length,
+      );
+      currentLine += remaining.slice(0, take);
+      remaining = remaining.slice(take);
+
+      if (currentLine.length >= maxCharsPerLine) {
+        lines.push(currentLine);
+        currentLine = "";
+      }
+
+      if (lines.length >= maxLines) {
+        break;
+      }
     }
 
-    if (lines.length === maxLines) {
+    if (lines.length >= maxLines) {
       break;
     }
   }
 
-  if (lines.length < maxLines && currentLine) {
+  if (currentLine && lines.length < maxLines) {
     lines.push(currentLine);
   }
 
-  if (lines.length > maxLines) {
-    return lines.slice(0, maxLines);
+  const clipped = lines.slice(0, maxLines);
+  const joined = clipped.join("");
+  const isTruncated = joined.length < source.length;
+
+  if (isTruncated && clipped.length > 0) {
+    const lastIndex = clipped.length - 1;
+    clipped[lastIndex] = truncateText(clipped[lastIndex], maxCharsPerLine);
   }
 
-  const joined = lines.join("");
-  if (joined.length < text.length && lines.length > 0) {
-    const lastIndex = lines.length - 1;
-    lines[lastIndex] = truncateText(lines[lastIndex], maxCharsPerLine);
-  }
-
-  return lines;
+  return clipped;
 }
