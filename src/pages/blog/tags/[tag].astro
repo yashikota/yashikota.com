@@ -28,6 +28,7 @@ export async function getStaticPaths() {
 
 const { tag } = Astro.params;
 const { posts } = Astro.props;
+const canonicalUrl = `/blog/tags/${tag}/`;
 
 const getBackLink = () => {
   const referrer = Astro.request.headers.get("referer");
@@ -41,7 +42,11 @@ const getBackLink = () => {
 };
 ---
 
-<Base pageTitle={tag}>
+<Base
+    pageTitle={`#${tag}`}
+    description={`「${tag}」タグの記事一覧です。`}
+    canonicalUrl={canonicalUrl}
+>
     <h1 class="text-3xl font-bold text-center text-sky-400">#{tag}</h1>
 
     <div>

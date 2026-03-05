@@ -4,8 +4,47 @@ import "@/styles/globals.css";
 import { ClientRouter } from "astro:transitions";
 
 import Header from "@/components/header.astro";
+import {
+  DEFAULT_DESCRIPTION,
+  SITE_NAME,
+  SITE_URL,
+  toAbsoluteUrl,
+} from "@/lib/seo";
 
-const { pageTitle } = Astro.props;
+interface Props {
+  pageTitle?: string;
+  description?: string;
+  canonicalUrl?: string;
+  ogImage?: string;
+  ogType?: "website" | "article";
+  publishedTime?: string | null;
+  modifiedTime?: string | null;
+  twitterCard?: "summary" | "summary_large_image";
+  noIndex?: boolean;
+}
+
+const {
+  pageTitle,
+  description,
+  canonicalUrl,
+  ogImage,
+  ogType,
+  publishedTime,
+  modifiedTime,
+  twitterCard,
+  noIndex,
+} = Astro.props as Props;
+
+const siteUrl = Astro.site?.toString() ?? SITE_URL;
+const resolvedTitle = pageTitle ? `${pageTitle} | ${SITE_NAME}` : SITE_NAME;
+const resolvedDescription = description ?? DEFAULT_DESCRIPTION;
+const resolvedCanonicalUrl = toAbsoluteUrl(
+  canonicalUrl ?? Astro.url.pathname,
+  siteUrl,
+);
+const resolvedOgImage = toAbsoluteUrl(ogImage ?? "/icon.png", siteUrl);
+const resolvedOgType = ogType ?? "website";
+const resolvedTwitterCard = twitterCard ?? "summary_large_image";
 ---
 
 <html lang="ja">
@@ -29,9 +68,29 @@ const { pageTitle } = Astro.props;
         <meta name="viewport" content="width=device-width" />
         <meta name="generator" content={Astro.generator} />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
-        <title>
-            {pageTitle ? `${pageTitle} | こたのお考え` : "こたのお考え"}
-        </title>
+        <title>{resolvedTitle}</title>
+        <meta name="description" content={resolvedDescription} />
+        <link rel="canonical" href={resolvedCanonicalUrl} />
+        {noIndex && <meta name="robots" content="noindex,nofollow" />}
+
+        <meta property="og:type" content={resolvedOgType} />
+        <meta property="og:title" content={resolvedTitle} />
+        <meta property="og:description" content={resolvedDescription} />
+        <meta property="og:url" content={resolvedCanonicalUrl} />
+        <meta property="og:image" content={resolvedOgImage} />
+        <meta property="og:site_name" content={SITE_NAME} />
+        <meta property="og:locale" content="ja_JP" />
+        {publishedTime && (
+          <meta property="article:published_time" content={publishedTime} />
+        )}
+        {modifiedTime && (
+          <meta property="article:modified_time" content={modifiedTime} />
+        )}
+
+        <meta name="twitter:card" content={resolvedTwitterCard} />
+        <meta name="twitter:title" content={resolvedTitle} />
+        <meta name="twitter:description" content={resolvedDescription} />
+        <meta name="twitter:image" content={resolvedOgImage} />
         <ClientRouter />
     </head>
     <body>

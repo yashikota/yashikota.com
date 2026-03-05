@@ -14,7 +14,11 @@ const lifePosts = posts.filter(
 );
 ---
 
-<Base>
+<Base
+    pageTitle="Blog"
+    description="yashikota の最新記事一覧です。"
+    canonicalUrl="/"
+>
     <div>
         <Navigation client:load currentTab="blog" />
         <BlogPage client:load techPosts={techPosts} lifePosts={lifePosts} />
