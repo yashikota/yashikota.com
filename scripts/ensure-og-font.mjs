@@ -3,11 +3,11 @@ import { dirname, resolve } from "node:path";
 
 const FONT_URL =
   process.env.OG_FONT_URL ??
-  "https://raw.githubusercontent.com/google/fonts/main/ofl/notosansjp/NotoSansJP%5Bwght%5D.ttf";
+  "https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/OTF/Japanese/NotoSansCJKjp-Regular.otf";
 
 const FONT_PATH = resolve(
   process.cwd(),
-  ".cache/fonts/NotoSansJP-Variable.ttf",
+  ".cache/fonts/NotoSansCJKjp-Regular.otf",
 );
 
 const MIN_FONT_SIZE = 1_000_000;

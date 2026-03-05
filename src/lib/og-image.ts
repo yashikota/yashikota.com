@@ -27,12 +27,13 @@ let cachedFontOptions: {
 } | null = null;
 
 const OG_FONT_CANDIDATES = [
-  ".cache/fonts/NotoSansJP-Variable.ttf",
-  "public/fonts/NotoSansJP-Variable.ttf",
-  "public/fonts/NotoSansJP-Bold.otf",
+  ".cache/fonts/NotoSansCJKjp-Regular.otf",
+  "public/fonts/NotoSansCJKjp-Regular.otf",
   "public/fonts/NotoSansJP-Regular.otf",
-  "public/fonts/NotoSansJP-Bold.ttf",
+  "public/fonts/NotoSansJP-Variable.ttf",
   "public/fonts/NotoSansJP-Regular.ttf",
+  "public/fonts/NotoSansJP-Bold.otf",
+  "public/fonts/NotoSansJP-Bold.ttf",
 ];
 
 function toDataUri(buffer: Buffer, mimeType: string): string {
@@ -162,8 +163,8 @@ export async function renderOgPng(input: OgRenderInput): Promise<Uint8Array> {
 
   ${logoImage}
 
-  <text x="92" y="232" font-size="56" font-weight="700" fill="#0f172a">${titleText}</text>
-  <text x="92" y="540" font-size="28" font-weight="700" fill="#0f766e">${safeTags}</text>
+  <text x="92" y="232" font-size="56" font-weight="400" fill="#0f172a">${titleText}</text>
+  <text x="92" y="540" font-size="28" font-weight="400" fill="#0f766e">${safeTags}</text>
   <circle cx="${dangoCenterX}" cy="${dangoCenterY}" r="${dangoBorderRadius}" fill="#ffffff" stroke="#99f6e4" stroke-width="3" />
   <image href="${dangoDataUri}" x="${dangoImageX}" y="${dangoImageY}" width="${dangoImageSize}" height="${dangoImageSize}" clip-path="url(#dango-clip)" preserveAspectRatio="xMidYMid meet" image-rendering="optimizeQuality" />
 </svg>
