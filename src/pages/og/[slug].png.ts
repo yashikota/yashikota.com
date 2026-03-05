@@ -25,7 +25,7 @@ export async function getStaticPaths() {
 }
 
 export const GET: APIRoute<OgPageProps> = async ({ props }) => {
-  const titleLines = splitJapaneseText(truncateText(props.title, 80), 3, 20);
+  const titleLines = splitJapaneseText(truncateText(props.title, 88), 4, 12);
 
   const png = await renderOgPng({
     titleLines,

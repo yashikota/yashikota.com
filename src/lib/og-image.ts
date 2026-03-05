@@ -1,3 +1,5 @@
+import { readFile } from "node:fs/promises";
+import { resolve } from "node:path";
 import { Resvg } from "@resvg/resvg-js";
 
 type OgRenderInput = {
@@ -7,6 +9,35 @@ type OgRenderInput = {
 
 const OG_WIDTH = 1200;
 const OG_HEIGHT = 630;
+
+type OgAssets = {
+  logoDataUri: string;
+  dangoDataUri: string;
+};
+
+let cachedAssets: OgAssets | null = null;
+
+function toDataUri(buffer: Buffer, mimeType: string): string {
+  return `data:${mimeType};base64,${buffer.toString("base64")}`;
+}
+
+async function loadOgAssets(): Promise<OgAssets> {
+  if (cachedAssets) {
+    return cachedAssets;
+  }
+
+  const [logoBuffer, dangoBuffer] = await Promise.all([
+    readFile(resolve(process.cwd(), "public/logo.avif")),
+    readFile(resolve(process.cwd(), "public/dango.png")),
+  ]);
+
+  cachedAssets = {
+    logoDataUri: toDataUri(logoBuffer, "image/avif"),
+    dangoDataUri: toDataUri(dangoBuffer, "image/png"),
+  };
+
+  return cachedAssets;
+}
 function escapeXml(value: string): string {
   return value
     .replaceAll("&", "&amp;")
@@ -17,10 +48,12 @@ function escapeXml(value: string): string {
 }
 
 export async function renderOgPng(input: OgRenderInput): Promise<Uint8Array> {
+  const { logoDataUri, dangoDataUri } = await loadOgAssets();
   const safeTags = input.tags
     .slice(0, 3)
     .map((tag) => `#${escapeXml(tag)}`)
-    .join(" ");
+    .join(" ")
+    .slice(0, 42);
 
   const titleText = input.titleLines
     .map(
@@ -29,8 +62,7 @@ export async function renderOgPng(input: OgRenderInput): Promise<Uint8Array> {
     )
     .join("");
 
-  const logoImage =
-    '<image href="https://yashikota.com/logo.avif" x="86" y="54" width="260" height="58" preserveAspectRatio="xMinYMid meet" />';
+  const logoImage = `<image href="${logoDataUri}" x="86" y="54" width="260" height="58" preserveAspectRatio="xMinYMid meet" />`;
 
   const svg = `
 <svg width="${OG_WIDTH}" height="${OG_HEIGHT}" viewBox="0 0 ${OG_WIDTH} ${OG_HEIGHT}" xmlns="http://www.w3.org/2000/svg">
@@ -55,9 +87,9 @@ export async function renderOgPng(input: OgRenderInput): Promise<Uint8Array> {
 
   ${logoImage}
 
-  <text x="92" y="200" font-size="64" font-weight="700" fill="#0f172a">${titleText}</text>
+  <text x="92" y="200" font-size="56" font-weight="700" fill="#0f172a">${titleText}</text>
   <text x="92" y="540" font-size="28" font-weight="700" fill="#0f766e">${safeTags}</text>
-  <image href="https://yashikota.com/dango.png" x="820" y="310" width="350" height="300" opacity="0.28" preserveAspectRatio="xMidYMid meet" />
+  <image href="${dangoDataUri}" x="820" y="310" width="350" height="300" opacity="0.28" preserveAspectRatio="xMidYMid meet" />
 </svg>
 `;
 
