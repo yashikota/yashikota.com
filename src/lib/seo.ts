@@ -11,10 +11,6 @@ export function toAbsoluteUrl(
   value: string,
   baseUrl: string = SITE_URL,
 ): string {
-  if (URL.canParse(value)) {
-    return new URL(value).toString();
-  }
-
   return new URL(value, baseUrl).toString();
 }
 

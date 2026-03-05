@@ -1,4 +1,4 @@
-import { readFile } from "node:fs/promises";
+import { access, readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { Resvg } from "@resvg/resvg-js";
 
@@ -20,6 +20,18 @@ type OgAssets = {
 };
 
 let cachedAssets: OgAssets | null = null;
+let cachedFontOptions: {
+  loadSystemFonts: boolean;
+  defaultFontFamily: string;
+  fontFiles?: string[];
+} | null = null;
+
+const OG_FONT_CANDIDATES = [
+  "public/fonts/NotoSansJP-Bold.otf",
+  "public/fonts/NotoSansJP-Regular.otf",
+  "public/fonts/NotoSansJP-Bold.ttf",
+  "public/fonts/NotoSansJP-Regular.ttf",
+];
 
 function toDataUri(buffer: Buffer, mimeType: string): string {
   return `data:${mimeType};base64,${buffer.toString("base64")}`;
@@ -42,6 +54,42 @@ async function loadOgAssets(): Promise<OgAssets> {
 
   return cachedAssets;
 }
+
+async function loadOgFontOptions(): Promise<{
+  loadSystemFonts: boolean;
+  defaultFontFamily: string;
+  fontFiles?: string[];
+}> {
+  if (cachedFontOptions) {
+    return cachedFontOptions;
+  }
+
+  const fontFiles: string[] = [];
+  for (const candidate of OG_FONT_CANDIDATES) {
+    const absolutePath = resolve(process.cwd(), candidate);
+    try {
+      await access(absolutePath);
+      fontFiles.push(absolutePath);
+    } catch {
+      // Ignore missing files; fallback is handled below.
+    }
+  }
+
+  cachedFontOptions =
+    fontFiles.length > 0
+      ? {
+          loadSystemFonts: false,
+          defaultFontFamily: "Noto Sans JP",
+          fontFiles,
+        }
+      : {
+          loadSystemFonts: true,
+          defaultFontFamily: "sans-serif",
+        };
+
+  return cachedFontOptions;
+}
+
 function escapeXml(value: string): string {
   return value
     .replaceAll("&", "&amp;")
@@ -53,6 +101,7 @@ function escapeXml(value: string): string {
 
 export async function renderOgPng(input: OgRenderInput): Promise<Uint8Array> {
   const { logoDataUri, dangoDataUri } = await loadOgAssets();
+  const fontOptions = await loadOgFontOptions();
   const safeTags = input.tags
     .slice(0, 3)
     .map((tag) => `#${escapeXml(tag)}`)
@@ -127,8 +176,7 @@ export async function renderOgPng(input: OgRenderInput): Promise<Uint8Array> {
       value: OG_WIDTH,
     },
     font: {
-      loadSystemFonts: true,
-      defaultFontFamily: "sans-serif",
+      ...fontOptions,
     },
   });
 

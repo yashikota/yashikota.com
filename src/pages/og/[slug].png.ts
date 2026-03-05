@@ -32,7 +32,7 @@ export const GET: APIRoute<OgPageProps> = async ({ props }) => {
     tags: props.tags,
   });
 
-  const body = png;
+  const body = new Uint8Array(png).buffer;
 
   return new Response(body, {
     headers: {
