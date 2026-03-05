@@ -20,7 +20,7 @@
 ### Image
 
 ```sh
-convert input.jpg -quality 70 output.avif
+magick input.jpg -quality 70 output.avif
 ```
 
 ### Video
