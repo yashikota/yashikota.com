@@ -8,7 +8,11 @@ import { getAllWorks } from "@/lib/works";
 const works = await getAllWorks();
 ---
 
-<Base pageTitle="Works">
+<Base
+    pageTitle="Works"
+    description="個人開発やチーム開発で制作した作品・プロダクトを一覧で紹介しています。"
+    canonicalUrl="/works"
+>
     <div>
         <Navigation client:load currentTab="works" />
         <WorksPage client:load works={works} />

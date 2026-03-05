@@ -19,7 +19,11 @@ aboutMd = aboutMd.replace("<!-- inject:skills -->", `\`\`\`xml\n${skillsXml}\`\`
 const { html: aboutContent } = await markdownToHtmlWithToc(aboutMd);
 ---
 
-<Base pageTitle="About">
+<Base
+    pageTitle="About"
+    description="yashikota のプロフィール、これまでの活動、技術スタックをまとめたページです。"
+    canonicalUrl="/about"
+>
     <div>
         <Navigation client:load currentTab="about" />
         <AboutPage client:load aboutContent={aboutContent} />

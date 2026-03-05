@@ -14,7 +14,11 @@ const lifePosts = posts.filter(
 );
 ---
 
-<Base pageTitle="Blog">
+<Base
+    pageTitle="Blog"
+    description="技術記事と日常メモをカテゴリ別にまとめたブログ一覧です。"
+    canonicalUrl="/blog"
+>
     <div>
         <Navigation client:load currentTab="blog" />
         <BlogPage client:load techPosts={techPosts} lifePosts={lifePosts} />

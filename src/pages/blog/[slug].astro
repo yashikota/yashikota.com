@@ -6,6 +6,7 @@ import { UpdateIcon } from "@radix-ui/react-icons";
 import { Blog } from "@/components/blog";
 import { markdownToHtmlWithToc } from "@/lib/markdown";
 import { getBlogPosts } from "@/lib/posts";
+import { createDescriptionFromMarkdown } from "@/lib/seo";
 
 interface Props {
   title: string;
@@ -37,9 +38,20 @@ export async function getStaticPaths() {
 
 const { title, tags, pubDate, updDate, body, showToc } = Astro.props;
 const { html: content, toc } = await markdownToHtmlWithToc(body);
+const canonicalUrl = `/blog/${Astro.params.slug}/`;
+const description = createDescriptionFromMarkdown(body);
+const ogImage = `/og/${Astro.params.slug}.png`;
 ---
 
-<Base pageTitle={title}>
+<Base
+    pageTitle={title}
+    description={description}
+    canonicalUrl={canonicalUrl}
+    ogImage={ogImage}
+    ogType="article"
+    publishedTime={new Date(pubDate).toISOString()}
+    modifiedTime={updDate ? new Date(updDate).toISOString() : null}
+>
     <div class="mx-auto text-center">
         <div
             class="flex items-center justify-center text-lg text-muted-foreground"
