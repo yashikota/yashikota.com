@@ -42,7 +42,7 @@ const resolvedCanonicalUrl = toAbsoluteUrl(
   canonicalUrl ?? Astro.url.pathname,
   siteUrl,
 );
-const resolvedOgImage = toAbsoluteUrl(ogImage ?? "/icon.png", siteUrl);
+const resolvedOgImage = ogImage ?? "/icon.png";
 const resolvedOgType = ogType ?? "website";
 const resolvedTwitterCard = twitterCard ?? "summary_large_image";
 ---
