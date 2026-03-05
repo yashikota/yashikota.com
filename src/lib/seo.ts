@@ -1,7 +1,22 @@
 import { loadDefaultJapaneseParser } from "budoux";
 
 export const SITE_NAME = "こたのお考え";
-export const SITE_URL = "https://yashikota.com";
+const DEFAULT_SITE_URL = "https://yashikota.com";
+const resolveSiteUrl = (): string => {
+  const envSiteUrl = import.meta.env.SITE_URL ?? import.meta.env.PUBLIC_SITE_URL;
+  if (!envSiteUrl) {
+    return DEFAULT_SITE_URL;
+  }
+
+  try {
+    const url = new URL(envSiteUrl);
+    return url.toString().replace(/\/$/, "");
+  } catch {
+    return DEFAULT_SITE_URL;
+  }
+};
+
+export const SITE_URL = resolveSiteUrl();
 export const DEFAULT_DESCRIPTION = "こたのお考え";
 
 const parser = loadDefaultJapaneseParser();
