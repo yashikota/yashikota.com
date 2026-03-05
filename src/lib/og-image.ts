@@ -9,6 +9,10 @@ type OgRenderInput = {
 
 const OG_WIDTH = 1200;
 const OG_HEIGHT = 630;
+const CARD_X = 48;
+const CARD_Y = 42;
+const CARD_WIDTH = 1104;
+const CARD_HEIGHT = 546;
 
 type OgAssets = {
   logoDataUri: string;
@@ -26,14 +30,14 @@ async function loadOgAssets(): Promise<OgAssets> {
     return cachedAssets;
   }
 
-  const [logoBuffer, dangoBuffer] = await Promise.all([
-    readFile(resolve(process.cwd(), "public/logo.avif")),
-    readFile(resolve(process.cwd(), "public/dango.png")),
+  const [logoBuffer, iconBuffer] = await Promise.all([
+    readFile(resolve(process.cwd(), "public/logo.png")),
+    readFile(resolve(process.cwd(), "public/icon.png")),
   ]);
 
   cachedAssets = {
-    logoDataUri: toDataUri(logoBuffer, "image/avif"),
-    dangoDataUri: toDataUri(dangoBuffer, "image/png"),
+    logoDataUri: toDataUri(logoBuffer, "image/png"),
+    dangoDataUri: toDataUri(iconBuffer, "image/png"),
   };
 
   return cachedAssets;
@@ -62,7 +66,24 @@ export async function renderOgPng(input: OgRenderInput): Promise<Uint8Array> {
     )
     .join("");
 
-  const logoImage = `<image href="${logoDataUri}" x="86" y="54" width="260" height="58" preserveAspectRatio="xMinYMid meet" />`;
+  const logoWidth = 368;
+  const logoHeight = 84;
+  const logoX = (OG_WIDTH - logoWidth) / 2;
+  const logoY = 56;
+
+  const dangoSize = 120;
+  const dangoX = CARD_X + CARD_WIDTH - dangoSize - 30;
+  const dangoY = CARD_Y + CARD_HEIGHT - dangoSize - 26;
+  const dangoCenterX = dangoX + dangoSize / 2;
+  const dangoCenterY = dangoY + dangoSize / 2;
+  const dangoClipRadius = 54;
+  const dangoBorderRadius = 62;
+  const dangoInset = 4;
+  const dangoImageX = dangoX + dangoInset;
+  const dangoImageY = dangoY + dangoInset;
+  const dangoImageSize = dangoSize - dangoInset * 2;
+
+  const logoImage = `<image href="${logoDataUri}" x="${logoX}" y="${logoY}" width="${logoWidth}" height="${logoHeight}" preserveAspectRatio="xMidYMid meet" image-rendering="optimizeQuality" />`;
 
   const svg = `
 <svg width="${OG_WIDTH}" height="${OG_HEIGHT}" viewBox="0 0 ${OG_WIDTH} ${OG_HEIGHT}" xmlns="http://www.w3.org/2000/svg">
@@ -79,21 +100,28 @@ export async function renderOgPng(input: OgRenderInput): Promise<Uint8Array> {
     <filter id="soft-shadow" x="-50%" y="-50%" width="200%" height="200%">
       <feGaussianBlur stdDeviation="18" />
     </filter>
+    <clipPath id="dango-clip">
+      <circle cx="${dangoCenterX}" cy="${dangoCenterY}" r="${dangoClipRadius}" />
+    </clipPath>
   </defs>
 
   <rect width="1200" height="630" fill="url(#header-gradient)" />
   <rect x="44" y="38" width="1112" height="554" rx="34" fill="#0f172a" opacity="0.08" filter="url(#soft-shadow)" />
-  <rect x="48" y="42" width="1104" height="546" rx="34" fill="url(#card-gradient)" stroke="#99f6e4" stroke-width="2" />
+  <rect x="${CARD_X}" y="${CARD_Y}" width="${CARD_WIDTH}" height="${CARD_HEIGHT}" rx="34" fill="url(#card-gradient)" stroke="#99f6e4" stroke-width="2" />
 
   ${logoImage}
 
-  <text x="92" y="200" font-size="56" font-weight="700" fill="#0f172a">${titleText}</text>
+  <text x="92" y="232" font-size="56" font-weight="700" fill="#0f172a">${titleText}</text>
   <text x="92" y="540" font-size="28" font-weight="700" fill="#0f766e">${safeTags}</text>
-  <image href="${dangoDataUri}" x="820" y="310" width="350" height="300" opacity="0.28" preserveAspectRatio="xMidYMid meet" />
+  <circle cx="${dangoCenterX}" cy="${dangoCenterY}" r="${dangoBorderRadius}" fill="#ffffff" stroke="#99f6e4" stroke-width="3" />
+  <image href="${dangoDataUri}" x="${dangoImageX}" y="${dangoImageY}" width="${dangoImageSize}" height="${dangoImageSize}" clip-path="url(#dango-clip)" preserveAspectRatio="xMidYMid meet" image-rendering="optimizeQuality" />
 </svg>
 `;
 
   const resvg = new Resvg(svg, {
+    imageRendering: 0,
+    shapeRendering: 2,
+    textRendering: 1,
     fitTo: {
       mode: "width",
       value: OG_WIDTH,

@@ -4,7 +4,12 @@ import "@/styles/globals.css";
 import { ClientRouter } from "astro:transitions";
 
 import Header from "@/components/header.astro";
-import { DEFAULT_DESCRIPTION, SITE_NAME, SITE_URL, toAbsoluteUrl } from "@/lib/seo";
+import {
+  DEFAULT_DESCRIPTION,
+  SITE_NAME,
+  SITE_URL,
+  toAbsoluteUrl,
+} from "@/lib/seo";
 
 interface Props {
   pageTitle?: string;
@@ -37,7 +42,7 @@ const resolvedCanonicalUrl = toAbsoluteUrl(
   canonicalUrl ?? Astro.url.pathname,
   siteUrl,
 );
-const resolvedOgImage = toAbsoluteUrl(ogImage ?? "/dango.png", siteUrl);
+const resolvedOgImage = toAbsoluteUrl(ogImage ?? "/icon.png", siteUrl);
 const resolvedOgType = ogType ?? "website";
 const resolvedTwitterCard = twitterCard ?? "summary_large_image";
 ---
