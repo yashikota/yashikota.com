@@ -27,6 +27,8 @@ let cachedFontOptions: {
 } | null = null;
 
 const OG_FONT_CANDIDATES = [
+  ".cache/fonts/NotoSansJP-Variable.ttf",
+  "public/fonts/NotoSansJP-Variable.ttf",
   "public/fonts/NotoSansJP-Bold.otf",
   "public/fonts/NotoSansJP-Regular.otf",
   "public/fonts/NotoSansJP-Bold.ttf",

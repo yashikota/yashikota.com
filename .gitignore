@@ -23,3 +23,6 @@ pnpm-debug.log*
 
 # link card cache
 public/remark-link-card-plus
+
+# og font cache
+.cache/fonts/

@@ -5,10 +5,11 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro check && astro build",
+    "build": "bun run ensure:og-font && astro check && astro build",
     "preview": "astro preview",
     "deploy": "bun run build && wrangler deploy",
-    "check": "biome check --write ."
+    "check": "biome check --write .",
+    "ensure:og-font": "bun run scripts/ensure-og-font.mjs"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.6",
