@@ -2,8 +2,7 @@ import { loadDefaultJapaneseParser } from "budoux";
 
 export const SITE_NAME = "こたのお考え";
 export const SITE_URL = "https://yashikota.com";
-export const DEFAULT_DESCRIPTION =
-  "yashikota のブログ。技術メモや日々の気づきを発信しています。";
+export const DEFAULT_DESCRIPTION = "こたのお考え";
 
 const parser = loadDefaultJapaneseParser();
 
@@ -17,7 +16,7 @@ export function toAbsoluteUrl(
 export function stripMarkdown(markdown: string): string {
   return markdown
     .replace(/```[\s\S]*?```/g, " ")
-    .replace(/`[^`]*`/g, " ")
+    .replace(/`([^`]*)`/g, "$1")
     .replace(/!\[[^\]]*\]\([^)]*\)/g, " ")
     .replace(/\[([^\]]+)\]\([^)]*\)/g, "$1")
     .replace(/^>\s*/gm, "")
