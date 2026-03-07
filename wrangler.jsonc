@@ -1,5 +1,6 @@
 {
   "name": "yashikota",
+  "preview_urls": true,
   "vars": {
     "BUN_VERSION": "1.3.3"
   },
