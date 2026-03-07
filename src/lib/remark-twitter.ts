@@ -161,6 +161,7 @@ const TWITTER_WEB_HOSTS = new Set([
 const TCO_HOSTS = new Set(["t.co"]);
 const PIC_HOSTS = new Set(["pic.twitter.com", "pic.x.com"]);
 const REDIRECT_STATUS = new Set([301, 302, 303, 307, 308]);
+const SAFE_PROTOCOLS = new Set(["http:", "https:"]);
 
 const TWEET_RESULT_FEATURES = [
   "tfw_timeline_list:",
@@ -524,8 +525,6 @@ async function detectHasMediaWithDepth(
     ) {
       return MEDIA_TYPE_TWEET_HAVE_IMAGE_OR_VIDEO;
     }
-
-    return MEDIA_TYPE_TWEET_HAVE_IMAGE_OR_VIDEO;
   }
 
   return MEDIA_TYPE_NOT_HAVE;
@@ -582,7 +581,6 @@ async function resolveRedirectLocation(url: string): Promise<string | null> {
   try {
     const res = await fetch(url, {
       headers: {
-        Origin: "https://yashikota.com",
         "User-Agent": "Mozilla/5.0",
       },
       method: "GET",
@@ -628,6 +626,7 @@ function renderTweetCard(tweet: TweetResult, mediaType: MediaType): string {
     : "";
   const actions = renderActions(tweet);
   const replies = renderReplies(tweet);
+  const avatarUrl = toSafeHttpUrl(tweet.user.profile_image_url_https);
 
   const mediaTypeClass =
     mediaType === MEDIA_TYPE_IMAGE_OR_VIDEO
@@ -640,8 +639,8 @@ function renderTweetCard(tweet: TweetResult, mediaType: MediaType): string {
 <div class="remark-x-embed not-prose ${mediaTypeClass}" data-media-type="${mediaType}">
   <article class="remark-x-embed__card">
     <header class="remark-x-embed__header">
-      <a href="${escapeAttribute(tweetUrl)}" class="remark-x-embed__avatar-link" target="_blank" rel="noopener noreferrer">
-        <img src="${escapeAttribute(tweet.user.profile_image_url_https)}" alt="${escapeAttribute(tweet.user.name)}" class="remark-x-embed__avatar${tweet.user.profile_image_shape === "Square" ? " remark-x-embed__avatar--square" : ""}" loading="lazy" />
+      <a href="${escapeAttribute(tweetUrl)}" class="remark-x-embed__avatar-link${avatarUrl ? "" : " remark-x-embed__avatar-link--placeholder"}" target="_blank" rel="noopener noreferrer">
+        ${avatarUrl ? `<img src="${escapeAttribute(avatarUrl)}" alt="${escapeAttribute(tweet.user.name)}" class="remark-x-embed__avatar${tweet.user.profile_image_shape === "Square" ? " remark-x-embed__avatar--square" : ""}" loading="lazy" />` : ""}
       </a>
       <div class="remark-x-embed__author">
         <a href="${escapeAttribute(tweetUrl)}" class="remark-x-embed__author-name" target="_blank" rel="noopener noreferrer">
@@ -719,11 +718,12 @@ function renderQuotedTweet(tweet: QuotedTweet): string {
   const tweetUrl = buildTweetPermalink(tweet);
   const bodyEntities = buildRenderEntities(tweet);
   const media = renderMedia(tweet.mediaDetails ?? [], tweetUrl, true);
+  const avatarUrl = toSafeHttpUrl(tweet.user.profile_image_url_https);
 
   return `
 <a href="${escapeAttribute(tweetUrl)}" class="remark-x-embed__quote" target="_blank" rel="noopener noreferrer">
   <div class="remark-x-embed__quote-header">
-    <img src="${escapeAttribute(tweet.user.profile_image_url_https)}" alt="${escapeAttribute(tweet.user.name)}" class="remark-x-embed__quote-avatar${tweet.user.profile_image_shape === "Square" ? " remark-x-embed__quote-avatar--square" : ""}" loading="lazy" />
+    ${avatarUrl ? `<img src="${escapeAttribute(avatarUrl)}" alt="${escapeAttribute(tweet.user.name)}" class="remark-x-embed__quote-avatar${tweet.user.profile_image_shape === "Square" ? " remark-x-embed__quote-avatar--square" : ""}" loading="lazy" />` : `<span class="remark-x-embed__quote-avatar remark-x-embed__avatar-link--placeholder${tweet.user.profile_image_shape === "Square" ? " remark-x-embed__quote-avatar--square" : ""}" aria-hidden="true"></span>`}
     <div class="remark-x-embed__quote-author">
       <span class="remark-x-embed__quote-name">${escapeHtml(tweet.user.name)}</span>
       <span class="remark-x-embed__quote-handle">@${escapeHtml(tweet.user.screen_name)}</span>
@@ -776,24 +776,39 @@ function renderMedia(
   const visibleMedia = mediaList.slice(0, 4);
   const count = visibleMedia.length;
   const gridClass = `remark-x-embed__media-grid remark-x-embed__media-grid--${count}`;
+  const safeTweetUrl = toSafeHttpUrl(tweetUrl) ?? "https://x.com";
 
   const items = visibleMedia
     .map((media) => {
       if (media.type === "photo") {
         const src = getMediaUrl(media, "medium");
+        if (!src) {
+          return null;
+        }
         const alt = media.ext_alt_text?.trim() || "Image";
-        return `<a href="${escapeAttribute(tweetUrl)}" class="remark-x-embed__media-item" target="_blank" rel="noopener noreferrer"><img src="${escapeAttribute(src)}" alt="${escapeAttribute(alt)}" loading="lazy" /></a>`;
+        return `<a href="${escapeAttribute(safeTweetUrl)}" class="remark-x-embed__media-item" target="_blank" rel="noopener noreferrer"><img src="${escapeAttribute(src)}" alt="${escapeAttribute(alt)}" loading="lazy" /></a>`;
       }
 
       const poster = getMediaUrl(media, "medium");
       const video = getBestMp4Video(media);
       if (!video) {
-        return `<a href="${escapeAttribute(tweetUrl)}" class="remark-x-embed__media-item" target="_blank" rel="noopener noreferrer"><img src="${escapeAttribute(poster)}" alt="Video" loading="lazy" /></a>`;
+        if (!poster) {
+          return null;
+        }
+
+        const alt = media.ext_alt_text?.trim() || "Video";
+        return `<a href="${escapeAttribute(safeTweetUrl)}" class="remark-x-embed__media-item" target="_blank" rel="noopener noreferrer"><img src="${escapeAttribute(poster)}" alt="${escapeAttribute(alt)}" loading="lazy" /></a>`;
       }
 
-      return `<div class="remark-x-embed__media-item remark-x-embed__media-item--video"><video controls playsinline preload="metadata" poster="${escapeAttribute(poster)}"><source src="${escapeAttribute(video)}" type="video/mp4" /></video></div>`;
+      const posterAttr = poster ? ` poster="${escapeAttribute(poster)}"` : "";
+      return `<div class="remark-x-embed__media-item remark-x-embed__media-item--video"><video controls playsinline preload="metadata"${posterAttr}><source src="${escapeAttribute(video)}" type="video/mp4" />Your browser does not support the video tag.</video></div>`;
     })
+    .filter((item): item is string => item !== null)
     .join("");
+
+  if (!items) {
+    return "";
+  }
 
   return `<div class="remark-x-embed__media ${isQuoted ? "remark-x-embed__media--quoted" : ""}"><div class="${gridClass}">${items}</div></div>`;
 }
@@ -936,7 +951,12 @@ function renderBodyEntities(entities: RenderEntity[]): string {
         return escapeHtml(entity.text);
       }
 
-      return `<a href="${escapeAttribute(entity.href)}" target="_blank" rel="noopener noreferrer nofollow">${escapeHtml(entity.text)}</a>`;
+      const href = toSafeHttpUrl(entity.href);
+      if (!href) {
+        return escapeHtml(entity.text);
+      }
+
+      return `<a href="${escapeAttribute(href)}" target="_blank" rel="noopener noreferrer nofollow">${escapeHtml(entity.text)}</a>`;
     })
     .join("");
 }
@@ -962,12 +982,17 @@ function renderVerifiedBadge(user: TweetUser): string {
 function getMediaUrl(
   media: MediaDetails,
   size: "small" | "medium" | "large",
-): string {
-  const parsed = new URL(media.media_url_https);
+): string | null {
+  const safeMediaUrl = toSafeHttpUrl(media.media_url_https);
+  if (!safeMediaUrl) {
+    return null;
+  }
+
+  const parsed = new URL(safeMediaUrl);
   const extension = parsed.pathname.split(".").pop();
 
   if (!extension) {
-    return media.media_url_https;
+    return safeMediaUrl;
   }
 
   parsed.pathname = parsed.pathname.replace(`.${extension}`, "");
@@ -980,6 +1005,11 @@ function getBestMp4Video(media: MediaDetails): string | null {
   const variants = media.video_info?.variants ?? [];
   const mp4 = variants
     .filter((item) => item.content_type === "video/mp4")
+    .map((item) => ({
+      bitrate: item.bitrate,
+      url: toSafeHttpUrl(item.url),
+    }))
+    .filter((item) => item.url !== null)
     .sort((a, b) => (b.bitrate ?? 0) - (a.bitrate ?? 0));
 
   return mp4[0]?.url ?? null;
@@ -1037,7 +1067,30 @@ function extractScreenNameFromAuthorUrl(raw: string): string {
 }
 
 function getSyndicationToken(id: string): string {
-  return ((Number(id) / 1e15) * Math.PI).toString(36).replace(/(0+|\.)/g, "");
+  if (!/^\d+$/.test(id)) {
+    return "";
+  }
+
+  const divisor = 1_000_000_000_000_000n;
+  const parsedId = BigInt(id);
+  const integerPart = parsedId / divisor;
+  const fractionalPart = parsedId % divisor;
+  const asNumber = Number(integerPart) + Number(fractionalPart) / 1e15;
+
+  return (asNumber * Math.PI).toString(36).replace(/(0+|\.)/g, "");
+}
+
+function toSafeHttpUrl(value: string): string | null {
+  if (!URL.canParse(value)) {
+    return null;
+  }
+
+  const parsed = new URL(value);
+  if (!SAFE_PROTOCOLS.has(parsed.protocol)) {
+    return null;
+  }
+
+  return parsed.toString();
 }
 
 function decodeHtmlEntities(value: string): string {
