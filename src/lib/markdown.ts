@@ -19,6 +19,7 @@ import remarkValidateLinks from "remark-validate-links";
 import { unified } from "unified";
 import remarkImageSize from "./remark-image-size";
 import remarkLinkCard from "./remark-linkcard";
+import remarkTwitter from "./remark-twitter";
 import remarkYoutube from "./remark-youtube";
 
 import "remark-github-blockquote-alert/alert.css";
@@ -45,6 +46,7 @@ export async function markdownToHtmlWithToc(
     .use(remarkGfm)
     .use(remarkMath)
     .use(remarkYoutube)
+    .use(remarkTwitter)
     .use(remarkLinkCard, { cache: true, shortenUrl: true })
     .use(remarkRehype, { allowDangerousHtml: true })
     .use(rehypeExternalLinks, {
