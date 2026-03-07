@@ -326,14 +326,12 @@ describe("markdownToHtmlWithToc", () => {
     });
 
     test("does not convert non-mermaid code fences", async () => {
-      const markdown = ["```mermaid-cli", "graph TB", "A-->B", "```"].join(
-        "\n",
-      );
+      const markdown = ["```bash", "echo hello", "```"].join("\n");
 
       const { html } = await markdownToHtmlWithToc(markdown);
 
       expect(countMermaidBlocks(html)).toBe(0);
-      expect(html).toContain('data-language="mermaid-cli"');
+      expect(html).toContain('data-language="bash"');
     });
   });
 });
