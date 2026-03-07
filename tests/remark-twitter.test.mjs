@@ -211,6 +211,7 @@ describe("remark-twitter", () => {
         createTweet({
           createdAt: "2025-01-02T03:04:05.000Z",
           id: "100",
+          retweetCount: 7,
           screenName: "alice",
           text: "x.com embed",
           userName: "Alice",
@@ -221,6 +222,7 @@ describe("remark-twitter", () => {
         createTweet({
           createdAt: "2025-01-02T03:04:05.000Z",
           id: "101",
+          retweetCount: 4,
           screenName: "bob",
           text: "twitter.com embed",
           userName: "Bob",
