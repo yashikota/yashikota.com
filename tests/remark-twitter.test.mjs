@@ -44,6 +44,7 @@ function createPhotoMedia(url, expandedUrl = url) {
 function createTweetBase({
   id,
   createdAt = "2025-01-02T03:04:05.000Z",
+  entities,
   lang = "ja",
   mediaDetails,
   photos,
@@ -57,7 +58,7 @@ function createTweetBase({
     created_at: createdAt,
     display_text_range: [0, Array.from(normalizedText).length],
     edit_control: {},
-    entities: {
+    entities: entities ?? {
       hashtags: [],
       symbols: [],
       urls: [],
@@ -81,8 +82,10 @@ function createTweet({
   userName = "Tester",
   text,
   createdAt,
+  entities,
   mediaDetails,
   photos,
+  retweetCount,
   video,
   quotedTweet,
   retweetedTweet,
@@ -93,6 +96,7 @@ function createTweet({
     __typename: "Tweet",
     ...createTweetBase({
       createdAt,
+      entities,
       id,
       lang: "ja",
       mediaDetails,
@@ -105,6 +109,7 @@ function createTweet({
     conversation_count: conversationCount,
     favorite_count: favoriteCount,
     quoted_tweet: quotedTweet,
+    retweet_count: retweetCount,
     retweeted_tweet: retweetedTweet,
   };
 }
@@ -114,12 +119,15 @@ function createQuotedTweet({
   screenName = "quoted_user",
   userName = "Quoted User",
   text = "quoted tweet",
+  entities,
   mediaDetails,
   photos,
+  retweetCount,
   video,
 }) {
   return {
     ...createTweetBase({
+      entities,
       id,
       mediaDetails,
       photos,
@@ -129,6 +137,7 @@ function createQuotedTweet({
       video,
     }),
     favorite_count: 1,
+    retweet_count: retweetCount,
   };
 }
 
@@ -227,8 +236,11 @@ describe("remark-twitter", () => {
     expect(embeds).toHaveLength(2);
     expect(embeds[0]).toContain('role="link" tabindex="0"');
     expect(embeds[0]).toContain("remark-x-embed__action--reply");
+    expect(embeds[0]).toContain("remark-x-embed__action--retweet");
     expect(embeds[0]).toContain("remark-x-embed__action--like");
     expect(embeds[0]).toContain("2025/01/02 12:04:05");
+    expect(embeds[0]).not.toContain("remark-x-embed__view-link");
+    expect(embeds[0]).not.toContain("Read more on X");
     expect(embeds[1]).toContain("https://x.com/bob/status/101");
   });
 
@@ -277,7 +289,8 @@ describe("remark-twitter", () => {
     );
 
     expect(embed).toContain('data-media-type="1"');
-    expect(embed).toContain("<video controls");
+    expect(embed).toContain("<video autoplay loop muted playsinline");
+    expect(embed).not.toContain("<video controls");
     expect(embed).toContain(
       "https://video.twimg.com/tweet_video/FrfjO-WagAAt0hp.mp4",
     );
@@ -390,5 +403,60 @@ describe("remark-twitter", () => {
     expect(embed).toContain("retweet body");
     expect(embed).toContain("https://x.com/quoted/status/402");
     expect(embed).toContain('data-media-type="2"');
+  });
+
+  it("resolves retweet source from RT text when retweeted_tweet is missing", async () => {
+    const sourceTweet = createTweet({
+      id: "701",
+      quotedTweet: createQuotedTweet({
+        id: "702",
+        mediaDetails: [
+          createPhotoMedia(
+            "https://pbs.twimg.com/media/rt-quote.jpg",
+            "https://x.com/quoted/status/702/photo/1",
+          ),
+        ],
+        screenName: "quoted",
+        text: "quoted from retweet source",
+        userName: "Quoted",
+      }),
+      screenName: "source",
+      text: "source body",
+      userName: "Source",
+    });
+
+    const tweets = new Map([
+      [
+        "700",
+        createTweet({
+          entities: {
+            hashtags: [],
+            symbols: [],
+            urls: [
+              {
+                display_url: "x.com/source/status/701",
+                expanded_url: "https://x.com/source/status/701",
+                indices: [18, 41],
+                url: "https://t.co/source",
+              },
+            ],
+            user_mentions: [],
+          },
+          id: "700",
+          screenName: "retweeter",
+          text: "RT @source: source body https://t.co/source",
+          userName: "Retweeter",
+        }),
+      ],
+      ["701", sourceTweet],
+    ]);
+
+    installFetchMock(tweets);
+    const [embed] = await renderEmbedHtml("https://x.com/retweeter/status/700");
+
+    expect(embed).toContain("https://x.com/source/status/701");
+    expect(embed).toContain("source body");
+    expect(embed).toContain('data-media-type="2"');
+    expect(embed).toContain("https://pbs.twimg.com/media/rt-quote");
   });
 });
