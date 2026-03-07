@@ -68,6 +68,23 @@
   opacity: 0.8 !important;
 }
 
+/* Mermaid */
+.prose pre.mermaid {
+  padding: 0;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+  overflow-x: auto;
+  background: transparent;
+  border: 0;
+}
+
+.prose pre.mermaid svg {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
 /* 見出しジャンプ時にヘッダーで隠れないようにする */
 h1[id],
 h2[id],
