@@ -381,7 +381,7 @@ async function renderTweet(
   ]);
 
   const displayTweet = tweetResult
-    ? await resolveDisplayTweet(tweetResult, lang)
+    ? await resolveDisplayTweet(tweetResult, lang, oEmbed?.html ?? "")
     : null;
 
   const mediaType = await detectHasMediaByTweet(target, displayTweet, oEmbed);
@@ -781,6 +781,7 @@ function getDisplayTweet(tweet: TweetResult): DisplayTweet {
 async function resolveDisplayTweet(
   tweet: TweetResult,
   lang: string,
+  oEmbedHtml: string,
 ): Promise<DisplayTweet> {
   if (tweet.retweeted_tweet) {
     return getDisplayTweet(tweet);
@@ -791,8 +792,8 @@ async function resolveDisplayTweet(
     return displayTweet;
   }
 
-  const target = await findRetweetTargetFromEntities(displayTweet);
-  if (!target || target.id === displayTweet.id_str) {
+  const target = await findRetweetTarget(displayTweet, oEmbedHtml);
+  if (!target) {
     return displayTweet;
   }
 
@@ -808,39 +809,73 @@ function looksLikeRetweet(text: string): boolean {
   return /^RT\s+@/u.test(text.trimStart());
 }
 
-async function findRetweetTargetFromEntities(
-  tweet: Pick<TweetBase, "entities">,
+async function findRetweetTarget(
+  tweet: Pick<TweetBase, "entities" | "text" | "id_str">,
+  oEmbedHtml: string,
 ): Promise<TweetTarget | null> {
+  const candidates = new Set<string>();
+
   for (const entity of tweet.entities.urls) {
-    const candidates = [entity.expanded_url, entity.url];
-    for (const candidate of candidates) {
-      const parsed = parseTweetUrl(candidate);
-      if (parsed) {
-        return parsed;
-      }
+    candidates.add(entity.expanded_url);
+    candidates.add(entity.url);
+  }
 
-      if (!URL.canParse(candidate)) {
-        continue;
-      }
+  for (const entity of tweet.entities.media ?? []) {
+    candidates.add(entity.expanded_url);
+    candidates.add(entity.url);
+  }
 
-      const url = new URL(candidate);
-      if (!TCO_HOSTS.has(url.hostname.toLowerCase())) {
-        continue;
-      }
+  for (const textUrl of getLinksFromText(tweet.text)) {
+    candidates.add(textUrl);
+  }
 
-      const resolved = await resolveRedirectLocation(candidate);
-      if (!resolved) {
-        continue;
-      }
+  if (oEmbedHtml) {
+    for (const htmlUrl of getMediaLinks(oEmbedHtml)) {
+      candidates.add(htmlUrl);
+    }
+  }
 
-      const parsedResolved = parseTweetUrl(resolved);
-      if (parsedResolved) {
-        return parsedResolved;
-      }
+  for (const candidate of candidates) {
+    const parsed = parseTweetUrl(candidate);
+    if (parsed && parsed.id !== tweet.id_str) {
+      return parsed;
+    }
+
+    if (!URL.canParse(candidate)) {
+      continue;
+    }
+
+    const url = new URL(candidate);
+    if (!TCO_HOSTS.has(url.hostname.toLowerCase())) {
+      continue;
+    }
+
+    const resolved = await resolveRedirectLocation(candidate);
+    if (!resolved) {
+      continue;
+    }
+
+    const parsedResolved = parseTweetUrl(resolved);
+    if (parsedResolved && parsedResolved.id !== tweet.id_str) {
+      return parsedResolved;
     }
   }
 
   return null;
+}
+
+function getLinksFromText(text: string): string[] {
+  const links = new Set<string>();
+  const regex = /https?:\/\/[^\s<>"]+/g;
+
+  for (const match of text.matchAll(regex)) {
+    const normalized = normalizeUrlCandidate(match[0]);
+    if (normalized) {
+      links.add(normalized);
+    }
+  }
+
+  return [...links];
 }
 
 function getRenderableMediaList(tweet: {

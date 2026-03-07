@@ -141,7 +141,10 @@ function createQuotedTweet({
   };
 }
 
-function installFetchMock(tweetsById) {
+function installFetchMock(tweetsById, options = {}) {
+  const redirects = options.redirects ?? new Map();
+  const oEmbedHtmlByUrl = options.oEmbedHtmlByUrl ?? new Map();
+
   globalThis.fetch = async (input) => {
     const rawUrl =
       input instanceof URL
@@ -162,19 +165,24 @@ function installFetchMock(tweetsById) {
 
     if (url.hostname === "publish.twitter.com" && url.pathname === "/oembed") {
       const tweetUrl = url.searchParams.get("url") ?? "https://x.com";
+      const customHtml = oEmbedHtmlByUrl.get(tweetUrl);
       return jsonResponse({
         author_name: "Tester",
         author_url: "https://x.com/tester",
         cache_age: "3600",
-        html: `<blockquote class="twitter-tweet"><p>oEmbed body</p>&mdash; Tester <a href="${tweetUrl}">2025-01-02</a></blockquote>`,
+        html:
+          customHtml ??
+          `<blockquote class="twitter-tweet"><p>oEmbed body</p>&mdash; Tester <a href="${tweetUrl}">2025-01-02</a></blockquote>`,
         url: tweetUrl,
       });
     }
 
     if (url.hostname === "t.co") {
+      const location =
+        redirects.get(url.pathname) ?? "https://x.com/quoted/status/999";
       return new Response("", {
         headers: {
-          location: "https://x.com/quoted/status/999",
+          location,
         },
         status: 301,
       });
@@ -460,5 +468,55 @@ describe("remark-twitter", () => {
     expect(embed).toContain("source body");
     expect(embed).toContain('data-media-type="2"');
     expect(embed).toContain("https://pbs.twimg.com/media/rt-quote");
+  });
+
+  it("resolves retweet source from text URLs even when entities are empty", async () => {
+    const sourceTweet = createTweet({
+      id: "711",
+      quotedTweet: createQuotedTweet({
+        id: "712",
+        mediaDetails: [
+          createPhotoMedia(
+            "https://pbs.twimg.com/media/rt-empty-entities.jpg",
+            "https://x.com/quoted/status/712/photo/1",
+          ),
+        ],
+        screenName: "quoted",
+        text: "quoted from text-only RT",
+        userName: "Quoted",
+      }),
+      screenName: "source",
+      text: "source body from text URL",
+      userName: "Source",
+    });
+
+    const tweets = new Map([
+      [
+        "710",
+        createTweet({
+          entities: {
+            hashtags: [],
+            symbols: [],
+            urls: [],
+            user_mentions: [],
+          },
+          id: "710",
+          screenName: "retweeter",
+          text: "RT @source: source body from text URL https://t.co/rtsource",
+          userName: "Retweeter",
+        }),
+      ],
+      ["711", sourceTweet],
+    ]);
+
+    installFetchMock(tweets, {
+      redirects: new Map([["/rtsource", "https://x.com/source/status/711"]]),
+    });
+    const [embed] = await renderEmbedHtml("https://x.com/retweeter/status/710");
+
+    expect(embed).toContain("https://x.com/source/status/711");
+    expect(embed).toContain("source body from text URL");
+    expect(embed).toContain('data-media-type="2"');
+    expect(embed).toContain("https://pbs.twimg.com/media/rt-empty-entities");
   });
 });
