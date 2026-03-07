@@ -93,6 +93,24 @@ type MediaDetails = {
   };
 };
 
+type TweetPhoto = {
+  expandedUrl?: string;
+  height: number;
+  url: string;
+  width: number;
+};
+
+type TweetVideoVariant = {
+  bitrate?: number;
+  src: string;
+  type: string;
+};
+
+type TweetVideo = {
+  poster: string;
+  variants: TweetVideoVariant[];
+};
+
 type TweetBase = {
   created_at: string;
   display_text_range: Indices;
@@ -100,8 +118,10 @@ type TweetBase = {
   id_str: string;
   lang: string;
   mediaDetails?: MediaDetails[];
+  photos?: TweetPhoto[];
   text: string;
   user: TweetUser;
+  video?: TweetVideo;
 };
 
 type QuotedTweet = TweetBase & {
@@ -496,11 +516,14 @@ function detectHasMediaFromTweetResult(
   }
 
   const displayTweet = getDisplayTweet(tweetResult);
-  if ((displayTweet.mediaDetails?.length ?? 0) > 0) {
+  if (getRenderableMediaList(displayTweet).length > 0) {
     return MEDIA_TYPE_IMAGE_OR_VIDEO;
   }
 
-  if ((displayTweet.quoted_tweet?.mediaDetails?.length ?? 0) > 0) {
+  if (
+    displayTweet.quoted_tweet &&
+    getRenderableMediaList(displayTweet.quoted_tweet).length > 0
+  ) {
     return MEDIA_TYPE_TWEET_HAVE_IMAGE_OR_VIDEO;
   }
 
@@ -667,7 +690,7 @@ function renderTweetCard(tweet: TweetResult, mediaType: MediaType): string {
   const quoted = displayTweet.quoted_tweet
     ? renderQuotedTweet(displayTweet.quoted_tweet)
     : "";
-  const media = renderMedia(displayTweet.mediaDetails ?? [], tweetUrl);
+  const media = renderMedia(getRenderableMediaList(displayTweet), tweetUrl);
   const inReplyTo = displayTweet.in_reply_to_screen_name
     ? `<div class="remark-x-embed__in-reply-to">Replying to <a href="https://x.com/${escapeAttribute(displayTweet.in_reply_to_screen_name)}" target="_blank" rel="noopener noreferrer nofollow">@${escapeHtml(displayTweet.in_reply_to_screen_name)}</a></div>`
     : "";
@@ -742,6 +765,60 @@ function getDisplayTweet(tweet: TweetResult): DisplayTweet {
   };
 }
 
+function getRenderableMediaList(tweet: {
+  id_str: string;
+  mediaDetails?: MediaDetails[];
+  photos?: TweetPhoto[];
+  video?: TweetVideo;
+}): MediaDetails[] {
+  if ((tweet.mediaDetails?.length ?? 0) > 0) {
+    return tweet.mediaDetails ?? [];
+  }
+
+  const fromPhotos = (tweet.photos ?? []).map((photo, index) =>
+    photoToMediaDetails(photo, index),
+  );
+  const fromVideo = tweet.video ? [videoToMediaDetails(tweet.video)] : [];
+  return [...fromPhotos, ...fromVideo].slice(0, 4);
+}
+
+function photoToMediaDetails(photo: TweetPhoto, index: number): MediaDetails {
+  return {
+    display_url: photo.url,
+    expanded_url: photo.expandedUrl ?? photo.url,
+    indices: [index, index + 1],
+    media_url_https: photo.url,
+    original_info: {
+      height: photo.height,
+      width: photo.width,
+    },
+    type: "photo",
+    url: photo.url,
+  };
+}
+
+function videoToMediaDetails(video: TweetVideo): MediaDetails {
+  return {
+    display_url: video.poster,
+    expanded_url: video.poster,
+    indices: [0, 1],
+    media_url_https: video.poster,
+    original_info: {
+      height: 720,
+      width: 1280,
+    },
+    type: "video",
+    url: video.poster,
+    video_info: {
+      variants: video.variants.map((variant) => ({
+        bitrate: variant.bitrate,
+        content_type: variant.type,
+        url: variant.src,
+      })),
+    },
+  };
+}
+
 function getCardClickAttributes(tweetUrl: string): string {
   const safeTweetUrl = toSafeHttpUrl(tweetUrl) ?? "https://x.com";
   const escapedUrl = escapeJsSingleQuotedString(safeTweetUrl);
@@ -793,7 +870,7 @@ function renderFallbackEmbed(
 function renderQuotedTweet(tweet: QuotedTweet): string {
   const tweetUrl = buildTweetPermalink(tweet);
   const bodyEntities = buildRenderEntities(tweet);
-  const media = renderMedia(tweet.mediaDetails ?? [], tweetUrl, true);
+  const media = renderMedia(getRenderableMediaList(tweet), tweetUrl, true);
   const avatarUrl = toSafeHttpUrl(tweet.user.profile_image_url_https);
 
   return `
