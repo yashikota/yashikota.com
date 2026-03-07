@@ -3,7 +3,8 @@ import { loadDefaultJapaneseParser } from "budoux";
 export const SITE_NAME = "こたのお考え";
 const DEFAULT_SITE_URL = "https://yashikota.com";
 const resolveSiteUrl = (): string => {
-  const envSiteUrl = import.meta.env.SITE_URL ?? import.meta.env.PUBLIC_SITE_URL;
+  const envSiteUrl =
+    import.meta.env.SITE_URL ?? import.meta.env.PUBLIC_SITE_URL;
   if (!envSiteUrl) {
     return DEFAULT_SITE_URL;
   }

@@ -1,9 +1,7 @@
 ---
-import Base from "@/layouts/base.astro";
-
 import { UpdateIcon } from "@radix-ui/react-icons";
-
 import { Blog } from "@/components/blog";
+import Base from "@/layouts/base.astro";
 import { markdownToHtmlWithToc } from "@/lib/markdown";
 import { getBlogPosts } from "@/lib/posts";
 import { createDescriptionFromMarkdown } from "@/lib/seo";

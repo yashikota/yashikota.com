@@ -10,6 +10,7 @@
     "preview": "astro preview",
     "deploy": "bun run build && wrangler deploy",
     "check": "biome check --write .",
+    "check:ci": "biome check .",
     "ensure:og-font": "bun run scripts/ensure-og-font.mjs"
   },
   "dependencies": {

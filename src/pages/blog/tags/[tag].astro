@@ -1,11 +1,9 @@
 ---
-import Base from "@/layouts/base.astro";
+import { HomeIcon } from "@radix-ui/react-icons";
 
 import { BlogCardComponent } from "@/components/shadcn/card";
-
+import Base from "@/layouts/base.astro";
 import { getAllPosts } from "@/lib/posts";
-
-import { HomeIcon } from "@radix-ui/react-icons";
 
 export async function getStaticPaths() {
   const allPosts = await getAllPosts();
