@@ -180,6 +180,7 @@ h6:focus-within .markdown-copy-link-btn {
   box-sizing: border-box;
   padding: 0.75rem 1rem;
   overflow: hidden;
+  cursor: pointer;
   background: var(--x-bg);
   border: 1px solid var(--x-border-color);
   border-radius: var(--x-card-radius);
@@ -188,6 +189,11 @@ h6:focus-within .markdown-copy-link-btn {
 
 .remark-x-embed__card:hover {
   background: var(--x-bg-hover);
+}
+
+.remark-x-embed__card:focus-visible {
+  outline: 2px solid var(--x-link);
+  outline-offset: 2px;
 }
 
 .remark-x-embed__header {
@@ -502,6 +508,14 @@ h6:focus-within .markdown-copy-link-btn {
   line-height: 1rem;
   color: var(--x-font-color-secondary);
   text-decoration: none;
+}
+
+.remark-x-embed__action--reply {
+  color: var(--x-reply);
+}
+
+.remark-x-embed__action--like {
+  color: var(--x-like);
 }
 
 .remark-x-embed__action svg {

@@ -242,6 +242,10 @@ https://x.com/XcorpJP/status/1587301348604841987
 
 https://twitter.com/flatt_security/status/1663848044713095168
 
+https://x.com/yashikota/status/1637027079517765633
+
+https://twitter.com/yashikota/status/1637027079517765633
+
 ### リプライ元のポストを非表示にする
 
 リプライを埋め込んだ場合、デフォルトでリプライ元のポスト含まれて表示されます。`ポストのURL?conversation=none`のようにクエリパラメータに`conversation=none`を指定すると、リプライ元のポストが含まれなくなります。
