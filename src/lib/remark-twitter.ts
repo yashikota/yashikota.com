@@ -107,6 +107,7 @@ type TweetVideoVariant = {
 };
 
 type TweetVideo = {
+  contentType?: string;
   poster: string;
   variants: TweetVideoVariant[];
 };
@@ -126,6 +127,8 @@ type TweetBase = {
 
 type QuotedTweet = TweetBase & {
   favorite_count?: number;
+  reply_count?: number;
+  retweet_count?: number;
 };
 
 type TweetResult = TweetBase & {
@@ -135,12 +138,14 @@ type TweetResult = TweetBase & {
   in_reply_to_screen_name?: string;
   in_reply_to_status_id_str?: string;
   quoted_tweet?: QuotedTweet;
+  retweet_count?: number;
   retweeted_tweet?: {
     conversation_count?: number;
     favorite_count?: number;
     in_reply_to_screen_name?: string;
     mediaDetails?: MediaDetails[];
     quoted_tweet?: QuotedTweet;
+    retweet_count?: number;
   } & TweetBase;
 };
 
@@ -229,6 +234,7 @@ type DisplayTweet = TweetBase & {
   favorite_count: number;
   in_reply_to_screen_name?: string;
   quoted_tweet?: QuotedTweet;
+  retweet_count?: number;
 };
 
 type WorkItem = {
@@ -356,6 +362,10 @@ function toLikeUrl(tweetId: string): string {
   return `https://x.com/intent/like?tweet_id=${tweetId}`;
 }
 
+function toRetweetUrl(tweetId: string): string {
+  return `https://x.com/intent/retweet?tweet_id=${tweetId}`;
+}
+
 function toReplyUrl(tweetId: string): string {
   return `https://x.com/intent/tweet?in_reply_to=${tweetId}`;
 }
@@ -370,13 +380,17 @@ async function renderTweet(
     fetchOEmbed(canonicalUrl, lang, target.hideConversation),
   ]);
 
-  const mediaType = await detectHasMediaByTweet(target, tweetResult, oEmbed);
+  const displayTweet = tweetResult
+    ? await resolveDisplayTweet(tweetResult, lang)
+    : null;
 
-  if (!tweetResult) {
+  const mediaType = await detectHasMediaByTweet(target, displayTweet, oEmbed);
+
+  if (!displayTweet) {
     return renderFallbackEmbed(target, canonicalUrl, oEmbed, mediaType);
   }
 
-  return renderTweetCard(tweetResult, mediaType);
+  return renderTweetCard(displayTweet, mediaType);
 }
 
 async function fetchTweetResult(
@@ -485,7 +499,7 @@ async function fetchOEmbed(
 
 async function detectHasMediaByTweet(
   target: TweetTarget,
-  tweetResult: TweetResult | null,
+  displayTweet: DisplayTweet | null,
   oEmbed: OEmbedResponse | null,
 ): Promise<MediaType> {
   const key = `${target.screenName}:${target.id}:${target.hideConversation}`;
@@ -494,7 +508,7 @@ async function detectHasMediaByTweet(
     return cached;
   }
 
-  const mediaTypeFromData = detectHasMediaFromTweetResult(tweetResult);
+  const mediaTypeFromData = detectHasMediaFromDisplayTweet(displayTweet);
   if (
     mediaTypeFromData === MEDIA_TYPE_IMAGE_OR_VIDEO ||
     mediaTypeFromData === MEDIA_TYPE_TWEET_HAVE_IMAGE_OR_VIDEO
@@ -508,14 +522,13 @@ async function detectHasMediaByTweet(
   return result;
 }
 
-function detectHasMediaFromTweetResult(
-  tweetResult: TweetResult | null,
+function detectHasMediaFromDisplayTweet(
+  displayTweet: DisplayTweet | null,
 ): MediaType {
-  if (!tweetResult) {
+  if (!displayTweet) {
     return MEDIA_TYPE_NOT_HAVE;
   }
 
-  const displayTweet = getDisplayTweet(tweetResult);
   if (getRenderableMediaList(displayTweet).length > 0) {
     return MEDIA_TYPE_IMAGE_OR_VIDEO;
   }
@@ -681,8 +694,10 @@ async function resolveRedirectLocation(url: string): Promise<string | null> {
   }
 }
 
-function renderTweetCard(tweet: TweetResult, mediaType: MediaType): string {
-  const displayTweet = getDisplayTweet(tweet);
+function renderTweetCard(
+  displayTweet: DisplayTweet,
+  mediaType: MediaType,
+): string {
   const tweetUrl = buildTweetPermalink(displayTweet);
   const bodyEntities = buildRenderEntities(displayTweet);
   const createdAtDate = new Date(displayTweet.created_at);
@@ -695,7 +710,6 @@ function renderTweetCard(tweet: TweetResult, mediaType: MediaType): string {
     ? `<div class="remark-x-embed__in-reply-to">Replying to <a href="https://x.com/${escapeAttribute(displayTweet.in_reply_to_screen_name)}" target="_blank" rel="noopener noreferrer nofollow">@${escapeHtml(displayTweet.in_reply_to_screen_name)}</a></div>`
     : "";
   const actions = renderActions(displayTweet);
-  const replies = renderReplies(displayTweet);
   const avatarUrl = toSafeHttpUrl(displayTweet.user.profile_image_url_https);
 
   const mediaTypeClass =
@@ -733,11 +747,8 @@ function renderTweetCard(tweet: TweetResult, mediaType: MediaType): string {
     ${quoted}
     <div class="remark-x-embed__meta">
       <a href="${escapeAttribute(tweetUrl)}" class="remark-x-embed__time-link" target="_blank" rel="noopener noreferrer"><time datetime="${escapeAttribute(createdAtDate.toISOString())}">${escapeHtml(createdAtText)}</time></a>
-      <span aria-hidden="true">&middot;</span>
-      <a href="${escapeAttribute(tweetUrl)}" class="remark-x-embed__view-link" target="_blank" rel="noopener noreferrer">View on X</a>
     </div>
     ${actions}
-    ${replies}
   </article>
 </div>`.trim();
 }
@@ -750,6 +761,7 @@ function getDisplayTweet(tweet: TweetResult): DisplayTweet {
       favorite_count: tweet.favorite_count,
       in_reply_to_screen_name: tweet.in_reply_to_screen_name,
       quoted_tweet: tweet.quoted_tweet,
+      retweet_count: tweet.retweet_count,
     };
   }
 
@@ -762,7 +774,73 @@ function getDisplayTweet(tweet: TweetResult): DisplayTweet {
     in_reply_to_screen_name:
       retweeted.in_reply_to_screen_name ?? tweet.in_reply_to_screen_name,
     quoted_tweet: retweeted.quoted_tweet ?? tweet.quoted_tweet,
+    retweet_count: retweeted.retweet_count ?? tweet.retweet_count,
   };
+}
+
+async function resolveDisplayTweet(
+  tweet: TweetResult,
+  lang: string,
+): Promise<DisplayTweet> {
+  if (tweet.retweeted_tweet) {
+    return getDisplayTweet(tweet);
+  }
+
+  const displayTweet = getDisplayTweet(tweet);
+  if (!looksLikeRetweet(displayTweet.text)) {
+    return displayTweet;
+  }
+
+  const target = await findRetweetTargetFromEntities(displayTweet);
+  if (!target || target.id === displayTweet.id_str) {
+    return displayTweet;
+  }
+
+  const sourceTweet = await fetchTweetResult(target.id, lang);
+  if (!sourceTweet) {
+    return displayTweet;
+  }
+
+  return getDisplayTweet(sourceTweet);
+}
+
+function looksLikeRetweet(text: string): boolean {
+  return /^RT\s+@/u.test(text.trimStart());
+}
+
+async function findRetweetTargetFromEntities(
+  tweet: Pick<TweetBase, "entities">,
+): Promise<TweetTarget | null> {
+  for (const entity of tweet.entities.urls) {
+    const candidates = [entity.expanded_url, entity.url];
+    for (const candidate of candidates) {
+      const parsed = parseTweetUrl(candidate);
+      if (parsed) {
+        return parsed;
+      }
+
+      if (!URL.canParse(candidate)) {
+        continue;
+      }
+
+      const url = new URL(candidate);
+      if (!TCO_HOSTS.has(url.hostname.toLowerCase())) {
+        continue;
+      }
+
+      const resolved = await resolveRedirectLocation(candidate);
+      if (!resolved) {
+        continue;
+      }
+
+      const parsedResolved = parseTweetUrl(resolved);
+      if (parsedResolved) {
+        return parsedResolved;
+      }
+    }
+  }
+
+  return null;
 }
 
 function getRenderableMediaList(tweet: {
@@ -798,6 +876,7 @@ function photoToMediaDetails(photo: TweetPhoto, index: number): MediaDetails {
 }
 
 function videoToMediaDetails(video: TweetVideo): MediaDetails {
+  const mediaType = video.contentType === "gif" ? "animated_gif" : "video";
   return {
     display_url: video.poster,
     expanded_url: video.poster,
@@ -807,7 +886,7 @@ function videoToMediaDetails(video: TweetVideo): MediaDetails {
       height: 720,
       width: 1280,
     },
-    type: "video",
+    type: mediaType,
     url: video.poster,
     video_info: {
       variants: video.variants.map((variant) => ({
@@ -836,7 +915,8 @@ function renderFallbackEmbed(
   const screenName = oEmbed?.author_url
     ? extractScreenNameFromAuthorUrl(oEmbed.author_url)
     : target.screenName;
-  const dateText = oEmbed ? extractDateTextFromOEmbedHtml(oEmbed.html) : "";
+  const fallbackDate = oEmbed ? extractDateFromOEmbedHtml(oEmbed.html) : null;
+  const dateText = fallbackDate ? formatDate(fallbackDate) : "Open post";
 
   return `
 <div class="remark-x-embed not-prose remark-x-embed--fallback" data-media-type="${mediaType}">
@@ -859,9 +939,7 @@ function renderFallbackEmbed(
     </header>
     <p class="remark-x-embed__body" dir="auto">${escapeHtml(text || "This post is unavailable.")}</p>
     <div class="remark-x-embed__meta">
-      <a href="${escapeAttribute(tweetUrl)}" class="remark-x-embed__time-link" target="_blank" rel="noopener noreferrer">${escapeHtml(dateText || "Open post")}</a>
-      <span aria-hidden="true">&middot;</span>
-      <a href="${escapeAttribute(tweetUrl)}" class="remark-x-embed__view-link" target="_blank" rel="noopener noreferrer">View on X</a>
+      <a href="${escapeAttribute(tweetUrl)}" class="remark-x-embed__time-link" target="_blank" rel="noopener noreferrer">${escapeHtml(dateText)}</a>
     </div>
   </article>
 </div>`.trim();
@@ -889,32 +967,30 @@ function renderQuotedTweet(tweet: QuotedTweet): string {
 
 function renderActions(tweet: DisplayTweet): string {
   const likeCount = formatNumber(tweet.favorite_count);
+  const replyCount = formatNumber(tweet.conversation_count);
+  const retweetCount =
+    typeof tweet.retweet_count === "number"
+      ? formatNumber(tweet.retweet_count)
+      : "";
   const replyUrl = toReplyUrl(tweet.id_str);
   const likeUrl = toLikeUrl(tweet.id_str);
+  const retweetUrl = toRetweetUrl(tweet.id_str);
 
   return `
 <div class="remark-x-embed__actions">
   <a href="${escapeAttribute(replyUrl)}" class="remark-x-embed__action remark-x-embed__action--reply" target="_blank" rel="noopener noreferrer">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M1.751 10c0-4.42 3.584-8 8.005-8h4.366c4.49 0 8.129 3.64 8.129 8.13 0 2.96-1.607 5.68-4.196 7.11l-8.054 4.46v-3.69h-.067c-4.49.1-8.183-3.51-8.183-8.01z"></path></svg>
-    <span>Reply</span>
+    <span>${escapeHtml(replyCount)}</span>
+  </a>
+  <a href="${escapeAttribute(retweetUrl)}" class="remark-x-embed__action remark-x-embed__action--retweet" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.75 3.79 9.353 8.09l-1.366 1.46L5.88 7.583V16h9.5v-3h2v5H3.88V7.583L1.773 9.55.407 8.09l4.603-4.3zm14.37 10.626 2.107 1.96 1.367-1.459-4.603-4.297h.259V20.21l-4.603-4.3 1.366-1.46 2.107 1.967V8h-9.5v3h-2V6h13.5z"></path></svg>
+    <span>${escapeHtml(retweetCount)}</span>
   </a>
   <a href="${escapeAttribute(likeUrl)}" class="remark-x-embed__action remark-x-embed__action--like" target="_blank" rel="noopener noreferrer">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.884 13.19c-1.351 2.48-4.001 5.12-8.379 7.67l-.503.3-.504-.3c-4.379-2.55-7.029-5.19-8.382-7.67-1.36-2.5-1.41-4.86-.514-6.67.887-1.79 2.647-2.91 4.601-3.01 1.651-.09 3.368.56 4.798 2.01 1.429-1.45 3.146-2.1 4.796-2.01 1.954.1 3.714 1.22 4.601 3.01.896 1.81.846 4.17-.514 6.67z"></path></svg>
     <span>${escapeHtml(likeCount)}</span>
   </a>
 </div>`.trim();
-}
-
-function renderReplies(tweet: DisplayTweet): string {
-  const count = tweet.conversation_count;
-  const label =
-    count === 0
-      ? "Read more on X"
-      : count === 1
-        ? `Read ${formatNumber(count)} reply`
-        : `Read ${formatNumber(count)} replies`;
-
-  return `<div class="remark-x-embed__replies"><a href="${escapeAttribute(buildTweetPermalink(tweet))}" target="_blank" rel="noopener noreferrer">${escapeHtml(label)}</a></div>`;
 }
 
 function renderMedia(
@@ -944,6 +1020,7 @@ function renderMedia(
 
       const poster = getMediaUrl(media, "medium");
       const video = getBestMp4Video(media);
+      const isAnimatedGif = media.type === "animated_gif";
       if (!video) {
         if (!poster) {
           return null;
@@ -954,6 +1031,10 @@ function renderMedia(
       }
 
       const posterAttr = poster ? ` poster="${escapeAttribute(poster)}"` : "";
+      if (isAnimatedGif) {
+        return `<a href="${escapeAttribute(safeTweetUrl)}" class="remark-x-embed__media-item remark-x-embed__media-item--animated-gif" target="_blank" rel="noopener noreferrer"><video autoplay loop muted playsinline preload="metadata"${posterAttr}><source src="${escapeAttribute(video)}" type="video/mp4" />Your browser does not support the video tag.</video></a>`;
+      }
+
       return `<div class="remark-x-embed__media-item remark-x-embed__media-item--video"><video controls playsinline preload="metadata"${posterAttr}><source src="${escapeAttribute(video)}" type="video/mp4" />Your browser does not support the video tag.</video></div>`;
     })
     .filter((item): item is string => item !== null)
@@ -1206,13 +1287,15 @@ function extractTextFromOEmbedHtml(html: string): string {
   return decodeHtmlEntities(text);
 }
 
-function extractDateTextFromOEmbedHtml(html: string): string {
+function extractDateFromOEmbedHtml(html: string): Date | null {
   const anchors = [...html.matchAll(/<a [^>]*>([^<]+)<\/a>/gi)];
   if (!anchors.length) {
-    return "";
+    return null;
   }
 
-  return decodeHtmlEntities(anchors.at(-1)?.[1] ?? "").trim();
+  const dateText = decodeHtmlEntities(anchors.at(-1)?.[1] ?? "").trim();
+  const parsed = new Date(dateText);
+  return Number.isNaN(parsed.getTime()) ? null : parsed;
 }
 
 function extractScreenNameFromAuthorUrl(raw: string): string {
