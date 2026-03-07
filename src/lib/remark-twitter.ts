@@ -115,6 +115,13 @@ type TweetResult = TweetBase & {
   in_reply_to_screen_name?: string;
   in_reply_to_status_id_str?: string;
   quoted_tweet?: QuotedTweet;
+  retweeted_tweet?: {
+    conversation_count?: number;
+    favorite_count?: number;
+    in_reply_to_screen_name?: string;
+    mediaDetails?: MediaDetails[];
+    quoted_tweet?: QuotedTweet;
+  } & TweetBase;
 };
 
 type OEmbedResponse = {
@@ -185,14 +192,24 @@ const tweetResultCache = new Map<string, CacheEntry<TweetResult | null>>();
 const redirectCache = new Map<string, CacheEntry<string | null>>();
 const mediaTypeCache = new Map<string, CacheEntry<MediaType>>();
 
-const formatter = new Intl.DateTimeFormat("en-US", {
-  day: "numeric",
-  hour: "numeric",
-  hour12: true,
+const formatter = new Intl.DateTimeFormat("ja-JP", {
+  day: "2-digit",
+  hour: "2-digit",
+  hour12: false,
+  hourCycle: "h23",
   minute: "2-digit",
-  month: "short",
+  month: "2-digit",
+  second: "2-digit",
+  timeZone: "Asia/Tokyo",
   year: "numeric",
 });
+
+type DisplayTweet = TweetBase & {
+  conversation_count: number;
+  favorite_count: number;
+  in_reply_to_screen_name?: string;
+  quoted_tweet?: QuotedTweet;
+};
 
 type WorkItem = {
   index: number;
@@ -333,7 +350,7 @@ async function renderTweet(
     fetchOEmbed(canonicalUrl, lang, target.hideConversation),
   ]);
 
-  const mediaType = await detectHasMediaByTweet(target, oEmbed);
+  const mediaType = await detectHasMediaByTweet(target, tweetResult, oEmbed);
 
   if (!tweetResult) {
     return renderFallbackEmbed(target, canonicalUrl, oEmbed, mediaType);
@@ -448,6 +465,7 @@ async function fetchOEmbed(
 
 async function detectHasMediaByTweet(
   target: TweetTarget,
+  tweetResult: TweetResult | null,
   oEmbed: OEmbedResponse | null,
 ): Promise<MediaType> {
   const key = `${target.screenName}:${target.id}:${target.hideConversation}`;
@@ -456,9 +474,37 @@ async function detectHasMediaByTweet(
     return cached;
   }
 
+  const mediaTypeFromData = detectHasMediaFromTweetResult(tweetResult);
+  if (
+    mediaTypeFromData === MEDIA_TYPE_IMAGE_OR_VIDEO ||
+    mediaTypeFromData === MEDIA_TYPE_TWEET_HAVE_IMAGE_OR_VIDEO
+  ) {
+    writeCache(mediaTypeCache, key, mediaTypeFromData);
+    return mediaTypeFromData;
+  }
+
   const result = await detectHasMediaWithDepth(target, oEmbed?.html ?? "", 0);
   writeCache(mediaTypeCache, key, result);
   return result;
+}
+
+function detectHasMediaFromTweetResult(
+  tweetResult: TweetResult | null,
+): MediaType {
+  if (!tweetResult) {
+    return MEDIA_TYPE_NOT_HAVE;
+  }
+
+  const displayTweet = getDisplayTweet(tweetResult);
+  if ((displayTweet.mediaDetails?.length ?? 0) > 0) {
+    return MEDIA_TYPE_IMAGE_OR_VIDEO;
+  }
+
+  if ((displayTweet.quoted_tweet?.mediaDetails?.length ?? 0) > 0) {
+    return MEDIA_TYPE_TWEET_HAVE_IMAGE_OR_VIDEO;
+  }
+
+  return MEDIA_TYPE_NOT_HAVE;
 }
 
 async function detectHasMediaWithDepth(
@@ -613,20 +659,21 @@ async function resolveRedirectLocation(url: string): Promise<string | null> {
 }
 
 function renderTweetCard(tweet: TweetResult, mediaType: MediaType): string {
-  const tweetUrl = buildTweetPermalink(tweet);
-  const bodyEntities = buildRenderEntities(tweet);
-  const createdAtDate = new Date(tweet.created_at);
+  const displayTweet = getDisplayTweet(tweet);
+  const tweetUrl = buildTweetPermalink(displayTweet);
+  const bodyEntities = buildRenderEntities(displayTweet);
+  const createdAtDate = new Date(displayTweet.created_at);
   const createdAtText = formatDate(createdAtDate);
-  const quoted = tweet.quoted_tweet
-    ? renderQuotedTweet(tweet.quoted_tweet)
+  const quoted = displayTweet.quoted_tweet
+    ? renderQuotedTweet(displayTweet.quoted_tweet)
     : "";
-  const media = renderMedia(tweet.mediaDetails ?? [], tweetUrl);
-  const inReplyTo = tweet.in_reply_to_screen_name
-    ? `<div class="remark-x-embed__in-reply-to">Replying to <a href="https://x.com/${escapeAttribute(tweet.in_reply_to_screen_name)}" target="_blank" rel="noopener noreferrer nofollow">@${escapeHtml(tweet.in_reply_to_screen_name)}</a></div>`
+  const media = renderMedia(displayTweet.mediaDetails ?? [], tweetUrl);
+  const inReplyTo = displayTweet.in_reply_to_screen_name
+    ? `<div class="remark-x-embed__in-reply-to">Replying to <a href="https://x.com/${escapeAttribute(displayTweet.in_reply_to_screen_name)}" target="_blank" rel="noopener noreferrer nofollow">@${escapeHtml(displayTweet.in_reply_to_screen_name)}</a></div>`
     : "";
-  const actions = renderActions(tweet);
-  const replies = renderReplies(tweet);
-  const avatarUrl = toSafeHttpUrl(tweet.user.profile_image_url_https);
+  const actions = renderActions(displayTweet);
+  const replies = renderReplies(displayTweet);
+  const avatarUrl = toSafeHttpUrl(displayTweet.user.profile_image_url_https);
 
   const mediaTypeClass =
     mediaType === MEDIA_TYPE_IMAGE_OR_VIDEO
@@ -637,17 +684,17 @@ function renderTweetCard(tweet: TweetResult, mediaType: MediaType): string {
 
   return `
 <div class="remark-x-embed not-prose ${mediaTypeClass}" data-media-type="${mediaType}">
-  <article class="remark-x-embed__card">
+  <article class="remark-x-embed__card" ${getCardClickAttributes(tweetUrl)}>
     <header class="remark-x-embed__header">
       <a href="${escapeAttribute(tweetUrl)}" class="remark-x-embed__avatar-link${avatarUrl ? "" : " remark-x-embed__avatar-link--placeholder"}" target="_blank" rel="noopener noreferrer">
-        ${avatarUrl ? `<img src="${escapeAttribute(avatarUrl)}" alt="${escapeAttribute(tweet.user.name)}" class="remark-x-embed__avatar${tweet.user.profile_image_shape === "Square" ? " remark-x-embed__avatar--square" : ""}" loading="lazy" />` : ""}
+        ${avatarUrl ? `<img src="${escapeAttribute(avatarUrl)}" alt="${escapeAttribute(displayTweet.user.name)}" class="remark-x-embed__avatar${displayTweet.user.profile_image_shape === "Square" ? " remark-x-embed__avatar--square" : ""}" loading="lazy" />` : ""}
       </a>
       <div class="remark-x-embed__author">
         <a href="${escapeAttribute(tweetUrl)}" class="remark-x-embed__author-name" target="_blank" rel="noopener noreferrer">
-          <span>${escapeHtml(tweet.user.name)}</span>
-          ${renderVerifiedBadge(tweet.user)}
+          <span>${escapeHtml(displayTweet.user.name)}</span>
+          ${renderVerifiedBadge(displayTweet.user)}
         </a>
-        <a href="https://x.com/${escapeAttribute(tweet.user.screen_name)}" class="remark-x-embed__author-handle" target="_blank" rel="noopener noreferrer nofollow">@${escapeHtml(tweet.user.screen_name)}</a>
+        <a href="https://x.com/${escapeAttribute(displayTweet.user.screen_name)}" class="remark-x-embed__author-handle" target="_blank" rel="noopener noreferrer nofollow">@${escapeHtml(displayTweet.user.screen_name)}</a>
       </div>
       <a href="${escapeAttribute(tweetUrl)}" class="remark-x-embed__brand" target="_blank" rel="noopener noreferrer" aria-label="View on X">
         <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -658,7 +705,7 @@ function renderTweetCard(tweet: TweetResult, mediaType: MediaType): string {
       </a>
     </header>
     ${inReplyTo}
-    <p class="remark-x-embed__body" lang="${escapeAttribute(tweet.lang)}" dir="auto">${renderBodyEntities(bodyEntities)}</p>
+    <p class="remark-x-embed__body" lang="${escapeAttribute(displayTweet.lang)}" dir="auto">${renderBodyEntities(bodyEntities)}</p>
     ${media}
     ${quoted}
     <div class="remark-x-embed__meta">
@@ -670,6 +717,35 @@ function renderTweetCard(tweet: TweetResult, mediaType: MediaType): string {
     ${replies}
   </article>
 </div>`.trim();
+}
+
+function getDisplayTweet(tweet: TweetResult): DisplayTweet {
+  if (!tweet.retweeted_tweet) {
+    return {
+      ...tweet,
+      conversation_count: tweet.conversation_count,
+      favorite_count: tweet.favorite_count,
+      in_reply_to_screen_name: tweet.in_reply_to_screen_name,
+      quoted_tweet: tweet.quoted_tweet,
+    };
+  }
+
+  const retweeted = tweet.retweeted_tweet;
+  return {
+    ...retweeted,
+    conversation_count:
+      retweeted.conversation_count ?? tweet.conversation_count,
+    favorite_count: retweeted.favorite_count ?? tweet.favorite_count,
+    in_reply_to_screen_name:
+      retweeted.in_reply_to_screen_name ?? tweet.in_reply_to_screen_name,
+    quoted_tweet: retweeted.quoted_tweet ?? tweet.quoted_tweet,
+  };
+}
+
+function getCardClickAttributes(tweetUrl: string): string {
+  const safeTweetUrl = toSafeHttpUrl(tweetUrl) ?? "https://x.com";
+  const escapedUrl = escapeJsSingleQuotedString(safeTweetUrl);
+  return `role="link" tabindex="0" onclick="if (!event.target.closest('a,button,video')) { window.open('${escapedUrl}', '_blank', 'noopener,noreferrer'); }" onkeydown="if ((event.key === 'Enter' || event.key === ' ') && !event.target.closest('a,button,video')) { event.preventDefault(); window.open('${escapedUrl}', '_blank', 'noopener,noreferrer'); }"`;
 }
 
 function renderFallbackEmbed(
@@ -687,7 +763,7 @@ function renderFallbackEmbed(
 
   return `
 <div class="remark-x-embed not-prose remark-x-embed--fallback" data-media-type="${mediaType}">
-  <article class="remark-x-embed__card">
+  <article class="remark-x-embed__card" ${getCardClickAttributes(tweetUrl)}>
     <header class="remark-x-embed__header">
       <div class="remark-x-embed__avatar-link remark-x-embed__avatar-link--placeholder" aria-hidden="true"></div>
       <div class="remark-x-embed__author">
@@ -734,14 +810,14 @@ function renderQuotedTweet(tweet: QuotedTweet): string {
 </a>`.trim();
 }
 
-function renderActions(tweet: TweetResult): string {
+function renderActions(tweet: DisplayTweet): string {
   const likeCount = formatNumber(tweet.favorite_count);
   const replyUrl = toReplyUrl(tweet.id_str);
   const likeUrl = toLikeUrl(tweet.id_str);
 
   return `
 <div class="remark-x-embed__actions">
-  <a href="${escapeAttribute(replyUrl)}" class="remark-x-embed__action" target="_blank" rel="noopener noreferrer">
+  <a href="${escapeAttribute(replyUrl)}" class="remark-x-embed__action remark-x-embed__action--reply" target="_blank" rel="noopener noreferrer">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M1.751 10c0-4.42 3.584-8 8.005-8h4.366c4.49 0 8.129 3.64 8.129 8.13 0 2.96-1.607 5.68-4.196 7.11l-8.054 4.46v-3.69h-.067c-4.49.1-8.183-3.51-8.183-8.01z"></path></svg>
     <span>Reply</span>
   </a>
@@ -752,7 +828,7 @@ function renderActions(tweet: TweetResult): string {
 </div>`.trim();
 }
 
-function renderReplies(tweet: TweetResult): string {
+function renderReplies(tweet: DisplayTweet): string {
   const count = tweet.conversation_count;
   const label =
     count === 0
@@ -1018,7 +1094,13 @@ function getBestMp4Video(media: MediaDetails): string | null {
 function formatDate(date: Date): string {
   const parts = formatter.formatToParts(date);
   const map = new Map(parts.map((part) => [part.type, part.value]));
-  return `${map.get("hour")}:${map.get("minute")} ${map.get("dayPeriod")} · ${map.get("month")} ${map.get("day")}, ${map.get("year")}`;
+  const year = map.get("year") ?? "0000";
+  const month = map.get("month") ?? "00";
+  const day = map.get("day") ?? "00";
+  const hour = map.get("hour") ?? "00";
+  const minute = map.get("minute") ?? "00";
+  const second = map.get("second") ?? "00";
+  return `${year}/${month}/${day} ${hour}:${minute}:${second}`;
 }
 
 function formatNumber(value: number): string {
@@ -1119,6 +1201,10 @@ function escapeHtml(value: string): string {
 
 function escapeAttribute(value: string): string {
   return escapeHtml(value);
+}
+
+function escapeJsSingleQuotedString(value: string): string {
+  return value.replaceAll("\\", "\\\\").replaceAll("'", "\\'");
 }
 
 function isSameUrlValue(a: string, b: string): boolean {
