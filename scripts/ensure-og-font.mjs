@@ -31,7 +31,9 @@ async function downloadFont() {
 
   const buffer = new Uint8Array(await response.arrayBuffer());
   if (buffer.byteLength < MIN_FONT_SIZE) {
-    throw new Error(`Downloaded font looks too small (${buffer.byteLength} bytes)`);
+    throw new Error(
+      `Downloaded font looks too small (${buffer.byteLength} bytes)`,
+    );
   }
 
   await mkdir(dirname(FONT_PATH), { recursive: true });
