@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
+    "test": "bun test",
     "build": "bun run ensure:og-font && astro check && astro build",
     "preview": "astro preview",
     "deploy": "bun run build && wrangler deploy",
