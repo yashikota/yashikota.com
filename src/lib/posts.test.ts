@@ -56,28 +56,25 @@ type PostsModule = typeof import("./posts");
 type TechRssModule = typeof import("../pages/rss/tech.xml");
 type LifeRssModule = typeof import("../pages/rss/life.xml");
 
-async function importPostsModule(): Promise<PostsModule> {
+async function importWithCacheBust<T>(modulePath: string): Promise<T> {
   const cacheBuster = `${Date.now()}-${Math.random().toString(16).slice(2)}`;
-  const moduleUrl = new URL(`./posts.ts?test=${cacheBuster}`, import.meta.url);
-  return (await import(moduleUrl.href)) as PostsModule;
+  const moduleUrl = new URL(
+    `${modulePath}?test=${cacheBuster}`,
+    import.meta.url,
+  );
+  return (await import(moduleUrl.href)) as T;
+}
+
+async function importPostsModule(): Promise<PostsModule> {
+  return importWithCacheBust<PostsModule>("./posts.ts");
 }
 
 async function importTechRssModule(): Promise<TechRssModule> {
-  const cacheBuster = `${Date.now()}-${Math.random().toString(16).slice(2)}`;
-  const moduleUrl = new URL(
-    `../pages/rss/tech.xml?test=${cacheBuster}`,
-    import.meta.url,
-  );
-  return (await import(moduleUrl.href)) as TechRssModule;
+  return importWithCacheBust<TechRssModule>("../pages/rss/tech.xml");
 }
 
 async function importLifeRssModule(): Promise<LifeRssModule> {
-  const cacheBuster = `${Date.now()}-${Math.random().toString(16).slice(2)}`;
-  const moduleUrl = new URL(
-    `../pages/rss/life.xml?test=${cacheBuster}`,
-    import.meta.url,
-  );
-  return (await import(moduleUrl.href)) as LifeRssModule;
+  return importWithCacheBust<LifeRssModule>("../pages/rss/life.xml");
 }
 
 function toUrl(input: RequestInfo | URL): string {
@@ -108,6 +105,17 @@ function textResponse(data: string): Response {
     },
     status: 200,
   });
+}
+
+function mockEmptyZennFetch(): void {
+  globalThis.fetch = (async (input: RequestInfo | URL) => {
+    const url = toUrl(input);
+    if (url.startsWith("https://zenn.dev/api/articles")) {
+      return jsonResponse({ articles: [] });
+    }
+
+    throw new Error(`Unexpected fetch URL: ${url}`);
+  }) as typeof fetch;
 }
 
 beforeEach(() => {
@@ -273,159 +281,147 @@ describe("posts", () => {
     expect("body" in posts[0]).toBe(false);
   });
 
-  test("tech RSS includes only listed tech posts", async () => {
-    const techRssModule = await importTechRssModule();
+  describe("rss routes", () => {
+    beforeEach(() => {
+      mockEmptyZennFetch();
+    });
 
-    blogCollectionEntries = [
-      {
-        id: "tech-visible",
-        body: "",
-        data: {
-          title: "Tech visible",
-          pubDate: new Date("2025-05-01T00:00:00.000Z"),
-          updDate: null,
-          isUnlisted: false,
-          category: "tech",
-          tags: [],
-          showToc: false,
-        },
-      },
-      {
-        id: "tech-hidden",
-        body: "",
-        data: {
-          title: "Tech hidden",
-          pubDate: new Date("2025-05-02T00:00:00.000Z"),
-          updDate: null,
-          isUnlisted: true,
-          category: "tech",
-          tags: [],
-          showToc: false,
-        },
-      },
-      {
-        id: "life-visible",
-        body: "",
-        data: {
-          title: "Life visible",
-          pubDate: new Date("2025-05-03T00:00:00.000Z"),
-          updDate: null,
-          isUnlisted: false,
-          category: "life",
-          tags: [],
-          showToc: false,
-        },
-      },
-    ];
+    test("tech RSS includes only listed tech posts", async () => {
+      const techRssModule = await importTechRssModule();
 
-    globalThis.fetch = (async (input: RequestInfo | URL) => {
-      const url = toUrl(input);
-      if (url.startsWith("https://zenn.dev/api/articles")) {
-        return jsonResponse({ articles: [] });
+      blogCollectionEntries = [
+        {
+          id: "tech-visible",
+          body: "",
+          data: {
+            title: "Tech visible",
+            pubDate: new Date("2025-05-01T00:00:00.000Z"),
+            updDate: null,
+            isUnlisted: false,
+            category: "tech",
+            tags: [],
+            showToc: false,
+          },
+        },
+        {
+          id: "tech-hidden",
+          body: "",
+          data: {
+            title: "Tech hidden",
+            pubDate: new Date("2025-05-02T00:00:00.000Z"),
+            updDate: null,
+            isUnlisted: true,
+            category: "tech",
+            tags: [],
+            showToc: false,
+          },
+        },
+        {
+          id: "life-visible",
+          body: "",
+          data: {
+            title: "Life visible",
+            pubDate: new Date("2025-05-03T00:00:00.000Z"),
+            updDate: null,
+            isUnlisted: false,
+            category: "life",
+            tags: [],
+            showToc: false,
+          },
+        },
+      ];
+
+      await techRssModule.GET();
+
+      expect(capturedRssInput).not.toBeNull();
+      if (!capturedRssInput) {
+        return;
       }
 
-      throw new Error(`Unexpected fetch URL: ${url}`);
-    }) as typeof fetch;
+      expect(capturedRssInput.title).toBe("Tech Blog - yashikota.com");
+      expect(capturedRssInput.description).toBe(
+        "Tech blog posts from yashikota.com",
+      );
+      expect(capturedRssInput.site).toBe("https://yashikota.com");
 
-    await techRssModule.GET();
+      const items = capturedRssInput.items as Array<{
+        title: string;
+        pubDate: Date;
+        link: string;
+      }>;
+      expect(items).toHaveLength(1);
+      expect(items[0].title).toBe("Tech visible");
+      expect(items[0].pubDate).toBeInstanceOf(Date);
+      expect(items[0].link).toBe("/blog/tech-visible");
+    });
 
-    expect(capturedRssInput).not.toBeNull();
-    if (!capturedRssInput) {
-      return;
-    }
+    test("life RSS includes only listed life posts", async () => {
+      const lifeRssModule = await importLifeRssModule();
 
-    expect(capturedRssInput.title).toBe("Tech Blog - yashikota.com");
-    expect(capturedRssInput.description).toBe(
-      "Tech blog posts from yashikota.com",
-    );
-    expect(capturedRssInput.site).toBe("https://yashikota.com");
-
-    const items = capturedRssInput.items as Array<{
-      title: string;
-      pubDate: Date;
-      link: string;
-    }>;
-    expect(items).toHaveLength(1);
-    expect(items[0].title).toBe("Tech visible");
-    expect(items[0].pubDate).toBeInstanceOf(Date);
-    expect(items[0].link).toBe("/blog/tech-visible");
-  });
-
-  test("life RSS includes only listed life posts", async () => {
-    const lifeRssModule = await importLifeRssModule();
-
-    blogCollectionEntries = [
-      {
-        id: "tech-visible",
-        body: "",
-        data: {
-          title: "Tech visible",
-          pubDate: new Date("2025-05-01T00:00:00.000Z"),
-          updDate: null,
-          isUnlisted: false,
-          category: "tech",
-          tags: [],
-          showToc: false,
+      blogCollectionEntries = [
+        {
+          id: "tech-visible",
+          body: "",
+          data: {
+            title: "Tech visible",
+            pubDate: new Date("2025-05-01T00:00:00.000Z"),
+            updDate: null,
+            isUnlisted: false,
+            category: "tech",
+            tags: [],
+            showToc: false,
+          },
         },
-      },
-      {
-        id: "life-hidden",
-        body: "",
-        data: {
-          title: "Life hidden",
-          pubDate: new Date("2025-05-02T00:00:00.000Z"),
-          updDate: null,
-          isUnlisted: true,
-          category: "life",
-          tags: [],
-          showToc: false,
+        {
+          id: "life-hidden",
+          body: "",
+          data: {
+            title: "Life hidden",
+            pubDate: new Date("2025-05-02T00:00:00.000Z"),
+            updDate: null,
+            isUnlisted: true,
+            category: "life",
+            tags: [],
+            showToc: false,
+          },
         },
-      },
-      {
-        id: "life-visible",
-        body: "",
-        data: {
-          title: "Life visible",
-          pubDate: new Date("2025-05-03T00:00:00.000Z"),
-          updDate: null,
-          isUnlisted: false,
-          category: "life",
-          tags: [],
-          showToc: false,
+        {
+          id: "life-visible",
+          body: "",
+          data: {
+            title: "Life visible",
+            pubDate: new Date("2025-05-03T00:00:00.000Z"),
+            updDate: null,
+            isUnlisted: false,
+            category: "life",
+            tags: [],
+            showToc: false,
+          },
         },
-      },
-    ];
+      ];
 
-    globalThis.fetch = (async (input: RequestInfo | URL) => {
-      const url = toUrl(input);
-      if (url.startsWith("https://zenn.dev/api/articles")) {
-        return jsonResponse({ articles: [] });
+      await lifeRssModule.GET();
+
+      expect(capturedRssInput).not.toBeNull();
+      if (!capturedRssInput) {
+        return;
       }
 
-      throw new Error(`Unexpected fetch URL: ${url}`);
-    }) as typeof fetch;
+      expect(capturedRssInput.title).toBe("Life Blog - yashikota.com");
+      expect(capturedRssInput.description).toBe(
+        "Life blog posts from yashikota.com",
+      );
+      expect(capturedRssInput.site).toBe("https://yashikota.com");
 
-    await lifeRssModule.GET();
-
-    expect(capturedRssInput).not.toBeNull();
-    if (!capturedRssInput) {
-      return;
-    }
-
-    expect(capturedRssInput.title).toBe("Life Blog - yashikota.com");
-    expect(capturedRssInput.description).toBe(
-      "Life blog posts from yashikota.com",
-    );
-    expect(capturedRssInput.site).toBe("https://yashikota.com");
-
-    const items = capturedRssInput.items as Array<{
-      title: string;
-      pubDate: Date;
-      link: string;
-    }>;
-    expect(items).toHaveLength(1);
-    expect(items[0].title).toBe("Life visible");
-    expect(items[0].pubDate).toBeInstanceOf(Date);
-    expect(items[0].link).toBe("/blog/life-visible");
+      const items = capturedRssInput.items as Array<{
+        title: string;
+        pubDate: Date;
+        link: string;
+      }>;
+      expect(items).toHaveLength(1);
+      expect(items[0].title).toBe("Life visible");
+      expect(items[0].pubDate).toBeInstanceOf(Date);
+      expect(items[0].link).toBe("/blog/life-visible");
+    });
   });
 });

@@ -2,29 +2,12 @@ import { describe, expect, test } from "bun:test";
 import {
   createDescriptionFromMarkdown,
   DEFAULT_DESCRIPTION,
+  getDisplayWidth,
   splitJapaneseText,
   stripMarkdown,
   toAbsoluteUrl,
   truncateText,
 } from "./seo";
-
-const getCharDisplayWidth = (char: string): number => {
-  if (/\s/.test(char)) {
-    return 0.35;
-  }
-
-  if (/[\u0020-\u007e]/.test(char)) {
-    return 0.56;
-  }
-
-  return 1;
-};
-
-const getDisplayWidth = (value: string): number =>
-  Array.from(value).reduce(
-    (total, char) => total + getCharDisplayWidth(char),
-    0,
-  );
 
 describe("toAbsoluteUrl", () => {
   test("resolves relative URL against provided base", () => {
