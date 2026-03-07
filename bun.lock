@@ -57,6 +57,7 @@
         "@tailwindcss/typography": "0.5.19",
         "@tailwindcss/vite": "4.2.1",
         "@types/sanitize-html": "2.16.0",
+        "bun-types": "^1.3.10",
         "open-graph-scraper": "6.11.0",
         "sanitize-html": "2.17.1",
         "tailwindcss": "4.2.1",
@@ -609,6 +610,8 @@
     "budoux": ["budoux@0.7.0", "", { "dependencies": { "commander": "^13.0.0", "linkedom": "^0.18.7" }, "bin": { "budoux": "bin/budoux.js" } }, "sha512-3ozAqddyZUAYh9Lrk8eYcdBfVjplubOsF3NbwcHGIsfQ8An5+lwXQGw0KvrFN2mx1MP6SI+y6FoxuEqWaBZfjQ=="],
 
     "buffer-from": ["buffer-from@1.1.2", "", {}, "sha512-E+XQCRwSbaaiChtv6k6Dwgc+bx+Bs6vuKJHHl5kox/BaKbhiXzqQOwK4cO22yElGp2OCmjwVhT3HmxgyPGnJfQ=="],
+
+    "bun-types": ["bun-types@1.3.10", "", { "dependencies": { "@types/node": "*" } }, "sha512-tcpfCCl6XWo6nCVnpcVrxQ+9AYN1iqMIzgrSKYMB/fjLtV2eyAVEg7AxQJuCq/26R6HpKWykQXuSOq/21RYcbg=="],
 
     "camelcase": ["camelcase@8.0.0", "", {}, "sha512-8WB3Jcas3swSvjIeA2yvCJ+Miyz5l1ZmB6HFb9R1317dt9LCQoswg/BGrmAmkWVEszSrrg4RwmO46qIm2OEnSA=="],
 

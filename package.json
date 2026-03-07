@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
+    "test": "bun test",
     "build": "bun run ensure:og-font && astro check && astro build",
     "preview": "astro preview",
     "deploy": "bun run build && wrangler deploy",
@@ -64,6 +65,7 @@
     "@tailwindcss/typography": "0.5.19",
     "@tailwindcss/vite": "4.2.1",
     "@types/sanitize-html": "2.16.0",
+    "bun-types": "^1.3.10",
     "open-graph-scraper": "6.11.0",
     "sanitize-html": "2.17.1",
     "tailwindcss": "4.2.1"
