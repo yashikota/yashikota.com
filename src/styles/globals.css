@@ -68,6 +68,23 @@
   opacity: 0.8 !important;
 }
 
+/* Mermaid */
+.prose pre.mermaid {
+  padding: 0;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+  overflow-x: auto;
+  background: transparent;
+  border: 0;
+}
+
+.prose pre.mermaid svg {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
 /* 見出しジャンプ時にヘッダーで隠れないようにする */
 h1[id],
 h2[id],
@@ -153,6 +170,402 @@ h6:focus-within .markdown-copy-link-btn {
 
 .remark-link-card-plus__image {
   @apply h-full w-full !my-0 object-cover;
+}
+
+/* X embed */
+.remark-x-embed {
+  --x-border-color: rgb(207 217 222);
+  --x-font-color: rgb(15 20 25);
+  --x-font-color-secondary: rgb(83 100 113);
+  --x-bg: rgb(255 255 255);
+  --x-bg-hover: rgb(247 249 249);
+  --x-link: rgb(29 155 240);
+  --x-link-hover: rgb(26 140 216);
+  --x-like: rgb(249 24 128);
+  --x-reply: rgb(29 155 240);
+  --x-card-radius: 12px;
+  width: 100%;
+  max-width: 550px;
+  margin: 1.5rem auto;
+  font-family:
+    "TwitterChirp", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+  color: var(--x-font-color);
+}
+
+.remark-x-embed__card {
+  box-sizing: border-box;
+  padding: 0.75rem 1rem;
+  overflow: hidden;
+  cursor: pointer;
+  background: var(--x-bg);
+  border: 1px solid var(--x-border-color);
+  border-radius: var(--x-card-radius);
+  transition: background-color 0.2s ease;
+}
+
+.remark-x-embed__card:hover {
+  background: var(--x-bg-hover);
+}
+
+.remark-x-embed__card:focus-visible {
+  outline: 2px solid var(--x-link);
+  outline-offset: 2px;
+}
+
+.remark-x-embed__header {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  padding-bottom: 0.75rem;
+  font-size: 0.9375rem;
+  line-height: 1.25rem;
+}
+
+.remark-x-embed__avatar-link {
+  display: inline-flex;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  overflow: hidden;
+  text-decoration: none;
+  border-radius: 9999px;
+}
+
+.remark-x-embed__avatar-link--placeholder {
+  background: rgb(223 232 238);
+}
+
+.remark-x-embed__avatar {
+  width: 100%;
+  height: 100%;
+  margin: 0 !important;
+  object-fit: cover;
+}
+
+.remark-x-embed__avatar--square {
+  border-radius: 6px;
+}
+
+.remark-x-embed__author {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.remark-x-embed__author-name {
+  display: inline-flex;
+  gap: 0.15rem;
+  align-items: center;
+  width: fit-content;
+  max-width: 100%;
+  font-weight: 700;
+  color: var(--x-font-color);
+  text-decoration: none;
+}
+
+.remark-x-embed__author-name span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.remark-x-embed__author-name:hover {
+  text-decoration: underline;
+}
+
+.remark-x-embed__author-handle {
+  width: fit-content;
+  color: var(--x-font-color-secondary);
+  text-decoration: none;
+}
+
+.remark-x-embed__author-handle:hover {
+  text-decoration: underline;
+}
+
+.remark-x-embed__brand {
+  display: inline-flex;
+  margin-left: auto;
+  color: var(--x-font-color);
+  text-decoration: none;
+}
+
+.remark-x-embed__brand svg {
+  width: 1.45rem;
+  height: 1.45rem;
+  fill: currentColor;
+}
+
+.remark-x-embed__verified {
+  display: inline-flex;
+  width: 1.1rem;
+  height: 1.1rem;
+  color: rgb(29 155 240);
+}
+
+.remark-x-embed__verified svg {
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+}
+
+.remark-x-embed__verified--government {
+  color: rgb(130 154 171);
+}
+
+.remark-x-embed__verified--business {
+  color: rgb(201 145 0);
+}
+
+.remark-x-embed__in-reply-to {
+  margin-top: -0.125rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--x-font-color-secondary);
+}
+
+.remark-x-embed__in-reply-to a {
+  color: var(--x-link);
+  text-decoration: none;
+}
+
+.remark-x-embed__in-reply-to a:hover {
+  text-decoration: underline;
+}
+
+.remark-x-embed__body {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.5rem;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+.remark-x-embed__body a,
+.remark-x-embed__quote-body a {
+  color: var(--x-link);
+  word-break: normal;
+  text-decoration: none;
+}
+
+.remark-x-embed__body a:hover,
+.remark-x-embed__quote-body a:hover {
+  color: var(--x-link-hover);
+  text-decoration: underline;
+}
+
+.remark-x-embed__media {
+  margin-top: 0.75rem;
+  overflow: hidden;
+  border: 1px solid var(--x-border-color);
+  border-radius: var(--x-card-radius);
+}
+
+.remark-x-embed__media--quoted {
+  margin-top: 0.5rem;
+}
+
+.remark-x-embed__media-grid {
+  display: grid;
+  gap: 2px;
+}
+
+.remark-x-embed__media-grid--1 {
+  grid-template-columns: 1fr;
+}
+
+.remark-x-embed__media-grid--2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.remark-x-embed__media-grid--3 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.remark-x-embed__media-grid--3 .remark-x-embed__media-item:first-child {
+  grid-row: span 2;
+}
+
+.remark-x-embed__media-grid--4 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.remark-x-embed__media-item {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding-top: 56.25%;
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.remark-x-embed__media-grid--1 .remark-x-embed__media-item {
+  padding-top: 0;
+}
+
+.remark-x-embed__media-grid--1 .remark-x-embed__media-item img,
+.remark-x-embed__media-grid--1 .remark-x-embed__media-item video {
+  position: static;
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.remark-x-embed__media-item img,
+.remark-x-embed__media-item video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0 !important;
+  object-fit: cover;
+  background: rgb(0 0 0);
+}
+
+.remark-x-embed__quote {
+  display: block;
+  margin-top: 0.75rem;
+  overflow: hidden;
+  color: inherit;
+  text-decoration: none;
+  border: 1px solid var(--x-border-color);
+  border-radius: var(--x-card-radius);
+}
+
+.remark-x-embed__quote:hover {
+  background: rgb(0 0 0 / 0.03);
+}
+
+.remark-x-embed__quote-header {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  padding: 0.75rem 0.75rem 0;
+  font-size: 0.9375rem;
+  line-height: 1.2rem;
+}
+
+.remark-x-embed__quote-avatar {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin: 0 !important;
+  object-fit: cover;
+  border-radius: 9999px;
+}
+
+.remark-x-embed__quote-avatar--square {
+  border-radius: 4px;
+}
+
+.remark-x-embed__quote-author {
+  display: inline-flex;
+  gap: 0.25rem;
+  align-items: center;
+  min-width: 0;
+}
+
+.remark-x-embed__quote-name {
+  font-weight: 700;
+}
+
+.remark-x-embed__quote-handle {
+  color: var(--x-font-color-secondary);
+}
+
+.remark-x-embed__quote-body {
+  padding: 0.35rem 0.75rem 0.75rem;
+  margin: 0;
+  font-size: 0.938rem;
+  font-weight: 400;
+  line-height: 1.3rem;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+.remark-x-embed__meta {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+  margin-top: 0.65rem;
+  font-size: 0.9375rem;
+  line-height: 1.25rem;
+  color: var(--x-font-color-secondary);
+}
+
+.remark-x-embed__time-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.remark-x-embed__time-link:hover {
+  text-decoration: underline;
+}
+
+.remark-x-embed__actions {
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+  padding-top: 0.25rem;
+  margin-top: 0.4rem;
+  border-top: 1px solid var(--x-border-color);
+}
+
+.remark-x-embed__action {
+  display: inline-flex;
+  gap: 0.25rem;
+  align-items: center;
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1rem;
+  color: var(--x-font-color-secondary);
+  text-decoration: none;
+}
+
+.remark-x-embed__action--reply {
+  color: var(--x-reply);
+}
+
+.remark-x-embed__action--like {
+  color: var(--x-like);
+}
+
+.remark-x-embed__action--retweet {
+  color: rgb(0 186 124);
+}
+
+.remark-x-embed__action svg {
+  width: 1.1rem;
+  height: 1.1rem;
+  fill: currentColor;
+}
+
+.remark-x-embed__action:hover {
+  color: var(--x-reply);
+  text-decoration: underline;
+}
+
+.remark-x-embed__action--like:hover {
+  color: var(--x-like);
+}
+
+.remark-x-embed__action--retweet:hover {
+  color: rgb(0 163 108);
+}
+
+@media (max-width: 640px) {
+  .remark-x-embed {
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  .remark-x-embed__body {
+    font-size: 1.125rem;
+    line-height: 1.45rem;
+  }
 }
 
 figcaption {

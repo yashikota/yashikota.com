@@ -1,12 +1,14 @@
 import { ArrowUp } from "lucide-react";
 import type React from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type Props = {
   html: string;
 };
 
 export const Blog: React.FC<Props> = ({ html }) => {
+  const contentRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     const handler = (e: Event) => {
       const target = e.target as HTMLElement;
@@ -28,6 +30,52 @@ export const Blog: React.FC<Props> = ({ html }) => {
     return () => document.removeEventListener("click", handler);
   }, []);
 
+  useEffect(() => {
+    let canceled = false;
+
+    const renderMermaid = async () => {
+      if (!html.includes("mermaid")) {
+        return;
+      }
+
+      const root = contentRef.current;
+      if (!root) {
+        return;
+      }
+
+      const nodes = Array.from(
+        root.querySelectorAll<HTMLElement>("pre.mermaid"),
+      );
+      if (!nodes.length) {
+        return;
+      }
+
+      const { default: mermaid } = await import("mermaid");
+      if (canceled) {
+        return;
+      }
+
+      mermaid.initialize({
+        securityLevel: "strict",
+        startOnLoad: false,
+      });
+
+      nodes.forEach((node) => {
+        node.removeAttribute("data-processed");
+      });
+
+      await mermaid.run({ nodes });
+    };
+
+    renderMermaid().catch((error) => {
+      console.error("[mermaid] Failed to render diagrams", error);
+    });
+
+    return () => {
+      canceled = true;
+    };
+  }, [html]);
+
   // トップに戻るボタンの表示制御
   const [showTop, setShowTop] = useState(false);
   useEffect(() => {
@@ -41,6 +89,7 @@ export const Blog: React.FC<Props> = ({ html }) => {
   return (
     <>
       <div
+        ref={contentRef}
         className="prose prose-sm sm:prose lg:prose-lg dark:prose-invert max-w-none"
         dangerouslySetInnerHTML={{
           __html: html,
