@@ -14,7 +14,10 @@ let aboutMd = fs.readFileSync(aboutMdPath, "utf-8");
 const skillsXml = fs.readFileSync(skillsPath, "utf-8");
 
 // Inject skills.xml content into about.md
-aboutMd = aboutMd.replace("<!-- inject:skills -->", `\`\`\`xml\n${skillsXml}\`\`\``);
+aboutMd = aboutMd.replace(
+  "<!-- inject:skills -->",
+  `\`\`\`xml\n${skillsXml}\`\`\``,
+);
 
 const { html: aboutContent } = await markdownToHtmlWithToc(aboutMd);
 ---

@@ -3,7 +3,8 @@ import { loadDefaultJapaneseParser } from "budoux";
 export const SITE_NAME = "こたのお考え";
 const DEFAULT_SITE_URL = "https://yashikota.com";
 const resolveSiteUrl = (): string => {
-  const envSiteUrl = import.meta.env.SITE_URL ?? import.meta.env.PUBLIC_SITE_URL;
+  const envSiteUrl =
+    import.meta.env.SITE_URL ?? import.meta.env.PUBLIC_SITE_URL;
   if (!envSiteUrl) {
     return DEFAULT_SITE_URL;
   }
@@ -20,6 +21,25 @@ export const SITE_URL = resolveSiteUrl();
 export const DEFAULT_DESCRIPTION = "こたのお考え";
 
 const parser = loadDefaultJapaneseParser();
+
+export function getCharDisplayWidth(char: string): number {
+  if (/\s/.test(char)) {
+    return 0.35;
+  }
+
+  if (/[\u0020-\u007e]/.test(char)) {
+    return 0.56;
+  }
+
+  return 1;
+}
+
+export function getDisplayWidth(value: string): number {
+  return Array.from(value).reduce(
+    (total, char) => total + getCharDisplayWidth(char),
+    0,
+  );
+}
 
 export function toAbsoluteUrl(
   value: string,
@@ -86,24 +106,6 @@ export function splitJapaneseText(
 
   const isAsciiWord = (value: string): boolean =>
     /^[A-Za-z0-9][A-Za-z0-9'._-]*$/.test(value);
-
-  const getCharDisplayWidth = (char: string): number => {
-    if (/\s/.test(char)) {
-      return 0.35;
-    }
-
-    if (/[\u0020-\u007e]/.test(char)) {
-      return 0.56;
-    }
-
-    return 1;
-  };
-
-  const getDisplayWidth = (value: string): number =>
-    Array.from(value).reduce(
-      (total, char) => total + getCharDisplayWidth(char),
-      0,
-    );
 
   const truncateByDisplayWidth = (value: string, maxWidth: number): string => {
     if (getDisplayWidth(value) <= maxWidth) {
