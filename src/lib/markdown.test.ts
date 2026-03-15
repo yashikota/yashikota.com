@@ -1,25 +1,5 @@
-import { afterEach, describe, expect, test } from "bun:test";
+import { describe, expect, test } from "bun:test";
 import { markdownToHtmlWithToc } from "./markdown";
-
-const originalFetch = globalThis.fetch;
-const linkPreviewApiPrefix =
-  "https://linkpreview-api.yashikota.workers.dev/preview?url=";
-
-function toUrl(input: RequestInfo | URL): string {
-  if (typeof input === "string") {
-    return input;
-  }
-
-  if (input instanceof URL) {
-    return input.toString();
-  }
-
-  return input.url;
-}
-
-afterEach(() => {
-  globalThis.fetch = originalFetch;
-});
 
 describe("markdownToHtmlWithToc", () => {
   test("builds TOC from h2/h3 and appends heading copy button", async () => {
@@ -147,41 +127,13 @@ describe("markdownToHtmlWithToc", () => {
     expect(html).toContain('src="https://example.com/demo.mp4"');
   });
 
-  test("renders link cards for URL-only paragraphs", async () => {
-    const fetchCalls: string[] = [];
-
-    globalThis.fetch = (async (input: RequestInfo | URL) => {
-      const url = toUrl(input);
-      fetchCalls.push(url);
-
-      if (url.startsWith(linkPreviewApiPrefix)) {
-        return new Response(
-          JSON.stringify({
-            title: "Preview title",
-            description: "Preview description",
-            favicon: "https://example.com/favicon.ico",
-            ogImage: "https://example.com/og.png",
-          }),
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-            status: 200,
-          },
-        );
-      }
-
-      throw new Error(`Unexpected fetch URL: ${url}`);
-    }) as typeof fetch;
-
+  test("renders link card placeholders for URL-only paragraphs", async () => {
     const { html } = await markdownToHtmlWithToc("https://example.com/page");
 
-    expect(fetchCalls.length).toBeGreaterThan(0);
-    expect(fetchCalls[0]).toContain(linkPreviewApiPrefix);
     expect(html).toContain("remark-link-card-plus__container");
-    expect(html).toContain("Preview title");
-    expect(html).toContain("Preview description");
-    expect(html).toContain('class="remark-link-card-plus__url">example.com');
+    expect(html).toContain('data-link-card="true"');
+    expect(html).toContain('data-link-card-url="https://example.com/page"');
+    expect(html).toContain('data-link-card-display-url="example.com"');
   });
 
   test("applies expressive code rendering including mermaid block", async () => {
