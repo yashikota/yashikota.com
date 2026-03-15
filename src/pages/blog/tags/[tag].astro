@@ -73,11 +73,14 @@ const canonicalUrl = `/blog/tags/${tag}/`;
         const backLink = document.getElementById("back-to-blog-link");
         if (backLink) {
             try {
-                const referrer = document.referrer ? new URL(document.referrer) : null;
-                const isLifeTabReferrer =
-                    referrer?.pathname === "/blog" && referrer.hash === "#life";
-                if (isLifeTabReferrer) {
-                    backLink.setAttribute("href", "/blog#life");
+                if (document.referrer) {
+                    const referrerUrl = new URL(document.referrer);
+                    if (
+                        referrerUrl.pathname === "/blog" &&
+                        referrerUrl.hash === "#life"
+                    ) {
+                        backLink.setAttribute("href", "/blog#life");
+                    }
                 }
             } catch {
                 // Keep the default #tech anchor when referrer cannot be parsed.
