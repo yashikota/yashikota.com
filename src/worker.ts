@@ -2,15 +2,16 @@ import {
   createMinimalLinkCardData,
   decodeDisplayUrl,
   getFaviconFallbackUrl,
-  renderLinkCardHtml,
   type LinkCardData,
+  renderLinkCardHtml,
 } from "./lib/link-card";
 
 const HTML_CONTENT_TYPES = ["text/html", "application/xhtml+xml"];
 const LINK_CARD_CACHE_TTL_SECONDS = 60 * 60 * 24;
 const LINK_CARD_ERROR_TTL_SECONDS = 60 * 10;
 const REMOTE_FETCH_TIMEOUT_MS = 5000;
-const LINK_CARD_CACHE_URL = "https://link-card-cache.yashikota.internal/preview";
+const LINK_CARD_CACHE_URL =
+  "https://link-card-cache.yashikota.internal/preview";
 
 type AssetBinding = {
   fetch(input: RequestInfo | URL, init?: RequestInit): Promise<Response>;
@@ -72,7 +73,8 @@ class LinkCardElementHandler {
 
   async element(element: any): Promise<void> {
     const rawUrl =
-      element.getAttribute("data-link-card-url") || element.getAttribute("href");
+      element.getAttribute("data-link-card-url") ||
+      element.getAttribute("href");
     const displayUrl = decodeDisplayUrl(
       element.getAttribute("data-link-card-display-url") || "",
     );
