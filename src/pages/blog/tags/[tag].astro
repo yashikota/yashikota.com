@@ -27,17 +27,6 @@ export async function getStaticPaths() {
 const { tag } = Astro.params;
 const { posts } = Astro.props;
 const canonicalUrl = `/blog/tags/${tag}/`;
-
-const getBackLink = () => {
-  const referrer = Astro.request.headers.get("referer");
-  if (!referrer) return "https://yashikota.com/blog#tech";
-
-  const url = new URL(referrer);
-  if (url.hash === "#life") {
-    return "https://yashikota.com/blog#life";
-  }
-  return "https://yashikota.com/blog#tech";
-};
 ---
 
 <Base
@@ -70,7 +59,8 @@ const getBackLink = () => {
     <div class="flex justify-center">
         <h2>
             <a
-                href={getBackLink()}
+                id="back-to-blog-link"
+                href="/blog#tech"
                 class="text-3xl font-bold text-green-500 flex items-center"
             >
                 <HomeIcon className="w-6 h-6 mr-2 mt-1" />
@@ -78,4 +68,23 @@ const getBackLink = () => {
             </a>
         </h2>
     </div>
+
+    <script>
+        const backLink = document.getElementById("back-to-blog-link");
+        if (backLink) {
+            try {
+                if (document.referrer) {
+                    const referrerUrl = new URL(document.referrer);
+                    if (
+                        referrerUrl.pathname === "/blog" &&
+                        referrerUrl.hash === "#life"
+                    ) {
+                        backLink.setAttribute("href", "/blog#life");
+                    }
+                }
+            } catch {
+                // Keep the default #tech anchor when referrer cannot be parsed.
+            }
+        }
+    </script>
 </Base>
