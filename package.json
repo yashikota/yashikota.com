@@ -14,7 +14,7 @@
     "ensure:og-font": "bun run scripts/ensure-og-font.mjs"
   },
   "dependencies": {
-    "@astrojs/check": "0.9.7",
+    "@astrojs/check": "0.9.8",
     "@astrojs/react": "5.0.0",
     "@astrojs/rss": "4.0.17",
     "@astrojs/sitemap": "3.7.1",
@@ -27,7 +27,7 @@
     "@types/open-graph-scraper": "^5.2.3",
     "@types/react": "^19.2.10",
     "@types/react-dom": "^19.2.3",
-    "astro": "6.0.4",
+    "astro": "6.0.5",
     "budoux": "^0.8.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
