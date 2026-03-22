@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@astrojs/check": "0.9.8",
-    "@astrojs/react": "5.0.0",
+    "@astrojs/react": "5.0.1",
     "@astrojs/rss": "4.0.17",
     "@astrojs/sitemap": "3.7.1",
     "@radix-ui/react-dialog": "^1.1.15",
@@ -27,7 +27,7 @@
     "@types/open-graph-scraper": "^5.2.3",
     "@types/react": "^19.2.10",
     "@types/react-dom": "^19.2.3",
-    "astro": "6.0.5",
+    "astro": "6.0.6",
     "budoux": "^0.8.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
