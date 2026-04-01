@@ -1,6 +1,6 @@
 [
   {
-    "title": "Minis3",
+    "title": "Mini S3",
     "description": "ユニットテスト用のインメモリで動作するS3互換サーバー。テストは書きたいが、モックは使いたくないという思いがあり更にDockerとかで建てるのも微妙なので、miniredisというインメモリなGoのユニットテスト用のライブラリがありこのアプローチが好きなのでS3用のも欲しいと思い作成しました",
     "image": "https://img.yashikota.com/works/minis3/minis3.avif",
     "github": ["https://github.com/yashikota/minis3"],
@@ -72,7 +72,7 @@
     "tags": ["Python", "React", "Go", "Gemini"]
   },
   {
-    "title": "Nシラバスアプリ",
+    "title": "シラバスアプリ",
     "description": "大学のシラバスを快適に検索・閲覧できるWebアプリです。大学公式のシラバス検索サイトが非常に使いづらかったため作成しました。シラバスのデータ取得にはPythonを用いています。フロントエンドはReact Router v7とhono, shadcn/uiを使用してCloudflare Workersにデプロイする意欲的な技術スタックになっています。",
     "image": "https://img.yashikota.com/works/naist-syllabus/demo.avif",
     "github": ["https://github.com/yashikota/syllabus"],
