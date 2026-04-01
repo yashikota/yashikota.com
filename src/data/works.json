@@ -72,7 +72,7 @@
     "tags": ["Python", "React", "Go", "Gemini"]
   },
   {
-    "title": "NAISTシラバスアプリ",
+    "title": "Nシラバスアプリ",
     "description": "大学のシラバスを快適に検索・閲覧できるWebアプリです。大学公式のシラバス検索サイトが非常に使いづらかったため作成しました。シラバスのデータ取得にはPythonを用いています。フロントエンドはReact Router v7とhono, shadcn/uiを使用してCloudflare Workersにデプロイする意欲的な技術スタックになっています。",
     "image": "https://img.yashikota.com/works/naist-syllabus/demo.avif",
     "github": ["https://github.com/yashikota/syllabus"],
@@ -86,19 +86,6 @@
       "shadcn/ui",
       "Cloudflare"
     ]
-  },
-  {
-    "title": "OITシラバスアプリ",
-    "description": "大学のシラバスを快適に検索・閲覧できるWebアプリです。大学公式のシラバス検索サイトが非常に使いづらかったため作成しました。シラバスのデータ取得にはPythonを用いています。データ取得のプログラムは非同期処理を行い、従来8時間かかっていた処理を10分まで短縮することに成功しました。シラバスを閲覧できるWebサイトはReact/Next.jsを使用しPCでもスマホでも快適に使えるようにレスポンジブデザインに対応しています。",
-    "image": "https://img.yashikota.com/works/oit-syllabus/oit-syllabus.avif",
-    "github": [
-      "https://github.com/yashikota/syllabus-frontend",
-      "https://github.com/yashikota/syllabus-scraping",
-      "https://github.com/yashikota/syllabus-extract"
-    ],
-    "url": ["https://syllabus.oit.yashikota.com"],
-    "date": "2022/02 ~ 2022/04",
-    "tags": ["React", "Next.js", "Python", "TypeScript", "Github Actions"]
   },
   {
     "title": "yashikota.com",
@@ -126,18 +113,6 @@
     "url": [],
     "date": "2023/10 ~ 2023/11",
     "tags": ["Unity", "C Sharp", "Python", "MediaPipe"]
-  },
-  {
-    "title": "FunBook",
-    "description": "ハッカソンで作成したプロダクトです。ChatGPTのAPIを活用した、PythonのSum関数はJavaScriptではどうやって書くんだろうのような異なる言語間での関数の使い方やサンプルコードを教えてくれるWebサイトを作成しました。なお現在バックエンドのサーバーを停止しているため、使用できません。",
-    "image": "https://img.yashikota.com/works/funbook/funbook.avif",
-    "github": [
-      "https://github.com/yashikota/funbook",
-      "https://github.com/t-nobuyuki0330/mbs-back"
-    ],
-    "url": ["https://funbook.pages.dev"],
-    "date": "2023/04",
-    "tags": ["React", "Go", "ChatGPT API"]
   },
   {
     "title": "JANCode Generator",
