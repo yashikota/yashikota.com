@@ -66,13 +66,7 @@ https://github.com/yashikota/hiragana-word-api
 
 ### Go
 
-- バックエンド
-
-https://github.com/yashikota/scene-hunter
-
 https://github.com/yashikota/chronotes
-
-- CLIアプリ
 
 https://github.com/yashikota/genenv
 
