@@ -33,15 +33,9 @@ DBも設計もまだまだ初心者ですが、ソフトウェア開発におい
 
 ### Python
 
-- シラバス検索・閲覧アプリ
-
-https://github.com/yashikota/syllabus/tree/main/scraping
-
-- バーコード生成ライブラリ
+https://github.com/yashikota/syllabus
 
 https://github.com/yashikota/jancode
-
-- 4bitCPUのアーキテクチャTD4のエミュレーター
 
 https://github.com/yashikota/td4-py
 
@@ -49,15 +43,9 @@ https://github.com/yashikota/td4-py
 
 ### TypeScript
 
-- シラバス検索・閲覧アプリ
-
-https://github.com/yashikota/syllabus/tree/main/frontend
-
-- このサイト
+https://github.com/yashikota/syllabus
 
 https://github.com/yashikota/yashikota.com
-
-- 細々としたWeb API
 
 https://github.com/yashikota/hiragana-word-api
 
