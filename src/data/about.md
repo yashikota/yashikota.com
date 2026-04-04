@@ -33,32 +33,14 @@ DBも設計もまだまだ初心者ですが、ソフトウェア開発におい
 
 ### Python
 
-https://github.com/yashikota/syllabus
-
-https://github.com/yashikota/jancode
-
-https://github.com/yashikota/td4-py
-
 3年ほど主に個人開発で使用。最初は何でもかんでもPythonで書いていたんですが、型とか環境構築とかうーんとなって若干離れ気味になったんですけど、最近もLLMを使ったアプリケーションとかを開発するとなるとPythonが必須なので逃れられないです。でもuvとかruffみたいなツールが出てきてだいぶ不満は無くなってきたので開発元には大感謝🙏  
 
 ### TypeScript
-
-https://github.com/yashikota/syllabus
-
-https://github.com/yashikota/yashikota.com
-
-https://github.com/yashikota/hiragana-word-api
 
 3年ほど主に個人開発/インターンで使用。React/Next.js/Astro/Tailwind/shadcn/uiあたりがさわれます。  
 あと最近はちょっとしたWebAPIの開発にはhono + Cloudflare Workersで作るのにハマっています。書きやすく、動かしやすく、維持費もかからないので開発者体験が良いです🔥  
 
 ### Go
-
-https://github.com/yashikota/chronotes
-
-https://github.com/yashikota/genenv
-
-https://github.com/yashikota/noast
 
 1年ほど主に個人開発/インターンで使用。  
 クロスプラットフォームにシングルバイナリで実行ファイルをビルドできるところが好きで、ちょっとしたCLIアプリとかは基本Goで書いています。  
