@@ -42,7 +42,7 @@
     "github": ["https://github.com/yashikota/shutdown-timer"],
     "url": [],
     "date": "2025/09",
-    "tags": ["WinAppSDK", "WinUI 3"]
+    "tags": ["C Sharp", "WinAppSDK", "WinUI 3"]
   },
   {
     "title": "HappyShot",
@@ -51,7 +51,7 @@
     "github": ["https://github.com/yashikota/happy-shot"],
     "url": ["https://topaz.dev/projects/5ba3d6d5f2818f64236f"],
     "date": "2025/02",
-    "tags": ["Next.js", "Python"]
+    "tags": ["Python", "TypeScript", "Next.js"]
   },
   {
     "title": "Chronotes",
@@ -60,7 +60,7 @@
     "github": ["https://github.com/yashikota/chronotes"],
     "url": ["https://topaz.dev/projects/9752f502380d2cc00f7c"],
     "date": "2024/11",
-    "tags": ["Go", "Next.js", "Docker", "PostgreSQL", "Tailwind", "Gemini"]
+    "tags": ["Go", "TypeScript", "Next.js", "Docker", "PostgreSQL", "Tailwind", "Gemini"]
   },
   {
     "title": "Scene Hunter",
@@ -69,7 +69,7 @@
     "github": ["https://github.com/yashikota/scene-hunter"],
     "url": ["https://topaz.dev/projects/b8646b0b164a6568fa57"],
     "date": "2024/08",
-    "tags": ["Python", "React", "Go", "Gemini"]
+    "tags": ["Python", "TypeScript", "Go", "React", "Gemini"]
   },
   {
     "title": "シラバスアプリ",
@@ -78,14 +78,7 @@
     "github": ["https://github.com/yashikota/syllabus"],
     "url": ["https://syllabus.naist.yashikota.com"],
     "date": "2024/12",
-    "tags": [
-      "React",
-      "Python",
-      "TypeScript",
-      "React Router v7",
-      "shadcn/ui",
-      "Cloudflare"
-    ]
+    "tags": ["Python", "TypeScript", "React Router v7", "React", "Cloudflare"]
   },
   {
     "title": "yashikota.com",
@@ -94,7 +87,7 @@
     "github": ["https://github.com/yashikota/yashikota.com"],
     "url": ["https://yashikota.com"],
     "date": "2024/01 ~ 2024/03",
-    "tags": ["Astro", "shadcn/ui", "Bun"]
+    "tags": ["TypeScript", "Astro", "shadcn/ui", "Bun"]
   },
   {
     "title": "4bitCPU エミュレーター",
@@ -103,7 +96,7 @@
     "github": ["https://github.com/yashikota/td4-py"],
     "url": ["https://pypi.org/project/td4"],
     "date": "2023/03",
-    "tags": ["CPU", "Python"]
+    "tags": ["Python", "CPU"]
   },
   {
     "title": "JANCode Generator",
