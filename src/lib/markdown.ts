@@ -45,7 +45,7 @@ export async function markdownToHtmlWithToc(
     .use(remarkGfm)
     .use(remarkMath)
     .use(remarkYoutube)
-    .use(remarkLinkCard, { cache: true, shortenUrl: true })
+    .use(remarkLinkCard, { shortenUrl: true })
     .use(remarkRehype, { allowDangerousHtml: true })
     .use(rehypeExternalLinks, {
       target: "_blank",

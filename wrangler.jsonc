@@ -1,5 +1,6 @@
 {
   "name": "yashikota",
+  "main": "src/worker.ts",
   "vars": {
     "BUN_VERSION": "1.3.3"
   },
@@ -7,7 +8,9 @@
   "compatibility_flags": ["nodejs_compat"],
   "routes": [{ "pattern": "yashikota.com", "custom_domain": true }],
   "assets": {
-    "directory": "./dist"
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*"]
   },
   "observability": {
     "enabled": true

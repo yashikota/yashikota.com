@@ -23,3 +23,4 @@ pnpm-debug.log*
 
 # link card cache
 public/remark-link-card-plus
+.cache/

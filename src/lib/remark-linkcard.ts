@@ -4,30 +4,16 @@ import sanitizeHtml from "sanitize-html";
 import type { Plugin } from "unified";
 import { visit } from "unist-util-visit";
 
-// キャッシュの有効期限 (1時間)
-const CACHE_TTL = 3600000;
-const linkPreviewCache = new Map<string, any>();
-
-export type OgData = {
-  title: string;
-  description: string;
-  favicon?: string;
-  image?: string;
-};
-
 type Options = {
   shortenUrl?: boolean;
   thumbnailPosition?: "right" | "left";
   noThumbnail?: boolean;
   noFavicon?: boolean;
-  ogTransformer?: (og: OgData) => OgData;
 };
 
 type LinkCardData = {
   title: string;
   description: string;
-  faviconUrl: string;
-  ogImageUrl?: string;
   displayUrl: string;
   url: URL;
 };
@@ -39,22 +25,17 @@ const defaultOptions: Options = {
   noFavicon: false,
 };
 
-const remarkLinkCard: Plugin<[Options], Root> =
-  (userOptions: Options) => async (tree) => {
+const remarkLinkCard: Plugin<[Options?], Root> =
+  (userOptions: Options = {}) =>
+  (tree) => {
     const options = { ...defaultOptions, ...userOptions };
-    const transformers: (() => Promise<void>)[] = [];
-
-    const urlsToProcess: { url: string; index: number }[] = [];
+    const transformers: (() => void)[] = [];
 
     const addTransformer = (url: string, index: number) => {
-      urlsToProcess.push({ url, index });
-
-      transformers.push(async () => {
-        const data = await getLinkCardData(new URL(url), options);
+      transformers.push(() => {
+        const data = getLinkCardData(new URL(url), options);
         const linkCardNode = createLinkCardNode(data, options);
-        if (index !== undefined) {
-          tree.children.splice(index, 1, linkCardNode);
-        }
+        tree.children.splice(index, 1, linkCardNode);
       });
     };
 
@@ -90,8 +71,8 @@ const remarkLinkCard: Plugin<[Options], Root> =
     visit(tree, "paragraph", (paragraph, index, parent) => {
       if (parent?.type !== "root" || paragraph.children.length !== 1) return;
 
-      let unmatchedLink: Link;
-      let processedUrl: string;
+      let unmatchedLink: Link | undefined;
+      let processedUrl: string | undefined;
 
       visit(paragraph, "link", (linkNode) => {
         if (!isValidUrl(linkNode.url)) return;
@@ -132,12 +113,9 @@ const remarkLinkCard: Plugin<[Options], Root> =
     });
 
     try {
-      // プリフェッチ処理
-      for (const { url } of urlsToProcess) {
-        getOpenGraph(new URL(url)).catch(() => {});
+      for (const transformer of transformers) {
+        transformer();
       }
-
-      await Promise.all(transformers.map((t) => t()));
     } catch (error) {
       console.error(`[remark-link-card-plus] Error: ${error}`);
     }
@@ -153,54 +131,7 @@ const isSameUrlValue = (a: string, b: string) => {
   }
 };
 
-const getOpenGraph = async (targetUrl: URL) => {
-  const url = targetUrl.toString();
-  const cacheKey = url;
-  const cachedData = linkPreviewCache.get(cacheKey);
-  if (cachedData && cachedData.timestamp > Date.now() - CACHE_TTL) {
-    return cachedData.data;
-  }
-
-  try {
-    const apiUrl = `https://linkpreview-api.yashikota.workers.dev/preview?url=${encodeURIComponent(url)}`;
-    const response = await fetch(apiUrl);
-    if (!response.ok) {
-      throw new Error(`API request failed with status ${response.status}`);
-    }
-    const data = await response.json();
-
-    linkPreviewCache.set(cacheKey, {
-      data,
-      timestamp: Date.now(),
-    });
-
-    return data;
-  } catch (error) {
-    console.error(
-      `[remark-link-card-plus] Error: Failed to get the Open Graph data of ${targetUrl} due to ${error}.`,
-    );
-    return undefined;
-  }
-};
-
-const getLinkCardData = async (url: URL, options: Options) => {
-  const ogRawResult = await getOpenGraph(url);
-  let ogData: OgData = {
-    title: ogRawResult?.title || "",
-    description: ogRawResult?.description || "",
-    favicon: ogRawResult?.favicon,
-    image: ogRawResult?.ogImage,
-  };
-
-  if (options.ogTransformer) {
-    ogData = options.ogTransformer(ogData);
-  }
-
-  const title = ogData?.title || url.hostname;
-  const description = ogData?.description || "";
-  const faviconUrl = getFaviconUrl(ogData?.favicon, options);
-  const ogImageUrl = options.noThumbnail ? "" : ogData.image || "";
-
+const getLinkCardData = (url: URL, options: Options): LinkCardData => {
   let displayUrl = options.shortenUrl ? url.hostname : url.toString();
   try {
     displayUrl = decodeURI(displayUrl);
@@ -211,18 +142,11 @@ const getLinkCardData = async (url: URL, options: Options) => {
   }
 
   return {
-    title,
-    description,
-    faviconUrl,
-    ogImageUrl,
+    title: url.hostname,
+    description: "",
     displayUrl,
     url,
   };
-};
-
-const getFaviconUrl = (ogFavicon: string | undefined, options: Options) => {
-  if (options.noFavicon) return "";
-  return ogFavicon || "";
 };
 
 const className = (value: string) => {
@@ -230,26 +154,41 @@ const className = (value: string) => {
   return `${prefix}__${value}`;
 };
 
-const createLinkCardNode = (data: LinkCardData, options: Options): Html => {
-  const { title, description, faviconUrl, ogImageUrl, displayUrl, url } = data;
-  const isThumbnailLeft = options.thumbnailPosition === "left";
+const sanitizeText = (value: string) =>
+  sanitizeHtml(value, { allowedAttributes: {}, allowedTags: [] });
 
-  const thumbnail = ogImageUrl
-    ? `
-<div class="${className("thumbnail")}">
-  <img src="${ogImageUrl}" class="${className("image")}" alt="ogImage">
-</div>`.trim()
-    : "";
+const escapeAttribute = (value: string) =>
+  value
+    .replaceAll("&", "&amp;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;");
+
+const createLinkCardNode = (data: LinkCardData, options: Options): Html => {
+  const { title, description, displayUrl, url } = data;
+  const isThumbnailLeft = options.thumbnailPosition === "left";
+  const safeUrl = escapeAttribute(url.toString());
+
+  const thumbnail = options.noThumbnail
+    ? ""
+    : `
+<div class="${className("thumbnail")}" data-link-card-thumbnail hidden>
+  <img class="${className("image")}" alt="ogImage" data-link-card-image>
+</div>`.trim();
+
+  const favicon = options.noFavicon
+    ? ""
+    : `<img class="${className("favicon")}" width="14" height="14" alt="favicon" data-link-card-favicon hidden>`;
 
   const mainContent = `
 <div class="${className("main")}">
   <div class="${className("content")}">
-    <div class="${className("title")}">${sanitizeHtml(title)}</div>
-    <div class="${className("description")}">${sanitizeHtml(description)}</div>
+    <div class="${className("title")}" data-link-card-title>${sanitizeText(title)}</div>
+    <div class="${className("description")}" data-link-card-description>${sanitizeText(description)}</div>
   </div>
   <div class="${className("meta")}">
-    ${faviconUrl ? `<img src="${faviconUrl}" class="${className("favicon")}" width="14" height="14" alt="favicon">` : ""}
-    <span class="${className("url")}">${sanitizeHtml(displayUrl)}</span>
+    ${favicon}
+    <span class="${className("url")}">${sanitizeText(displayUrl)}</span>
   </div>
 </div>
 `
@@ -267,8 +206,8 @@ ${thumbnail}`;
   return {
     type: "html",
     value: `
-<div class="${className("container")}">
-  <a href="${url.toString()}" target="_blank" rel="noreferrer noopener" class="${className("card")}">
+<div class="${className("container")}" data-link-card-url="${safeUrl}">
+  <a href="${safeUrl}" target="_blank" rel="noreferrer noopener" class="${className("card")}">
     ${content.trim()}
   </a>
 </div>
