@@ -37,7 +37,7 @@ export function ProfileComponent() {
         <span>/</span>
         <a
           className="text-[#3182ce]"
-          href="https://www.instagram.com/insta.kota.dev"
+          href="https://www.instagram.com/photo_kota_"
           target="_blank"
           rel="noopener noreferrer"
         >
