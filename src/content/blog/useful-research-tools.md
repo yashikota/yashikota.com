@@ -15,7 +15,7 @@ showToc: false
 ## alphaxiv
 
 正直これのためだけにこの記事を書いているぐらい便利でヘビーユーザーです。  
-arXivという計算機科学とかの分野の査読前の論文が投稿されるプラットフォームがあって、ここに投稿された論文を日本語翻訳してくれたり、論文に対してAIチャットで質問できたり、論文に対していいねを押していくと自分好みに最適化されたオススメの論文を教えてくれるフィードがあったりしてめちゃくちゃ便利で、いたせりつくせりです。  
+arXivという計算機科学とかの分野の査読前の論文が投稿されるプラットフォームがあって、ここに投稿された論文を日本語翻訳してくれたり、論文に対してAIチャットで質問できたり、論文に対していいねを押していくと自分好みに最適化されたオススメの論文を教えてくれるフィードがあったりしてめちゃくちゃ便利で、至れり尽くせりです。  
 
 使い方も `https://arxiv.org` を `https://alphaxiv.org` とURL変更するだけでおkです。  
 
@@ -25,7 +25,7 @@ https://www.alphaxiv.org
 ブックマークレットとは何ぞやっていうのはググってください。  
 
 ```js
-javascript:(function() {  var oldUrl = window.location.href;  var newUrl = oldUrl.replace(/arxiv/g, 'alphaxiv');  window.location.href = newUrl;})();
+javascript:(function() { window.location.href = window.location.href.replace('arxiv.org', 'alphaxiv.org'); })();
 ```
 
 ## Semantic Scholar
@@ -50,12 +50,12 @@ https://notebooklm.google.com
 こっちは論文の実装がGitHubにあるならそのコードベースに対して質問できるツールです。  
 git clone して cd して claude なり codex で聞いてもいいんですがめんどいんで、こっちもURL変更するだけで使えてあと無料で結構使えるので基本こっちでいいかなーと。  
 
-http://deepwiki.com
+https://deepwiki.com
 
 ブックマークレットはこちら  
 
 ```js
-javascript:(function() {  var oldUrl = window.location.href;  var newUrl = oldUrl.replace(/github/g, 'deepwiki');  window.location.href = newUrl;})();
+javascript:(function() { window.location.href = window.location.href.replace('github.com', 'deepwiki.com'); })();
 ```
 
 ## Notion
