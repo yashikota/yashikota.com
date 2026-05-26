@@ -11,7 +11,8 @@
     "deploy": "bun run build && wrangler deploy",
     "check": "biome check --write .",
     "check:ci": "biome check .",
-    "ensure:og-font": "bun run scripts/ensure-og-font.mjs"
+    "ensure:og-font": "bun run scripts/ensure-og-font.mjs",
+    "standard-site:sync": "bun scripts/sync-standard-site.mjs"
   },
   "dependencies": {
     "@astrojs/check": "0.9.9",
