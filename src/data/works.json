@@ -1,5 +1,14 @@
 [
   {
+    "title": "Hacker News 日本語Podcast",
+    "description": "Hacker Newsの日本語ポッドキャストを毎日お届けします！",
+    "image": "https://img.yashikota.com/works/hackernews-podcast/hackernews-podcast.avif",
+    "github": ["https://github.com/yashikota/hackernews-podcast"],
+    "url": ["https://hackernews-podcast.yashikota.com"],
+    "date": "2026/04",
+    "tags": ["Go", "LLM"]
+  },
+  {
     "title": "Mini S3",
     "description": "ユニットテスト用のインメモリで動作するS3互換サーバー。テストは書きたいが、モックは使いたくないという思いがあり更にDockerとかで建てるのも微妙なので、miniredisというインメモリなGoのユニットテスト用のライブラリがありこのアプローチが好きなのでS3用のも欲しいと思い作成しました",
     "image": "https://img.yashikota.com/works/minis3/minis3.avif",
