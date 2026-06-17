@@ -71,7 +71,7 @@ const resolvedTwitterCard = twitterCard ?? "summary_large_image";
         <title>{resolvedTitle}</title>
         <meta name="description" content={resolvedDescription} />
         <link rel="canonical" href={resolvedCanonicalUrl} />
-        {noIndex && <meta name="robots" content="noindex,nofollow" />}
+        {noIndex && <meta name="robots" content="noindex,nofollow,noarchive,nosnippet,noimageindex" />}
 
         <meta property="og:type" content={resolvedOgType} />
         <meta property="og:title" content={resolvedTitle} />

@@ -1,4 +1,0 @@
-User-agent: *
-Disallow: /about
-
-Sitemap: https://yashikota.com/sitemap-index.xml

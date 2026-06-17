@@ -13,6 +13,7 @@ interface Props {
   updDate: string;
   body: string;
   showToc: boolean;
+  isUnlisted: boolean;
 }
 
 export async function getStaticPaths() {
@@ -29,12 +30,14 @@ export async function getStaticPaths() {
         updDate: blog.updDate,
         body: blog.body,
         showToc: blog.showToc,
+        isUnlisted: blog.isUnlisted,
       },
     };
   });
 }
 
-const { title, tags, pubDate, updDate, body, showToc } = Astro.props;
+const { title, tags, pubDate, updDate, body, showToc, isUnlisted } =
+  Astro.props;
 const { html: content, toc } = await markdownToHtmlWithToc(body);
 const canonicalUrl = `/blog/${Astro.params.slug}/`;
 const description = createDescriptionFromMarkdown(body);
@@ -49,6 +52,7 @@ const ogImage = `/og/${Astro.params.slug}.png`;
     ogType="article"
     publishedTime={new Date(pubDate).toISOString()}
     modifiedTime={updDate ? new Date(updDate).toISOString() : null}
+    noIndex={isUnlisted}
 >
     <div class="mx-auto text-center">
         <div
