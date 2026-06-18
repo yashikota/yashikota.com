@@ -3,8 +3,9 @@ import { getBlogPosts } from "@/lib/posts";
 
 export const prerender = true;
 
-export const GET: APIRoute = async () => {
+export const GET: APIRoute = async (context) => {
   const posts = await getBlogPosts();
+  const siteUrl = context.site?.origin ?? "https://yashikota.com";
   const disallowRules = posts
     .filter((post) => post.isUnlisted)
     .flatMap((post) => [
@@ -17,7 +18,7 @@ export const GET: APIRoute = async () => {
       "User-agent: *",
       ...disallowRules,
       "",
-      "Sitemap: https://yashikota.com/sitemap-index.xml",
+      `Sitemap: ${siteUrl}/sitemap-index.xml`,
       "",
     ].join("\n"),
     {

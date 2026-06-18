@@ -27,7 +27,9 @@ const getMarkdownFiles = (dir) => {
 const getUnlistedBlogPaths = () => {
   return getMarkdownFiles(BLOG_CONTENT_DIR).flatMap((path) => {
     const content = readFileSync(path, "utf-8");
-    if (!/^isUnlisted:\s*true\s*$/m.test(content)) {
+    const frontmatterMatch = content.match(/^---\r?\n([\s\S]*?)\r?\n---/);
+    const frontmatter = frontmatterMatch ? frontmatterMatch[1] : "";
+    if (!/^isUnlisted:\s*true\s*$/m.test(frontmatter)) {
       return [];
     }
 
@@ -46,7 +48,13 @@ const createUnlistedHeadersIntegration = () => ({
   name: "unlisted-headers",
   hooks: {
     "astro:build:done": ({ dir }) => {
-      const headers = [...unlistedBlogPaths]
+      const headersFile = fileURLToPath(new URL("_headers", dir));
+      let existingContent = "";
+      try {
+        existingContent = readFileSync(headersFile, "utf-8");
+      } catch {}
+
+      const unlistedHeaders = [...unlistedBlogPaths]
         .flatMap((path) => {
           const pathWithoutTrailingSlash = path.replace(/\/$/, "");
           return [
@@ -58,7 +66,11 @@ const createUnlistedHeadersIntegration = () => ({
         })
         .join("\n");
 
-      writeFileSync(fileURLToPath(new URL("_headers", dir)), `${headers}\n`);
+      const headers = existingContent
+        ? `${existingContent.trim()}\n\n${unlistedHeaders}`
+        : unlistedHeaders;
+
+      writeFileSync(headersFile, `${headers}\n`);
     },
   },
 });
@@ -90,7 +102,10 @@ export default defineConfig({
     sitemap({
       filter: (page) => {
         const { pathname } = new URL(page);
-        return !unlistedBlogPaths.has(pathname);
+        const normalizedPathname = pathname.endsWith("/")
+          ? pathname
+          : `${pathname}/`;
+        return !unlistedBlogPaths.has(normalizedPathname);
       },
     }),
     createUnlistedHeadersIntegration(),
