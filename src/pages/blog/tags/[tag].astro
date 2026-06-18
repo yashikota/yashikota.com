@@ -7,14 +7,15 @@ import { getAllPosts } from "@/lib/posts";
 
 export async function getStaticPaths() {
   const allPosts = await getAllPosts();
+  const listedPosts = allPosts.filter((post) => !post.isUnlisted);
   const uniqueTags = [
     ...new Set(
-      allPosts.flatMap((post) => post.tags.map((tag) => tag.toLowerCase())),
+      listedPosts.flatMap((post) => post.tags.map((tag) => tag.toLowerCase())),
     ),
   ];
 
   return uniqueTags.map((tag) => {
-    const filteredPosts = allPosts.filter((post) =>
+    const filteredPosts = listedPosts.filter((post) =>
       post.tags.some((postTag) => postTag.toLowerCase() === tag),
     );
     return {
