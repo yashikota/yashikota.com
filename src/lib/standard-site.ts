@@ -100,7 +100,7 @@ export function getStandardSiteDocumentPath(slug: string): string {
 }
 
 export function getStandardSiteDocumentRkey(slug: string): string {
-  if (!/^[A-Za-z0-9._~:-]{1,512}$/.test(slug)) {
+  if (!/^[A-Za-z0-9_~-][A-Za-z0-9._~-]{0,511}$/.test(slug)) {
     throw new Error(`Invalid AT Protocol record key for blog slug: ${slug}`);
   }
 

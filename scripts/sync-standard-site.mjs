@@ -3,6 +3,7 @@
 import { readdir, readFile, writeFile } from "node:fs/promises";
 import { basename, extname, join, relative, sep } from "node:path";
 import { fileURLToPath } from "node:url";
+import { parse as parseYaml } from "yaml";
 import {
   buildStandardSiteDocumentRecord,
   buildStandardSitePublicationRecord,
@@ -39,36 +40,6 @@ function readBooleanEnv(value, defaultValue) {
   return !["0", "false", "no"].includes(value.toLowerCase());
 }
 
-function parseScalar(rawValue) {
-  const value = rawValue.trim();
-
-  if (!value) {
-    return null;
-  }
-
-  if (value === "true") {
-    return true;
-  }
-
-  if (value === "false") {
-    return false;
-  }
-
-  if (value.startsWith("[") && value.endsWith("]")) {
-    return JSON.parse(value);
-  }
-
-  if (value.startsWith('"') && value.endsWith('"')) {
-    return JSON.parse(value);
-  }
-
-  if (value.startsWith("'") && value.endsWith("'")) {
-    return value.slice(1, -1);
-  }
-
-  return value;
-}
-
 function parseFrontmatter(markdown, filePath) {
   const match = /^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/.exec(markdown);
   if (!match) {
@@ -76,19 +47,9 @@ function parseFrontmatter(markdown, filePath) {
   }
 
   const [, frontmatter, body] = match;
-  const data = {};
-
-  for (const line of frontmatter.split(/\r?\n/)) {
-    if (!line.trim()) {
-      continue;
-    }
-
-    const field = /^([A-Za-z][A-Za-z0-9_-]*):\s*(.*)$/.exec(line);
-    if (!field) {
-      throw new Error(`Unsupported frontmatter line in ${filePath}: ${line}`);
-    }
-
-    data[field[1]] = parseScalar(field[2] ?? "");
+  const data = parseYaml(frontmatter) ?? {};
+  if (!data || typeof data !== "object" || Array.isArray(data)) {
+    throw new Error(`Expected frontmatter to be a mapping in ${filePath}`);
   }
 
   return { body, data };
@@ -219,7 +180,14 @@ async function postJson(serviceUrl, endpoint, payload, accessJwt) {
     method: "POST",
   });
   const responseText = await response.text();
-  const responseJson = responseText ? JSON.parse(responseText) : {};
+  let responseJson = {};
+  if (responseText) {
+    try {
+      responseJson = JSON.parse(responseText);
+    } catch {
+      responseJson = {};
+    }
+  }
 
   if (!response.ok) {
     throw new Error(

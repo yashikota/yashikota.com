@@ -81,7 +81,7 @@ const standardSitePublicationUri = getPublicationUri();
         {standardSiteDocumentUri && (
           <link rel="site.standard.document" href={standardSiteDocumentUri} />
         )}
-        {noIndex && <meta name="robots" content="noindex,nofollow" />}
+        {noIndex && <meta name="robots" content="noindex,nofollow,noarchive,nosnippet,noimageindex" />}
 
         <meta property="og:type" content={resolvedOgType} />
         <meta property="og:title" content={resolvedTitle} />

@@ -154,6 +154,10 @@ describe("Standard.site formatting helpers", () => {
 
   test("rejects invalid record keys and dates", () => {
     expect(() => getStandardSiteDocumentRkey("bad/key")).toThrow();
+    expect(() => getStandardSiteDocumentRkey("bad:key")).toThrow();
+    expect(() => getStandardSiteDocumentRkey(".hidden")).toThrow();
+    expect(() => getStandardSiteDocumentRkey(".")).toThrow();
+    expect(() => getStandardSiteDocumentRkey("..")).toThrow();
     expect(() => toStandardSiteDateTime("not a date")).toThrow();
   });
 });
