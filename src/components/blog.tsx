@@ -2,11 +2,7 @@ import { ArrowUp } from "lucide-react";
 import type React from "react";
 import { useEffect, useState } from "react";
 
-type Props = {
-  html: string;
-};
-
-export const Blog: React.FC<Props> = ({ html }) => {
+export const Blog: React.FC = () => {
   useEffect(() => {
     const handler = (e: Event) => {
       const target = e.target as HTMLElement;
@@ -28,7 +24,6 @@ export const Blog: React.FC<Props> = ({ html }) => {
     return () => document.removeEventListener("click", handler);
   }, []);
 
-  // トップに戻るボタンの表示制御
   const [showTop, setShowTop] = useState(false);
   useEffect(() => {
     const onScroll = () => {
@@ -40,12 +35,6 @@ export const Blog: React.FC<Props> = ({ html }) => {
 
   return (
     <>
-      <div
-        className="prose prose-sm sm:prose lg:prose-lg dark:prose-invert max-w-none"
-        dangerouslySetInnerHTML={{
-          __html: html,
-        }}
-      />
       {showTop && (
         <button
           type="button"
