@@ -53,25 +53,44 @@ export default {
       return response;
     }
 
+    // Pass 1: collect all link card URLs without modifying the response
+    const urlsToFetch: { url: URL; displayUrl: string }[] = [];
+    await new HTMLRewriter()
+      .on('a[data-link-card="true"]', new LinkCardUrlCollector(urlsToFetch))
+      .transform(response.clone())
+      .text();
+
+    // Deduplicate and fetch all previews in parallel
+    const seen = new Set<string>();
+    const uniqueUrls = urlsToFetch.filter(({ url }) => {
+      const key = url.toString();
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+
+    const previews = await Promise.all(
+      uniqueUrls.map(({ url, displayUrl }) =>
+        getLinkPreview(url, displayUrl, ctx),
+      ),
+    );
+
+    const previewMap = new Map<string, LinkCardData>();
+    for (let i = 0; i < uniqueUrls.length; i++) {
+      previewMap.set(uniqueUrls[i].url.toString(), previews[i]);
+    }
+
+    // Pass 2: rewrite synchronously using precomputed map
     return new HTMLRewriter()
-      .on(
-        'a[data-link-card="true"]',
-        new LinkCardElementHandler({
-          ctx,
-        }),
-      )
+      .on('a[data-link-card="true"]', new LinkCardElementHandler(previewMap))
       .transform(response);
   },
 };
 
-class LinkCardElementHandler {
-  constructor(
-    private readonly options: {
-      ctx: ExecutionContextLike;
-    },
-  ) {}
+class LinkCardUrlCollector {
+  constructor(private readonly urls: { url: URL; displayUrl: string }[]) {}
 
-  async element(element: any): Promise<void> {
+  element(element: any): void {
     const rawUrl =
       element.getAttribute("data-link-card-url") ||
       element.getAttribute("href");
@@ -79,15 +98,24 @@ class LinkCardElementHandler {
       element.getAttribute("data-link-card-display-url") || "",
     );
     const url = tryParseHttpUrl(rawUrl);
-
-    if (!url) {
-      return;
+    if (url) {
+      this.urls.push({ url, displayUrl });
     }
+  }
+}
 
-    const preview = await getLinkPreview(url, displayUrl, this.options.ctx);
-    element.replace(renderLinkCardHtml(preview), {
-      html: true,
-    });
+class LinkCardElementHandler {
+  constructor(private readonly previewMap: Map<string, LinkCardData>) {}
+
+  element(element: any): void {
+    const rawUrl =
+      element.getAttribute("data-link-card-url") ||
+      element.getAttribute("href");
+    const url = tryParseHttpUrl(rawUrl);
+    if (!url) return;
+    const preview = this.previewMap.get(url.toString());
+    if (!preview) return;
+    element.replace(renderLinkCardHtml(preview), { html: true });
   }
 }
 
