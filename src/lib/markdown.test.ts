@@ -1,14 +1,6 @@
 import { describe, expect, test } from "bun:test";
 import { markdownToHtmlWithToc } from "./markdown";
 
-function countMermaidBlocks(html: string): number {
-  return (html.match(/<pre class="mermaid">/g) ?? []).length;
-}
-
-function toHtmlEntitySafe(value: string): string {
-  return value.replaceAll("&", "&amp;").replaceAll("<", "&#x3C;");
-}
-
 describe("markdownToHtmlWithToc", () => {
   test("builds TOC from h2/h3 and appends heading copy button", async () => {
     const markdown = ["# Title", "", "## Section A", "", "### Section B"].join(
@@ -281,5 +273,132 @@ describe("markdownToHtmlWithToc", () => {
 
     expect(countMermaidBlocks(html)).toBe(0);
     expect(html).toContain('data-language="bash"');
+||||||| parent of 16e2028 (refactor: remove mermaid from X embed PR (split into separate PR #165))
+      expect(html).toContain('<pre class="mermaid">');
+      expect(html).toContain("graph TB");
+      expect(html).toContain("A-->B");
+      expect(html).not.toContain('data-language="mermaid"');
+      expect(html).toContain("expressive-code");
+      expect(html).toContain('data-language="js"');
+      expect(html).toContain("console.log");
+    });
+
+    test("accepts Mermaid language aliases and casing", async () => {
+      const markdown = ["```Mermaidjs", "flowchart LR", "A-->B", "```"].join(
+        "\n",
+      );
+
+      const { html } = await markdownToHtmlWithToc(markdown);
+
+      expect(html).toContain('<pre class="mermaid">');
+      expect(html).toContain("flowchart LR");
+      expect(html).not.toContain('data-language="Mermaidjs"');
+    });
+
+    const mermaidSyntaxCases = [
+      {
+        expected: "Start([Start]) --> Decision{Deploy?}",
+        name: "flowchart",
+        source: [
+          "flowchart LR",
+          "Start([Start]) --> Decision{Deploy?}",
+          "Decision -->|yes| End([End])",
+        ],
+      },
+      {
+        expected: "U->>S: Request",
+        name: "sequenceDiagram",
+        source: [
+          "sequenceDiagram",
+          "participant U as User",
+          "participant S as Server",
+          "U->>S: Request",
+          "S-->>U: Response",
+        ],
+      },
+      {
+        expected: "Animal <|-- Duck",
+        name: "classDiagram",
+        source: ["classDiagram", "class Animal", "Animal <|-- Duck"],
+      },
+      {
+        expected: "CUSTOMER ||--o{ ORDER : places",
+        name: "erDiagram",
+        source: [
+          "erDiagram",
+          "CUSTOMER ||--o{ ORDER : places",
+          "ORDER ||--|{ LINE_ITEM : contains",
+        ],
+      },
+      {
+        expected: "Idle --> Running: start",
+        name: "stateDiagram-v2",
+        source: [
+          "stateDiagram-v2",
+          "[*] --> Idle",
+          "Idle --> Running: start",
+          "Running --> [*]: stop",
+        ],
+      },
+      {
+        expected: "Compile :done, 2026-03-01, 2d",
+        name: "gantt",
+        source: [
+          "gantt",
+          "title Release",
+          "dateFormat YYYY-MM-DD",
+          "section Build",
+          "Compile :done, 2026-03-01, 2d",
+        ],
+      },
+      {
+        expected: "planning",
+        name: "mindmap",
+        source: ["mindmap", "  root((release))", "    planning"],
+      },
+    ];
+
+    for (const mermaidCase of mermaidSyntaxCases) {
+      test(`preserves ${mermaidCase.name} syntax`, async () => {
+        const markdown = ["```mermaid", ...mermaidCase.source, "```"].join(
+          "\n",
+        );
+
+        const { html } = await markdownToHtmlWithToc(markdown);
+
+        expect(countMermaidBlocks(html)).toBe(1);
+        expect(html).toContain(`<pre class="mermaid">${mermaidCase.source[0]}`);
+        expect(html).toContain(toHtmlEntitySafe(mermaidCase.expected));
+      });
+    }
+
+    test("converts multiple mermaid blocks in one document", async () => {
+      const markdown = [
+        "```mermaid",
+        "flowchart LR",
+        "A-->B",
+        "```",
+        "",
+        "```mermaid",
+        "sequenceDiagram",
+        "A->>B: ping",
+        "```",
+      ].join("\n");
+
+      const { html } = await markdownToHtmlWithToc(markdown);
+
+      expect(countMermaidBlocks(html)).toBe(2);
+      expect(html).toContain("flowchart LR");
+      expect(html).toContain("sequenceDiagram");
+    });
+
+    test("does not convert non-mermaid code fences", async () => {
+      const markdown = ["```bash", "echo hello", "```"].join("\n");
+
+      const { html } = await markdownToHtmlWithToc(markdown);
+
+      expect(countMermaidBlocks(html)).toBe(0);
+      expect(html).toContain('data-language="bash"');
+    });
   });
 });
