@@ -997,7 +997,7 @@ function renderQuotedTweet(tweet: QuotedTweet): string {
       <span class="remark-x-embed__quote-handle">@${escapeHtml(tweet.user.screen_name)}</span>
     </div>
   </div>
-  <p class="remark-x-embed__quote-body" lang="${escapeAttribute(tweet.lang)}" dir="auto">${renderBodyEntities(bodyEntities)}</p>
+  <div class="remark-x-embed__quote-body" lang="${escapeAttribute(tweet.lang)}" dir="auto">${renderBodyEntities(bodyEntities)}</div>
   ${media}
 </a>`.trim();
 }

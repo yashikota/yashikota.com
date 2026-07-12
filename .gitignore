@@ -32,3 +32,6 @@ public/remark-link-card-plus
 
 # playwright test artifacts
 .playwright/
+
+# claude code worktrees
+.claude/worktrees/
