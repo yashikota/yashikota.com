@@ -29,7 +29,9 @@ export const Blog: React.FC = () => {
 
     const renderMermaid = async () => {
       const nodes = Array.from(
-        document.querySelectorAll<HTMLElement>("pre.mermaid:not([data-processed])"),
+        document.querySelectorAll<HTMLElement>(
+          "pre.mermaid:not([data-processed])",
+        ),
       );
       if (!nodes.length) {
         return;
