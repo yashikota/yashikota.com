@@ -177,7 +177,8 @@ async function buildLinkPreview(
       },
       ttl: LINK_CARD_CACHE_TTL_SECONDS,
     };
-  } catch {
+  } catch (error) {
+    console.error(`[worker] Failed to build link preview for ${url.toString()}:`, error);
     return {
       data: fallback,
       ttl: LINK_CARD_ERROR_TTL_SECONDS,

@@ -10,6 +10,7 @@ import {
   SITE_URL,
   toAbsoluteUrl,
 } from "@/lib/seo";
+import { getPublicationUri } from "@/lib/standard-site";
 
 interface Props {
   pageTitle?: string;
@@ -21,6 +22,7 @@ interface Props {
   modifiedTime?: string | null;
   twitterCard?: "summary" | "summary_large_image";
   noIndex?: boolean;
+  standardSiteDocumentUri?: string | null;
 }
 
 const {
@@ -33,6 +35,7 @@ const {
   modifiedTime,
   twitterCard,
   noIndex,
+  standardSiteDocumentUri,
 } = Astro.props as Props;
 
 const siteUrl = Astro.site?.toString() ?? SITE_URL;
@@ -45,6 +48,7 @@ const resolvedCanonicalUrl = toAbsoluteUrl(
 const resolvedOgImage = toAbsoluteUrl(ogImage ?? "/icon.png", siteUrl);
 const resolvedOgType = ogType ?? "website";
 const resolvedTwitterCard = twitterCard ?? "summary_large_image";
+const standardSitePublicationUri = getPublicationUri();
 ---
 
 <html lang="ja">
@@ -71,7 +75,13 @@ const resolvedTwitterCard = twitterCard ?? "summary_large_image";
         <title>{resolvedTitle}</title>
         <meta name="description" content={resolvedDescription} />
         <link rel="canonical" href={resolvedCanonicalUrl} />
-        {noIndex && <meta name="robots" content="noindex,nofollow" />}
+        {standardSitePublicationUri && (
+          <link rel="site.standard.publication" href={standardSitePublicationUri} />
+        )}
+        {standardSiteDocumentUri && (
+          <link rel="site.standard.document" href={standardSiteDocumentUri} />
+        )}
+        {noIndex && <meta name="robots" content="noindex,nofollow,noarchive,nosnippet,noimageindex" />}
 
         <meta property="og:type" content={resolvedOgType} />
         <meta property="og:title" content={resolvedTitle} />

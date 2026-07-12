@@ -33,50 +33,14 @@ DBも設計もまだまだ初心者ですが、ソフトウェア開発におい
 
 ### Python
 
-- シラバス検索・閲覧アプリ
-
-https://github.com/yashikota/syllabus/tree/main/scraping
-
-- バーコード生成ライブラリ
-
-https://github.com/yashikota/jancode
-
-- 4bitCPUのアーキテクチャTD4のエミュレーター
-
-https://github.com/yashikota/td4-py
-
 3年ほど主に個人開発で使用。最初は何でもかんでもPythonで書いていたんですが、型とか環境構築とかうーんとなって若干離れ気味になったんですけど、最近もLLMを使ったアプリケーションとかを開発するとなるとPythonが必須なので逃れられないです。でもuvとかruffみたいなツールが出てきてだいぶ不満は無くなってきたので開発元には大感謝🙏  
 
 ### TypeScript
-
-- シラバス検索・閲覧アプリ
-
-https://github.com/yashikota/syllabus/tree/main/frontend
-
-- このサイト
-
-https://github.com/yashikota/yashikota.com
-
-- 細々としたWeb API
-
-https://github.com/yashikota/hiragana-word-api
 
 3年ほど主に個人開発/インターンで使用。React/Next.js/Astro/Tailwind/shadcn/uiあたりがさわれます。  
 あと最近はちょっとしたWebAPIの開発にはhono + Cloudflare Workersで作るのにハマっています。書きやすく、動かしやすく、維持費もかからないので開発者体験が良いです🔥  
 
 ### Go
-
-- バックエンド
-
-https://github.com/yashikota/scene-hunter
-
-https://github.com/yashikota/chronotes
-
-- CLIアプリ
-
-https://github.com/yashikota/genenv
-
-https://github.com/yashikota/noast
 
 1年ほど主に個人開発/インターンで使用。  
 クロスプラットフォームにシングルバイナリで実行ファイルをビルドできるところが好きで、ちょっとしたCLIアプリとかは基本Goで書いています。  
@@ -177,11 +141,6 @@ https://docswell.com/user/kota
 - feat(notification): discord suppress notifications ([#6717](https://github.com/louislam/uptime-kuma/pull/6717))  
 Discordへの通知で、Suppress Notificationを選べるように機能追加
 
-### [jdx/mise](https://github.com/jdx/mise)
-
-- feat(registry): update aws-sam backends to include aqua source ([#5461](https://github.com/jdx/mise/pull/5461))  
-`aqua:aws-sam-cli` のインストールに対応
-
 ### [okaryo/remark-link-card-plus](https://github.com/okaryo/remark-link-card-plus)
 
 - Add `ignoreExtensions` options to exclude link cards ([#48](https://github.com/okaryo/remark-link-card-plus/pull/48))  
@@ -189,14 +148,7 @@ Discordへの通知で、Suppress Notificationを選べるように機能追加
 
 ### [aquaproj/aqua-registry](https://github.com/aquaproj/aqua-registry)
 
-- feat(aws/aws-sam-cli): scaffold aws/aws-sam-cli ([#33349](https://github.com/aquaproj/aqua-registry/pull/33349))  
-`aws-sam-cli` の追加
-
-- Add theseus-rs/postgresql-binaries ([#33390](https://github.com/aquaproj/aqua-registry/pull/33390))  
-`postgresql-binaries` の追加
-
-- feat: Tyrrrz/FFmpegBin ([#49161](https://github.com/aquaproj/aqua-registry/pull/49161))  
-`ffmpeg`の追加
+- [様々なCLIツールの追加](https://github.com/aquaproj/aqua-registry/pulls?q=is%3Apr+author%3Ayashikota+is%3Amerged+)
 
 ## Certification
 

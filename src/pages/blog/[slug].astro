@@ -5,12 +5,14 @@ import Base from "@/layouts/base.astro";
 import { markdownToHtmlWithToc } from "@/lib/markdown";
 import { getBlogPosts } from "@/lib/posts";
 import { createDescriptionFromMarkdown } from "@/lib/seo";
+import { getDocumentUriForSlug } from "@/lib/standard-site";
 
 interface Props {
   title: string;
   tags: string[];
   pubDate: string;
   updDate: string;
+  isUnlisted: boolean;
   body: string;
   showToc: boolean;
 }
@@ -27,6 +29,7 @@ export async function getStaticPaths() {
         tags: blog.tags,
         pubDate: blog.pubDate,
         updDate: blog.updDate,
+        isUnlisted: blog.isUnlisted,
         body: blog.body,
         showToc: blog.showToc,
       },
@@ -34,11 +37,16 @@ export async function getStaticPaths() {
   });
 }
 
-const { title, tags, pubDate, updDate, body, showToc } = Astro.props;
+const { title, tags, pubDate, updDate, isUnlisted, body, showToc } =
+  Astro.props;
 const { html: content, toc } = await markdownToHtmlWithToc(body);
 const canonicalUrl = `/blog/${Astro.params.slug}/`;
 const description = createDescriptionFromMarkdown(body);
 const ogImage = `/og/${Astro.params.slug}.png`;
+const standardSiteDocumentUri =
+  Astro.params.slug && !isUnlisted
+    ? getDocumentUriForSlug(Astro.params.slug)
+    : null;
 ---
 
 <Base
@@ -49,6 +57,8 @@ const ogImage = `/og/${Astro.params.slug}.png`;
     ogType="article"
     publishedTime={new Date(pubDate).toISOString()}
     modifiedTime={updDate ? new Date(updDate).toISOString() : null}
+    standardSiteDocumentUri={standardSiteDocumentUri}
+    noIndex={isUnlisted}
 >
     <div class="mx-auto text-center">
         <div
