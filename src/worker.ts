@@ -60,6 +60,10 @@ export default {
       .transform(response.clone())
       .text();
 
+    if (urlsToFetch.length === 0) {
+      return response;
+    }
+
     // Deduplicate and fetch all previews in parallel
     const seen = new Set<string>();
     const uniqueUrls = urlsToFetch.filter(({ url }) => {
@@ -71,7 +75,13 @@ export default {
 
     const previews = await Promise.all(
       uniqueUrls.map(({ url, displayUrl }) =>
-        getLinkPreview(url, displayUrl, ctx),
+        getLinkPreview(url, displayUrl, ctx).catch((error) => {
+          console.error(
+            `[worker] Failed to get link preview for ${url.toString()}:`,
+            error,
+          );
+          return createMinimalLinkCardData(url, displayUrl);
+        }),
       ),
     );
 
