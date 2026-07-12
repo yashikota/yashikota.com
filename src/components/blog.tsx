@@ -24,6 +24,41 @@ export const Blog: React.FC = () => {
     return () => document.removeEventListener("click", handler);
   }, []);
 
+  useEffect(() => {
+    let canceled = false;
+
+    const renderMermaid = async () => {
+      const nodes = Array.from(
+        document.querySelectorAll<HTMLElement>(
+          "pre.mermaid:not([data-processed])",
+        ),
+      );
+      if (!nodes.length) {
+        return;
+      }
+
+      const { default: mermaid } = await import("mermaid");
+      if (canceled) {
+        return;
+      }
+
+      mermaid.initialize({
+        securityLevel: "strict",
+        startOnLoad: false,
+      });
+
+      await mermaid.run({ nodes });
+    };
+
+    renderMermaid().catch((error) => {
+      console.error("[mermaid] Failed to render diagrams", error);
+    });
+
+    return () => {
+      canceled = true;
+    };
+  }, []);
+
   const [showTop, setShowTop] = useState(false);
   useEffect(() => {
     const onScroll = () => {
