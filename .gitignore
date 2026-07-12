@@ -35,3 +35,5 @@ public/remark-link-card-plus
 
 # claude code worktrees
 .claude/worktrees/
+.claude/*
+
