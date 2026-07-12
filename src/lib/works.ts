@@ -15,5 +15,5 @@ export async function getAllWorks() {
   return [...WorksData] as WorkItem[];
 }
 
-export { WorksData };
 export type { WorkItem };
+export { WorksData };
