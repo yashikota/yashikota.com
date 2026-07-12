@@ -29,7 +29,7 @@ export const Blog: React.FC = () => {
 
     const renderMermaid = async () => {
       const nodes = Array.from(
-        document.querySelectorAll<HTMLElement>("pre.mermaid"),
+        document.querySelectorAll<HTMLElement>("pre.mermaid:not([data-processed])"),
       );
       if (!nodes.length) {
         return;
@@ -43,10 +43,6 @@ export const Blog: React.FC = () => {
       mermaid.initialize({
         securityLevel: "strict",
         startOnLoad: false,
-      });
-
-      nodes.forEach((node) => {
-        node.removeAttribute("data-processed");
       });
 
       await mermaid.run({ nodes });

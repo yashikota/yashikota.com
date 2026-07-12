@@ -2,7 +2,7 @@ import type { Element, Root, RootContent } from "hast";
 import type { Plugin } from "unified";
 import { visit } from "unist-util-visit";
 
-const MERMAID_LANGUAGE_CLASS = "language-mermaid";
+const MERMAID_LANGUAGE_RE = /^language-mermaid/i;
 
 const getClassNames = (className: unknown): string[] => {
   if (Array.isArray(className)) {
@@ -40,16 +40,12 @@ const rehypeMermaid: Plugin<[], Root> = () => {
       }
 
       const codeNode = node.children[0];
-      if (
-        !codeNode ||
-        codeNode.type !== "element" ||
-        codeNode.tagName !== "code"
-      ) {
+      if (codeNode?.type !== "element" || codeNode.tagName !== "code") {
         return;
       }
 
       const classNames = getClassNames(codeNode.properties?.className);
-      if (!classNames.includes(MERMAID_LANGUAGE_CLASS)) {
+      if (!classNames.some((c) => MERMAID_LANGUAGE_RE.test(c))) {
         return;
       }
 

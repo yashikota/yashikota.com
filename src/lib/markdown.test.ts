@@ -249,9 +249,7 @@ describe("markdownToHtmlWithToc", () => {
       const { html } = await markdownToHtmlWithToc(markdown);
 
       expect(countMermaidBlocks(html)).toBe(1);
-      expect(html).toContain(
-        `<pre class="mermaid">${mermaidCase.source[0]}`,
-      );
+      expect(html).toContain(`<pre class="mermaid">${mermaidCase.source[0]}`);
       expect(html).toContain(toHtmlEntitySafe(mermaidCase.expected));
     });
   }
