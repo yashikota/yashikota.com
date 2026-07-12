@@ -709,7 +709,12 @@ function renderTweetCard(
   const inReplyTo = displayTweet.in_reply_to_screen_name
     ? `<div class="remark-x-embed__in-reply-to">Replying to <a href="https://x.com/${escapeAttribute(displayTweet.in_reply_to_screen_name)}" target="_blank" rel="noopener noreferrer nofollow">@${escapeHtml(displayTweet.in_reply_to_screen_name)}</a></div>`
     : "";
-  const actions = renderActions(displayTweet, tweetUrl, createdAtDate, createdAtText);
+  const actions = renderActions(
+    displayTweet,
+    tweetUrl,
+    createdAtDate,
+    createdAtText,
+  );
   const avatarUrl = toSafeHttpUrl(displayTweet.user.profile_image_url_https);
 
   const mediaTypeClass =
