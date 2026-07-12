@@ -155,7 +155,7 @@ const remarkYoutubePlugin =
 
     // Process text nodes for YouTube URLs
     visit(tree, "text", (node, _index, parent) => {
-      if (!parent || parent.type !== "paragraph") return;
+      if (parent?.type !== "paragraph") return;
 
       // Try to extract video ID from text content
       const videoId = extractVideoId(node.value);
@@ -170,7 +170,7 @@ const remarkYoutubePlugin =
 
     // Process link nodes for YouTube URLs
     visit(tree, "link", (node, _index, parent) => {
-      if (!parent || parent.type !== "paragraph") return;
+      if (parent?.type !== "paragraph") return;
 
       // Extract video ID from link URL
       const videoId = extractVideoId(node.url);
