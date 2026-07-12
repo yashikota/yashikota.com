@@ -26,3 +26,9 @@ public/remark-link-card-plus
 
 # og font cache
 .cache/fonts/
+
+# wrangler dev build artifacts
+.wrangler/
+
+# playwright test artifacts
+.playwright/
