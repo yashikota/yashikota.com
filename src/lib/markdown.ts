@@ -17,7 +17,6 @@ import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
 import remarkValidateLinks from "remark-validate-links";
 import { unified } from "unified";
-import rehypeMermaid from "./rehype-mermaid";
 import remarkImageSize from "./remark-image-size";
 import remarkLinkCard from "./remark-linkcard";
 import remarkTwitter from "./remark-twitter";
@@ -50,7 +49,6 @@ export async function markdownToHtmlWithToc(
     .use(remarkTwitter)
     .use(remarkLinkCard, { shortenUrl: true })
     .use(remarkRehype, { allowDangerousHtml: true })
-    .use(rehypeMermaid)
     .use(rehypeExternalLinks, {
       target: "_blank",
       rel: (node) => {
