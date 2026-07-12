@@ -989,7 +989,7 @@ function renderQuotedTweet(tweet: QuotedTweet): string {
   const avatarUrl = toSafeHttpUrl(tweet.user.profile_image_url_https);
 
   return `
-<a href="${escapeAttribute(tweetUrl)}" class="remark-x-embed__quote" target="_blank" rel="noopener noreferrer">
+<div class="remark-x-embed__quote" ${getCardClickAttributes(tweetUrl)}>
   <div class="remark-x-embed__quote-header">
     ${avatarUrl ? `<img src="${escapeAttribute(avatarUrl)}" alt="${escapeAttribute(tweet.user.name)}" class="remark-x-embed__quote-avatar${tweet.user.profile_image_shape === "Square" ? " remark-x-embed__quote-avatar--square" : ""}" loading="lazy" />` : `<span class="remark-x-embed__quote-avatar remark-x-embed__avatar-link--placeholder${tweet.user.profile_image_shape === "Square" ? " remark-x-embed__quote-avatar--square" : ""}" aria-hidden="true"></span>`}
     <div class="remark-x-embed__quote-author">
@@ -999,7 +999,7 @@ function renderQuotedTweet(tweet: QuotedTweet): string {
   </div>
   <div class="remark-x-embed__quote-body" lang="${escapeAttribute(tweet.lang)}" dir="auto">${renderBodyEntities(bodyEntities)}</div>
   ${media}
-</a>`.trim();
+</div>`.trim();
 }
 
 function renderActions(
