@@ -99,6 +99,10 @@ const standardSiteDocumentUri =
     )}
 
     <div class="w-full max-w-3xl mx-auto">
-      <Blog html={content} client:load />
+      <div
+        class="prose prose-sm sm:prose lg:prose-lg dark:prose-invert max-w-none"
+        set:html={content}
+      />
+      <Blog client:load />
     </div>
 </Base>

@@ -10,7 +10,12 @@ export const AboutPage = ({ aboutContent }: AboutPageProps) => {
     <div className="xl:w-4/5 mx-auto">
       <ProfileComponent />
       <div className="w-full max-w-3xl mx-auto">
-        <Blog html={aboutContent} />
+        <div
+          className="prose prose-sm sm:prose lg:prose-lg dark:prose-invert max-w-none"
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: server-rendered markdown HTML
+          dangerouslySetInnerHTML={{ __html: aboutContent }}
+        />
+        <Blog />
       </div>
     </div>
   );
