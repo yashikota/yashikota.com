@@ -54,32 +54,6 @@
     "tags": ["C Sharp", "WinAppSDK", "WinUI 3"]
   },
   {
-    "title": "HappyShot",
-    "description": "動画を送るだけで最高のベストショットが手に入るWebアプリです。顔の向き検出と表情解析AIを使用して、全員がカメラを向いて笑顔になっている最適な瞬間を自動で抽出します。LINE Botからも利用でき、集合写真の撮り直しの手間を大幅に削減できます。",
-    "image": "https://img.yashikota.com/works/happy-shot/happy-shot.avif",
-    "github": ["https://github.com/yashikota/happy-shot"],
-    "url": ["https://topaz.dev/projects/5ba3d6d5f2818f64236f"],
-    "date": "2025/02",
-    "tags": ["Python", "TypeScript", "Next.js"]
-  },
-  {
-    "title": "Chronotes",
-    "description": "毎日の日記や日報を、GitHubなどの計7つのサービスから作業ログや会話を自動収集し、AIを用いて要約しノートを生成するアプリです。期間別に要約することも可能で、毎日の日記をつける手間を省けます。",
-    "image": "https://img.yashikota.com/works/chronotes/chronotes.avif",
-    "github": ["https://github.com/yashikota/chronotes"],
-    "url": ["https://topaz.dev/projects/9752f502380d2cc00f7c"],
-    "date": "2024/11",
-    "tags": [
-      "Go",
-      "TypeScript",
-      "Next.js",
-      "Docker",
-      "PostgreSQL",
-      "Tailwind",
-      "Gemini"
-    ]
-  },
-  {
     "title": "Scene Hunter",
     "description": "ゲームマスターが撮影した写真のヒントを元に、プレイヤーは同じ場所や構図を探し出し、ゲームマスターの写真に最も似た写真を撮影したプレイヤーが勝利するゲームです。",
     "image": "https://img.yashikota.com/works/scene-hunter/scene-hunter.avif",
