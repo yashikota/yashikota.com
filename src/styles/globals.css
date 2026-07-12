@@ -537,6 +537,12 @@ h6:focus-within .markdown-copy-link-btn {
   color: rgb(0 186 124);
 }
 
+.remark-x-embed__action--time {
+  margin-left: auto;
+  font-weight: 400;
+  color: var(--x-font-color-secondary);
+}
+
 .remark-x-embed__action svg {
   width: 1.1rem;
   height: 1.1rem;

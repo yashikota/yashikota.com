@@ -709,7 +709,7 @@ function renderTweetCard(
   const inReplyTo = displayTweet.in_reply_to_screen_name
     ? `<div class="remark-x-embed__in-reply-to">Replying to <a href="https://x.com/${escapeAttribute(displayTweet.in_reply_to_screen_name)}" target="_blank" rel="noopener noreferrer nofollow">@${escapeHtml(displayTweet.in_reply_to_screen_name)}</a></div>`
     : "";
-  const actions = renderActions(displayTweet);
+  const actions = renderActions(displayTweet, tweetUrl, createdAtDate, createdAtText);
   const avatarUrl = toSafeHttpUrl(displayTweet.user.profile_image_url_https);
 
   const mediaTypeClass =
@@ -745,9 +745,6 @@ function renderTweetCard(
     <p class="remark-x-embed__body" lang="${escapeAttribute(displayTweet.lang)}" dir="auto">${renderBodyEntities(bodyEntities)}</p>
     ${media}
     ${quoted}
-    <div class="remark-x-embed__meta">
-      <a href="${escapeAttribute(tweetUrl)}" class="remark-x-embed__time-link" target="_blank" rel="noopener noreferrer"><time datetime="${escapeAttribute(createdAtDate.toISOString())}">${escapeHtml(createdAtText)}</time></a>
-    </div>
     ${actions}
   </article>
 </div>`.trim();
@@ -1000,7 +997,12 @@ function renderQuotedTweet(tweet: QuotedTweet): string {
 </a>`.trim();
 }
 
-function renderActions(tweet: DisplayTweet): string {
+function renderActions(
+  tweet: DisplayTweet,
+  tweetUrl: string,
+  createdAtDate: Date,
+  createdAtText: string,
+): string {
   const likeCount = formatNumber(tweet.favorite_count);
   const replyCount = formatNumber(tweet.conversation_count);
   const retweetCount =
@@ -1026,6 +1028,7 @@ function renderActions(tweet: DisplayTweet): string {
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.884 13.19c-1.351 2.48-4.001 5.12-8.379 7.67l-.503.3-.504-.3c-4.379-2.55-7.029-5.19-8.382-7.67-1.36-2.5-1.41-4.86-.514-6.67.887-1.79 2.647-2.91 4.601-3.01 1.651-.09 3.368.56 4.798 2.01 1.429-1.45 3.146-2.1 4.796-2.01 1.954.1 3.714 1.22 4.601 3.01.896 1.81.846 4.17-.514 6.67z"></path></svg>
     <span>${escapeHtml(likeCount)}</span>
   </a>
+  <a href="${escapeAttribute(tweetUrl)}" class="remark-x-embed__action remark-x-embed__action--time" target="_blank" rel="noopener noreferrer"><time datetime="${escapeAttribute(createdAtDate.toISOString())}">${escapeHtml(createdAtText)}</time></a>
 </div>`.trim();
 }
 
