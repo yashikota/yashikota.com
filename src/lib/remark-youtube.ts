@@ -46,7 +46,7 @@ const createIframeNode = (
   const { className, responsive, style } = options;
 
   const commonProps = {
-    className,
+    className: [className],
     src: `https://www.youtube.com/embed/${videoId}`,
     frameBorder: "0",
     allow:
@@ -106,7 +106,7 @@ const remarkYoutubePlugin =
         parent.data = {
           hName: "div",
           hProperties: {
-            className: "youtube-container",
+            className: ["youtube-container"],
           },
         };
 
@@ -124,7 +124,7 @@ const remarkYoutubePlugin =
         parent.data = {
           hName: "div",
           hProperties: {
-            className: "youtube-wrapper",
+            className: ["youtube-wrapper"],
             style: `position: relative; width: 100%; padding-bottom: ${ratio}%; height: 0; overflow: hidden;`,
           },
         };
