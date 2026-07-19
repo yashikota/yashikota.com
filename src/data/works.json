@@ -4,7 +4,7 @@
     "description": "Hacker Newsの日本語ポッドキャストを毎日お届けします！",
     "image": "https://img.yashikota.com/works/hackernews-podcast/hackernews-podcast.avif",
     "github": ["https://github.com/yashikota/hackernews-podcast"],
-    "url": ["https://hackernews-podcast.yashikota.com"],
+    "url": ["https://a-kaibu.github.io/hackernews-podcast"],
     "date": "2026/04",
     "tags": ["Go", "LLM"]
   },
