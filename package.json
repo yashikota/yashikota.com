@@ -27,7 +27,7 @@
     "@resvg/resvg-js": "^2.6.2",
     "@types/react": "^19.2.10",
     "@types/react-dom": "^19.2.3",
-    "astro": "7.1.1",
+    "astro": "7.1.2",
     "budoux": "^0.8.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
