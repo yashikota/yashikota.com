@@ -1,7 +1,6 @@
-<Hobby> ::= <Game> <Photography> <Cooking> <Programming>
+<Hobby> ::= <Game> <Photography> <Cooking> <Astro> <Programming>
 <Programming> ::= <Backend> <Go> <TypeScript> <Python> <Other>
-<Backend> ::= <Cloud> <CloudNative> <DataBase>
+<Backend> ::= <Cloud> <CloudNative>
 <Cloud> ::= <AWS> <GoogleCloud> <Cloudflare>
-<CloudNative> ::= <CI> <CD> <Container> <Terraform> <Kubernetes>
-<DataBase> ::= <PostgreSQL> <Redis> <Valkey>
+<CloudNative> ::= <CI> <CD> <Container>
 <Other> ::= <WebFrontend> <Network> <LLM> <Security>
