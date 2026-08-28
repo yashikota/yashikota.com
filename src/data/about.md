@@ -36,24 +36,22 @@ LLMはある程度力を入れて追いかけていて、最新のモデル、�
 セキュリティも学会やセキュキャン等のイベントに参加したり、資格取ったりはしていて一定の知識を持っています。  
 その他にも興味駆動な性格なので雑多に、低レイヤーではOSやコンパイラの輪読会開催したり、マルチメディアのコーデックを調べたり、ゲームの3Dグラフィックスやレンダリングに興味を持ったり、XRで遊んでみたり...幅広く手を動かして楽しんでいます。  
 
-## Talks
-
-発表したスライド一覧はここにアップロードしています。  
+## Talks  
 
 https://docswell.com/user/kota
 
 ## OSS Contributions
 
-### [louislam/uptime-kuma](https://github.com/louislam/uptime-kuma)
+### louislam/uptime-kuma
 
 - feat(notification): discord suppress notifications ([#6717](https://github.com/louislam/uptime-kuma/pull/6717))  
 Discordへの通知で、Suppress Notificationを選べるように機能追加
 
-### [okaryo/remark-link-card-plus](https://github.com/okaryo/remark-link-card-plus)
+### okaryo/remark-link-card-plus
 
 - Add `ignoreExtensions` options to exclude link cards ([#48](https://github.com/okaryo/remark-link-card-plus/pull/48))  
 特定の拡張子のリンクをリンクカードに変換しないオプションを追加
 
-### [aquaproj/aqua-registry](https://github.com/aquaproj/aqua-registry)
+### aquaproj/aqua-registry
 
 - [様々なCLIツールの追加](https://github.com/aquaproj/aqua-registry/pulls?q=is%3Apr+author%3Ayashikota+is%3Amerged+)
