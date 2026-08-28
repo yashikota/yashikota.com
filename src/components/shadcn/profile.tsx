@@ -1,7 +1,11 @@
 export function ProfileComponent() {
   return (
     <div className="flex flex-col items-center">
-      <img src="/favicon.avif" alt="avatar" className="w-24" />
+      <img
+        src="/icon.png"
+        alt="avatar"
+        className="w-24 h-24 rounded-full object-cover"
+      />
       <h1 className="mt-4 text-2xl font-bold">
         <span>こた (kota)</span>
       </h1>
