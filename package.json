@@ -27,7 +27,7 @@
     "@resvg/resvg-js": "^2.6.2",
     "@types/react": "^19.2.10",
     "@types/react-dom": "^19.2.3",
-    "astro": "7.3.3",
+    "astro": "7.3.4",
     "budoux": "^0.9.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -62,7 +62,7 @@
     "unified": "^11.0.5"
   },
   "devDependencies": {
-    "@astrojs/partytown": "2.1.7",
+    "@astrojs/partytown": "2.1.8",
     "@biomejs/biome": "2.5.14",
     "@tailwindcss/typography": "0.5.20",
     "@tailwindcss/vite": "4.3.3",
