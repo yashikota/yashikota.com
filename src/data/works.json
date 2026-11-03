@@ -1,14 +1,5 @@
 [
   {
-    "title": "Hacker News 日本語Podcast",
-    "description": "Hacker Newsの日本語ポッドキャストを毎日お届けします！",
-    "image": "https://img.yashikota.com/works/hackernews-podcast/hackernews-podcast.avif",
-    "github": ["https://github.com/yashikota/hackernews-podcast"],
-    "url": ["https://a-kaibu.github.io/hackernews-podcast"],
-    "date": "2026/04",
-    "tags": ["Go", "LLM"]
-  },
-  {
     "title": "Mini S3",
     "description": "ユニットテスト用のインメモリで動作するS3互換サーバー。テストは書きたいが、モックは使いたくないという思いがあり更にDockerとかで建てるのも微妙なので、miniredisというインメモリなGoのユニットテスト用のライブラリがありこのアプローチが好きなのでS3用のも欲しいと思い作成しました",
     "image": "https://img.yashikota.com/works/minis3/minis3.avif",
@@ -16,15 +7,6 @@
     "url": [],
     "date": "2026/02",
     "tags": ["Go", "S3"]
-  },
-  {
-    "title": "GitHub Trending 日本語まとめ",
-    "description": "GitHub Trendingの概要を日本語に翻訳して毎日お届けします！",
-    "image": "https://img.yashikota.com/works/github-trending-ja/github-trending-ja.avif",
-    "github": ["https://github.com/yashikota/github-trending-ja"],
-    "url": ["https://github-trending-ja.yashikota.com"],
-    "date": "2026/02",
-    "tags": ["Go", "LLM"]
   },
   {
     "title": "exiftool-go",
@@ -45,22 +27,13 @@
     "tags": ["Go", "CLI"]
   },
   {
-    "title": "Shutdown Timer",
-    "description": "Windows専用のPCシャットダウンしてくれるアプリです。〇〇分後にシャットダウンと〇〇時にシャットダウンの2通りをサポートしています。英語対応やライト/ダークテーマにも対応しています。WinAppSDKとWinUI 3を使って作りました",
-    "image": "https://img.yashikota.com/works/shutdown-timer/shutdown-timer.avif",
-    "github": ["https://github.com/yashikota/shutdown-timer"],
-    "url": [],
-    "date": "2025/09",
-    "tags": ["C Sharp", "WinAppSDK", "WinUI 3"]
-  },
-  {
     "title": "Scene Hunter",
     "description": "ゲームマスターが撮影した写真のヒントを元に、プレイヤーは同じ場所や構図を探し出し、ゲームマスターの写真に最も似た写真を撮影したプレイヤーが勝利するゲームです。",
     "image": "https://img.yashikota.com/works/scene-hunter/scene-hunter.avif",
     "github": ["https://github.com/yashikota/scene-hunter"],
-    "url": ["https://topaz.dev/projects/b8646b0b164a6568fa57"],
+    "url": ["https://game.scene-hunter.workers.dev"],
     "date": "2024/08",
-    "tags": ["Python", "TypeScript", "Go", "React", "Gemini"]
+    "tags": ["TypeScript"]
   },
   {
     "title": "シラバスアプリ",
@@ -88,17 +61,5 @@
     "url": ["https://pypi.org/project/td4"],
     "date": "2023/03",
     "tags": ["Python", "CPU"]
-  },
-  {
-    "title": "JANCode Generator",
-    "description": "日本の流通には欠かせないバーコードことJANCodeを標準ライブラリだけで作成するライブラリです。現在はPython版のみ開発済みで、PyPIに登録し手軽に使用できるようなっています。",
-    "image": "https://img.yashikota.com/works/jancode/jancode.avif",
-    "github": ["https://github.com/yashikota/jancode"],
-    "url": [
-      "https://pypi.org/project/jancode",
-      "https://zenn.dev/yashikota/articles/3d1f38a5972a5b"
-    ],
-    "date": "2023/02",
-    "tags": ["Python", "JANCode"]
   }
 ]
