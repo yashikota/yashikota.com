@@ -1,5 +1,6 @@
 {
   "name": "yashikota",
+  "account_id": "d0e701f84b51921572cb3d46b9ad038a",
   "main": "src/worker.ts",
   "preview_urls": true,
   "compatibility_date": "2025-05-29",
