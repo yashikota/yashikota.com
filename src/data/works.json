@@ -36,15 +36,6 @@
     "tags": ["TypeScript"]
   },
   {
-    "title": "シラバスアプリ",
-    "description": "大学のシラバスを快適に検索・閲覧できるWebアプリです。大学公式のシラバス検索サイトが非常に使いづらかったため作成しました。シラバスのデータ取得にはPythonを用いています。フロントエンドはReact Router v7とhono, shadcn/uiを使用してCloudflare Workersにデプロイする意欲的な技術スタックになっています。",
-    "image": "https://img.yashikota.com/works/naist-syllabus/demo.avif",
-    "github": ["https://github.com/yashikota/syllabus"],
-    "url": ["https://syllabus.naist.yashikota.com"],
-    "date": "2024/12",
-    "tags": ["Python", "TypeScript", "React Router v7", "React", "Cloudflare"]
-  },
-  {
     "title": "yashikota.com",
     "description": "このサイトです。AstroやBun、shadcn/uiなど個人開発ならではの技術スタックスを採用し作成しました。",
     "image": "https://img.yashikota.com/works/yashikota.com/about.avif",
